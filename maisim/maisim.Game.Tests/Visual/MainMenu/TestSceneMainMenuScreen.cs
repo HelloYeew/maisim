@@ -4,7 +4,7 @@ using osu.Framework.Screens;
 
 namespace maisim.Game.Tests.Visual.MainMenu
 {
-    public class TestSceneMainMenuButton : maisimTestScene
+    public class TestSceneMainMenuScreen : maisimTestScene
     {
         [SetUp]
         public void SetUp()
