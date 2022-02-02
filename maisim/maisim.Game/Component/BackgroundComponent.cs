@@ -18,7 +18,7 @@ namespace maisim.Game.Component
                 Anchor = Anchor.Centre,
                 Origin = Anchor.Centre,
                 FillMode = FillMode.Fill,
-                Texture = textureStore.Get("background2")
+                Texture = textureStore.Get("background3")
             };
         }
     }

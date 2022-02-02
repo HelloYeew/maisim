@@ -1,14 +1,11 @@
-﻿using System.Drawing;
-using maisim.Game.Component;
+﻿using maisim.Game.Component;
 using osu.Framework.Allocation;
 using osu.Framework.Extensions.Color4Extensions;
 using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
 using osu.Framework.Graphics.Shapes;
-using osu.Framework.Graphics.Sprites;
 using osu.Framework.Screens;
 using osuTK;
-using osuTK.Graphics;
 
 namespace maisim.Game
 {
