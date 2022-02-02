@@ -1,0 +1,10 @@
+{
+  "solution": {
+    "path": "maisim.sln",
+    "projects": [
+      "maisim.Game\\maisim.Game.csproj",
+      "maisim.Resources\\maisim.Resources.csproj",
+      "maisim.iOS\\maisim.iOS.csproj"
+    ]
+  }
+}
