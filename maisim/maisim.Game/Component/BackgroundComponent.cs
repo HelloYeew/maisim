@@ -3,6 +3,7 @@ using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
 using osu.Framework.Graphics.Sprites;
 using osu.Framework.Graphics.Textures;
+using osuTK;
 
 namespace maisim.Game.Component
 {
@@ -13,9 +14,11 @@ namespace maisim.Game.Component
         {
             InternalChild = new Sprite
             {
+                RelativeSizeAxes = Axes.Both,
                 Anchor = Anchor.Centre,
                 Origin = Anchor.Centre,
-                Texture = textureStore.Get("background"),
+                FillMode = FillMode.Fill,
+                Texture = textureStore.Get("background2")
             };
         }
     }
