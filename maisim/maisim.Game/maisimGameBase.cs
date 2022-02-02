@@ -1,7 +1,9 @@
+using maisim.Game.Store;
 using osu.Framework.Allocation;
 using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
 using osu.Framework.IO.Stores;
+using osu.Framework.Graphics.Textures;
 using osuTK;
 using maisim.Resources;
 
@@ -14,6 +16,8 @@ namespace maisim.Game
         // the screen scaling for all components including the test browser and framework overlays.
 
         protected override Container<Drawable> Content { get; }
+
+        private MaisimTextureStore textureStore;
 
         protected maisimGameBase()
         {
@@ -29,6 +33,13 @@ namespace maisim.Game
         private void load()
         {
             Resources.AddStore(new DllResourceStore(typeof(maisimResources).Assembly));
+        }
+
+        protected override IReadOnlyDependencyContainer CreateChildDependencies(IReadOnlyDependencyContainer parent)
+        {
+            var dependencies = new DependencyContainer(base.CreateChildDependencies(parent));
+            dependencies.Cache(textureStore = new MaisimTextureStore(Host.CreateTextureLoaderStore(new NamespacedResourceStore<byte[]>(Resources, "Textures"))));
+            return dependencies;
         }
     }
 }
