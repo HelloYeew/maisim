@@ -9,7 +9,6 @@ namespace maisim.Game
 {
     public class SpinningBox : CompositeDrawable
     {
-        private Container box;
 
         public SpinningBox()
         {
@@ -20,33 +19,18 @@ namespace maisim.Game
         [BackgroundDependencyLoader]
         private void load(TextureStore textures)
         {
-            InternalChild = box = new Container
+            InternalChild = new Sprite
             {
-                AutoSizeAxes = Axes.Both,
                 Anchor = Anchor.Centre,
                 Origin = Anchor.Centre,
-                Children = new Drawable[]
-                {
-                    new Box
-                    {
-                        RelativeSizeAxes = Axes.Both,
-                        Anchor = Anchor.Centre,
-                        Origin = Anchor.Centre,
-                    },
-                    new Sprite
-                    {
-                        Anchor = Anchor.Centre,
-                        Origin = Anchor.Centre,
-                        Texture = textures.Get("background2")
-                    },
-                }
+                Texture = textures.Get("background2"),
+                FillAspectRatio = 1
             };
         }
 
         protected override void LoadComplete()
         {
             base.LoadComplete();
-            box.Loop(b => b.RotateTo(0).RotateTo(360, 2500));
         }
     }
 }

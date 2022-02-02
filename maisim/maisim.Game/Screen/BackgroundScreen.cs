@@ -1,12 +1,7 @@
 ﻿using maisim.Game.Component;
-using maisim.Game.Store;
 using osu.Framework.Allocation;
 using osu.Framework.Graphics;
-using osu.Framework.Graphics.Shapes;
-using osu.Framework.Graphics.Sprites;
-using osu.Framework.Graphics.Textures;
 using osu.Framework.Screens;
-using osuTK.Graphics;
 
 namespace maisim.Game
 {
@@ -19,9 +14,10 @@ namespace maisim.Game
             {
                 new BackgroundComponent
                 {
-                    RelativeSizeAxes = Axes.Both,
                     Anchor = Anchor.Centre,
-                    Origin = Anchor.Centre
+                    Origin = Anchor.Centre,
+                    FillMode = FillMode.Stretch,
+                    RelativeSizeAxes = Axes.Both
                 }
             };
         }
