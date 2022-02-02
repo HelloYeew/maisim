@@ -20,7 +20,8 @@ namespace maisim.Game
         {
             base.LoadComplete();
 
-            screenStack.Push(new BackgroundScreen());
+            // screenStack.Push(new BackgroundScreen());
+            screenStack.Push(new MainMenuScreen());
         }
     }
 }
