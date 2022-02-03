@@ -9,6 +9,13 @@ namespace maisim.Game.Component
 {
     public class BackgroundComponent : CompositeDrawable
     {
+        private string backgroundName;
+
+        public BackgroundComponent(string backgroundName)
+        {
+            this.backgroundName = backgroundName;
+        }
+
         [BackgroundDependencyLoader]
         private void load(TextureStore textureStore)
         {
@@ -18,7 +25,7 @@ namespace maisim.Game.Component
                 Anchor = Anchor.Centre,
                 Origin = Anchor.Centre,
                 FillMode = FillMode.Fill,
-                Texture = textureStore.Get("background3")
+                Texture = textureStore.Get(backgroundName)
             };
         }
     }
