@@ -1,5 +1,6 @@
 ﻿using osu.Framework.Allocation;
 using osu.Framework.Audio.Sample;
+using osu.Framework.Extensions.Color4Extensions;
 using osu.Framework.Graphics;
 using osu.Framework.Graphics.Audio;
 using osu.Framework.Graphics.Containers;
@@ -15,6 +16,14 @@ namespace maisim.Game.Component
     {
         private DrawableSample drawableHoverSample;
         private DrawableSample drawableClickSample;
+        private readonly string buttonText;
+        private readonly IconUsage buttonIcon;
+
+        public MainMenuButton(string buttonText, IconUsage buttonIcon)
+        {
+            this.buttonText = buttonText;
+            this.buttonIcon = buttonIcon;
+        }
 
         [BackgroundDependencyLoader]
         private void load(ISampleStore sampleStore)
@@ -31,7 +40,7 @@ namespace maisim.Game.Component
                         RelativeSizeAxes = Axes.Both,
                         Anchor = Anchor.Centre,
                         Origin = Anchor.Centre,
-                        Colour = Color4.White,
+                        Colour = Color4Extensions.FromHex("ffe587")
                     },
                     new GridContainer
                     {
@@ -42,7 +51,7 @@ namespace maisim.Game.Component
                             {
                                 new SpriteText()
                                 {
-                                    Text = "Play",
+                                    Text = buttonText,
                                     Font = new FontUsage(size: 30),
                                     Anchor = Anchor.Centre,
                                     Origin = Anchor.Centre,
@@ -52,8 +61,8 @@ namespace maisim.Game.Component
                                 {
                                     Anchor = Anchor.Centre,
                                     Origin = Anchor.Centre,
-                                    Icon = FontAwesome.Solid.Play,
-                                    Size = new Vector2(100,100),
+                                    Icon = buttonIcon,
+                                    Size = new Vector2(80,80),
                                     Colour = Colour4.Black
                                 }
                             }

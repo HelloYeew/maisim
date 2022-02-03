@@ -5,6 +5,7 @@ using osu.Framework.Extensions.Color4Extensions;
 using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
 using osu.Framework.Graphics.Shapes;
+using osu.Framework.Graphics.Sprites;
 using osu.Framework.Screens;
 using osuTK;
 
@@ -48,22 +49,22 @@ namespace maisim.Game
                             RelativePositionAxes = Axes.Y,
                             Children = new Drawable[]
                             {
-                                new MainMenuButton
+                                new MainMenuButton("Play",FontAwesome.Solid.Play)
                                 {
                                     Anchor = Anchor.Centre,
                                     Origin = Anchor.Centre,
                                     Size = new Vector2(300,300)
-                                },new MainMenuButton
+                                },new MainMenuButton("Edit",FontAwesome.Solid.Edit)
                                 {
                                     Anchor = Anchor.Centre,
                                     Origin = Anchor.Centre,
                                     Size = new Vector2(300,300)
-                                },new MainMenuButton
+                                },new MainMenuButton("Browse",FontAwesome.Solid.ListUl)
                                 {
                                     Anchor = Anchor.Centre,
                                     Origin = Anchor.Centre,
                                     Size = new Vector2(300,300)
-                                },new MainMenuButton
+                                },new MainMenuButton("Exit",FontAwesome.Solid.DoorOpen)
                                 {
                                     Anchor = Anchor.Centre,
                                     Origin = Anchor.Centre,
