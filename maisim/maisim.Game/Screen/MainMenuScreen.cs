@@ -1,4 +1,5 @@
 ﻿using maisim.Game.Component;
+using NUnit.Framework.Constraints;
 using osu.Framework.Allocation;
 using osu.Framework.Extensions.Color4Extensions;
 using osu.Framework.Graphics;
@@ -39,26 +40,47 @@ namespace maisim.Game
                             Size = new Vector2(300, 300),
                             Colour = Color4Extensions.FromHex("fbf2d7"),
                         },
-                        new Container
+                        new FillFlowContainer
                         {
                             Anchor = Anchor.Centre,
                             Origin = Anchor.Centre,
                             RelativeSizeAxes = Axes.X,
-                            Size = new Vector2(300, 300),
+                            RelativePositionAxes = Axes.Y,
                             Children = new Drawable[]
                             {
                                 new MainMenuButton
                                 {
-                                    Size = new Vector2(100, 100),
                                     Anchor = Anchor.Centre,
                                     Origin = Anchor.Centre,
-                                    RelativePositionAxes = Axes.Both
+                                    Size = new Vector2(300,300)
+                                },new MainMenuButton
+                                {
+                                    Anchor = Anchor.Centre,
+                                    Origin = Anchor.Centre,
+                                    Size = new Vector2(300,300)
+                                },new MainMenuButton
+                                {
+                                    Anchor = Anchor.Centre,
+                                    Origin = Anchor.Centre,
+                                    Size = new Vector2(300,300)
+                                },new MainMenuButton
+                                {
+                                    Anchor = Anchor.Centre,
+                                    Origin = Anchor.Centre,
+                                    Size = new Vector2(300,300)
                                 }
                             }
                         }
                     }
                 }
             };
+        }
+
+        public override void OnEntering(IScreen last)
+        {
+            base.OnEntering(last);
+
+            this.FadeInFromZero(500);
         }
     }
 }
