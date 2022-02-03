@@ -10,7 +10,7 @@ namespace maisim.Desktop
         {
             using (GameHost host = Host.GetSuitableHost(@"maisim"))
             using (osu.Framework.Game game = new maisimGame())
-                host.Run(game);
+                host.Run(new maisimGameDesktop());
         }
     }
 }

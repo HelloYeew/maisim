@@ -9,9 +9,12 @@
         <FileVersion>0.0.0</FileVersion>
     </PropertyGroup>
     <ItemGroup Label="Project References">
-        <ProjectReference Include="..\maisim.Game\maisim.Game.csproj"/>
+        <ProjectReference Include="..\maisim.Game\maisim.Game.csproj" />
     </ItemGroup>
     <ItemGroup Label="Resources">
-        <EmbeddedResource Include="game.ico"/>
+        <EmbeddedResource Include="game.ico" />
+    </ItemGroup>
+    <ItemGroup>
+      <PackageReference Include="DiscordRichPresence" Version="1.0.175" />
     </ItemGroup>
 </Project>
