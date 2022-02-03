@@ -1,5 +1,7 @@
 ﻿using osu.Framework.Allocation;
+using osu.Framework.Audio.Sample;
 using osu.Framework.Graphics;
+using osu.Framework.Graphics.Audio;
 using osu.Framework.Graphics.Containers;
 using osu.Framework.Graphics.Shapes;
 using osu.Framework.Graphics.Sprites;
@@ -11,8 +13,11 @@ namespace maisim.Game.Component
 {
     public class MainMenuButton : CompositeDrawable
     {
+        private DrawableSample drawableHoverSample;
+        private DrawableSample drawableClickSample;
+
         [BackgroundDependencyLoader]
-        private void load()
+        private void load(ISampleStore sampleStore)
         {
             InternalChild = new Container
             {
@@ -56,11 +61,21 @@ namespace maisim.Game.Component
                     }
                 }
             };
+
+            drawableHoverSample = new DrawableSample(sampleStore.Get("hover.wav"));
+            drawableClickSample = new DrawableSample(sampleStore.Get("click2.wav"));
         }
 
         protected override bool OnHover(HoverEvent e)
         {
+            drawableHoverSample.Play();
             return base.OnHover(e);
+        }
+
+        protected override bool OnClick(ClickEvent e)
+        {
+            drawableClickSample.Play();
+            return base.OnClick(e);
         }
     }
 }
