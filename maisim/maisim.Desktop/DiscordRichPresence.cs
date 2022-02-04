@@ -1,5 +1,4 @@
-﻿using System;
-using DiscordRPC;
+﻿using DiscordRPC;
 using DiscordRPC.Message;
 using osu.Framework.Allocation;
 using osu.Framework.Graphics;
