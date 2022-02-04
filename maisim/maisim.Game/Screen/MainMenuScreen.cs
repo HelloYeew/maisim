@@ -17,13 +17,6 @@ namespace maisim.Game
         {
             InternalChildren = new Drawable[]
             {
-                new BackgroundComponent("background3")
-                {
-                    Anchor = Anchor.Centre,
-                    Origin = Anchor.Centre,
-                    FillMode = FillMode.Stretch,
-                    RelativeSizeAxes = Axes.Both
-                },
                 new Container
                 {
                     Anchor = Anchor.Centre,

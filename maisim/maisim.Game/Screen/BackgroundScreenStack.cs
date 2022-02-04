@@ -10,6 +10,7 @@ namespace maisim.Game
             RelativeSizeAxes = Axes.Both;
             Anchor = Anchor.Centre;
             Origin = Anchor.Centre;
+            InternalChild = new BackgroundScreen();
         }
 
         public bool Push(BackgroundScreen screen)
