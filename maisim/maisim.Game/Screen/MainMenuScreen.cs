@@ -31,7 +31,7 @@ namespace maisim.Game
                             Origin = Anchor.Centre,
                             RelativeSizeAxes = Axes.X,
                             Size = new Vector2(300, 300),
-                            Colour = Color4Extensions.FromHex("fbf2d7"),
+                            Colour = Color4Extensions.FromHex("f5be39"),
                         },
                         new FillFlowContainer
                         {
