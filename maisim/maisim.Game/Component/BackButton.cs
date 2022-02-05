@@ -29,14 +29,14 @@ namespace maisim.Game.Component
                     RelativeSizeAxes = Axes.Both,
                     Anchor = Anchor.BottomLeft,
                     Origin = Anchor.Centre,
-                    Size = new Vector2(7),
+                    Size = new Vector2(1),
                     Colour = Color4Extensions.FromHex("205ac8"),
                 },new Container
                 {
                     RelativeSizeAxes = Axes.Both,
                     Anchor = Anchor.BottomLeft,
                     Origin = Anchor.Centre,
-                    Size = new Vector2(3),
+                    Size = new Vector2(.4f),
                     Child = new SpriteText
                     {
                         Text = "Back",

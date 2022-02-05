@@ -29,7 +29,7 @@ namespace maisim.Game.Tests.Visual.Component
                     {
                         Anchor = Anchor.BottomLeft,
                         Origin = Anchor.BottomLeft,
-                        Size = new Vector2(50)
+                        Size = new Vector2(400)
                     }
                 }
             };
