@@ -14,8 +14,6 @@ namespace maisim.Game.Component
     public class BackButton : VisibilityContainer
     {
 
-        // TODO: Select between CompositeDrawable or VisibilityContainer
-
         private DrawableSample drawableHoverSample;
         private DrawableSample drawableClickSample;
 

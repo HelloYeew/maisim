@@ -13,12 +13,12 @@ namespace maisim.Game
         {
             InternalChildren = new Drawable[]
             {
-                new BackButton()
+                new BackButton
                 {
-                    Anchor = Anchor.Centre,
+                    Anchor = Anchor.BottomLeft,
                     Origin = Anchor.Centre,
-                    Size = new Vector2(300, 300),
-                    RelativeSizeAxes = Axes.Both
+                    Size = new Vector2(0.5f),
+                    RelativeSizeAxes = Axes.Both,
                 },
             };
         }
