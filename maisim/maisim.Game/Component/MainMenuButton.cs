@@ -48,18 +48,15 @@ namespace maisim.Game.Component
                     new GridContainer
                     {
                         RelativeSizeAxes = Axes.Both,
+                        RowDimensions = new[]
+                        {
+                            new Dimension(GridSizeMode.Absolute, 175),
+                            new Dimension(GridSizeMode.Absolute, 75),
+                        },
                         Content = new[]
                         {
                             new Drawable[]
                             {
-                                new SpriteText
-                                {
-                                    Text = buttonText,
-                                    Font = new FontUsage("Mplus1p",30),
-                                    Anchor = Anchor.Centre,
-                                    Origin = Anchor.Centre,
-                                    Colour = Color4.White
-                                },
                                 new SpriteIcon
                                 {
                                     Anchor = Anchor.Centre,
@@ -67,6 +64,16 @@ namespace maisim.Game.Component
                                     Icon = buttonIcon,
                                     Size = new Vector2(80,80),
                                     Colour = Colour4.White
+                                }
+                            },new Drawable[]
+                            {
+                                new SpriteText
+                                {
+                                    Text = buttonText,
+                                    Font = new FontUsage("Mplus1p",30),
+                                    Anchor = Anchor.TopCentre,
+                                    Origin = Anchor.TopCentre,
+                                    Colour = Color4.White
                                 }
                             }
                         }
