@@ -12,6 +12,34 @@ namespace maisim.Game.Component
 {
     public class TrackCard : CompositeDrawable
     {
+        private readonly string albumTextureName;
+        private readonly string trackName;
+        private readonly string artistName;
+        private readonly float percentage;
+        private readonly string rank;
+        private readonly int dxscore;
+        private readonly int dxscoreFull;
+        private readonly bool allPerfect;
+        private readonly bool fdxPlus;
+        private readonly string noteDesigner;
+        private readonly int bpm;
+
+        public TrackCard(string albumTextureName, string trackName, string artistName, float percentage, string rank, int dxscore, int dxscoreFull,
+            bool allPerfect, bool fdxPlus, string noteDesigner, int bpm)
+        {
+            this.albumTextureName = albumTextureName;
+            this.trackName = trackName;
+            this.artistName = artistName;
+            this.percentage = percentage;
+            this.rank = rank;
+            this.dxscore = dxscore;
+            this.dxscoreFull = dxscoreFull;
+            this.allPerfect = allPerfect;
+            this.fdxPlus = fdxPlus;
+            this.noteDesigner = noteDesigner;
+            this.bpm = bpm;
+        }
+
         [BackgroundDependencyLoader]
         private void load(TextureStore textureStore)
         {
@@ -49,7 +77,7 @@ namespace maisim.Game.Component
                                     Anchor = Anchor.Centre,
                                     Origin = Anchor.Centre,
                                     FillMode = FillMode.Fill,
-                                    Texture = textureStore.Get("sukino"),
+                                    Texture = textureStore.Get(albumTextureName),
                                     Scale = new Vector2(0.7f)
                                 }
                             },new Drawable[]
@@ -83,7 +111,7 @@ namespace maisim.Game.Component
                                             {
                                                 Anchor = Anchor.Centre,
                                                 Origin = Anchor.Centre,
-                                                Text = "Sukino Skill",
+                                                Text = trackName,
                                                 Font = new FontUsage(size: 25),
                                                 Colour = Color4.White
                                             }
@@ -97,7 +125,7 @@ namespace maisim.Game.Component
                                             {
                                                 Anchor = Anchor.Centre,
                                                 Origin = Anchor.Centre,
-                                                Text = "Wake Up, Girls!",
+                                                Text = artistName,
                                                 Font = new FontUsage(size: 25),
                                                 Colour = Color4Extensions.FromHex("#b8b8b8")
                                             }
@@ -159,7 +187,7 @@ namespace maisim.Game.Component
                                                                             {
                                                                                 Anchor = Anchor.Centre,
                                                                                 Origin = Anchor.Centre,
-                                                                                Text = "100.6969%",
+                                                                                Text = $"{percentage.ToString()}%",
                                                                                 Font = new FontUsage(size: 20),
                                                                                 Colour = Color4.White
                                                                             }
@@ -182,7 +210,7 @@ namespace maisim.Game.Component
                                                                             {
                                                                                 Anchor = Anchor.Centre,
                                                                                 Origin = Anchor.Centre,
-                                                                                Text = "SSS",
+                                                                                Text = rank,
                                                                                 Font = new FontUsage(size: 20),
                                                                                 Colour = Color4.White
                                                                             }
@@ -215,7 +243,7 @@ namespace maisim.Game.Component
                                                                             {
                                                                                 Anchor = Anchor.CentreRight,
                                                                                 Origin = Anchor.CentreRight,
-                                                                                Text = "1278/2424",
+                                                                                Text = $"{dxscore.ToString()}/{dxscoreFull.ToString()}",
                                                                                 Font = new FontUsage(size: 13),
                                                                                 Colour = Color4.White
                                                                             }
@@ -226,6 +254,7 @@ namespace maisim.Game.Component
                                                         }
                                                     },new Container
                                                     {
+                                                        // TODO: Implement the parameter to this container
                                                         Anchor = Anchor.Centre,
                                                         Origin = Anchor.Centre,
                                                         RelativeSizeAxes = Axes.Both,
@@ -309,14 +338,14 @@ namespace maisim.Game.Component
                                         {
                                             Anchor = Anchor.BottomLeft,
                                             Origin = Anchor.BottomLeft,
-                                            Text = "HelloYeew",
+                                            Text = noteDesigner,
                                             Font = new FontUsage(size: 25),
                                             Colour = Color4.Black
                                         },new SpriteText
                                         {
                                             Anchor = Anchor.BottomRight,
                                             Origin = Anchor.BottomRight,
-                                            Text = "BPM 120",
+                                            Text = $"BPM {bpm.ToString()}",
                                             Font = new FontUsage(size: 25),
                                             Colour = Color4.Black
                                         }

@@ -24,7 +24,8 @@ namespace maisim.Game.Tests.Visual.Component
                         RelativeSizeAxes = Axes.Both,
                         Colour = Color4.Black
                     },
-                    new TrackCard()
+                    new TrackCard("Test/sukino-skill.jpg", "Sukino Skill", "Wake Up, Girls!",
+                        100.6969f, "SSS", 1278, 2424, true, true, "HelloYeew", 120)
                     {
                         Anchor = Anchor.Centre,
                         Origin = Anchor.Centre,
