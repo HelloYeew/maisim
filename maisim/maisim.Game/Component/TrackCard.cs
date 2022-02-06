@@ -1,0 +1,332 @@
+﻿using osu.Framework.Allocation;
+using osu.Framework.Extensions.Color4Extensions;
+using osu.Framework.Graphics;
+using osu.Framework.Graphics.Containers;
+using osu.Framework.Graphics.Shapes;
+using osu.Framework.Graphics.Sprites;
+using osu.Framework.Graphics.Textures;
+using osuTK;
+using osuTK.Graphics;
+
+namespace maisim.Game.Component
+{
+    public class TrackCard : CompositeDrawable
+    {
+        [BackgroundDependencyLoader]
+        private void load(TextureStore textureStore)
+        {
+            InternalChild = new Container
+            {
+                Anchor = Anchor.Centre,
+                Origin = Anchor.Centre,
+                Size = new Vector2(321,436),
+                Children = new Drawable[]
+                {
+                    new Box
+                    {
+                        Anchor = Anchor.Centre,
+                        Origin = Anchor.Centre,
+                        RelativeSizeAxes = Axes.Both,
+                        Colour = Color4Extensions.FromHex("#ff828d"),
+                        Size = new Vector2(1)
+                    },new GridContainer
+                    {
+                        RelativeSizeAxes = Axes.Both,
+                        RowDimensions = new[]
+                        {
+                            new Dimension(GridSizeMode.Absolute, 240),
+                            new Dimension(GridSizeMode.Absolute, 80),
+                            new Dimension(GridSizeMode.Absolute, 70),
+                            new Dimension(GridSizeMode.Absolute, 46)
+                        },
+                        Content = new[]
+                        {
+                            new Drawable[]
+                            {
+                                new Sprite
+                                {
+                                    RelativeSizeAxes = Axes.Both,
+                                    Anchor = Anchor.Centre,
+                                    Origin = Anchor.Centre,
+                                    FillMode = FillMode.Fill,
+                                    Texture = textureStore.Get("sukino"),
+                                    Scale = new Vector2(0.7f)
+                                }
+                            },new Drawable[]
+                            {
+                                new Container
+                                {
+                                    RelativeSizeAxes = Axes.Both,
+                                    Children = new Drawable[]
+                                    {
+                                        new Box
+                                        {
+                                            Anchor = Anchor.TopCentre,
+                                            Origin = Anchor.TopCentre,
+                                            RelativeSizeAxes = Axes.Both,
+                                            Colour = Color4Extensions.FromHex("#003d7d"),
+                                            Size = new Vector2(0.9f, 0.5f)
+                                        },new Box
+                                        {
+                                            Anchor = Anchor.BottomCentre,
+                                            Origin = Anchor.BottomCentre,
+                                            RelativeSizeAxes = Axes.Both,
+                                            Colour = Color4Extensions.FromHex("#0c2e5e"),
+                                            Size = new Vector2(0.9f, 0.5f)
+                                        },new Container
+                                        {
+                                            Anchor = Anchor.TopCentre,
+                                            Origin = Anchor.TopCentre,
+                                            RelativeSizeAxes = Axes.Both,
+                                            Size = new Vector2(0.9f, 0.5f),
+                                            Child = new SpriteText
+                                            {
+                                                Anchor = Anchor.Centre,
+                                                Origin = Anchor.Centre,
+                                                Text = "Sukino Skill",
+                                                Font = new FontUsage(size: 25),
+                                                Colour = Color4.White
+                                            }
+                                        },new Container
+                                        {
+                                            Anchor = Anchor.BottomCentre,
+                                            Origin = Anchor.BottomCentre,
+                                            RelativeSizeAxes = Axes.Both,
+                                            Size = new Vector2(0.9f, 0.5f),
+                                            Child = new SpriteText
+                                            {
+                                                Anchor = Anchor.Centre,
+                                                Origin = Anchor.Centre,
+                                                Text = "Wake Up, Girls!",
+                                                Font = new FontUsage(size: 25),
+                                                Colour = Color4Extensions.FromHex("#b8b8b8")
+                                            }
+                                        }
+                                    }
+                                }
+                            },new Drawable[]
+                            {
+                                new Container
+                                {
+                                    RelativeSizeAxes = Axes.Both,
+                                    Children = new Drawable[]
+                                    {
+                                        new GridContainer
+                                        {
+                                            RelativeSizeAxes = Axes.Both,
+                                            ColumnDimensions = new[]
+                                            {
+                                                new Dimension(GridSizeMode.Absolute, 182),
+                                                new Dimension(GridSizeMode.Absolute, 139)
+                                            },
+                                            Content = new[]
+                                            {
+                                                new Drawable[]
+                                                {
+                                                    new Container
+                                                    {
+                                                        Anchor = Anchor.Centre,
+                                                        Origin = Anchor.Centre,
+                                                        RelativeSizeAxes = Axes.Both,
+                                                        Size = new Vector2(0.82f, 0.8f),
+                                                        Child = new GridContainer
+                                                        {
+                                                            RelativeSizeAxes = Axes.Both,
+                                                            ColumnDimensions = new[]
+                                                            {
+                                                                new Dimension(GridSizeMode.Absolute, 110),
+                                                                new Dimension(GridSizeMode.Absolute, 39),
+                                                            },
+                                                            Content = new[]
+                                                            {
+                                                                new Drawable[]
+                                                                {
+                                                                    new Container
+                                                                    {
+                                                                        Anchor = Anchor.TopLeft,
+                                                                        Origin = Anchor.TopLeft,
+                                                                        RelativeSizeAxes = Axes.Both,
+                                                                        Scale = new Vector2(0.9f),
+                                                                        Children = new Drawable[]
+                                                                        {
+                                                                            new Box
+                                                                            {
+                                                                                Anchor = Anchor.TopLeft,
+                                                                                Origin = Anchor.TopLeft,
+                                                                                RelativeSizeAxes = Axes.Both,
+                                                                                Colour = Color4Extensions.FromHex("#1a497f"),
+                                                                            },new SpriteText
+                                                                            {
+                                                                                Anchor = Anchor.Centre,
+                                                                                Origin = Anchor.Centre,
+                                                                                Text = "100.6969%",
+                                                                                Font = new FontUsage(size: 20),
+                                                                                Colour = Color4.White
+                                                                            }
+                                                                        }
+                                                                    },new Container
+                                                                    {
+                                                                        Anchor = Anchor.TopRight,
+                                                                        Origin = Anchor.TopRight,
+                                                                        RelativeSizeAxes = Axes.Both,
+                                                                        Scale = new Vector2(0.9f),
+                                                                        Children = new Drawable[]
+                                                                        {
+                                                                            new Box
+                                                                            {
+                                                                                Anchor = Anchor.TopRight,
+                                                                                Origin = Anchor.TopRight,
+                                                                                RelativeSizeAxes = Axes.Both,
+                                                                                Colour = Color4Extensions.FromHex("#1a497f"),
+                                                                            },new SpriteText
+                                                                            {
+                                                                                Anchor = Anchor.Centre,
+                                                                                Origin = Anchor.Centre,
+                                                                                Text = "SSS",
+                                                                                Font = new FontUsage(size: 20),
+                                                                                Colour = Color4.White
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                },new Drawable[]
+                                                                {
+                                                                    new Container
+                                                                    {
+                                                                        Anchor = Anchor.TopLeft,
+                                                                        Origin = Anchor.TopLeft,
+                                                                        RelativeSizeAxes = Axes.Both,
+                                                                        Scale = new Vector2(1.35f, 1),
+                                                                        Children = new Drawable[]
+                                                                        {
+                                                                            new Box
+                                                                            {
+                                                                                Anchor = Anchor.TopLeft,
+                                                                                Origin = Anchor.TopLeft,
+                                                                                RelativeSizeAxes = Axes.Both,
+                                                                                Colour = Color4Extensions.FromHex("#1a497f")
+                                                                            },new SpriteText
+                                                                            {
+                                                                                Anchor = Anchor.CentreLeft,
+                                                                                Origin = Anchor.CentreLeft,
+                                                                                Text = "DXSCORE",
+                                                                                Font = new FontUsage(size: 13),
+                                                                                Colour = Color4Extensions.FromHex("#9cdb96")
+                                                                            },new SpriteText
+                                                                            {
+                                                                                Anchor = Anchor.CentreRight,
+                                                                                Origin = Anchor.CentreRight,
+                                                                                Text = "1278/2424",
+                                                                                Font = new FontUsage(size: 13),
+                                                                                Colour = Color4.White
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    },new Container
+                                                    {
+                                                        Anchor = Anchor.Centre,
+                                                        Origin = Anchor.Centre,
+                                                        RelativeSizeAxes = Axes.Both,
+                                                        Size = new Vector2(0.82f,0.8f),
+                                                        Child = new GridContainer
+                                                        {
+                                                            RelativeSizeAxes = Axes.Both,
+                                                            Content = new[]
+                                                            {
+                                                                new Drawable[]
+                                                                {
+                                                                    new Container
+                                                                    {
+                                                                        Anchor = Anchor.Centre,
+                                                                        Origin = Anchor.Centre,
+                                                                        RelativeSizeAxes = Axes.Both,
+                                                                        Children = new Drawable[]
+                                                                        {
+                                                                            new Circle
+                                                                            {
+                                                                                Anchor = Anchor.Centre,
+                                                                                Origin = Anchor.Centre,
+                                                                                RelativeSizeAxes = Axes.Both,
+                                                                                Colour = Color4Extensions.FromHex("#f0d285")
+                                                                            },new SpriteText
+                                                                            {
+                                                                                Anchor = Anchor.Centre,
+                                                                                Origin = Anchor.Centre,
+                                                                                Text = "AP",
+                                                                                Font = new FontUsage(size: 20),
+                                                                                Colour = Color4Extensions.FromHex("#76301a")
+                                                                            }
+                                                                        }
+                                                                    },new Container
+                                                                    {
+                                                                        Anchor = Anchor.Centre,
+                                                                        Origin = Anchor.Centre,
+                                                                        RelativeSizeAxes = Axes.Both,
+                                                                        Children = new Drawable[]
+                                                                        {
+                                                                            new Circle
+                                                                            {
+                                                                                Anchor = Anchor.Centre,
+                                                                                Origin = Anchor.Centre,
+                                                                                RelativeSizeAxes = Axes.Both,
+                                                                                Colour = Color4Extensions.FromHex("#f0d285")
+                                                                            },new SpriteText
+                                                                            {
+                                                                                Anchor = Anchor.Centre,
+                                                                                Origin = Anchor.Centre,
+                                                                                Text = "FDX+",
+                                                                                Font = new FontUsage(size: 20),
+                                                                                Colour = Color4Extensions.FromHex("#76301a")
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            },new Drawable[]
+                            {
+                                new Container
+                                {
+                                    RelativeSizeAxes = Axes.Both,
+                                    Children = new Drawable[]
+                                    {
+                                        new SpriteText
+                                        {
+                                            Anchor = Anchor.TopLeft,
+                                            Origin = Anchor.TopLeft,
+                                            Text = "NOTES DESIGNER",
+                                            Font = new FontUsage(size: 12),
+                                            Colour = Color4.Black
+                                        },new SpriteText
+                                        {
+                                            Anchor = Anchor.BottomLeft,
+                                            Origin = Anchor.BottomLeft,
+                                            Text = "HelloYeew",
+                                            Font = new FontUsage(size: 25),
+                                            Colour = Color4.Black
+                                        },new SpriteText
+                                        {
+                                            Anchor = Anchor.BottomRight,
+                                            Origin = Anchor.BottomRight,
+                                            Text = "BPM 120",
+                                            Font = new FontUsage(size: 25),
+                                            Colour = Color4.Black
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            };
+        }
+    }
+}
