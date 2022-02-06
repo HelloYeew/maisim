@@ -6,7 +6,7 @@ using osu.Framework.Graphics.Sprites;
 using osuTK;
 using osuTK.Graphics;
 
-namespace maisim.Game.Tests.Visual.MainMenu
+namespace maisim.Game.Tests.Visual.Component
 {
     public class TestSceneMainMenuButton : maisimTestScene
     {
