@@ -33,4 +33,4 @@ Have any question? Make a new discussion or want some privacy just contact me on
 
 ## Licence
 
-This project is licensed under the MIT license. Please see the [licence](LICENSE) file for more information. tl;dr you can do whatever you want as long as you include the original copyright and license notice in any copy of the software/source.
+This project is licensed under the MIT license. Please see [the licence file](LICENSE) for more information. tl;dr you can do whatever you want as long as you include the original copyright and license notice in any copy of the software/source.
