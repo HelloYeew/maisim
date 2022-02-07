@@ -28,7 +28,7 @@ namespace maisim.Game.Component
         [BackgroundDependencyLoader]
         private void load(ISampleStore sampleStore)
         {
-            InternalChild = new Container
+            InternalChild = new CircularContainer
             {
                 Anchor = Anchor.Centre,
                 Origin = Anchor.Centre,
