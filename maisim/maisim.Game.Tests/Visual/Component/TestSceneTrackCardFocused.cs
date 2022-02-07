@@ -7,9 +7,9 @@ using osuTK.Graphics;
 
 namespace maisim.Game.Tests.Visual.Component
 {
-    public class TestSceneTrackCard : maisimTestScene
+    public class TestSceneTrackCardFocused : maisimTestScene
     {
-        public TestSceneTrackCard()
+        public TestSceneTrackCardFocused()
         {
             Child = new Container
             {

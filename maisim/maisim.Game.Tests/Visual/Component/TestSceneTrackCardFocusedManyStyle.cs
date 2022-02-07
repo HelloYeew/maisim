@@ -5,9 +5,9 @@ using osuTK;
 
 namespace maisim.Game.Tests.Visual.Component
 {
-    public class TestSceneTrackCardManyStyle : GridTestScene
+    public class TestSceneTrackCardFocusedManyStyle : GridTestScene
     {
-        public TestSceneTrackCardManyStyle() : base(2,2)
+        public TestSceneTrackCardFocusedManyStyle() : base(2,2)
         {
             Cell(0, 0).Child = new TrackCardFocused("Test/sukino-skill.jpg", "スキノスキル", "Wake Up, Girls!",
                 100.6969f, "SSS", 1278, 2424, true, true, "HelloYeew", 120)
