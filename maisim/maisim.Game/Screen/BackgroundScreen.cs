@@ -5,7 +5,7 @@ using osu.Framework.Screens;
 
 namespace maisim.Game
 {
-    public class BackgroundScreen : Screen
+    public class BackgroundScreen : osu.Framework.Screens.Screen
     {
         [BackgroundDependencyLoader]
         private void load()

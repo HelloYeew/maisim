@@ -1,7 +1,7 @@
 using osu.Framework.Graphics;
 using osu.Framework.Screens;
 
-namespace maisim.Game
+namespace maisim.Game.Screen
 {
     public class BackgroundScreenStack : ScreenStack
     {

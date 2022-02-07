@@ -8,9 +8,9 @@ using osu.Framework.Graphics.Sprites;
 using osu.Framework.Screens;
 using osuTK;
 
-namespace maisim.Game
+namespace maisim.Game.Screen
 {
-    public class MainMenuScreen : Screen
+    public class MainMenuScreen : osu.Framework.Screens.Screen
     {
         [BackgroundDependencyLoader]
         private void load()
@@ -29,6 +29,7 @@ namespace maisim.Game
                         {
                             Anchor = Anchor.Centre,
                             Origin = Anchor.Centre,
+                            RelativePositionAxes = Axes.Both,
                             RelativeSizeAxes = Axes.X,
                             Size = new Vector2(300, 300),
                             Colour = Color4Extensions.FromHex("f5be39"),
