@@ -1,4 +1,5 @@
-﻿using osu.Framework.Allocation;
+﻿using System.Globalization;
+using osu.Framework.Allocation;
 using osu.Framework.Extensions.Color4Extensions;
 using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
@@ -10,34 +11,12 @@ using osuTK.Graphics;
 
 namespace maisim.Game.Component
 {
-    public class TrackCard : CompositeDrawable
+    public class TrackCard : MaisimTrackCard
     {
-        private readonly string albumTextureName;
-        private readonly string trackName;
-        private readonly string artistName;
-        private readonly float percentage;
-        private readonly string rank;
-        private readonly int dxscore;
-        private readonly int dxscoreFull;
-        private readonly bool allPerfect;
-        private readonly bool fdxPlus;
-        private readonly string noteDesigner;
-        private readonly int bpm;
-
         public TrackCard(string albumTextureName, string trackName, string artistName, float percentage, string rank, int dxscore, int dxscoreFull,
-            bool allPerfect, bool fdxPlus, string noteDesigner, int bpm)
+            bool allPerfect, bool fdxPlus, string noteDesigner, int bpm) : base(albumTextureName, trackName, artistName, percentage, rank, dxscore, dxscoreFull, allPerfect, fdxPlus, noteDesigner, bpm)
         {
-            this.albumTextureName = albumTextureName;
-            this.trackName = trackName;
-            this.artistName = artistName;
-            this.percentage = percentage;
-            this.rank = rank;
-            this.dxscore = dxscore;
-            this.dxscoreFull = dxscoreFull;
-            this.allPerfect = allPerfect;
-            this.fdxPlus = fdxPlus;
-            this.noteDesigner = noteDesigner;
-            this.bpm = bpm;
+
         }
 
         [BackgroundDependencyLoader]
@@ -149,7 +128,7 @@ namespace maisim.Game.Component
                                                             {
                                                                 Anchor = Anchor.Centre,
                                                                 Origin = Anchor.Centre,
-                                                                Text = $"{percentage.ToString()}%",
+                                                                Text = $"{percentage.ToString(CultureInfo.InvariantCulture)}%",
                                                                 Font = new FontUsage(size: 20),
                                                                 Colour = Color4.White
                                                             }
