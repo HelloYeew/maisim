@@ -10,7 +10,7 @@ using osuTK.Graphics;
 
 namespace maisim.Game.Component
 {
-    public class TrackCard : CompositeDrawable
+    public class TrackCardFocused : CompositeDrawable
     {
         private readonly string albumTextureName;
         private readonly string trackName;
@@ -24,7 +24,7 @@ namespace maisim.Game.Component
         private readonly string noteDesigner;
         private readonly int bpm;
 
-        public TrackCard(string albumTextureName, string trackName, string artistName, float percentage, string rank, int dxscore, int dxscoreFull,
+        public TrackCardFocused(string albumTextureName, string trackName, string artistName, float percentage, string rank, int dxscore, int dxscoreFull,
             bool allPerfect, bool fdxPlus, string noteDesigner, int bpm)
         {
             this.albumTextureName = albumTextureName;
