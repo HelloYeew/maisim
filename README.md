@@ -14,7 +14,7 @@ Figma designs are available at the [project's wiki](https://github.com/HelloYeew
 
 ## Contributing
 
-Want to contribute? Thats cool ! We got a lot of things to do at all scales :
+Want to contribute? That's cool ! We got a lot of things to do at all scales :
 
 - Got an idea ? Pitch it in a discussion !
 - Want to improve the design ? Start a discussion about design improvements !
