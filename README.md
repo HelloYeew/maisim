@@ -1,6 +1,6 @@
 # maisim
 
-A free and open-source, community-powered clone of SEGA's Maimai game powered by the osu!framework
+A free and open-source, community-powered clone of SEGA's Maimai game powered by the [osu!framework](https://github.com/ppy/osu-framework).
 
 Note : project name isn't final (yet?).
 
