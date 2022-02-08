@@ -29,8 +29,8 @@ Don't hesitate to make a discussion and we will try to answer as fast as we can.
 
 You can code on C#? That's the best part! You can try on picking the issues and make a pull request and we will review it.
 
-Have any question? Make a new discussion or want some privacy just contact me on Discord (HelloYeew#2740) or my email (me@helloyeew.dev).
-
 ## Licence
 
 This project is licensed under the MIT license. Please see [the licence file](LICENSE) for more information. tl;dr you can do whatever you want as long as you include the original copyright and license notice in any copy of the software/source.
+
+All original idea is dedicated to Sega and Maimai.
