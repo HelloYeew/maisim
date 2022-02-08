@@ -13,6 +13,9 @@ using osuTK.Graphics;
 
 namespace maisim.Game.Component
 {
+    /// <summary>
+    /// The button that used on the main menu.
+    /// </summary>
     public class MainMenuButton : Button
     {
         private DrawableSample drawableHoverSample;

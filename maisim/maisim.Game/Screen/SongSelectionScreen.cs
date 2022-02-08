@@ -8,6 +8,9 @@ using osuTK;
 
 namespace maisim.Game.Screen
 {
+    /// <summary>
+    /// The screen that show all the songs list so user can select the track to play from here.
+    /// </summary>
     public class SongSelectionScreen : osu.Framework.Screens.Screen
     {
         [BackgroundDependencyLoader]

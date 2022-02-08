@@ -3,10 +3,12 @@ using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
 using osu.Framework.Graphics.Sprites;
 using osu.Framework.Graphics.Textures;
-using osuTK;
 
 namespace maisim.Game.Component
 {
+    /// <summary>
+    /// A background component that's always staying at the bottom of the screen.
+    /// </summary>
     public class BackgroundComponent : CompositeDrawable
     {
         private string backgroundName;

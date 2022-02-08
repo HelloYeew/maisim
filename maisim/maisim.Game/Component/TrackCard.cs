@@ -11,6 +11,9 @@ using osuTK.Graphics;
 
 namespace maisim.Game.Component
 {
+    /// <summary>
+    /// The track card that is displayed in the track selection screen when a track is stay in the list but not focused.
+    /// </summary>
     public class TrackCard : MaisimTrackCard
     {
         public TrackCard(string albumTextureName, string trackName, string artistName, float percentage, string rank, int dxscore, int dxscoreFull,

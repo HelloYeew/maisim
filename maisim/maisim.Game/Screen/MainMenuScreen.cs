@@ -11,6 +11,9 @@ using osuTK;
 
 namespace maisim.Game.Screen
 {
+    /// <summary>
+    /// The screen that include all the main menu components.
+    /// </summary>
     public class MainMenuScreen : osu.Framework.Screens.Screen
     {
         [BackgroundDependencyLoader]
@@ -77,13 +80,6 @@ namespace maisim.Game.Screen
             base.OnEntering(last);
 
             this.FadeInFromZero(500);
-        }
-
-        protected override bool OnClick(ClickEvent e)
-        {
-            this.Push(new SongSelectionScreen());
-
-            return base.OnClick(e);
         }
     }
 }
