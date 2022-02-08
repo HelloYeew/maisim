@@ -1,9 +1,8 @@
 ﻿using maisim.Game.Component;
 using osu.Framework.Allocation;
 using osu.Framework.Graphics;
-using osu.Framework.Screens;
 
-namespace maisim.Game
+namespace maisim.Game.Screen
 {
     public class BackgroundScreen : osu.Framework.Screens.Screen
     {

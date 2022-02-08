@@ -5,6 +5,7 @@ using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
 using osu.Framework.Graphics.Shapes;
 using osu.Framework.Graphics.Sprites;
+using osu.Framework.Input.Events;
 using osu.Framework.Screens;
 using osuTK;
 
@@ -46,7 +47,8 @@ namespace maisim.Game.Screen
                                 {
                                     Anchor = Anchor.Centre,
                                     Origin = Anchor.Centre,
-                                    Size = new Vector2(300,300)
+                                    Size = new Vector2(300,300),
+                                    Action = () => this.Push(new SongSelectionScreen())
                                 },new MainMenuButton("Edit",FontAwesome.Solid.Edit)
                                 {
                                     Anchor = Anchor.Centre,
@@ -75,6 +77,13 @@ namespace maisim.Game.Screen
             base.OnEntering(last);
 
             this.FadeInFromZero(500);
+        }
+
+        protected override bool OnClick(ClickEvent e)
+        {
+            this.Push(new SongSelectionScreen());
+
+            return base.OnClick(e);
         }
     }
 }

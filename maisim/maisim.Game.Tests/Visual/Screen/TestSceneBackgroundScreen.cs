@@ -1,8 +1,9 @@
-﻿using NUnit.Framework;
+﻿using maisim.Game.Screen;
+using NUnit.Framework;
 using osu.Framework.Graphics;
 using osu.Framework.Screens;
 
-namespace maisim.Game.Tests.Visual
+namespace maisim.Game.Tests.Visual.Screen
 {
     public class TestSceneBackgroundScreen : maisimTestScene
     {
