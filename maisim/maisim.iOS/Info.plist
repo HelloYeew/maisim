@@ -5,9 +5,9 @@
 	<key>CFBundleIdentifier</key>
 	<string>sh.ppy.template</string>
 	<key>CFBundleName</key>
-	<string>FlappyOsu</string>
+	<string>maisim</string>
 	<key>CFBundleDisplayName</key>
-	<string>osu!template</string>
+	<string>maisim</string>
 	<key>CFBundleShortVersionString</key>
 	<string>0.1</string>
 	<key>CFBundleVersion</key>
@@ -34,9 +34,9 @@
 	<key>UIStatusBarHidden</key>
 	<true/>
 	<key>NSCameraUsageDescription</key>
-	<string>We don&apos;t really use the camera.</string>
+	<string>We don't really use the camera.</string>
 	<key>NSMicrophoneUsageDescription</key>
-	<string>We don&apos;t really use the microphone.</string>
+	<string>We don't really use the microphone.</string>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
