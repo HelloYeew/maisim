@@ -3,6 +3,7 @@ using osu.Framework.Allocation;
 using osu.Framework.Extensions.Color4Extensions;
 using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
+using osu.Framework.Screens;
 using osuTK;
 
 namespace maisim.Game.Screen
@@ -47,6 +48,12 @@ namespace maisim.Game.Screen
                             }
                         }
                     }
+                },new BackButton
+                {
+                    Anchor = Anchor.BottomLeft,
+                    Origin = Anchor.BottomLeft,
+                    Size = new Vector2(400),
+                    Action = () => this.Exit()
                 }
             };
         }

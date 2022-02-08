@@ -6,12 +6,13 @@ using osu.Framework.Graphics.Audio;
 using osu.Framework.Graphics.Containers;
 using osu.Framework.Graphics.Shapes;
 using osu.Framework.Graphics.Sprites;
+using osu.Framework.Graphics.UserInterface;
 using osu.Framework.Input.Events;
 using osuTK;
 
 namespace maisim.Game.Component
 {
-    public class BackButton : VisibilityContainer
+    public class BackButton : Button
     {
 
         private DrawableSample drawableHoverSample;
@@ -47,16 +48,6 @@ namespace maisim.Game.Component
 
             drawableHoverSample = new DrawableSample(sampleStore.Get("hover.wav"));
             drawableClickSample = new DrawableSample(sampleStore.Get("click2.wav"));
-        }
-
-        protected override void PopIn()
-        {
-            this.FadeIn(150, Easing.OutQuint);
-        }
-
-        protected override void PopOut()
-        {
-            this.FadeOut(400, Easing.OutQuint);
         }
 
         protected override bool OnHover(HoverEvent e)

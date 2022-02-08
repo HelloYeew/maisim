@@ -83,7 +83,7 @@ namespace maisim.Game.Component
             };
 
             drawableHoverSample = new DrawableSample(sampleStore.Get("hover.wav"));
-            drawableClickSample = new DrawableSample(sampleStore.Get("click2.wav"));
+            drawableClickSample = new DrawableSample(sampleStore.Get("click.wav"));
         }
 
         protected override bool OnHover(HoverEvent e)
