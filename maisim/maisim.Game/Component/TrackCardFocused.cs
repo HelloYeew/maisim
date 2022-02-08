@@ -26,7 +26,7 @@ namespace maisim.Game.Component
             {
                 Anchor = Anchor.Centre,
                 Origin = Anchor.Centre,
-                Size = new Vector2(321,436),
+                Size = new Vector2(300,384),
                 Children = new Drawable[]
                 {
                     new Box
@@ -41,10 +41,10 @@ namespace maisim.Game.Component
                         RelativeSizeAxes = Axes.Both,
                         RowDimensions = new[]
                         {
-                            new Dimension(GridSizeMode.Absolute, 240),
-                            new Dimension(GridSizeMode.Absolute, 80),
-                            new Dimension(GridSizeMode.Absolute, 70),
-                            new Dimension(GridSizeMode.Absolute, 46)
+                            new Dimension(GridSizeMode.Absolute, 205),
+                            new Dimension(GridSizeMode.Absolute, 75),
+                            new Dimension(GridSizeMode.Absolute, 65),
+                            new Dimension(GridSizeMode.Absolute, 40)
                         },
                         Content = new[]
                         {
@@ -57,7 +57,7 @@ namespace maisim.Game.Component
                                     Origin = Anchor.Centre,
                                     FillMode = FillMode.Fill,
                                     Texture = textureStore.Get(albumTextureName),
-                                    Scale = new Vector2(0.7f)
+                                    Scale = new Vector2(0.6f)
                                 }
                             },new Drawable[]
                             {
@@ -123,8 +123,8 @@ namespace maisim.Game.Component
                                             RelativeSizeAxes = Axes.Both,
                                             ColumnDimensions = new[]
                                             {
-                                                new Dimension(GridSizeMode.Absolute, 182),
-                                                new Dimension(GridSizeMode.Absolute, 139)
+                                                new Dimension(GridSizeMode.Absolute, 172),
+                                                new Dimension(GridSizeMode.Absolute, 129)
                                             },
                                             Content = new[]
                                             {
@@ -141,8 +141,8 @@ namespace maisim.Game.Component
                                                             RelativeSizeAxes = Axes.Both,
                                                             ColumnDimensions = new[]
                                                             {
-                                                                new Dimension(GridSizeMode.Absolute, 110),
-                                                                new Dimension(GridSizeMode.Absolute, 39),
+                                                                new Dimension(GridSizeMode.Absolute, 105),
+                                                                new Dimension(GridSizeMode.Absolute, 24),
                                                             },
                                                             Content = new[]
                                                             {

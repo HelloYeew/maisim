@@ -30,7 +30,7 @@ namespace maisim.Game.Component
                     RelativePositionAxes = Axes.Both,
                     RelativeSizeAxes = Axes.X,
                     Colour = backgroundColor,
-                    Size = new Vector2(400,400)
+                    Size = new Vector2(320,320)
                 },
                 new Circle
                 {
@@ -39,7 +39,7 @@ namespace maisim.Game.Component
                     RelativePositionAxes = Axes.Both,
                     RelativeSizeAxes = Axes.Both,
                     Colour = backgroundColor,
-                    Size = new Vector2(1.5f)
+                    Size = new Vector2(1.7f)
                 }
             };
         }
