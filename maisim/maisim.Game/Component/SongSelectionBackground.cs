@@ -8,7 +8,7 @@ using osuTK.Graphics;
 namespace maisim.Game.Component
 {
     /// <summary>
-    /// The panel that stay below the song selection panel.
+    /// The background for the song select screen
     /// </summary>
     public class SongSelectionBackground : CompositeDrawable
     {

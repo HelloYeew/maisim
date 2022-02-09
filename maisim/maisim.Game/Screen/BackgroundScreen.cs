@@ -5,7 +5,7 @@ using osu.Framework.Graphics;
 namespace maisim.Game.Screen
 {
     /// <summary>
-    /// The screen that always stay at the bottom of <see cref="MaisimScreenStack"/> include only the <see cref="BackgroundComponent"/>.
+    /// A screen that holds a stack of backgrounds for the other screens.
     /// </summary>
     public class BackgroundScreen : osu.Framework.Screens.Screen
     {

@@ -12,7 +12,7 @@ using osuTK.Graphics;
 namespace maisim.Game.Component
 {
     /// <summary>
-    /// The track card that is displayed in the track selection screen when a track is getting selected or focused.
+    /// The track card that displays information about a track that is focused / selected.
     /// </summary>
     public class TrackCardFocused : MaisimTrackCard
     {

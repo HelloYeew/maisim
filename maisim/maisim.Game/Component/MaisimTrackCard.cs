@@ -3,7 +3,7 @@
 namespace maisim.Game.Component
 {
     /// <summary>
-    /// An abstract class for the element that related to the track card that show the track information.
+    /// A base abstract class for track cards types that related to the track card that show the track information.
     /// </summary>
     public abstract class MaisimTrackCard : CompositeDrawable
     {

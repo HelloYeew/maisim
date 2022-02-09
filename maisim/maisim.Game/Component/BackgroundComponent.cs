@@ -7,7 +7,7 @@ using osu.Framework.Graphics.Textures;
 namespace maisim.Game.Component
 {
     /// <summary>
-    /// A background component that's always staying at the bottom of the screen.
+    /// A drawable background component that's always staying at the bottom of the screen.
     /// </summary>
     public class BackgroundComponent : CompositeDrawable
     {
