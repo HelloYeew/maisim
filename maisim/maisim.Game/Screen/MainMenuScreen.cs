@@ -11,7 +11,7 @@ using osuTK;
 namespace maisim.Game.Screen
 {
     /// <summary>
-    /// The screen that include all the main menu components.
+    /// The main menu screen that include all the main menu components.
     /// </summary>
     public class MainMenuScreen : osu.Framework.Screens.Screen
     {

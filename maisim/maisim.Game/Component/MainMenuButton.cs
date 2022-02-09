@@ -14,7 +14,7 @@ using osuTK.Graphics;
 namespace maisim.Game.Component
 {
     /// <summary>
-    /// The button used on the main menu.
+    /// A button used on the main menu screen.
     /// </summary>
     public class MainMenuButton : Button
     {
