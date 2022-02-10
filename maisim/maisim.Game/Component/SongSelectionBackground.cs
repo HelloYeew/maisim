@@ -1,14 +1,15 @@
 ﻿using osu.Framework.Allocation;
-using osu.Framework.Extensions.Color4Extensions;
 using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
 using osu.Framework.Graphics.Shapes;
-using osu.Framework.Graphics.Textures;
 using osuTK;
 using osuTK.Graphics;
 
 namespace maisim.Game.Component
 {
+    /// <summary>
+    /// The background for the song select screen
+    /// </summary>
     public class SongSelectionBackground : CompositeDrawable
     {
         private readonly Color4 backgroundColor;

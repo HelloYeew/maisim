@@ -5,12 +5,14 @@ using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
 using osu.Framework.Graphics.Shapes;
 using osu.Framework.Graphics.Sprites;
-using osu.Framework.Input.Events;
 using osu.Framework.Screens;
 using osuTK;
 
 namespace maisim.Game.Screen
 {
+    /// <summary>
+    /// The main menu screen that includes all the main menu components.
+    /// </summary>
     public class MainMenuScreen : osu.Framework.Screens.Screen
     {
         [BackgroundDependencyLoader]
@@ -77,13 +79,6 @@ namespace maisim.Game.Screen
             base.OnEntering(last);
 
             this.FadeInFromZero(500);
-        }
-
-        protected override bool OnClick(ClickEvent e)
-        {
-            this.Push(new SongSelectionScreen());
-
-            return base.OnClick(e);
         }
     }
 }

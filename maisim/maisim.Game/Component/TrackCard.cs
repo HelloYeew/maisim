@@ -11,6 +11,9 @@ using osuTK.Graphics;
 
 namespace maisim.Game.Component
 {
+    /// <summary>
+    /// A track card that displays information about a track that is not focused / selected.
+    /// </summary>
     public class TrackCard : MaisimTrackCard
     {
         public TrackCard(string albumTextureName, string trackName, string artistName, float percentage, string rank, int dxscore, int dxscoreFull,
@@ -214,6 +217,5 @@ namespace maisim.Game.Component
                 }
             };
         }
-
     }
 }

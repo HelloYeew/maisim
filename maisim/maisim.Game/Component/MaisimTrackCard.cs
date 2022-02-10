@@ -2,6 +2,9 @@
 
 namespace maisim.Game.Component
 {
+    /// <summary>
+    /// A base abstract class for track cards types that show track information.
+    /// </summary>
     public abstract class MaisimTrackCard : CompositeDrawable
     {
         protected readonly string albumTextureName;

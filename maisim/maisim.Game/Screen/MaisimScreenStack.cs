@@ -1,10 +1,9 @@
-using maisim.Game.Screen;
 using osu.Framework.Allocation;
 using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
 using osu.Framework.Screens;
 
-namespace maisim.Game
+namespace maisim.Game.Screen
 {
     public class MaisimScreenStack : ScreenStack
     {

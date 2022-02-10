@@ -1,6 +1,6 @@
 # maisim
 
-A free and open-source, community-powered clone of SEGA's Maimai game powered by the osu!framework
+A free and open-source, community-powered clone of SEGA's Maimai game powered by the [osu!framework](https://github.com/ppy/osu-framework).
 
 Note : project name isn't final (yet?).
 
@@ -14,7 +14,7 @@ Figma designs are available at the [project's wiki](https://github.com/HelloYeew
 
 ## Contributing
 
-Want to contribute? Thats cool ! We got a lot of things to do at all scales :
+Want to contribute? That's cool ! We got a lot of things to do at all scales :
 
 - Got an idea ? Pitch it in a discussion !
 - Want to improve the design ? Start a discussion about design improvements !
