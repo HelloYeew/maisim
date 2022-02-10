@@ -12,7 +12,7 @@ using osuTK.Graphics;
 namespace maisim.Game.Component
 {
     /// <summary>
-    /// The track card that displayed information about a track that is not focused / selected.
+    /// A track card that displays information about a track that is not focused / selected.
     /// </summary>
     public class TrackCard : MaisimTrackCard
     {
