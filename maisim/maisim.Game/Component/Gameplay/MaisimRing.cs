@@ -37,7 +37,7 @@ namespace maisim.Game.Component.Gameplay
                     Anchor = Anchor.Centre,
                     Origin = Anchor.Centre,
                     RelativeSizeAxes = Axes.Both,
-                    Colour = Color4.Pink,
+                    Colour = Color4.DarkCyan,
                     BorderThickness = 10,
                     BorderColour = Color4.Green,
                     Masking = true
