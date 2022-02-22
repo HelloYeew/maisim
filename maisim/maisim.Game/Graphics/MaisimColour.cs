@@ -15,7 +15,7 @@ namespace maisim.Game.Graphics
         /// <returns></returns>
         /// <exception cref="ArgumentOutOfRangeException">Throw if the value is not right.</exception>
 
-        public Color4 GetDifficultyColor(DifficultyRating difficultyRating)
+        public static Color4 GetDifficultyColor(DifficultyRating difficultyRating)
         {
             switch (difficultyRating)
             {

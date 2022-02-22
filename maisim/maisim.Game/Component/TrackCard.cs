@@ -39,7 +39,7 @@ namespace maisim.Game.Component
                         Anchor = Anchor.Centre,
                         Origin = Anchor.Centre,
                         RelativeSizeAxes = Axes.Both,
-                        Colour = new MaisimColour().GetDifficultyColor(difficultyRating),
+                        Colour = MaisimColour.GetDifficultyColor(difficultyRating),
                         Size = new Vector2(1)
                     },new GridContainer
                     {
