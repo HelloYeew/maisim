@@ -1,4 +1,6 @@
 ﻿using System.Globalization;
+using maisim.Game.Beatmaps;
+using maisim.Game.Graphics;
 using osu.Framework.Allocation;
 using osu.Framework.Extensions.Color4Extensions;
 using osu.Framework.Graphics;
@@ -17,7 +19,7 @@ namespace maisim.Game.Component
     public class TrackCard : MaisimTrackCard
     {
         public TrackCard(string albumTextureName, string trackName, string artistName, float percentage, string rank, int dxscore, int dxscoreFull,
-            bool allPerfect, bool fdxPlus, string noteDesigner, int bpm) : base(albumTextureName, trackName, artistName, percentage, rank, dxscore, dxscoreFull, allPerfect, fdxPlus, noteDesigner, bpm)
+            bool allPerfect, bool fdxPlus, string noteDesigner, int bpm, DifficultyRating difficultyRating) : base(albumTextureName, trackName, artistName, percentage, rank, dxscore, dxscoreFull, allPerfect, fdxPlus, noteDesigner, bpm, difficultyRating)
         {
 
         }
@@ -37,7 +39,7 @@ namespace maisim.Game.Component
                         Anchor = Anchor.Centre,
                         Origin = Anchor.Centre,
                         RelativeSizeAxes = Axes.Both,
-                        Colour = Color4Extensions.FromHex("#ff828d"),
+                        Colour = MaisimColour.GetDifficultyColor(difficultyRating),
                         Size = new Vector2(1)
                     },new GridContainer
                     {
