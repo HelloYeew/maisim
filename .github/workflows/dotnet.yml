@@ -34,7 +34,9 @@ jobs:
       run: dotnet restore
     
     - name: Build
-      run: dotnet build -c Debug -warnaserror build/Desktop.proj
+      run: |
+        cd maisim
+        dotnet build -c Debug -warnaserror build/Desktop.proj
     
     - name: Test
       run: dotnet test $pwd/*.Tests/bin/Debug/*/*.Tests.dll --logger "trx;LogFileName=TestResults-${{matrix.os.prettyname}}.trx"
