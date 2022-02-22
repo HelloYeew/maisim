@@ -17,7 +17,7 @@ public class TestSceneTrackCardFocusedManyStyle : GridTestScene
             {
                 Anchor = Anchor.TopLeft,
                 Origin = Anchor.TopLeft,
-                Text = "DifficultyRating.Basic",
+                Text = nameof(DifficultyRating.Basic)
             },
             new TrackCardFocused("Test/sukino-skill.jpg", "Sukino Skill", "Wake Up, Girls!",
                 100.6969f, "SSS", 1278, 2424, true, true, "HelloYeew", 120, DifficultyRating.Basic)
@@ -33,7 +33,7 @@ public class TestSceneTrackCardFocusedManyStyle : GridTestScene
             {
                 Anchor = Anchor.TopLeft,
                 Origin = Anchor.TopLeft,
-                Text = "DifficultyRating.Advanced",
+                Text = nameof(DifficultyRating.Advanced)
             },
             new TrackCardFocused("Test/lemon.jpg", "Lemon", "Kenshi Yonezu",
                 100.2900f, "SS", 58, 4542, false, true, "PepePoggers", 80, DifficultyRating.Advanced)
@@ -49,7 +49,7 @@ public class TestSceneTrackCardFocusedManyStyle : GridTestScene
             {
                 Anchor = Anchor.TopLeft,
                 Origin = Anchor.TopLeft,
-                Text = "DifficultyRating.Expert",
+                Text = nameof(DifficultyRating.Expert)
             },
             new TrackCardFocused("Test/only-my-railgun.jpg", "only my railgun", "fripSide",
                 100.00f, "SS", 797, 4215, true, false, "Kasumi", 190, DifficultyRating.Expert)
@@ -65,7 +65,7 @@ public class TestSceneTrackCardFocusedManyStyle : GridTestScene
             {
                 Anchor = Anchor.TopLeft,
                 Origin = Anchor.TopLeft,
-                Text = "DifficultyRating.Master",
+                Text = nameof(DifficultyRating.Master)
             },
             new TrackCardFocused("Test/raise-my-sword.jpg", "RAISE MY SWORD", "GALNERYUS",
                 0, "", 0, 4279, false, false, "AmPen", 220, DifficultyRating.Master)
@@ -81,7 +81,7 @@ public class TestSceneTrackCardFocusedManyStyle : GridTestScene
             {
                 Anchor = Anchor.TopLeft,
                 Origin = Anchor.TopLeft,
-                Text = "DifficultyRating.Remaster"
+                Text = nameof(DifficultyRating.Remaster)
             },
             new TrackCardFocused("Test/tenkai-e-no-kippu.jpg", "Tenkai e no Kippu", "Dragon Guardian",
                 0, "", 0, 4279, false, false, "Kroytz", 190, DifficultyRating.Remaster)
