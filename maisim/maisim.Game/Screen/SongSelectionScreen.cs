@@ -1,3 +1,4 @@
+using maisim.Game.Beatmaps;
 using maisim.Game.Component;
 using osu.Framework.Allocation;
 using osu.Framework.Extensions.Color4Extensions;
@@ -41,7 +42,7 @@ namespace maisim.Game.Screen
                             Children = new Drawable[]
                             {
                                 new TrackCardFocused("Test/sukino-skill.jpg", "Sukino Skill", "Wake Up, Girls!",
-                                    100.6969f, "SSS", 1278, 2424, true, true, "HelloYeew", 120)
+                                    100.6969f, "SSS", 1278, 2424, true, true, "HelloYeew", 120, DifficultyRating.Advanced)
                                 {
                                     Anchor = Anchor.TopCentre,
                                     Origin = Anchor.TopCentre,

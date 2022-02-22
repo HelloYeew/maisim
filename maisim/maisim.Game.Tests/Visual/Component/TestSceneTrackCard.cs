@@ -1,4 +1,5 @@
-﻿using maisim.Game.Component;
+﻿using maisim.Game.Beatmaps;
+using maisim.Game.Component;
 using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
 using osu.Framework.Graphics.Shapes;
@@ -25,7 +26,7 @@ namespace maisim.Game.Tests.Visual.Component
                         Colour = Color4.Black
                     },
                     new TrackCard("Test/sukino-skill.jpg", "Sukino Skill", "Wake Up, Girls!",
-                        100.6969f, "SSS", 1278, 2424, true, true, "HelloYeew", 120)
+                        100.6969f, "SSS", 1278, 2424, true, true, "HelloYeew", 120, DifficultyRating.Advanced)
                     {
                         Anchor = Anchor.Centre,
                         Origin = Anchor.Centre,
