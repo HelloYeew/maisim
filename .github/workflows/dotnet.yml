@@ -8,7 +8,7 @@ jobs:
     strategy:
        fail-fast: false
        matrix:
-          os:
+         os:
             - { prettyname: Windows, fullname: windows-latest }
             - { prettyname: macOS, fullname: macos-latest }
             - { prettyname: Linux, fullname: ubuntu-latest }
@@ -25,20 +25,20 @@ jobs:
     
     # https://github.com/ppy/osu-framework/issues/4349
     - name: Install libavformat-dev
-        if: ${{matrix.os.fullname == 'ubuntu-latest'}}
-        run: |
-         sudo apt-get update && \
-         sudo apt-get -y install libavformat-dev
+      if: ${{matrix.os.fullname == 'ubuntu-latest'}}
+      run: |
+       sudo apt-get update && \
+       sudo apt-get -y install libavformat-dev
     
     - name: Restore dependencies
       run: dotnet restore
     
     - name: Build
-        run: dotnet build -c Debug -warnaserror build/Desktop.proj
+      run: dotnet build -c Debug -warnaserror build/Desktop.proj
     
     - name: Test
-        run: dotnet test $pwd/*.Tests/bin/Debug/*/*.Tests.dll --logger "trx;LogFileName=TestResults-${{matrix.os.prettyname}}.trx"
-        shell: pwsh
+      run: dotnet test $pwd/*.Tests/bin/Debug/*/*.Tests.dll --logger "trx;LogFileName=TestResults-${{matrix.os.prettyname}}.trx"
+      shell: pwsh
     
     # Attempt to upload results even if test fails.
     # https://docs.github.com/en/actions/reference/context-and-expression-syntax-for-github-actions#always
