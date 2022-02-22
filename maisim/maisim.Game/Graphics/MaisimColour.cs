@@ -6,6 +6,9 @@ using osuTK.Graphics;
 
 namespace maisim.Game.Graphics
 {
+    /// <summary>
+    /// The class that contain all the colors values used in the game elements.
+    /// </summary>
     public class MaisimColour
     {
         /// <summary>
@@ -13,8 +16,7 @@ namespace maisim.Game.Graphics
         /// </summary>
         /// <param name="difficultyRating"><see cref="DifficultyRating"/> value</param>
         /// <returns></returns>
-        /// <exception cref="ArgumentOutOfRangeException">Throw if the value is not right.</exception>
-
+        /// <exception cref="ArgumentOutOfRangeException">Throw if the value is not in the scope.</exception>
         public static Color4 GetDifficultyColor(DifficultyRating difficultyRating)
         {
             switch (difficultyRating)
