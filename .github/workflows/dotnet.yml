@@ -35,9 +35,9 @@ jobs:
     
     # Build on iOS is failes so we need to allow continue-on-error
     - name: Build
-      continue-on-error: true
       run: |
-        dotnet build -c Debug
+        cd maisim
+        dotnet build -c Debug maisim.Desktop.slnf
     
     - name: Test
       run: |
