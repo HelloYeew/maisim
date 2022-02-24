@@ -8,7 +8,7 @@ namespace maisim.Desktop
     {
         public static void Main()
         {
-            using (GameHost host = Host.GetSuitableHost(@"maisim"))
+            using (GameHost host = Host.GetSuitableDesktopHost("maisim", new HostOptions { BindIPC = true }))
             using (osu.Framework.Game game = new maisimGame())
                 host.Run(new maisimGameDesktop());
         }
