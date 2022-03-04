@@ -12,7 +12,7 @@ namespace maisim.Game.Scores
         private readonly int combo;
         private readonly int seasonalScore;
 
-        public Score(int tap = 0, int hold = 0, int slide = 0, int touch = 0, int combo = 0, int seasonalScore = 0)
+        public Score(int tap, int hold, int slide, int touch, int combo, int seasonalScore)
         {
             this.tap = tap;
             this.hold = hold;
