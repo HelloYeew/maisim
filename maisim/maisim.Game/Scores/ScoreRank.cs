@@ -20,6 +20,9 @@ namespace maisim.Game.Scores
         D
     }
 
+    /// <summary>
+    /// Class that provide essential methods for scoring.
+    /// </summary>
     public static class ScoreRankExtensions
     {
         public static string ToString(this ScoreRank rank)

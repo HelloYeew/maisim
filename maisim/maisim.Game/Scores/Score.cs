@@ -1,9 +1,11 @@
 ﻿using System;
 using maisim.Game.Beatmaps;
-using osu.Framework.Localisation;
 
 namespace maisim.Game.Scores
 {
+    /// <summary>
+    /// Class include the structure of the score object.
+    /// </summary>
     public class Score
     {
         private readonly Beatmap beatmap;

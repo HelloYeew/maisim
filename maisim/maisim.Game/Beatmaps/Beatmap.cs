@@ -1,5 +1,8 @@
 ﻿namespace maisim.Game.Beatmaps
 {
+    /// <summary>
+    /// Class that represents a beatmap that includes all the information needed on beatmap.
+    /// </summary>
     public class Beatmap
     {
         private readonly float difficultyRating;
