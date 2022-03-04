@@ -19,7 +19,7 @@ namespace maisim.Game.Component
     public class TrackCard : MaisimTrackCard
     {
         public TrackCard(string albumTextureName, string trackName, string artistName, float percentage, string rank, int dxscore, int dxscoreFull,
-            bool allPerfect, bool fdxPlus, string noteDesigner, int bpm, DifficultyRating difficultyRating) : base(albumTextureName, trackName, artistName, percentage, rank, dxscore, dxscoreFull, allPerfect, fdxPlus, noteDesigner, bpm, difficultyRating)
+            bool allPerfect, bool fdxPlus, string noteDesigner, int bpm, DifficultyLevel difficultyLevel) : base(albumTextureName, trackName, artistName, percentage, rank, dxscore, dxscoreFull, allPerfect, fdxPlus, noteDesigner, bpm, difficultyLevel)
         {
 
         }
@@ -39,7 +39,7 @@ namespace maisim.Game.Component
                         Anchor = Anchor.Centre,
                         Origin = Anchor.Centre,
                         RelativeSizeAxes = Axes.Both,
-                        Colour = MaisimColour.GetDifficultyColor(difficultyRating),
+                        Colour = MaisimColour.GetDifficultyColor(DifficultyLevel),
                         Size = new Vector2(1)
                     },new GridContainer
                     {

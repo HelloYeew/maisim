@@ -17,10 +17,10 @@ public class TestSceneTrackCardFocusedManyStyle : GridTestScene
             {
                 Anchor = Anchor.TopLeft,
                 Origin = Anchor.TopLeft,
-                Text = nameof(DifficultyRating.Basic)
+                Text = nameof(DifficultyLevel.Basic)
             },
             new TrackCardFocused("Test/sukino-skill.jpg", "Sukino Skill", "Wake Up, Girls!",
-                100.6969f, "SSS", 1278, 2424, true, true, "HelloYeew", 120, DifficultyRating.Basic)
+                100.6969f, "SSS", 1278, 2424, true, true, "HelloYeew", 120, DifficultyLevel.Basic)
             {
                 Anchor = Anchor.Centre,
                 Origin = Anchor.Centre,
@@ -33,10 +33,10 @@ public class TestSceneTrackCardFocusedManyStyle : GridTestScene
             {
                 Anchor = Anchor.TopLeft,
                 Origin = Anchor.TopLeft,
-                Text = nameof(DifficultyRating.Advanced)
+                Text = nameof(DifficultyLevel.Advanced)
             },
             new TrackCardFocused("Test/lemon.jpg", "Lemon", "Kenshi Yonezu",
-                100.2900f, "SS", 58, 4542, false, true, "PepePoggers", 80, DifficultyRating.Advanced)
+                100.2900f, "SS", 58, 4542, false, true, "PepePoggers", 80, DifficultyLevel.Advanced)
             {
                 Anchor = Anchor.Centre,
                 Origin = Anchor.Centre,
@@ -49,10 +49,10 @@ public class TestSceneTrackCardFocusedManyStyle : GridTestScene
             {
                 Anchor = Anchor.TopLeft,
                 Origin = Anchor.TopLeft,
-                Text = nameof(DifficultyRating.Expert)
+                Text = nameof(DifficultyLevel.Expert)
             },
             new TrackCardFocused("Test/only-my-railgun.jpg", "only my railgun", "fripSide",
-                100.00f, "SS", 797, 4215, true, false, "Kasumi", 190, DifficultyRating.Expert)
+                100.00f, "SS", 797, 4215, true, false, "Kasumi", 190, DifficultyLevel.Expert)
             {
                 Anchor = Anchor.Centre,
                 Origin = Anchor.Centre,
@@ -65,10 +65,10 @@ public class TestSceneTrackCardFocusedManyStyle : GridTestScene
             {
                 Anchor = Anchor.TopLeft,
                 Origin = Anchor.TopLeft,
-                Text = nameof(DifficultyRating.Master)
+                Text = nameof(DifficultyLevel.Master)
             },
             new TrackCardFocused("Test/raise-my-sword.jpg", "RAISE MY SWORD", "GALNERYUS",
-                0, "", 0, 4279, false, false, "AmPen", 220, DifficultyRating.Master)
+                0, "", 0, 4279, false, false, "AmPen", 220, DifficultyLevel.Master)
             {
                 Anchor = Anchor.Centre,
                 Origin = Anchor.Centre,
@@ -81,10 +81,10 @@ public class TestSceneTrackCardFocusedManyStyle : GridTestScene
             {
                 Anchor = Anchor.TopLeft,
                 Origin = Anchor.TopLeft,
-                Text = nameof(DifficultyRating.Remaster)
+                Text = nameof(DifficultyLevel.Remaster)
             },
             new TrackCardFocused("Test/tenkai-e-no-kippu.jpg", "Tenkai e no Kippu", "Dragon Guardian",
-                0, "", 0, 4279, false, false, "Kroytz", 190, DifficultyRating.Remaster)
+                0, "", 0, 4279, false, false, "Kroytz", 190, DifficultyLevel.Remaster)
             {
                 Anchor = Anchor.Centre,
                 Origin = Anchor.Centre,

@@ -19,10 +19,10 @@ namespace maisim.Game.Component
         protected readonly bool fdxPlus;
         protected readonly string noteDesigner;
         protected readonly int bpm;
-        protected DifficultyRating difficultyRating;
+        protected DifficultyLevel DifficultyLevel;
 
         protected MaisimTrackCard(string albumTextureName, string trackName, string artistName, float percentage, string rank, int dxscore, int dxscoreFull,
-            bool allPerfect, bool fdxPlus, string noteDesigner, int bpm, DifficultyRating difficultyRating)
+            bool allPerfect, bool fdxPlus, string noteDesigner, int bpm, DifficultyLevel difficultyLevel)
         {
             this.albumTextureName = albumTextureName;
             this.trackName = trackName;
@@ -35,7 +35,7 @@ namespace maisim.Game.Component
             this.fdxPlus = fdxPlus;
             this.noteDesigner = noteDesigner;
             this.bpm = bpm;
-            this.difficultyRating = difficultyRating;
+            this.DifficultyLevel = difficultyLevel;
         }
     }
 }
