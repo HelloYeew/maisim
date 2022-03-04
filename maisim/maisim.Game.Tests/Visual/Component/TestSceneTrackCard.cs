@@ -1,5 +1,4 @@
-﻿using System.Security.Cryptography.X509Certificates;
-using maisim.Game.Beatmaps;
+﻿using maisim.Game.Beatmaps;
 using maisim.Game.Component;
 using maisim.Game.Scores;
 using osu.Framework.Graphics;
