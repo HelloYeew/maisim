@@ -1,5 +1,6 @@
 ﻿using maisim.Game.Beatmaps;
 using maisim.Game.Component;
+using maisim.Game.Scores;
 using osu.Framework.Graphics;
 using osu.Framework.Graphics.Sprites;
 using osu.Framework.Testing;
@@ -9,8 +10,16 @@ namespace maisim.Game.Tests.Visual.Component;
 
 public class TestSceneTrackCardFocusedManyStyle : GridTestScene
 {
+    private readonly TrackMetadata mockTrackMetadata;
+    private readonly Beatmap mockBeatmap;
+    private readonly Score mockScore;
+
     public TestSceneTrackCardFocusedManyStyle() : base(2, 3)
     {
+        mockTrackMetadata = new TrackMetadata("Sukino Skill", "Wake Up, Girls!", "Test/sukino-skill.jpg", 120);
+        mockBeatmap = new Beatmap(mockTrackMetadata, DifficultyLevel.Basic, 8.2323f, false, 6969, "GIGACHAD");
+        mockScore = new Score(10, 10, 10, 10, 99.65f, 210, 5566);
+
         Cell(0, 0).Children = new Drawable[]
         {
             new SpriteText
@@ -19,14 +28,18 @@ public class TestSceneTrackCardFocusedManyStyle : GridTestScene
                 Origin = Anchor.TopLeft,
                 Text = nameof(DifficultyLevel.Basic)
             },
-            new TrackCardFocused("Test/sukino-skill.jpg", "Sukino Skill", "Wake Up, Girls!",
-                100.6969f, "SSS", 1278, 2424, true, true, "HelloYeew", 120, DifficultyLevel.Basic)
+            new TrackCardFocused(mockBeatmap,mockScore)
             {
                 Anchor = Anchor.Centre,
                 Origin = Anchor.Centre,
                 Scale = new Vector2(0.7f)
             }
         };
+
+        mockTrackMetadata = new TrackMetadata("Lemon", "Kenshi Yonezu", "Test/lemon.jpg", 80);
+        mockBeatmap = new Beatmap(mockTrackMetadata, DifficultyLevel.Advanced, 5.21f, true, 865, "Pogpega");
+        mockScore = new Score(10, 10, 10, 10, 94.00f, 650, 350);
+
         Cell(0, 1).Children = new Drawable[]
         {
             new SpriteText
@@ -35,14 +48,18 @@ public class TestSceneTrackCardFocusedManyStyle : GridTestScene
                 Origin = Anchor.TopLeft,
                 Text = nameof(DifficultyLevel.Advanced)
             },
-            new TrackCardFocused("Test/lemon.jpg", "Lemon", "Kenshi Yonezu",
-                100.2900f, "SS", 58, 4542, false, true, "PepePoggers", 80, DifficultyLevel.Advanced)
+            new TrackCardFocused(mockBeatmap, mockScore)
             {
                 Anchor = Anchor.Centre,
                 Origin = Anchor.Centre,
                 Scale = new Vector2(0.7f)
             }
         };
+
+        mockTrackMetadata = new TrackMetadata("only my railgun", "fripSide", "Test/only-my-railgun.jpg", 190);
+        mockBeatmap = new Beatmap(mockTrackMetadata, DifficultyLevel.Expert, 6.3475f, false, 3456, "EduardoLingure");
+        mockScore = new Score(10, 10, 10, 10, 81.00f, 453, 2556);
+
         Cell(0, 2).Children = new Drawable[]
         {
             new SpriteText
@@ -51,14 +68,18 @@ public class TestSceneTrackCardFocusedManyStyle : GridTestScene
                 Origin = Anchor.TopLeft,
                 Text = nameof(DifficultyLevel.Expert)
             },
-            new TrackCardFocused("Test/only-my-railgun.jpg", "only my railgun", "fripSide",
-                100.00f, "SS", 797, 4215, true, false, "Kasumi", 190, DifficultyLevel.Expert)
+            new TrackCardFocused(mockBeatmap, mockScore)
             {
                 Anchor = Anchor.Centre,
                 Origin = Anchor.Centre,
                 Scale = new Vector2(0.7f)
             }
         };
+
+        mockTrackMetadata = new TrackMetadata("RAISE MY SWORD", "GALNERYUS", "Test/raise-my-sword.jpg", 220);
+        mockBeatmap = new Beatmap(mockTrackMetadata, DifficultyLevel.Master, 11.3475f, false, 8888, "Tutel");
+        mockScore = new Score(10, 10, 10, 10, 73.25f, 1453, 4646);
+
         Cell(1, 0).Children = new Drawable[]
         {
             new SpriteText
@@ -67,14 +88,18 @@ public class TestSceneTrackCardFocusedManyStyle : GridTestScene
                 Origin = Anchor.TopLeft,
                 Text = nameof(DifficultyLevel.Master)
             },
-            new TrackCardFocused("Test/raise-my-sword.jpg", "RAISE MY SWORD", "GALNERYUS",
-                0, "", 0, 4279, false, false, "AmPen", 220, DifficultyLevel.Master)
+            new TrackCardFocused(mockBeatmap, mockScore)
             {
                 Anchor = Anchor.Centre,
                 Origin = Anchor.Centre,
                 Scale = new Vector2(0.7f)
             }
         };
+
+        mockTrackMetadata = new TrackMetadata("Tenkai e no Kippu", "Dragon Guardian", "Test/tenkai-e-no-kippu.jpg", 190);
+        mockBeatmap = new Beatmap(mockTrackMetadata, DifficultyLevel.Remaster, 14.55f, true, 9999, "Mamizu");
+        mockScore = new Score(10, 10, 10, 10, 30.25f, 45, 22);
+
         Cell(1, 1).Children = new Drawable[]
         {
             new SpriteText
@@ -83,8 +108,7 @@ public class TestSceneTrackCardFocusedManyStyle : GridTestScene
                 Origin = Anchor.TopLeft,
                 Text = nameof(DifficultyLevel.Remaster)
             },
-            new TrackCardFocused("Test/tenkai-e-no-kippu.jpg", "Tenkai e no Kippu", "Dragon Guardian",
-                0, "", 0, 4279, false, false, "Kroytz", 190, DifficultyLevel.Remaster)
+            new TrackCardFocused(mockBeatmap, mockScore)
             {
                 Anchor = Anchor.Centre,
                 Origin = Anchor.Centre,

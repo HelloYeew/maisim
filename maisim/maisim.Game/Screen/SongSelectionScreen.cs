@@ -1,5 +1,6 @@
 using maisim.Game.Beatmaps;
 using maisim.Game.Component;
+using maisim.Game.Scores;
 using osu.Framework.Allocation;
 using osu.Framework.Extensions.Color4Extensions;
 using osu.Framework.Graphics;
@@ -14,9 +15,17 @@ namespace maisim.Game.Screen
     /// </summary>
     public class SongSelectionScreen : osu.Framework.Screens.Screen
     {
+        private TrackMetadata mockTrackMetadata;
+        private Beatmap mockBeatmap;
+        private Score mockScore;
+
         [BackgroundDependencyLoader]
         private void load()
         {
+            mockTrackMetadata = new TrackMetadata("Sukino Skill", "Wake Up, Girls!", "Test/sukino-skill.jpg", 120);
+            mockBeatmap = new Beatmap(mockTrackMetadata, DifficultyLevel.Expert, 8.2323f, false, 6969, "GIGACHAD");
+            mockScore = new Score(10, 10, 10, 10, 99.65f, 210, 5566);
+
             InternalChildren = new Drawable[]
             {
                 new Container
@@ -41,8 +50,7 @@ namespace maisim.Game.Screen
                             RelativeSizeAxes = Axes.Both,
                             Children = new Drawable[]
                             {
-                                new TrackCardFocused("Test/sukino-skill.jpg", "Sukino Skill", "Wake Up, Girls!",
-                                    100.6969f, "SSS", 1278, 2424, true, true, "HelloYeew", 120, DifficultyLevel.Advanced)
+                                new TrackCardFocused(mockBeatmap, mockScore)
                                 {
                                     Anchor = Anchor.TopCentre,
                                     Origin = Anchor.TopCentre,

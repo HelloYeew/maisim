@@ -20,5 +20,17 @@
             this.maxSeasonalScore = maxSeasonalScore;
             this.noteDesigner = noteDesigner;
         }
+
+        public float DifficultyRating => difficultyRating;
+
+        public DifficultyLevel DifficultyLevel => difficultyLevel;
+
+        public bool IsRemaster => isRemaster;
+
+        public TrackMetadata TrackMetadata => trackMetadata;
+
+        public float MaxSeasonalScore => maxSeasonalScore;
+
+        public string NoteDesigner => noteDesigner;
     }
 }

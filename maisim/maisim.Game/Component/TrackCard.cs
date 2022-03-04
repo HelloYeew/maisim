@@ -1,6 +1,7 @@
 ﻿using System.Globalization;
 using maisim.Game.Beatmaps;
 using maisim.Game.Graphics;
+using maisim.Game.Scores;
 using osu.Framework.Allocation;
 using osu.Framework.Extensions.Color4Extensions;
 using osu.Framework.Graphics;
@@ -18,8 +19,9 @@ namespace maisim.Game.Component
     /// </summary>
     public class TrackCard : MaisimTrackCard
     {
-        public TrackCard(string albumTextureName, string trackName, string artistName, float percentage, string rank, int dxscore, int dxscoreFull,
-            bool allPerfect, bool fdxPlus, string noteDesigner, int bpm, DifficultyLevel difficultyLevel) : base(albumTextureName, trackName, artistName, percentage, rank, dxscore, dxscoreFull, allPerfect, fdxPlus, noteDesigner, bpm, difficultyLevel)
+        private ScoreRank rank;
+
+        public TrackCard(Beatmap beatmap, Score score) : base(beatmap, score)
         {
 
         }
@@ -27,6 +29,8 @@ namespace maisim.Game.Component
         [BackgroundDependencyLoader]
         private void load(TextureStore textureStore)
         {
+            rank = score.CalculateRank();
+
             InternalChild = new Container
             {
                 Anchor = Anchor.Centre,
@@ -39,7 +43,7 @@ namespace maisim.Game.Component
                         Anchor = Anchor.Centre,
                         Origin = Anchor.Centre,
                         RelativeSizeAxes = Axes.Both,
-                        Colour = MaisimColour.GetDifficultyColor(DifficultyLevel),
+                        Colour = MaisimColour.GetDifficultyColor(beatmap.DifficultyLevel),
                         Size = new Vector2(1)
                     },new GridContainer
                     {
@@ -60,7 +64,7 @@ namespace maisim.Game.Component
                                     Anchor = Anchor.Centre,
                                     Origin = Anchor.Centre,
                                     FillMode = FillMode.Fill,
-                                    Texture = textureStore.Get(albumTextureName),
+                                    Texture = textureStore.Get(beatmap.TrackMetadata.CoverPath),
                                     Scale = new Vector2(0.8f)
                                 }
                             },new Drawable[]
@@ -87,7 +91,7 @@ namespace maisim.Game.Component
                                             {
                                                 Anchor = Anchor.Centre,
                                                 Origin = Anchor.Centre,
-                                                Text = trackName,
+                                                Text = beatmap.TrackMetadata.Title,
                                                 Font = new FontUsage(size : 25),
                                                 Colour = Color4.White
                                             }
@@ -133,7 +137,7 @@ namespace maisim.Game.Component
                                                             {
                                                                 Anchor = Anchor.Centre,
                                                                 Origin = Anchor.Centre,
-                                                                Text = $"{percentage.ToString(CultureInfo.InvariantCulture)}%",
+                                                                Text = $"{score.Accuracy.ToString(CultureInfo.InvariantCulture)}%",
                                                                 Font = new FontUsage(size: 20),
                                                                 Colour = Color4.White
                                                             }
@@ -156,7 +160,7 @@ namespace maisim.Game.Component
                                                             {
                                                                 Anchor = Anchor.Centre,
                                                                 Origin = Anchor.Centre,
-                                                                Text = rank,
+                                                                Text = ScoreRankExtensions.ToString(rank),
                                                                 Font = new FontUsage(size: 20),
                                                                 Colour = Color4.White
                                                             }

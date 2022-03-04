@@ -1,5 +1,6 @@
 ﻿using maisim.Game.Beatmaps;
 using maisim.Game.Component;
+using maisim.Game.Scores;
 using osu.Framework.Testing;
 using osu.Framework.Graphics;
 using osuTK;
@@ -8,17 +9,25 @@ namespace maisim.Game.Tests.Visual.Component
 {
     public class TestSceneTrackCardCompare : GridTestScene
     {
+        private readonly TrackMetadata mockTrackMetadata;
+
+        private readonly Beatmap mockBeatmap;
+
+        private readonly Score mockScore;
+
         public TestSceneTrackCardCompare() : base(1,2)
         {
-            Cell(0, 0).Child = new TrackCard("Test/sukino-skill.jpg", "Sukino Skill", "Wake Up, Girls!",
-                100.6969f, "SSS", 1278, 2424, true, true, "HelloYeew", 120, DifficultyLevel.Advanced)
+            mockTrackMetadata = new TrackMetadata("Sukino Skill", "Wake Up, Girls!", "Test/sukino-skill.jpg", 120);
+            mockBeatmap = new Beatmap(mockTrackMetadata, DifficultyLevel.Expert, 8.2323f, false, 6969, "GIGACHAD");
+            mockScore = new Score(10, 10, 10, 10, 99.65f, 210, 5566);
+
+            Cell(0, 0).Child = new TrackCard(mockBeatmap, mockScore)
             {
                 Anchor = Anchor.Centre,
                 Origin = Anchor.Centre,
                 Scale = new Vector2(1)
             };
-            Cell(0, 1).Child = new TrackCardFocused("Test/sukino-skill.jpg", "Sukino Skill", "Wake Up, Girls!",
-                100.6969f, "SSS", 1278, 2424, true, true, "HelloYeew", 120, DifficultyLevel.Advanced)
+            Cell(0, 1).Child = new TrackCardFocused(mockBeatmap, mockScore)
             {
                 Anchor = Anchor.Centre,
                 Origin = Anchor.Centre,

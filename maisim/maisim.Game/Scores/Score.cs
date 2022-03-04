@@ -1,5 +1,6 @@
 ﻿using System;
 using maisim.Game.Beatmaps;
+using osu.Framework.Localisation;
 
 namespace maisim.Game.Scores
 {
