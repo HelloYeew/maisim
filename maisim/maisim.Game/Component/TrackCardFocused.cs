@@ -19,8 +19,6 @@ namespace maisim.Game.Component
     /// </summary>
     public class TrackCardFocused : MaisimTrackCard
     {
-        private ScoreRank rank;
-
         public TrackCardFocused(Beatmap beatmap, Score score) : base(beatmap, score)
         {
 
@@ -29,8 +27,6 @@ namespace maisim.Game.Component
         [BackgroundDependencyLoader]
         private void load(TextureStore textureStore)
         {
-            rank = score.CalculateRank();
-
             InternalChild = new Container
             {
                 Anchor = Anchor.Centre,
@@ -198,7 +194,7 @@ namespace maisim.Game.Component
                                                                             {
                                                                                 Anchor = Anchor.Centre,
                                                                                 Origin = Anchor.Centre,
-                                                                                Text = ScoreRankExtensions.ToString(rank),
+                                                                                Text = ScoreRankExtensions.ToString(score.Rank),
                                                                                 Font = new FontUsage(size: 20),
                                                                                 Colour = Color4.White
                                                                             }

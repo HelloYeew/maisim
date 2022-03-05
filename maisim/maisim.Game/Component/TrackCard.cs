@@ -19,8 +19,6 @@ namespace maisim.Game.Component
     /// </summary>
     public class TrackCard : MaisimTrackCard
     {
-        private ScoreRank rank;
-
         public TrackCard(Beatmap beatmap, Score score) : base(beatmap, score)
         {
 
@@ -29,8 +27,6 @@ namespace maisim.Game.Component
         [BackgroundDependencyLoader]
         private void load(TextureStore textureStore)
         {
-            rank = score.CalculateRank();
-
             InternalChild = new Container
             {
                 Anchor = Anchor.Centre,
@@ -52,7 +48,7 @@ namespace maisim.Game.Component
                         {
                             new Dimension(GridSizeMode.Absolute, 230),
                             new Dimension(GridSizeMode.Absolute, 42),
-                            new Dimension(GridSizeMode.Absolute, 40),
+                            new Dimension(GridSizeMode.Absolute, 40)
                         },
                         Content = new[]
                         {
@@ -160,7 +156,7 @@ namespace maisim.Game.Component
                                                             {
                                                                 Anchor = Anchor.Centre,
                                                                 Origin = Anchor.Centre,
-                                                                Text = ScoreRankExtensions.ToString(rank),
+                                                                Text = ScoreRankExtensions.ToString(score.Rank),
                                                                 Font = new FontUsage(size: 20),
                                                                 Colour = Color4.White
                                                             }
