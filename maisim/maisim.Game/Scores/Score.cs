@@ -1,5 +1,4 @@
-﻿using System;
-using maisim.Game.Beatmaps;
+﻿using maisim.Game.Beatmaps;
 
 namespace maisim.Game.Scores
 {
@@ -16,7 +15,7 @@ namespace maisim.Game.Scores
             Slide = slide;
             Touch = touch;
             Accuracy = accuracy;
-            Rank = new ScoreProcessor().CalculateRank(Accuracy);
+            Rank = ScoreProcessor.CalculateRank(Accuracy);
             Combo = combo;
             SeasonalScore = seasonalScore;
         }

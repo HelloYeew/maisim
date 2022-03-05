@@ -2,11 +2,13 @@
 
 namespace maisim.Game.Scores
 {
+    /// <summary>
+    /// Class that represent as the score calculator.
+    /// </summary>
     public class ScoreProcessor
     {
-        public ScoreRank CalculateRank(float accuracy)
+        public static ScoreRank CalculateRank(float accuracy)
         {
-            // TODO: If the score calculation function is implement we need to move it there.
             if (accuracy >= 100.5f)
             {
                 return ScoreRank.SSSPlus;
