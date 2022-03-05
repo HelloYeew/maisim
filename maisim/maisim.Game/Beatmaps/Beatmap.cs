@@ -5,35 +5,28 @@
     /// </summary>
     public class Beatmap
     {
-        private readonly float difficultyRating;
-        private readonly DifficultyLevel difficultyLevel;
-        private readonly bool isRemaster;
-        private readonly TrackMetadata trackMetadata;
-        private readonly float maxSeasonalScore;
-        private readonly string noteDesigner;
-
         // TODO: Implement SongSet when it's available
 
         public Beatmap(TrackMetadata trackMetadata, DifficultyLevel difficultyLevel, float difficultyRating, bool isRemaster, float maxSeasonalScore, string noteDesigner)
         {
-            this.trackMetadata = trackMetadata;
-            this.difficultyRating = difficultyRating;
-            this.difficultyLevel = difficultyLevel;
-            this.isRemaster = isRemaster;
-            this.maxSeasonalScore = maxSeasonalScore;
-            this.noteDesigner = noteDesigner;
+            TrackMetadata = trackMetadata;
+            DifficultyLevel = difficultyLevel;
+            DifficultyRating = difficultyRating;
+            IsRemaster = isRemaster;
+            MaxSeasonalScore = maxSeasonalScore;
+            NoteDesigner = noteDesigner;
         }
 
-        public float DifficultyRating => difficultyRating;
+        public float DifficultyRating { get; set; }
 
-        public DifficultyLevel DifficultyLevel => difficultyLevel;
+        public DifficultyLevel DifficultyLevel { get; set; }
 
-        public bool IsRemaster => isRemaster;
+        public bool IsRemaster { get; set; }
 
-        public TrackMetadata TrackMetadata => trackMetadata;
+        public TrackMetadata TrackMetadata { get; set; }
 
-        public float MaxSeasonalScore => maxSeasonalScore;
+        public float MaxSeasonalScore { get; set; }
 
-        public string NoteDesigner => noteDesigner;
+        public string NoteDesigner { get; set; }
     }
 }

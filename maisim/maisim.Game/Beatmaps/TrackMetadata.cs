@@ -6,25 +6,20 @@
     /// <seealso cref="maisim.Game.Beatmaps.Beatmap"/>
     public class TrackMetadata
     {
-        private readonly string title;
-        private readonly string artist;
-        private readonly string coverPath;
-        private readonly float bpm;
-
         public TrackMetadata(string title, string artist, string coverPath, float bpm)
         {
-            this.title = title;
-            this.artist = artist;
-            this.coverPath = coverPath;
-            this.bpm = bpm;
+            Title = title;
+            Artist = artist;
+            CoverPath = coverPath;
+            Bpm = bpm;
         }
 
-        public string Title => title;
+        public string Title { get; set; }
 
-        public string Artist => artist;
+        public string Artist { get; set; }
 
-        public string CoverPath => coverPath;
+        public string CoverPath { get; set; }
 
-        public float Bpm => bpm;
+        public float Bpm { get; set; }
     }
 }

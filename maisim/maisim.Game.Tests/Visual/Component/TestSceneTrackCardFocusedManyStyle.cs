@@ -18,7 +18,7 @@ public class TestSceneTrackCardFocusedManyStyle : GridTestScene
     {
         mockTrackMetadata = new TrackMetadata("Sukino Skill", "Wake Up, Girls!", "Test/sukino-skill.jpg", 120);
         mockBeatmap = new Beatmap(mockTrackMetadata, DifficultyLevel.Basic, 8.2323f, false, 6969, "GIGACHAD");
-        mockScore = new Score(10, 10, 10, 10, 99.65f, 210, 5566);
+        mockScore = new Score(mockBeatmap, 10, 10, 10, 10, 99.65f, 210, 5566);
 
         Cell(0, 0).Children = new Drawable[]
         {
@@ -38,7 +38,7 @@ public class TestSceneTrackCardFocusedManyStyle : GridTestScene
 
         mockTrackMetadata = new TrackMetadata("Lemon", "Kenshi Yonezu", "Test/lemon.jpg", 80);
         mockBeatmap = new Beatmap(mockTrackMetadata, DifficultyLevel.Advanced, 5.21f, true, 865, "Pogpega");
-        mockScore = new Score(10, 10, 10, 10, 94.00f, 650, 350);
+        mockScore = new Score(mockBeatmap, 10, 10, 10, 10, 94.00f, 650, 350);
 
         Cell(0, 1).Children = new Drawable[]
         {
@@ -58,7 +58,7 @@ public class TestSceneTrackCardFocusedManyStyle : GridTestScene
 
         mockTrackMetadata = new TrackMetadata("only my railgun", "fripSide", "Test/only-my-railgun.jpg", 190);
         mockBeatmap = new Beatmap(mockTrackMetadata, DifficultyLevel.Expert, 6.3475f, false, 3456, "EduardoLingure");
-        mockScore = new Score(10, 10, 10, 10, 81.00f, 453, 2556);
+        mockScore = new Score(mockBeatmap, 10, 10, 10, 10, 81.00f, 453, 2556);
 
         Cell(0, 2).Children = new Drawable[]
         {
@@ -78,7 +78,7 @@ public class TestSceneTrackCardFocusedManyStyle : GridTestScene
 
         mockTrackMetadata = new TrackMetadata("RAISE MY SWORD", "GALNERYUS", "Test/raise-my-sword.jpg", 220);
         mockBeatmap = new Beatmap(mockTrackMetadata, DifficultyLevel.Master, 11.3475f, false, 8888, "Tutel");
-        mockScore = new Score(10, 10, 10, 10, 73.25f, 1453, 4646);
+        mockScore = new Score(mockBeatmap, 10, 10, 10, 10, 73.25f, 1453, 4646);
 
         Cell(1, 0).Children = new Drawable[]
         {
@@ -98,7 +98,7 @@ public class TestSceneTrackCardFocusedManyStyle : GridTestScene
 
         mockTrackMetadata = new TrackMetadata("Tenkai e no Kippu", "Dragon Guardian", "Test/tenkai-e-no-kippu.jpg", 190);
         mockBeatmap = new Beatmap(mockTrackMetadata, DifficultyLevel.Remaster, 14.55f, true, 9999, "Mamizu");
-        mockScore = new Score(10, 10, 10, 10, 30.25f, 45, 22);
+        mockScore = new Score(mockBeatmap, 10, 10, 10, 10, 30.25f, 45, 22);
 
         Cell(1, 1).Children = new Drawable[]
         {

@@ -24,7 +24,7 @@ namespace maisim.Game.Screen
         {
             mockTrackMetadata = new TrackMetadata("Sukino Skill", "Wake Up, Girls!", "Test/sukino-skill.jpg", 120);
             mockBeatmap = new Beatmap(mockTrackMetadata, DifficultyLevel.Expert, 8.2323f, false, 6969, "GIGACHAD");
-            mockScore = new Score(10, 10, 10, 10, 99.65f, 210, 5566);
+            mockScore = new Score(mockBeatmap, 10, 10, 10, 10, 99.65f, 210, 5566);
 
             InternalChildren = new Drawable[]
             {
