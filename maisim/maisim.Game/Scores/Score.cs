@@ -7,19 +7,6 @@ namespace maisim.Game.Scores
     /// </summary>
     public class Score
     {
-        public Score(Beatmap beatmap, int tap, int hold, int slide, int touch, float accuracy, int combo, int seasonalScore)
-        {
-            Beatmap = beatmap;
-            Tap = tap;
-            Hold = hold;
-            Slide = slide;
-            Touch = touch;
-            Accuracy = accuracy;
-            Rank = ScoreProcessor.CalculateRank(Accuracy);
-            Combo = combo;
-            SeasonalScore = seasonalScore;
-        }
-
         public Beatmap Beatmap { get; set; }
 
         public int Tap { get; set; }

@@ -7,16 +7,6 @@
     {
         // TODO: Implement SongSet when it's available
 
-        public Beatmap(TrackMetadata trackMetadata, DifficultyLevel difficultyLevel, float difficultyRating, bool isRemaster, float maxSeasonalScore, string noteDesigner)
-        {
-            TrackMetadata = trackMetadata;
-            DifficultyLevel = difficultyLevel;
-            DifficultyRating = difficultyRating;
-            IsRemaster = isRemaster;
-            MaxSeasonalScore = maxSeasonalScore;
-            NoteDesigner = noteDesigner;
-        }
-
         public float DifficultyRating { get; set; }
 
         public DifficultyLevel DifficultyLevel { get; set; }

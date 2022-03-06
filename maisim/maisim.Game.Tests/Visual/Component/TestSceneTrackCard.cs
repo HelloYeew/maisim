@@ -19,10 +19,34 @@ namespace maisim.Game.Tests.Visual.Component
 
         public TestSceneTrackCard()
         {
-            mockTrackMetadata = new TrackMetadata("Sukino Skill", "Wake Up, Girls!", "Test/sukino-skill.jpg", 120);
-            mockBeatmap = new Beatmap(mockTrackMetadata, DifficultyLevel.Expert, 8.2323f, false, 6969, "GIGACHAD");
-            mockScore = new Score(mockBeatmap, 10, 10, 10, 10, 99.65f, 210, 5566);
-
+            mockTrackMetadata = new TrackMetadata
+            {
+                Title = "Sukino Skill",
+                Artist = "Wake Up, Girls!",
+                Bpm = 120,
+                CoverPath = "Test/sukino-skill.jpg"
+            };
+            mockBeatmap = new Beatmap
+            {
+                TrackMetadata = mockTrackMetadata,
+                DifficultyLevel = DifficultyLevel.Expert,
+                DifficultyRating = 8.2323f,
+                IsRemaster = false,
+                MaxSeasonalScore = 6969,
+                NoteDesigner = "GIGACHAD"
+            };
+            mockScore = new Score
+            {
+                Beatmap = mockBeatmap,
+                Tap = 10,
+                Hold = 10,
+                Slide = 10,
+                Touch = 10,
+                Accuracy = 99.65f,
+                Rank = ScoreProcessor.CalculateRank(99.65f),
+                Combo = 210,
+                SeasonalScore = 5566
+            };
             Child = new Container
             {
                 Anchor = Anchor.Centre,
