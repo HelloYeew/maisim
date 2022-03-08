@@ -9,31 +9,24 @@ namespace maisim.Game.Tests.Visual.Component
 {
     public class TestSceneTrackCardCompare : GridTestScene
     {
-        private readonly TrackMetadata mockTrackMetadata;
-
-        private readonly Beatmap mockBeatmap;
-
-        private readonly Score mockScore;
-
         public TestSceneTrackCardCompare() : base(1,2)
         {
-            mockTrackMetadata = new TrackMetadata
-            {
-                Title = "Sukino Skill",
-                Artist = "Wake Up, Girls!",
-                Bpm = 120,
-                CoverPath = "Test/sukino-skill.jpg"
-            };
-            mockBeatmap = new Beatmap
-            {
-                TrackMetadata = mockTrackMetadata,
+           var mockBeatmap = new Beatmap
+           {
+                TrackMetadata = new TrackMetadata
+                {
+                    Title = "Sukino Skill",
+                    Artist = "Wake Up, Girls!",
+                    Bpm = 120,
+                    CoverPath = "Test/sukino-skill.jpg"
+                },
                 DifficultyLevel = DifficultyLevel.Expert,
                 DifficultyRating = 8.2323f,
                 IsRemaster = false,
                 MaxSeasonalScore = 6969,
                 NoteDesigner = "GIGACHAD"
-            };
-            mockScore = new Score
+           };
+           var mockScore = new Score
             {
                 Beatmap = mockBeatmap,
                 Tap = 10,
