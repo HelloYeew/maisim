@@ -1,5 +1,6 @@
 ﻿using maisim.Game.Beatmaps;
 using maisim.Game.Component;
+using maisim.Game.Scores;
 using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
 using osu.Framework.Graphics.Shapes;
@@ -12,6 +13,33 @@ namespace maisim.Game.Tests.Visual.Component
     {
         public TestSceneTrackCard()
         {
+            var mockBeatmap = new Beatmap
+            {
+                TrackMetadata = new TrackMetadata
+                {
+                    Title = "Sukino Skill",
+                    Artist = "Wake Up, Girls!",
+                    Bpm = 120,
+                    CoverPath = "Test/sukino-skill.jpg"
+                },
+                DifficultyLevel = DifficultyLevel.Expert,
+                DifficultyRating = 8.2323f,
+                IsRemaster = false,
+                MaxSeasonalScore = 6969,
+                NoteDesigner = "GIGACHAD"
+            };
+            var mockScore = new Score
+            {
+                Beatmap = mockBeatmap,
+                Tap = 10,
+                Hold = 10,
+                Slide = 10,
+                Touch = 10,
+                Accuracy = 99.65f,
+                Rank = ScoreProcessor.CalculateRank(99.65f),
+                Combo = 210,
+                SeasonalScore = 5566
+            };
             Child = new Container
             {
                 Anchor = Anchor.Centre,
@@ -25,8 +53,7 @@ namespace maisim.Game.Tests.Visual.Component
                         RelativeSizeAxes = Axes.Both,
                         Colour = Color4.Black
                     },
-                    new TrackCard("Test/sukino-skill.jpg", "Sukino Skill", "Wake Up, Girls!",
-                        100.6969f, "SSS", 1278, 2424, true, true, "HelloYeew", 120, DifficultyRating.Advanced)
+                    new TrackCard(mockBeatmap, mockScore)
                     {
                         Anchor = Anchor.Centre,
                         Origin = Anchor.Centre,

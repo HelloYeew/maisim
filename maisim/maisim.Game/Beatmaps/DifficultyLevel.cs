@@ -1,6 +1,6 @@
 ﻿namespace maisim.Game.Beatmaps
 {
-    public enum DifficultyRating
+    public enum DifficultyLevel
     {
         Basic,
         Advanced,

@@ -1,5 +1,6 @@
 using maisim.Game.Beatmaps;
 using maisim.Game.Component;
+using maisim.Game.Scores;
 using osu.Framework.Allocation;
 using osu.Framework.Extensions.Color4Extensions;
 using osu.Framework.Graphics;
@@ -14,9 +15,42 @@ namespace maisim.Game.Screen
     /// </summary>
     public class SongSelectionScreen : osu.Framework.Screens.Screen
     {
+        private TrackMetadata mockTrackMetadata;
+        private Beatmap mockBeatmap;
+        private Score mockScore;
+
         [BackgroundDependencyLoader]
         private void load()
         {
+            mockTrackMetadata = new TrackMetadata
+            {
+                Title = "Sukino Skill",
+                Artist = "Wake Up, Girls!",
+                Bpm = 120,
+                CoverPath = "Test/sukino-skill.jpg"
+            };
+            mockBeatmap = new Beatmap
+            {
+                TrackMetadata = mockTrackMetadata,
+                DifficultyLevel = DifficultyLevel.Expert,
+                DifficultyRating = 8.2323f,
+                IsRemaster = false,
+                MaxSeasonalScore = 6969,
+                NoteDesigner = "GIGACHAD"
+            };
+            mockScore = new Score
+            {
+                Beatmap = mockBeatmap,
+                Tap = 10,
+                Hold = 10,
+                Slide = 10,
+                Touch = 10,
+                Accuracy = 99.65f,
+                Rank = ScoreProcessor.CalculateRank(99.65f),
+                Combo = 210,
+                SeasonalScore = 5566
+            };
+
             InternalChildren = new Drawable[]
             {
                 new Container
@@ -41,8 +75,7 @@ namespace maisim.Game.Screen
                             RelativeSizeAxes = Axes.Both,
                             Children = new Drawable[]
                             {
-                                new TrackCardFocused("Test/sukino-skill.jpg", "Sukino Skill", "Wake Up, Girls!",
-                                    100.6969f, "SSS", 1278, 2424, true, true, "HelloYeew", 120, DifficultyRating.Advanced)
+                                new TrackCardFocused(mockBeatmap, mockScore)
                                 {
                                     Anchor = Anchor.TopCentre,
                                     Origin = Anchor.TopCentre,

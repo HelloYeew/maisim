@@ -14,30 +14,30 @@ namespace maisim.Game.Graphics
         /// <summary>
         /// Get the colour for <see cref="TrackCard"/> and <see cref="TrackCardFocused"/> background colour.
         /// </summary>
-        /// <param name="difficultyRating"><see cref="DifficultyRating"/> value</param>
+        /// <param name="difficultyLevel"><see cref="DifficultyLevel"/> value</param>
         /// <returns></returns>
         /// <exception cref="ArgumentOutOfRangeException">Throw if the value is not in the scope.</exception>
-        public static Color4 GetDifficultyColor(DifficultyRating difficultyRating)
+        public static Color4 GetDifficultyColor(DifficultyLevel difficultyLevel)
         {
-            switch (difficultyRating)
+            switch (difficultyLevel)
             {
-                case DifficultyRating.Basic:
+                case DifficultyLevel.Basic:
                     return Color4Extensions.FromHex("6ed43e");
 
-                case DifficultyRating.Advanced:
+                case DifficultyLevel.Advanced:
                     return Color4Extensions.FromHex("f7b807");
 
-                case DifficultyRating.Expert:
+                case DifficultyLevel.Expert:
                     return Color4Extensions.FromHex("ff828d");
 
-                case DifficultyRating.Master:
+                case DifficultyLevel.Master:
                     return Color4Extensions.FromHex("a051dc");
 
-                case DifficultyRating.Remaster:
+                case DifficultyLevel.Remaster:
                     return Color4.White;
 
                 default:
-                    throw new ArgumentOutOfRangeException(nameof(difficultyRating));
+                    throw new ArgumentOutOfRangeException(nameof(difficultyLevel));
             }
         }
     }
