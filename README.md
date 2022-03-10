@@ -65,7 +65,6 @@ cd maisim.Game.Tests
 # restore nuget packages for the solution
 dotnet restore
 
-
 # run the visual tests with the debug profile
 dotnet run 
 ```
