@@ -25,6 +25,54 @@ Don't hesitate to make a discussion and we will try to answer as fast as we can.
 
 You know C# ? You can try picking an issue up and make a pull request and we will review it.
 
+## Developping maisim
+
+The following items are required to be installed on your computer in order to develop maisim:
+
+- The [.NET 6 SDK](https://dotnet.microsoft.com/en-us/download) or higher
+- Developping for mobile requires a Xamarin installation, which ships with Visual Studio 2019+ or Visual Studio for Mac.
+- The use of a C# IDE (Rider, Visual Studio) is highly recommended to browse through the codebase.
+
+Getting started with developping maisim is as follows:
+
+
+### Grabbing the code from the repository
+```sh
+git clone https://github.com/HelloYeew/maisim
+cd maisim
+```
+
+### Running the game
+
+```sh
+cd maisim.Desktop
+
+# restore nuget packages for the solution
+dotnet restore
+
+# run the game with the debug profile
+dotnet run 
+
+# if you ever want to run the game with the release profile
+dotnet run -c:Release
+```
+
+### Running visual tests
+
+```sh
+cd maisim.Game.Tests
+
+# restore nuget packages for the solution
+dotnet restore
+
+
+# run the visual tests with the debug profile
+dotnet run 
+```
+
+If you're using an IDE, it should be automatically picking the developpement profiles when opening the solution files.
+
+
 ## Licence
 
 This project is licensed under the MIT license. Please see [the licence file](LICENSE) for more information. tl;dr you can do whatever you want as long as you include the original copyright and license notice in any copy of the software/source.
