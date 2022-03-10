@@ -29,7 +29,7 @@ You know C# ? You can try picking an issue up and make a pull request and we wil
 
 The following items are required to be installed on your computer in order to develop maisim:
 
-- The [.NET 5 SDK](https://dotnet.microsoft.com/en-us/download/visual-studio-sdks) or higher
+- The [.NET 6 SDK](https://dotnet.microsoft.com/en-us/download) or higher
 - Developping for mobile requires a Xamarin installation, which ships with Visual Studio 2019+ or Visual Studio for Mac.
 - The use of a C# IDE (Rider, Visual Studio) is highly recommended to browse through the codebase.
 
