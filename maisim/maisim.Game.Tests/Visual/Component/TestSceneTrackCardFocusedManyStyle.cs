@@ -13,7 +13,7 @@ namespace maisim.Game.Tests.Visual.Component
     {
         public TestSceneTrackCardFocusedManyStyle() : base(2, 3)
         {
-            var expertMockBeatmap = new Beatmap
+            var basicMockBeatmap = new Beatmap
             {
                 TrackMetadata = new TrackMetadata
                 {
@@ -22,16 +22,16 @@ namespace maisim.Game.Tests.Visual.Component
                     Bpm = 120,
                     CoverPath = "Test/sukino-skill.jpg"
                 },
-                DifficultyLevel = DifficultyLevel.Expert,
+                DifficultyLevel = DifficultyLevel.Basic,
                 DifficultyRating = 8.2323f,
                 IsRemaster = false,
                 MaxSeasonalScore = 6969,
                 NoteDesigner = "GIGACHAD"
             };
 
-            var expertMockScore = new Score
+            var basicMockScore = new Score
             {
-                Beatmap = expertMockBeatmap,
+                Beatmap = basicMockBeatmap,
                 Tap = 10,
                 Hold = 10,
                 Slide = 10,
@@ -50,7 +50,7 @@ namespace maisim.Game.Tests.Visual.Component
                     Origin = Anchor.TopLeft,
                     Text = nameof(DifficultyLevel.Basic)
                 },
-                new TrackCardFocused(expertMockBeatmap, expertMockScore)
+                new TrackCardFocused(basicMockBeatmap, basicMockScore)
                 {
                     Anchor = Anchor.Centre,
                     Origin = Anchor.Centre,
@@ -103,7 +103,7 @@ namespace maisim.Game.Tests.Visual.Component
                 }
             };
 
-            var anotherExpertMockBeatmap = new Beatmap
+            var expertMockBeatmap = new Beatmap
             {
                 TrackMetadata = new TrackMetadata
                 {
@@ -119,9 +119,9 @@ namespace maisim.Game.Tests.Visual.Component
                 NoteDesigner = "EduardoLinguino"
             };
 
-            var anotherExpertMockScore = new Score
+            var expertMockScore = new Score
             {
-                Beatmap = anotherExpertMockBeatmap,
+                Beatmap = expertMockBeatmap,
                 Tap = 10,
                 Hold = 10,
                 Slide = 10,
@@ -140,7 +140,7 @@ namespace maisim.Game.Tests.Visual.Component
                     Origin = Anchor.TopLeft,
                     Text = nameof(DifficultyLevel.Expert)
                 },
-                new TrackCardFocused(anotherExpertMockBeatmap, anotherExpertMockScore)
+                new TrackCardFocused(expertMockBeatmap, expertMockScore)
                 {
                     Anchor = Anchor.Centre,
                     Origin = Anchor.Centre,
