@@ -7,6 +7,9 @@ using osuTK;
 
 namespace maisim.Game.Component.Gameplay.Notes
 {
+    /// <summary>
+    /// Class represent the normal TAP note.
+    /// </summary>
     public class Tap : MaisimNotes
     {
         [BackgroundDependencyLoader]

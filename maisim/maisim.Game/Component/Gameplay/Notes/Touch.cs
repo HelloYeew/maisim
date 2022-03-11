@@ -7,6 +7,9 @@ using osuTK;
 
 namespace maisim.Game.Component.Gameplay.Notes
 {
+    /// <summary>
+    /// Class represent the TOUCH note.
+    /// </summary>
     public class Touch : MaisimNotes
     {
         [BackgroundDependencyLoader]

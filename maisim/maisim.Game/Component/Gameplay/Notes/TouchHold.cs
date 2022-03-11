@@ -9,6 +9,9 @@ namespace maisim.Game.Component.Gameplay.Notes
 {
     public class TouchHold : MaisimNotes
     {
+        /// <summary>
+        /// Class represent the TOUCH HOLD note.
+        /// </summary>
         [BackgroundDependencyLoader]
         private void load(TextureStore textureStore)
         {

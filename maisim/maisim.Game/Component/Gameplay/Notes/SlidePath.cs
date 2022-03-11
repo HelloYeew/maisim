@@ -7,6 +7,9 @@ using osuTK;
 
 namespace maisim.Game.Component.Gameplay.Notes
 {
+    /// <summary>
+    /// Class represent the arrow path in the slider of SLIDE note.
+    /// </summary>
     public class SlidePath : MaisimNotes
     {
         [BackgroundDependencyLoader]

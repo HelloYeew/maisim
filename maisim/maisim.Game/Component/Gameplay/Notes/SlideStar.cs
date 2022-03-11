@@ -7,6 +7,9 @@ using osuTK;
 
 namespace maisim.Game.Component.Gameplay.Notes
 {
+    /// <summary>
+    /// Class represent the star in SLIDE note.
+    /// </summary>
     public class SlideStar : MaisimNotes
     {
         [BackgroundDependencyLoader]

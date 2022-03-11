@@ -7,6 +7,9 @@ using osuTK;
 
 namespace maisim.Game.Component.Gameplay.Notes
 {
+    /// <summary>
+    /// Class represent the BREAK note.
+    /// </summary>
     public class Break : MaisimNotes
     {
         [BackgroundDependencyLoader]
