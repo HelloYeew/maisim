@@ -16,7 +16,7 @@ namespace maisim.Game.Component.Gameplay.Notes
             {
                 Anchor = Anchor.Centre,
                 Origin = Anchor.Centre,
-                Size = new Vector2(50),
+                Size = new Vector2(20),
                 Child = new Sprite
                 {
                     RelativeSizeAxes = Axes.Both,
