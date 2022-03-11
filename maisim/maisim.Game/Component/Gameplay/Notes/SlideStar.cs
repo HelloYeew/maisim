@@ -7,7 +7,7 @@ using osuTK;
 
 namespace maisim.Game.Component.Gameplay.Notes
 {
-    public class SlideStar : Notes
+    public class SlideStar : MaisimNotes
     {
         [BackgroundDependencyLoader]
         private void load(TextureStore textureStore)

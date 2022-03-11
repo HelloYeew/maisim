@@ -2,7 +2,7 @@
 
 namespace maisim.Game.Component.Gameplay.Notes
 {
-    public abstract class Notes : CompositeDrawable
+    public abstract class MaisimNotes : CompositeDrawable
     {
 
     }
