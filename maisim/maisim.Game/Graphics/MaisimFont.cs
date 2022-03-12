@@ -11,14 +11,17 @@ namespace maisim.Game.Graphics
 
         public static FontUsage Comfortaa => GetFont(Typeface.Comfortaa, weight : FontWeight.Regular);
 
-        public static FontUsage GetFont(Typeface typeface = Typeface.Comfortaa, float size = DEFAULT_SIZE,
-            FontWeight weight = FontWeight.Regular, bool italics = false, bool fixedWidth = false)
+        public static FontUsage MPlus1p => GetFont(Typeface.MPlus1p, weight : FontWeight.Bold);
+
+        public static FontUsage GetFont(Typeface typeface = Typeface.MPlus1p, float size = DEFAULT_SIZE,
+            FontWeight weight = FontWeight.Bold, bool italics = false, bool fixedWidth = false)
             => new FontUsage(GetFamilyString(typeface), size, GetWeightString(typeface, weight), getItalics(typeface, italics),
                 fixedWidth);
 
         public enum Typeface
         {
-            Comfortaa
+            Comfortaa,
+            MPlus1p
         }
 
         private static bool getItalics(Typeface typeface, bool italics)
@@ -27,6 +30,8 @@ namespace maisim.Game.Graphics
             switch (typeface)
             {
                 case Typeface.Comfortaa:
+                    return italics;
+                case Typeface.MPlus1p:
                     return italics;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(typeface), typeface, null);
@@ -39,6 +44,8 @@ namespace maisim.Game.Graphics
             {
                 case Typeface.Comfortaa:
                     return "Comfortaa";
+                case Typeface.MPlus1p:
+                    return "MPlus1p";
                 default:
                     throw new ArgumentOutOfRangeException(nameof(typeface), typeface, null);
             }
