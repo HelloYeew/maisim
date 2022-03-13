@@ -101,6 +101,51 @@ namespace maisim.Game.Tests.Visual
                     Scale = new Vector2(0.7f)
                 }
             };
+
+            var koreanMockBeatmap = new Beatmap
+            {
+                TrackMetadata = new TrackMetadata
+                {
+                    Title = "시간을 달려서 (ROUGH)",
+                    Artist = "GFRIEND",
+                    Bpm = 150,
+                    CoverPath = "Test/snowflake.jpg"
+                },
+                DifficultyLevel = DifficultyLevel.Master,
+                DifficultyRating = 8.88f,
+                IsRemaster = true,
+                MaxSeasonalScore = 999,
+                NoteDesigner = "매우 긴"
+            };
+
+            var koreanMockScore = new Score
+            {
+                Beatmap = koreanMockBeatmap,
+                Tap = 10,
+                Hold = 10,
+                Slide = 10,
+                Touch = 10,
+                Accuracy = 69.69f,
+                Rank = ScoreProcessor.CalculateRank(69.69f),
+                Combo = 794,
+                SeasonalScore = 555
+            };
+
+            Cell(0, 2).Children = new Drawable[]
+            {
+                new MaisimSpriteText
+                {
+                    Anchor = Anchor.TopLeft,
+                    Origin = Anchor.TopLeft,
+                    Text = "Korean"
+                },
+                new TrackCardFocused(koreanMockBeatmap, koreanMockScore)
+                {
+                    Anchor = Anchor.Centre,
+                    Origin = Anchor.Centre,
+                    Scale = new Vector2(0.7f)
+                }
+            };
         }
     }
 }
