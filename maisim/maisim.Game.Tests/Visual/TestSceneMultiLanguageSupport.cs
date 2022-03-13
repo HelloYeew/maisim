@@ -1,5 +1,6 @@
 ﻿using maisim.Game.Beatmaps;
 using maisim.Game.Component;
+using maisim.Game.Graphics.Sprites;
 using maisim.Game.Scores;
 using osu.Framework.Graphics;
 using osu.Framework.Graphics.Sprites;
@@ -43,7 +44,7 @@ namespace maisim.Game.Tests.Visual
 
             Cell(0, 0).Children = new Drawable[]
             {
-                new SpriteText
+                new MaisimSpriteText
                 {
                     Anchor = Anchor.TopLeft,
                     Origin = Anchor.TopLeft,
@@ -61,16 +62,16 @@ namespace maisim.Game.Tests.Visual
             {
                 TrackMetadata = new TrackMetadata
                 {
-                    Title = "エンドレス・てゐマパーク",
-                    Artist = "とろ美",
+                    Title = "光線チューニング",
+                    Artist = "ナユタン星人 feat. 000",
                     Bpm = 120,
-                    CoverPath = "Test/tewi.jpg"
+                    CoverPath = "Test/nayutalien.jpg"
                 },
-                DifficultyLevel = DifficultyLevel.Advanced,
+                DifficultyLevel = DifficultyLevel.Basic,
                 DifficultyRating = 5.21f,
                 IsRemaster = true,
                 MaxSeasonalScore = 865,
-                NoteDesigner = "オモイヨシノ"
+                NoteDesigner = "オモイヨシノ☆☆"
             };
 
             var japaneseMockScore = new Score
@@ -88,7 +89,7 @@ namespace maisim.Game.Tests.Visual
 
             Cell(0, 1).Children = new Drawable[]
             {
-                new SpriteText
+                new MaisimSpriteText
                 {
                     Anchor = Anchor.TopLeft,
                     Origin = Anchor.TopLeft,
