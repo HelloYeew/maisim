@@ -47,6 +47,8 @@ namespace maisim.Game
             AddFont(Resources, @"Fonts/Comfortaa/Comfortaa-Light");
 
             AddFont(Resources, @"Fonts/Kanit/Kanit-Bold");
+
+            AddFont(Resources, @"Fonts/GothicA1/GothicA1-Bold");
         }
 
         protected override IReadOnlyDependencyContainer CreateChildDependencies(IReadOnlyDependencyContainer parent)
