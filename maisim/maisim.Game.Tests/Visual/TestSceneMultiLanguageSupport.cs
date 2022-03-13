@@ -3,7 +3,6 @@ using maisim.Game.Component;
 using maisim.Game.Graphics.Sprites;
 using maisim.Game.Scores;
 using osu.Framework.Graphics;
-using osu.Framework.Graphics.Sprites;
 using osu.Framework.Testing;
 using osuTK;
 
