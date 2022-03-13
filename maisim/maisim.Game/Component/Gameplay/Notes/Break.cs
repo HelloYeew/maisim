@@ -10,7 +10,7 @@ namespace maisim.Game.Component.Gameplay.Notes
     /// <summary>
     /// Class represent the BREAK note.
     /// </summary>
-    public class Break : MaisimNotes
+    public class Break : DrawableNote
     {
         [BackgroundDependencyLoader]
         private void load(TextureStore textureStore)

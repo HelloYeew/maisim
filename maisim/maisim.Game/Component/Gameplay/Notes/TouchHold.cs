@@ -7,7 +7,7 @@ using osuTK;
 
 namespace maisim.Game.Component.Gameplay.Notes
 {
-    public class TouchHold : MaisimNotes
+    public class TouchHold : DrawableNote
     {
         /// <summary>
         /// Class represent the TOUCH HOLD note.

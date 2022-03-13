@@ -10,7 +10,7 @@ namespace maisim.Game.Component.Gameplay.Notes
     /// <summary>
     /// Class represent the star in SLIDE note.
     /// </summary>
-    public class SlideStar : MaisimNotes
+    public class SlideStar : DrawableNote
     {
         [BackgroundDependencyLoader]
         private void load(TextureStore textureStore)

@@ -10,7 +10,7 @@ namespace maisim.Game.Component.Gameplay.Notes
     /// <summary>
     /// Class represent the normal TAP note.
     /// </summary>
-    public class Tap : MaisimNotes
+    public class Tap : DrawableNote
     {
         [BackgroundDependencyLoader]
         private void load(TextureStore textureStore)
