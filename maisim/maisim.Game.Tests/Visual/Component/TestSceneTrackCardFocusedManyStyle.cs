@@ -62,10 +62,10 @@ namespace maisim.Game.Tests.Visual.Component
             {
                 TrackMetadata = new TrackMetadata
                 {
-                    Title = "きみも悪い人でよかった",
-                    Artist = "ピノキオピー",
-                    Bpm = 120,
-                    CoverPath = "Test/human.jpg"
+                    Title = "Lemon",
+                    Artist = "Kenshi Yonezu",
+                    Bpm = 80,
+                    CoverPath = "Test/lemon.jpg"
                 },
                 DifficultyLevel = DifficultyLevel.Advanced,
                 DifficultyRating = 5.21f,
