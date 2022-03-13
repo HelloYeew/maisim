@@ -1,3 +1,5 @@
+using maisim.Game.Graphics;
+using maisim.Game.Graphics.Sprites;
 using osu.Framework.Allocation;
 using osu.Framework.Audio.Sample;
 using osu.Framework.Extensions.Color4Extensions;
@@ -5,7 +7,6 @@ using osu.Framework.Graphics;
 using osu.Framework.Graphics.Audio;
 using osu.Framework.Graphics.Containers;
 using osu.Framework.Graphics.Shapes;
-using osu.Framework.Graphics.Sprites;
 using osu.Framework.Graphics.UserInterface;
 using osu.Framework.Input.Events;
 using osuTK;
@@ -36,12 +37,12 @@ namespace maisim.Game.Component
                     Anchor = Anchor.BottomLeft,
                     Origin = Anchor.Centre,
                     Size = new Vector2(.4f),
-                    Child = new SpriteText
+                    Child = new MaisimSpriteText
                     {
                         Text = "Back",
                         Anchor = Anchor.TopRight,
                         Origin = Anchor.Centre,
-                        Font = new FontUsage(size: 50)
+                        Font = MaisimFont.GetFont(size: 50f)
                     }
                 }
             };

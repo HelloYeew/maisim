@@ -32,6 +32,19 @@ namespace maisim.Game
         private void load()
         {
             Resources.AddStore(new DllResourceStore(typeof(maisimResources).Assembly));
+
+            AddFont(Resources, @"Fonts/MPlus1p/MPlus1p-Bold");
+            AddFont(Resources, @"Fonts/MPlus1p/MPlus1p-Regular");
+            AddFont(Resources, @"Fonts/MPlus1p/MPlus1p-BoldItalic");
+            AddFont(Resources, @"Fonts/MPlus1p/MPlus1p-Italic");
+            AddFont(Resources, @"Fonts/MPlus1p/MPlus1p-Light");
+            AddFont(Resources, @"Fonts/MPlus1p/MPlus1p-Medium");
+
+            AddFont(Resources, @"Fonts/Comfortaa/Comfortaa-Regular");
+            AddFont(Resources, @"Fonts/Comfortaa/Comfortaa-Bold");
+            AddFont(Resources, @"Fonts/Comfortaa/Comfortaa-BoldItalic");
+            AddFont(Resources, @"Fonts/Comfortaa/Comfortaa-Italic");
+            AddFont(Resources, @"Fonts/Comfortaa/Comfortaa-Light");
         }
 
         protected override IReadOnlyDependencyContainer CreateChildDependencies(IReadOnlyDependencyContainer parent)

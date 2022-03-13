@@ -1,4 +1,6 @@
-﻿using osu.Framework.Allocation;
+﻿using maisim.Game.Graphics;
+using maisim.Game.Graphics.Sprites;
+using osu.Framework.Allocation;
 using osu.Framework.Audio.Sample;
 using osu.Framework.Extensions.Color4Extensions;
 using osu.Framework.Graphics;
@@ -71,10 +73,10 @@ namespace maisim.Game.Component
                                 }
                             },new Drawable[]
                             {
-                                new SpriteText
+                                new MaisimSpriteText
                                 {
                                     Text = buttonText,
-                                    Font = new FontUsage("Mplus1p",30),
+                                    Font = MaisimFont.GetFont(size: 40f),
                                     Anchor = Anchor.TopCentre,
                                     Origin = Anchor.TopCentre,
                                     Colour = Color4.White
