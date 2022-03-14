@@ -10,7 +10,7 @@ namespace maisim.Game.Component.Gameplay
 {
     public class MaisimRing : CircularContainer
     {
-        private static readonly float[] lane_angles =
+        public static readonly float[] LANE_ANGLES =
         {
             22.5f,
             67.5f,
@@ -24,12 +24,14 @@ namespace maisim.Game.Component.Gameplay
 
         private static readonly float LANE_MULTIPLIER = 284.5f; // TODO: Still not sure on this. But when the outline circle is working, this should be changed too.
 
+        public static readonly Vector2 PLAYFIELD_SIZE = new Vector2(580, 580);
+
         [BackgroundDependencyLoader]
         private void load()
         {
             Anchor = Anchor.Centre;
             Origin = Anchor.Centre;
-            Size = new Vector2(580, 580);
+            Size = PLAYFIELD_SIZE;
             Children = new Drawable[]
             {
                 new Circle
@@ -44,7 +46,7 @@ namespace maisim.Game.Component.Gameplay
                 }
             };
 
-            foreach (float angle in lane_angles)
+            foreach (float angle in LANE_ANGLES)
             {
                 AddInternal(new Circle
                 {
