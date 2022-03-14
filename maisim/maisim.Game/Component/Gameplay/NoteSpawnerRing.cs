@@ -6,10 +6,19 @@ using osuTK;
 
 namespace maisim.Game.Component.Gameplay
 {
+    /// <summary>
+    /// A circle that include <see cref="NoteSpawner"/> that is target to angles in <see cref="MaisimRing"/>.
+    ///
+    /// This spawner use to spawn a note that's spawn from the center of the playfield. (TAP, BREAK, HOLD)
+    /// </summary>
     public class NoteSpawnerRing : CircularContainer
     {
+        // TODO: Make more clarification from Maimai player on the size of spawner ring.
         private static readonly float SPAWNER_MULTIPLIER = 75f;
 
+        /// <summary>
+        /// Show ring of spawner and all spawner.
+        /// </summary>
         public bool ShowSpawners { get; set; }
 
         [BackgroundDependencyLoader]

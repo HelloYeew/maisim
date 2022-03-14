@@ -1,4 +1,5 @@
-﻿using osu.Framework.Allocation;
+﻿using maisim.Game.Component.Gameplay.Notes;
+using osu.Framework.Allocation;
 using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
 using osu.Framework.Graphics.Shapes;
@@ -7,10 +8,19 @@ using osuTK.Graphics;
 
 namespace maisim.Game.Component.Gameplay
 {
+    /// <summary>
+    /// A spawner that spawn a <see cref="DrawableNote"/> at its position.
+    /// </summary>
     public class NoteSpawner : CircularContainer
     {
+        /// <summary>
+        /// Show the spawner location as a small circle.
+        /// </summary>
         public bool ShowOutline { get; set; }
 
+        /// <summary>
+        /// Target that the spawner is spawning notes for.
+        /// </summary>
         public float TargetAngles { get; set; }
 
         [BackgroundDependencyLoader]
