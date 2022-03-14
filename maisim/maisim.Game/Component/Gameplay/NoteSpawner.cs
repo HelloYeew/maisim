@@ -9,7 +9,9 @@ namespace maisim.Game.Component.Gameplay
 {
     public class NoteSpawner : CircularContainer
     {
-        public bool ShowOutline { get; set; } = false;
+        public bool ShowOutline { get; set; }
+
+        public float TargetAngles { get; set; }
 
         [BackgroundDependencyLoader]
         private void load()
@@ -29,11 +31,6 @@ namespace maisim.Game.Component.Gameplay
                     Size = new Vector2(5)
                 };
             }
-        }
-
-        private Vector2 position()
-        {
-            return new Vector2(Position.X, Position.Y);
         }
     }
 }

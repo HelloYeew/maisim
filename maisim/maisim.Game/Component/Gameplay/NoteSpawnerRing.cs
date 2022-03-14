@@ -10,9 +10,7 @@ namespace maisim.Game.Component.Gameplay
     {
         private static readonly float SPAWNER_MULTIPLIER = 75f;
 
-        private readonly NoteSpawner[] spawners;
-
-        public bool ShowSpawners { get; set; } = false;
+        public bool ShowSpawners { get; set; }
 
         [BackgroundDependencyLoader]
         private void load()
@@ -32,6 +30,7 @@ namespace maisim.Game.Component.Gameplay
                     Anchor = Anchor.Centre,
                     Origin = Anchor.Centre,
                     Size = new Vector2(2),
+                    TargetAngles = angle,
                     ShowOutline = ShowSpawners
                 });
             }
