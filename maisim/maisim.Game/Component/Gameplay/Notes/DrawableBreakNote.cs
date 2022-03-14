@@ -3,7 +3,6 @@ using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
 using osu.Framework.Graphics.Sprites;
 using osu.Framework.Graphics.Textures;
-using osuTK;
 
 namespace maisim.Game.Component.Gameplay.Notes
 {
@@ -12,15 +11,11 @@ namespace maisim.Game.Component.Gameplay.Notes
     /// </summary>
     public class DrawableBreakNote : DrawableNote
     {
-        [BackgroundDependencyLoader]
-        private void load(TextureStore textureStore)
+        public override Drawable[] AddNoteParts(TextureStore textureStore)
         {
-            InternalChild = new Container
+            return new Drawable[]
             {
-                Anchor = Anchor.Centre,
-                Origin = Anchor.Centre,
-                Size = new Vector2(50),
-                Child = new Sprite
+                new Sprite
                 {
                     RelativeSizeAxes = Axes.Both,
                     Anchor = Anchor.Centre,
