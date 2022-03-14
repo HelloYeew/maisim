@@ -16,9 +16,9 @@ public class TestSceneGameplayElement : GridTestScene
             {
                 Anchor = Anchor.TopLeft,
                 Origin = Anchor.TopLeft,
-                Text = nameof(Tap)
+                Text = nameof(DrawableTapNote)
             },
-            new Tap
+            new DrawableTapNote
             {
                 Anchor = Anchor.Centre,
                 Origin = Anchor.Centre,
@@ -32,9 +32,9 @@ public class TestSceneGameplayElement : GridTestScene
             {
                 Anchor = Anchor.TopLeft,
                 Origin = Anchor.TopLeft,
-                Text = nameof(TapBoth)
+                Text = nameof(DrawableTapBothNote)
             },
-            new TapBoth
+            new DrawableTapBothNote
             {
                 Anchor = Anchor.Centre,
                 Origin = Anchor.Centre,
@@ -48,9 +48,9 @@ public class TestSceneGameplayElement : GridTestScene
             {
                 Anchor = Anchor.TopLeft,
                 Origin = Anchor.TopLeft,
-                Text = nameof(Break)
+                Text = nameof(DrawableBreakNote)
             },
-            new Break
+            new DrawableBreakNote
             {
                 Anchor = Anchor.Centre,
                 Origin = Anchor.Centre,
@@ -64,9 +64,9 @@ public class TestSceneGameplayElement : GridTestScene
             {
                 Anchor = Anchor.TopLeft,
                 Origin = Anchor.TopLeft,
-                Text = nameof(SlideStar)
+                Text = nameof(DrawableSlideStarNote)
             },
-            new SlideStar
+            new DrawableSlideStarNote
             {
                 Anchor = Anchor.Centre,
                 Origin = Anchor.Centre,
@@ -80,9 +80,9 @@ public class TestSceneGameplayElement : GridTestScene
             {
                 Anchor = Anchor.TopLeft,
                 Origin = Anchor.TopLeft,
-                Text = nameof(SlidePath)
+                Text = nameof(DrawableSlidePathNote)
             },
-            new SlidePath
+            new DrawableSlidePathNote
             {
                 Anchor = Anchor.Centre,
                 Origin = Anchor.Centre,
@@ -96,9 +96,9 @@ public class TestSceneGameplayElement : GridTestScene
             {
                 Anchor = Anchor.TopLeft,
                 Origin = Anchor.TopLeft,
-                Text = nameof(Touch)
+                Text = nameof(DrawableTouchNote)
             },
-            new Touch
+            new DrawableTouchNote
             {
                 Anchor = Anchor.Centre,
                 Origin = Anchor.Centre,
@@ -112,7 +112,7 @@ public class TestSceneGameplayElement : GridTestScene
             {
                 Anchor = Anchor.TopLeft,
                 Origin = Anchor.TopLeft,
-                Text = nameof(Touch)
+                Text = nameof(DrawableTouchNote)
             },
             new TouchHold
             {

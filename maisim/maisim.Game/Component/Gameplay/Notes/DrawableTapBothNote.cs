@@ -8,9 +8,9 @@ using osuTK;
 namespace maisim.Game.Component.Gameplay.Notes
 {
     /// <summary>
-    /// Class represent the star in SLIDE note.
+    /// Class represent the TAP note when it will appear at the same time.
     /// </summary>
-    public class SlideStar : DrawableNote
+    public class DrawableTapBothNote : DrawableNote
     {
         [BackgroundDependencyLoader]
         private void load(TextureStore textureStore)
@@ -26,7 +26,7 @@ namespace maisim.Game.Component.Gameplay.Notes
                     Anchor = Anchor.Centre,
                     Origin = Anchor.Centre,
                     FillMode = FillMode.Fill,
-                    Texture = textureStore.Get("Notes/SlideStar.png")
+                    Texture = textureStore.Get("Notes/TapBoth.png")
                 }
             };
         }

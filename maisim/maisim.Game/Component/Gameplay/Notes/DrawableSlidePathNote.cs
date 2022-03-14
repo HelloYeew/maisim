@@ -10,7 +10,7 @@ namespace maisim.Game.Component.Gameplay.Notes
     /// <summary>
     /// Class represent the arrow path in the slider of SLIDE note.
     /// </summary>
-    public class SlidePath : DrawableNote
+    public class DrawableSlidePathNote : DrawableNote
     {
         [BackgroundDependencyLoader]
         private void load(TextureStore textureStore)
