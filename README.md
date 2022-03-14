@@ -25,21 +25,21 @@ Don't hesitate to make a discussion and we will try to answer as fast as we can.
 
 You know C# ? You can try picking an issue up and make a pull request and we will review it.
 
-## Developping maisim
+## Developing maisim
 
 The following items are required to be installed on your computer in order to develop maisim:
 
 - The [.NET 6 SDK](https://dotnet.microsoft.com/en-us/download) or higher
-- Developping for mobile requires a Xamarin installation, which ships with Visual Studio 2019+ or Visual Studio for Mac.
+- Developing for mobile requires a Xamarin installation, which ships with Visual Studio 2019+ or Visual Studio for Mac.
 - The use of a C# IDE (Rider, Visual Studio) is highly recommended to browse through the codebase.
 
-Getting started with developping maisim is as follows:
+Getting started with developing maisim is as follows:
 
 
 ### Grabbing the code from the repository
 ```sh
 git clone https://github.com/HelloYeew/maisim
-cd maisim
+cd maisim/maisim
 ```
 
 ### Running the game
@@ -69,7 +69,7 @@ dotnet restore
 dotnet run 
 ```
 
-If you're using an IDE, it should be automatically picking the developpement profiles when opening the solution files.
+If you're using an IDE, it should be automatically picking the development profiles when opening the solution files.
 
 
 ## Licence
