@@ -23,6 +23,11 @@ namespace maisim.Game.Component.Gameplay.Notes
             };
         }
 
+        /// <summary>
+        /// Add the note sprite parts to the main class container.
+        /// </summary>
+        /// <param name="textureStore"><see cref="TextureStore"/> in load operation.</param>
+        /// <returns>List of drawable include all note part that will be initialize on load.</returns>
         protected abstract Drawable[] AddNoteParts(TextureStore textureStore);
     }
 }
