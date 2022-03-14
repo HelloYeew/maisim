@@ -1,7 +1,6 @@
 ﻿using osu.Framework.Allocation;
 using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
-using osu.Framework.Graphics.Sprites;
 using osu.Framework.Graphics.Textures;
 using osuTK;
 
@@ -12,8 +11,6 @@ namespace maisim.Game.Component.Gameplay.Notes
     /// </summary>
     public abstract class DrawableNote : CompositeDrawable
     {
-        private Drawable[] noteParts;
-
         [BackgroundDependencyLoader]
         private void load(TextureStore textureStore)
         {
@@ -26,6 +23,6 @@ namespace maisim.Game.Component.Gameplay.Notes
             };
         }
 
-        public abstract Drawable[] AddNoteParts(TextureStore textureStore);
+        protected abstract Drawable[] AddNoteParts(TextureStore textureStore);
     }
 }

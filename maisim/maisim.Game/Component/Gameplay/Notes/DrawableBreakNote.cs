@@ -1,6 +1,4 @@
-﻿using osu.Framework.Allocation;
-using osu.Framework.Graphics;
-using osu.Framework.Graphics.Containers;
+﻿using osu.Framework.Graphics;
 using osu.Framework.Graphics.Sprites;
 using osu.Framework.Graphics.Textures;
 
@@ -11,7 +9,7 @@ namespace maisim.Game.Component.Gameplay.Notes
     /// </summary>
     public class DrawableBreakNote : DrawableNote
     {
-        public override Drawable[] AddNoteParts(TextureStore textureStore)
+        protected override Drawable[] AddNoteParts(TextureStore textureStore)
         {
             return new Drawable[]
             {

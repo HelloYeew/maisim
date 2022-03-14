@@ -12,7 +12,7 @@ namespace maisim.Game.Component.Gameplay.Notes
     /// </summary>
     public class DrawableSlidePathNote : DrawableNote
     {
-        public override Drawable[] AddNoteParts(TextureStore textureStore)
+        protected override Drawable[] AddNoteParts(TextureStore textureStore)
         {
             return new Drawable[]
             {
