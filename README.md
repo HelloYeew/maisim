@@ -12,6 +12,8 @@ There are plans to develop along this a website so the game can be a whole exper
 
 Figma designs are available at the [project's wiki](https://github.com/HelloYeew/maisim/wiki/Figma-link).
 
+The plan and status of this project is available at [GitHub project](https://github.com/users/HelloYeew/projects/1).
+
 ## Contributing
 
 Want to contribute? That's cool ! We got a lot of things to do at all scales :
