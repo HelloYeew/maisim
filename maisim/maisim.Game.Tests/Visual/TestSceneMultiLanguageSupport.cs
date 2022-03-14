@@ -146,6 +146,51 @@ namespace maisim.Game.Tests.Visual
                     Scale = new Vector2(0.7f)
                 }
             };
+
+            var chineseMockBeatmap = new Beatmap
+            {
+                TrackMetadata = new TrackMetadata
+                {
+                    Title = "陽光彩虹小白馬",
+                    Artist = "大張偉",
+                    Bpm = 150,
+                    CoverPath = "Test/test.jpg"
+                },
+                DifficultyLevel = DifficultyLevel.Expert,
+                DifficultyRating = 18.88f,
+                IsRemaster = true,
+                MaxSeasonalScore = 6969,
+                NoteDesigner = "蔓"
+            };
+
+            var chineseMockScore = new Score
+            {
+                Beatmap = koreanMockBeatmap,
+                Tap = 10,
+                Hold = 10,
+                Slide = 10,
+                Touch = 10,
+                Accuracy = 2f,
+                Rank = ScoreProcessor.CalculateRank(2f),
+                Combo = 794,
+                SeasonalScore = 999
+            };
+
+            Cell(1, 0).Children = new Drawable[]
+            {
+                new MaisimSpriteText
+                {
+                    Anchor = Anchor.TopLeft,
+                    Origin = Anchor.TopLeft,
+                    Text = "Chinese"
+                },
+                new TrackCardFocused(chineseMockBeatmap, chineseMockScore)
+                {
+                    Anchor = Anchor.Centre,
+                    Origin = Anchor.Centre,
+                    Scale = new Vector2(0.7f)
+                }
+            };
         }
     }
 }
