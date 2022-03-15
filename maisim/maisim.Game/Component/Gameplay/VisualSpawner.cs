@@ -1,4 +1,5 @@
 ﻿using System;
+using maisim.Game.Screen.Gameplay;
 using osu.Framework.Allocation;
 using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
@@ -10,8 +11,6 @@ namespace maisim.Game.Component.Gameplay
 {
     public class VisualSpawner : CompositeDrawable
     {
-        private static readonly float SPAWNER_MULTIPLIER = 75f;
-
         [BackgroundDependencyLoader]
         private void load()
         {
@@ -24,8 +23,8 @@ namespace maisim.Game.Component.Gameplay
                 AddInternal(new Circle
                 {
                     Position = new Vector2(
-                        -(SPAWNER_MULTIPLIER * (float)Math.Cos((angle + 90f) * (float)(Math.PI / 180))),
-                        -(SPAWNER_MULTIPLIER * (float)Math.Sin((angle + 90f) * (float)(Math.PI / 180)))
+                        -(Playfield.SPAWNER_MULTIPLIER * (float)Math.Cos((angle + 90f) * (float)(Math.PI / 180))),
+                        -(Playfield.SPAWNER_MULTIPLIER * (float)Math.Sin((angle + 90f) * (float)(Math.PI / 180)))
                         ),
                     Anchor = Anchor.Centre,
                     Origin = Anchor.Centre,

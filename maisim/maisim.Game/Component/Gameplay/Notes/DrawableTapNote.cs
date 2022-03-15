@@ -9,6 +9,9 @@ namespace maisim.Game.Component.Gameplay.Notes
     /// </summary>
     public class DrawableTapNote : DrawableNote
     {
+
+        public NoteLane Lane { get; set; }
+
         protected override Drawable[] AddNoteParts(TextureStore textureStore)
         {
             return new Drawable[]
