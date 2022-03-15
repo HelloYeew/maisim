@@ -1,12 +1,15 @@
 ﻿using maisim.Game.Component.Gameplay;
 using osu.Framework.Allocation;
 using osu.Framework.Graphics;
+using osu.Framework.Screens;
 using osuTK;
 
-namespace maisim.Game.Screen
+namespace maisim.Game.Screen.Gameplay
 {
-    public class PlayfieldScreen : osu.Framework.Screens.Screen
+    public class PlayfieldScreen : ScreenStack
     {
+        public Playfield Playfield { get; set; }
+
         [BackgroundDependencyLoader]
         private void load()
         {
@@ -22,7 +25,8 @@ namespace maisim.Game.Screen
                 {
                     Anchor = Anchor.Centre,
                     Origin = Anchor.Centre,
-                }
+                },
+                Playfield = new Playfield()
             };
         }
     }
