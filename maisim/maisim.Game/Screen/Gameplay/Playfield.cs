@@ -1,5 +1,4 @@
 ﻿using System;
-using maisim.Game.Component.Gameplay;
 using maisim.Game.Component.Gameplay.Notes;
 using osu.Framework.Allocation;
 using osu.Framework.Graphics;
@@ -7,6 +6,9 @@ using osuTK;
 
 namespace maisim.Game.Screen.Gameplay
 {
+    /// <summary>
+    /// A main playfield that contains all the notes and manages their rendering.
+    /// </summary>
     public class Playfield : osu.Framework.Screens.Screen
     {
         public static readonly float SPAWNER_MULTIPLIER = 75f;
@@ -19,11 +21,19 @@ namespace maisim.Game.Screen.Gameplay
 
         }
 
+        /// <summary>
+        /// Spawn a desired <see cref="DrawableNote"/>
+        /// </summary>
+        /// <param name="note">A desired <see cref="DrawableNote"/>.</param>
         public void SpawnNote(DrawableNote note)
         {
             AddInternal(note);
         }
 
+        /// <summary>
+        /// Spawn <see cref="DrawableTapNote"/> on the desired lane.
+        /// </summary>
+        /// <param name="lane">The <see cref="NoteLane"/> that the <see cref="DrawableTapNote"/> want to spawn.</param>
         public void SpawnTapNote(NoteLane lane)
         {
             AddInternal(new DrawableTapNote
@@ -35,6 +45,7 @@ namespace maisim.Game.Screen.Gameplay
                     -(SPAWNER_MULTIPLIER * (float)Math.Sin((NoteLaneExtension.GetAngle(lane) + 90f) * (float)(Math.PI / 180)))
                     ),
                 Scale = new Vector2(1.2f),
+                Margin = new MarginPadding(10),
                 Lane = lane
             });
         }
@@ -43,6 +54,9 @@ namespace maisim.Game.Screen.Gameplay
         {
             foreach (Drawable note in InternalChildren)
             {
+                // TODO: Make the note despawn when it's out of the ring
+
+                // We have a lot of note type so we need to check on its type before we can update it
                 if (note is DrawableTapNote tapNote)
                 {
                     note.Position += new Vector2(

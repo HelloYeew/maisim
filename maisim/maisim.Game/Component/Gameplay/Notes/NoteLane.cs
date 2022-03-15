@@ -2,6 +2,9 @@
 
 namespace maisim.Game.Component.Gameplay.Notes
 {
+    /// <summary>
+    /// Represent a lane value for note type that spawn on the specified lane.
+    /// </summary>
     public enum NoteLane
     {
         Lane1,
@@ -14,8 +17,16 @@ namespace maisim.Game.Component.Gameplay.Notes
         Lane8
     }
 
-    public class NoteLaneExtension
+    /// <summary>
+    /// Extension and some tool for convert <see cref="NoteLane"/> to usable values.
+    /// </summary>
+    public static class NoteLaneExtension
     {
+        /// <summary>
+        /// Return the lane angle for the specified lane.
+        /// </summary>
+        /// <param name="lane">A specified <see cref="NoteLane"/></param>
+        /// <returns>The lane angle</returns>
         public static float GetAngle(NoteLane lane)
         {
             switch (lane)

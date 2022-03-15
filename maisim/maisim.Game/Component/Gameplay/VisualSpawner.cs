@@ -9,6 +9,9 @@ using osuTK.Graphics;
 
 namespace maisim.Game.Component.Gameplay
 {
+    /// <summary>
+    /// A note spawner at the center of the ring that show as the visual indicator, not the actual spawner.
+    /// </summary>
     public class VisualSpawner : CompositeDrawable
     {
         [BackgroundDependencyLoader]
