@@ -13,7 +13,7 @@ public class TestScenePlayfieldScreen : maisimTestScene
 {
     private PlayfieldScreen playfieldScreen;
 
-    private DrawableNote mockTabNote;
+    private RandomFloat randomFloat = new(-300, 300);
 
     [SetUp]
     public void SetUp()
@@ -24,7 +24,7 @@ public class TestScenePlayfieldScreen : maisimTestScene
         {
             Anchor = Anchor.Centre,
             Origin = Anchor.Centre,
-            Position = new Vector2(new RandomFloat(-300, 300).GetRandom(), new RandomFloat(-300, 300).GetRandom()),
+            Position = new Vector2(randomFloat.GetRandom(), randomFloat.GetRandom()),
             Scale = new Vector2(1.5f)
         }));
     }
