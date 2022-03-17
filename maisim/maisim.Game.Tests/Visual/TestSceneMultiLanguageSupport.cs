@@ -180,7 +180,7 @@ namespace maisim.Game.Tests.Visual
             {
                 new MaisimSpriteText
                 {
-                    Anchor = Anchor.TopLeft,
+                    Anchor = Anchor.TopLeft, 
                     Origin = Anchor.TopLeft,
                     Text = "Chinese"
                 },
@@ -191,6 +191,52 @@ namespace maisim.Game.Tests.Visual
                     Scale = new Vector2(0.7f)
                 }
             };
+
+            //should cover all languages based on latin alphabet
+            var englishMockBeatmap = new Beatmap
+            {
+                TrackMetadata = new TrackMetadata
+                {
+                    Title = "EXiT THIS EARTH'S ATOMOSPHERE",
+                    Artist = "Camellia",
+                    Bpm = 120,
+                    CoverPath = "Test/test.jpg"
+                },
+                DifficultyLevel = DifficultyLevel.Basic,
+                DifficultyRating = 5.21f,
+                IsRemaster = true,
+                MaxSeasonalScore = 865,
+                NoteDesigner = "someone"
+            };
+
+            var englishMockScore = new Score
+            {
+                Beatmap = englishMockBeatmap,
+                Tap = 10,
+                Hold = 10,
+                Slide = 10,
+                Touch = 10,
+                Accuracy = 94.00f,
+                Rank = ScoreProcessor.CalculateRank(94.00f),
+                Combo = 650,
+                SeasonalScore = 350
+            };
+
+            Cell(1, 1).Children = new Drawable[]
+{
+                new MaisimSpriteText
+                {
+                    Anchor = Anchor.TopLeft,
+                    Origin = Anchor.TopLeft,
+                    Text = "English (Latin)"
+                },
+                new TrackCardFocused(englishMockBeatmap, englishMockScore)
+                {
+                    Anchor = Anchor.Centre,
+                    Origin = Anchor.Centre,
+                    Scale = new Vector2(0.7f)
+                }
+};
         }
     }
 }
