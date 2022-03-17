@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using maisim.Game.Beatmaps;
 using maisim.Game.Scores;
@@ -156,9 +155,9 @@ namespace maisim.Game.Utils
         /// <summary>
         /// Create a bundle of random <see cref="TrackMetadata"/>, <see cref="Beatmap"/> and <see cref="Score"/> that can be used for testing.
         ///
+        /// If you want to use the <see cref="TrackMetadata"/> that is available for test in <see cref="TestUtil.FullTrackMetadataList"/>, put the track title as a parameter.
         /// </summary>
-        /// <param name="trackTitle">If you want to use the <see cref="TrackMetadata"/> that is available for test in <see cref="TestUtil.FullTrackMetadataList"/>, put the track name here.</param>
-        public TestFixture(string trackTitle)
+        public TestFixture(string trackTitle = null)
         {
             if (trackTitle == null)
             {
@@ -166,10 +165,10 @@ namespace maisim.Game.Utils
             }
             else
             {
-                // try to find the track metadata from trackName, if can't find, use random one.
+                // Find the trackMetadata with the given title, if cannot find, use a random one.
                 TrackMetadata = TestUtil.FullTrackMetadataList.FirstOrDefault(x => x.Title == trackTitle) ?? TestUtil.GetRandomTrackMetadata();
             }
-            Beatmap = TestUtil.GetRandomBeatmap();
+            Beatmap = TestUtil.GetRandomBeatmap(TrackMetadata);
             Score = TestUtil.GetRandomScore(Beatmap);
         }
     }
