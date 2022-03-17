@@ -12,6 +12,8 @@ There are plans to develop along this a website so the game can be a whole exper
 
 Figma designs are available at the [project's wiki](https://github.com/HelloYeew/maisim/wiki/Figma-link).
 
+The plan and status of this project is available at [GitHub project](https://github.com/users/HelloYeew/projects/1).
+
 ## Contributing
 
 Want to contribute? That's cool ! We got a lot of things to do at all scales :
@@ -25,21 +27,21 @@ Don't hesitate to make a discussion and we will try to answer as fast as we can.
 
 You know C# ? You can try picking an issue up and make a pull request and we will review it.
 
-## Developping maisim
+## Developing maisim
 
 The following items are required to be installed on your computer in order to develop maisim:
 
 - The [.NET 6 SDK](https://dotnet.microsoft.com/en-us/download) or higher
-- Developping for mobile requires a Xamarin installation, which ships with Visual Studio 2019+ or Visual Studio for Mac.
+- Developing for mobile requires a Xamarin installation, which ships with Visual Studio 2019+ or Visual Studio for Mac.
 - The use of a C# IDE (Rider, Visual Studio) is highly recommended to browse through the codebase.
 
-Getting started with developping maisim is as follows:
+Getting started with developing maisim is as follows:
 
 
 ### Grabbing the code from the repository
 ```sh
 git clone https://github.com/HelloYeew/maisim
-cd maisim
+cd maisim/maisim
 ```
 
 ### Running the game
@@ -69,7 +71,7 @@ dotnet restore
 dotnet run 
 ```
 
-If you're using an IDE, it should be automatically picking the developpement profiles when opening the solution files.
+If you're using an IDE, it should be automatically picking the development profiles when opening the solution files.
 
 
 ## Licence
