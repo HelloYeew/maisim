@@ -15,7 +15,7 @@ namespace maisim.Game.Utils
         /// <summary>
         /// List of full <see cref="TrackMetadata"/> detail that has texture available and can be use for full testing.
         /// </summary>
-        public static readonly TrackMetadata[] FullTrackMetadataList = {
+        public static readonly TrackMetadata[] FULL_TRACK_METADATA_LIST = {
             new TrackMetadata
             {
                 Title = "Lemon",
@@ -67,7 +67,7 @@ namespace maisim.Game.Utils
         /// <summary>
         /// List of random name that can be use for testing.
         /// </summary>
-        public static readonly string[] RandomNameList = {
+        public static readonly string[] RANDOM_NAME_LIST = {
             "GIGACHAD",
             "Pogpega",
             "EduardoLinguino",
@@ -77,11 +77,11 @@ namespace maisim.Game.Utils
         };
 
         /// <summary>
-        /// Get a random <see cref="TrackMetadata"/> from <see cref="FullTrackMetadataList"/>.
+        /// Get a random <see cref="TrackMetadata"/> from <see cref="FULL_TRACK_METADATA_LIST"/>.
         /// </summary>
         public static TrackMetadata GetRandomTrackMetadata()
         {
-            return FullTrackMetadataList[new Random().Next(FullTrackMetadataList.Length)];
+            return FULL_TRACK_METADATA_LIST[new Random().Next(FULL_TRACK_METADATA_LIST.Length)];
         }
 
         /// <summary>
@@ -93,11 +93,11 @@ namespace maisim.Game.Utils
         }
 
         /// <summary>
-        /// Get a random name from <see cref="RandomNameList"/>.
+        /// Get a random name from <see cref="RANDOM_NAME_LIST"/>.
         /// </summary>
         public static string GetRandomName()
         {
-            return RandomNameList[new Random().Next(RandomNameList.Length)];
+            return RANDOM_NAME_LIST[new Random().Next(RANDOM_NAME_LIST.Length)];
         }
 
         /// <summary>
@@ -155,7 +155,7 @@ namespace maisim.Game.Utils
         /// <summary>
         /// Create a bundle of random <see cref="TrackMetadata"/>, <see cref="Beatmap"/> and <see cref="Score"/> that can be used for testing.
         ///
-        /// If you want to use the <see cref="TrackMetadata"/> that is available for test in <see cref="TestUtil.FullTrackMetadataList"/>, put the track title as a parameter.
+        /// If you want to use the <see cref="TrackMetadata"/> that is available for test in <see cref="TestUtil.FULL_TRACK_METADATA_LIST"/>, put the track title as a parameter.
         /// </summary>
         public TestFixture(string trackTitle = null)
         {
@@ -166,7 +166,7 @@ namespace maisim.Game.Utils
             else
             {
                 // Find the trackMetadata with the given title, if cannot find, use a random one.
-                TrackMetadata = TestUtil.FullTrackMetadataList.FirstOrDefault(x => x.Title == trackTitle) ?? TestUtil.GetRandomTrackMetadata();
+                TrackMetadata = TestUtil.FULL_TRACK_METADATA_LIST.FirstOrDefault(x => x.Title == trackTitle) ?? TestUtil.GetRandomTrackMetadata();
             }
             Beatmap = TestUtil.GetRandomBeatmap(TrackMetadata);
             Score = TestUtil.GetRandomScore(Beatmap);
