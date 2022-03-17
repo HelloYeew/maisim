@@ -1,4 +1,5 @@
-﻿using maisim.Game.Component.Gameplay.Notes;
+﻿using System;
+using maisim.Game.Component.Gameplay.Notes;
 using maisim.Game.Screen.Gameplay;
 using maisim.Game.Utils;
 using NUnit.Framework;
@@ -11,7 +12,7 @@ public class TestScenePlayfieldScreen : maisimTestScene
 {
     private PlayfieldScreen playfieldScreen;
 
-    private RandomFloat randomFloat = new(-300, 300);
+    private Random random = new Random();
 
     [SetUp]
     public void SetUp()
@@ -22,7 +23,7 @@ public class TestScenePlayfieldScreen : maisimTestScene
         {
             Anchor = Anchor.Centre,
             Origin = Anchor.Centre,
-            Position = new Vector2(randomFloat.GetRandom(), randomFloat.GetRandom()),
+            Position = new Vector2(random.NextFloatInRange(-300.0f, 300.0f), random.NextFloatInRange(-300.0f, 300.0f)),
             Scale = new Vector2(1.5f)
         }));
         AddStep("spawn tap note on lane 1", () => playfieldScreen.Playfield.SpawnTapNote(NoteLane.Lane1));
@@ -33,5 +34,7 @@ public class TestScenePlayfieldScreen : maisimTestScene
         AddStep("spawn tap note on lane 6", () => playfieldScreen.Playfield.SpawnTapNote(NoteLane.Lane6));
         AddStep("spawn tap note on lane 7", () => playfieldScreen.Playfield.SpawnTapNote(NoteLane.Lane7));
         AddStep("spawn tap note on lane 8", () => playfieldScreen.Playfield.SpawnTapNote(NoteLane.Lane8));
+
+        AddRepeatStep("spawn tap note on random lane", () => playfieldScreen.Playfield.SpawnTapNote((NoteLane)random.NextInRange(0, (int)NoteLane.Lane8 + 1)), 32);
     }
 }
