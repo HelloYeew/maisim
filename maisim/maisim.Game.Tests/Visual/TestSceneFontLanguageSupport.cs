@@ -8,9 +8,9 @@ using osuTK;
 
 namespace maisim.Game.Tests.Visual
 {
-    public class TestSceneMultiLanguageSupport : GridTestScene
+    public class TestSceneFontLanguageSupport : GridTestScene
     {
-        public TestSceneMultiLanguageSupport() : base(2, 3)
+        public TestSceneFontLanguageSupport() : base(2, 3)
         {
             var thaiMockBeatmap = new Beatmap
             {
@@ -180,7 +180,7 @@ namespace maisim.Game.Tests.Visual
             {
                 new MaisimSpriteText
                 {
-                    Anchor = Anchor.TopLeft, 
+                    Anchor = Anchor.TopLeft,
                     Origin = Anchor.TopLeft,
                     Text = "Chinese"
                 },
