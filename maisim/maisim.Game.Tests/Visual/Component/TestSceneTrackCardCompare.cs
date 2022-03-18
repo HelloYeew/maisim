@@ -10,7 +10,7 @@ namespace maisim.Game.Tests.Visual.Component
     {
         public TestSceneTrackCardCompare() : base(1,2)
         {
-            TestFixture mockObject = new TestFixture();
+            TrackTestFixture mockObject = new TrackTestFixture();
 
             Cell(0, 0).Child = new TrackCard(mockObject.Beatmap, mockObject.Score)
             {

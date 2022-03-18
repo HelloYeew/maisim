@@ -13,7 +13,7 @@ namespace maisim.Game.Tests.Visual.Component
     {
         public TestSceneTrackCardFocusedManyStyle() : base(2, 3)
         {
-            TestFixture basicMockFixture = new TestFixture("Sukino Skill");
+            TrackTestFixture basicMockFixture = new TrackTestFixture("Sukino Skill");
             basicMockFixture.Beatmap.DifficultyLevel = DifficultyLevel.Basic;
 
             Cell(0, 0).Children = new Drawable[]
@@ -32,7 +32,7 @@ namespace maisim.Game.Tests.Visual.Component
                 }
             };
 
-            TestFixture advanceMockFixture = new TestFixture("Lemon");
+            TrackTestFixture advanceMockFixture = new TrackTestFixture("Lemon");
             advanceMockFixture.Beatmap.DifficultyLevel = DifficultyLevel.Advanced;
 
             Cell(0, 1).Children = new Drawable[]
@@ -51,7 +51,7 @@ namespace maisim.Game.Tests.Visual.Component
                 }
             };
 
-            TestFixture expertMockFixture = new TestFixture("only my railgun");
+            TrackTestFixture expertMockFixture = new TrackTestFixture("only my railgun");
             expertMockFixture.Beatmap.DifficultyLevel = DifficultyLevel.Expert;
 
             Cell(0, 2).Children = new Drawable[]
@@ -70,7 +70,7 @@ namespace maisim.Game.Tests.Visual.Component
                 }
             };
 
-            TestFixture masterMockFixture = new TestFixture("RAISE MY SWORD");
+            TrackTestFixture masterMockFixture = new TrackTestFixture("RAISE MY SWORD");
             masterMockFixture.Beatmap.DifficultyLevel = DifficultyLevel.Master;
 
             Cell(1, 0).Children = new Drawable[]
@@ -89,7 +89,7 @@ namespace maisim.Game.Tests.Visual.Component
                 }
             };
 
-            TestFixture remasterMockFixture = new TestFixture("Tenkai e no Kippu");
+            TrackTestFixture remasterMockFixture = new TrackTestFixture("Tenkai e no Kippu");
             remasterMockFixture.Beatmap.DifficultyLevel = DifficultyLevel.Remaster;
 
             Cell(1, 1).Children = new Drawable[]

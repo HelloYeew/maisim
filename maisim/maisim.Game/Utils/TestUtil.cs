@@ -104,7 +104,7 @@ namespace maisim.Game.Utils
         /// Return a <see cref="Beatmap"/> with complete random data.
         /// You can put <see cref="TrackMetadata"/> as parameter if you want to use a specific <see cref="TrackMetadata"/> as property for this <see cref="Beatmap"/>.
         /// </summary>
-        public static Beatmap GetRandomBeatmap(TrackMetadata trackMetadata = null)
+        public static Beatmap CreateMockBeatmap(TrackMetadata trackMetadata = null)
         {
             return new Beatmap()
             {
@@ -122,11 +122,11 @@ namespace maisim.Game.Utils
         ///
         /// You can put <see cref="Beatmap"/> as parameter if you want to use a specific <see cref="Beatmap"/> as property for this <see cref="Score"/>.
         /// </summary>
-        public static Score GetRandomScore(Beatmap beatmap = null)
+        public static Score CreateMockScore(Beatmap beatmap = null)
         {
             if (beatmap == null)
             {
-                beatmap = GetRandomBeatmap();
+                beatmap = CreateMockBeatmap();
             }
 
             float accuracy = random.NextFloatInRange(1, 100);
@@ -146,7 +146,7 @@ namespace maisim.Game.Utils
         }
     }
 
-    public class TestFixture
+    public class TrackTestFixture
     {
         public TrackMetadata TrackMetadata { get; set; }
         public Beatmap Beatmap { get; set; }
@@ -157,7 +157,7 @@ namespace maisim.Game.Utils
         ///
         /// If you want to use the <see cref="TrackMetadata"/> that is available for test in <see cref="TestUtil.FULL_TRACK_METADATA_LIST"/>, put the track title as a parameter.
         /// </summary>
-        public TestFixture(string trackTitle = null)
+        public TrackTestFixture(string trackTitle = null)
         {
             if (trackTitle == null)
             {
@@ -168,8 +168,8 @@ namespace maisim.Game.Utils
                 // Find the trackMetadata with the given title, if cannot find, use a random one.
                 TrackMetadata = TestUtil.FULL_TRACK_METADATA_LIST.FirstOrDefault(x => x.Title == trackTitle) ?? TestUtil.GetRandomTrackMetadata();
             }
-            Beatmap = TestUtil.GetRandomBeatmap(TrackMetadata);
-            Score = TestUtil.GetRandomScore(Beatmap);
+            Beatmap = TestUtil.CreateMockBeatmap(TrackMetadata);
+            Score = TestUtil.CreateMockScore(Beatmap);
         }
     }
 }

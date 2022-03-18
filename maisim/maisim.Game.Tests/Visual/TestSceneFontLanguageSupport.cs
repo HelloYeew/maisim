@@ -20,10 +20,10 @@ namespace maisim.Game.Tests.Visual
                 CoverPath = "Test/test.jpg"
             };
 
-            TestFixture thaiMockFixture = new TestFixture();
-            thaiMockFixture.Beatmap = TestUtil.GetRandomBeatmap(thaiMockTrackMetadata);
+            TrackTestFixture thaiMockFixture = new TrackTestFixture();
+            thaiMockFixture.Beatmap = TestUtil.CreateMockBeatmap(thaiMockTrackMetadata);
             thaiMockFixture.Beatmap.DifficultyLevel = DifficultyLevel.Expert;
-            thaiMockFixture.Score = TestUtil.GetRandomScore(thaiMockFixture.Beatmap);
+            thaiMockFixture.Score = TestUtil.CreateMockScore(thaiMockFixture.Beatmap);
 
             Cell(0, 0).Children = new Drawable[]
             {
@@ -41,7 +41,7 @@ namespace maisim.Game.Tests.Visual
                 }
             };
 
-            TestFixture japaneseMockFixture = new TestFixture("光線チューニング");
+            TrackTestFixture japaneseMockFixture = new TrackTestFixture("光線チューニング");
             japaneseMockFixture.Beatmap.DifficultyLevel = DifficultyLevel.Basic;
 
             Cell(0, 1).Children = new Drawable[]
@@ -60,7 +60,7 @@ namespace maisim.Game.Tests.Visual
                 }
             };
 
-            TestFixture koreanMockFixture = new TestFixture("시간을 달려서 (ROUGH)");
+            TrackTestFixture koreanMockFixture = new TrackTestFixture("시간을 달려서 (ROUGH)");
             koreanMockFixture.Beatmap.DifficultyLevel = DifficultyLevel.Master;
 
             Cell(0, 2).Children = new Drawable[]
@@ -87,10 +87,10 @@ namespace maisim.Game.Tests.Visual
                 CoverPath = "Test/test.jpg"
             };
 
-            TestFixture chineseMockFixture = new TestFixture();
-            chineseMockFixture.Beatmap = TestUtil.GetRandomBeatmap(chineseMockTrackMetadata);
+            TrackTestFixture chineseMockFixture = new TrackTestFixture();
+            chineseMockFixture.Beatmap = TestUtil.CreateMockBeatmap(chineseMockTrackMetadata);
             chineseMockFixture.Beatmap.DifficultyLevel = DifficultyLevel.Expert;
-            chineseMockFixture.Score = TestUtil.GetRandomScore(chineseMockFixture.Beatmap);
+            chineseMockFixture.Score = TestUtil.CreateMockScore(chineseMockFixture.Beatmap);
 
             Cell(1, 0).Children = new Drawable[]
             {
@@ -117,10 +117,10 @@ namespace maisim.Game.Tests.Visual
                 CoverPath = "Test/test.jpg"
             };
 
-            TestFixture englishMockFixture = new TestFixture();
-            englishMockFixture.Beatmap = TestUtil.GetRandomBeatmap(englishMockTrackMetadata);
+            TrackTestFixture englishMockFixture = new TrackTestFixture();
+            englishMockFixture.Beatmap = TestUtil.CreateMockBeatmap(englishMockTrackMetadata);
             englishMockFixture.Beatmap.DifficultyLevel = DifficultyLevel.Basic;
-            englishMockFixture.Score = TestUtil.GetRandomScore(englishMockFixture.Beatmap);
+            englishMockFixture.Score = TestUtil.CreateMockScore(englishMockFixture.Beatmap);
 
             Cell(1, 1).Children = new Drawable[]
             {

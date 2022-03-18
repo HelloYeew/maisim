@@ -12,7 +12,7 @@ namespace maisim.Game.Tests.Visual.Component
     {
         public TestSceneTrackCardFocused()
         {
-            TestFixture mockObject = new TestFixture();
+            TrackTestFixture mockObject = new TrackTestFixture();
 
             Child = new Container
             {
