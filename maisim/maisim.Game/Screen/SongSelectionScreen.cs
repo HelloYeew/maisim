@@ -1,6 +1,7 @@
 using maisim.Game.Beatmaps;
 using maisim.Game.Component;
 using maisim.Game.Scores;
+using maisim.Game.Utils;
 using osu.Framework.Allocation;
 using osu.Framework.Extensions.Color4Extensions;
 using osu.Framework.Graphics;
@@ -15,41 +16,10 @@ namespace maisim.Game.Screen
     /// </summary>
     public class SongSelectionScreen : osu.Framework.Screens.Screen
     {
-        private TrackMetadata mockTrackMetadata;
-        private Beatmap mockBeatmap;
-        private Score mockScore;
-
         [BackgroundDependencyLoader]
         private void load()
         {
-            mockTrackMetadata = new TrackMetadata
-            {
-                Title = "Sukino Skill",
-                Artist = "Wake Up, Girls!",
-                Bpm = 120,
-                CoverPath = "Test/sukino-skill.jpg"
-            };
-            mockBeatmap = new Beatmap
-            {
-                TrackMetadata = mockTrackMetadata,
-                DifficultyLevel = DifficultyLevel.Expert,
-                DifficultyRating = 8.2323f,
-                IsRemaster = false,
-                MaxSeasonalScore = 6969,
-                NoteDesigner = "GIGACHAD"
-            };
-            mockScore = new Score
-            {
-                Beatmap = mockBeatmap,
-                Tap = 10,
-                Hold = 10,
-                Slide = 10,
-                Touch = 10,
-                Accuracy = 99.65f,
-                Rank = ScoreProcessor.CalculateRank(99.65f),
-                Combo = 210,
-                SeasonalScore = 5566
-            };
+            TrackTestFixture mockFixture = new TrackTestFixture();
 
             InternalChildren = new Drawable[]
             {
@@ -75,7 +45,7 @@ namespace maisim.Game.Screen
                             RelativeSizeAxes = Axes.Both,
                             Children = new Drawable[]
                             {
-                                new TrackCardFocused(mockBeatmap, mockScore)
+                                new TrackCardFocused(mockFixture.Beatmap, mockFixture.Score)
                                 {
                                     Anchor = Anchor.TopCentre,
                                     Origin = Anchor.TopCentre,
