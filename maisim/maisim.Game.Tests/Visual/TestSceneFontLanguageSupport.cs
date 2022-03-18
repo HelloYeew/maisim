@@ -1,7 +1,7 @@
 ﻿using maisim.Game.Beatmaps;
 using maisim.Game.Component;
 using maisim.Game.Graphics.Sprites;
-using maisim.Game.Scores;
+using maisim.Game.Utils;
 using osu.Framework.Graphics;
 using osu.Framework.Testing;
 using osuTK;
@@ -12,34 +12,18 @@ namespace maisim.Game.Tests.Visual
     {
         public TestSceneFontLanguageSupport() : base(2, 3)
         {
-            var thaiMockBeatmap = new Beatmap
+            TrackMetadata thaiMockTrackMetadata = new TrackMetadata
             {
-                TrackMetadata = new TrackMetadata
-                {
-                    Title = "คืนความสุขให้ประเทศไทยพองๆ",
-                    Artist = "ไม่รู้คับ ทดสอบๆ",
-                    Bpm = 200,
-                    CoverPath = "Test/test.jpg"
-                },
-                DifficultyLevel = DifficultyLevel.Expert,
-                DifficultyRating = 6.3475f,
-                IsRemaster = false,
-                MaxSeasonalScore = 3456,
-                NoteDesigner = "ลากหัวคมๆ"
+                Title = "คืนความสุขให้ประเทศไทยพองๆ",
+                Artist = "ไม่รู้คับ ทดสอบๆ",
+                Bpm = 200,
+                CoverPath = "Test/test.jpg"
             };
 
-            var thaiMockScore = new Score
-            {
-                Beatmap = thaiMockBeatmap,
-                Tap = 10,
-                Hold = 10,
-                Slide = 10,
-                Touch = 10,
-                Accuracy = 81.00f,
-                Rank = ScoreProcessor.CalculateRank(81.00f),
-                Combo = 453,
-                SeasonalScore = 2556
-            };
+            TestFixture thaiMockFixture = new TestFixture();
+            thaiMockFixture.Beatmap = TestUtil.GetRandomBeatmap(thaiMockTrackMetadata);
+            thaiMockFixture.Beatmap.DifficultyLevel = DifficultyLevel.Expert;
+            thaiMockFixture.Score = TestUtil.GetRandomScore(thaiMockFixture.Beatmap);
 
             Cell(0, 0).Children = new Drawable[]
             {
@@ -49,7 +33,7 @@ namespace maisim.Game.Tests.Visual
                     Origin = Anchor.TopLeft,
                     Text = "Thai"
                 },
-                new TrackCardFocused(thaiMockBeatmap, thaiMockScore)
+                new TrackCardFocused(thaiMockFixture.Beatmap, thaiMockFixture.Score)
                 {
                     Anchor = Anchor.Centre,
                     Origin = Anchor.Centre,
@@ -57,34 +41,8 @@ namespace maisim.Game.Tests.Visual
                 }
             };
 
-            var japaneseMockBeatmap = new Beatmap
-            {
-                TrackMetadata = new TrackMetadata
-                {
-                    Title = "光線チューニング",
-                    Artist = "ナユタン星人 feat. 000",
-                    Bpm = 120,
-                    CoverPath = "Test/nayutalien.jpg"
-                },
-                DifficultyLevel = DifficultyLevel.Basic,
-                DifficultyRating = 5.21f,
-                IsRemaster = true,
-                MaxSeasonalScore = 865,
-                NoteDesigner = "オモイヨシノ☆☆"
-            };
-
-            var japaneseMockScore = new Score
-            {
-                Beatmap = japaneseMockBeatmap,
-                Tap = 10,
-                Hold = 10,
-                Slide = 10,
-                Touch = 10,
-                Accuracy = 94.00f,
-                Rank = ScoreProcessor.CalculateRank(94.00f),
-                Combo = 650,
-                SeasonalScore = 350
-            };
+            TestFixture japaneseMockFixture = new TestFixture("光線チューニング");
+            japaneseMockFixture.Beatmap.DifficultyLevel = DifficultyLevel.Basic;
 
             Cell(0, 1).Children = new Drawable[]
             {
@@ -94,7 +52,7 @@ namespace maisim.Game.Tests.Visual
                     Origin = Anchor.TopLeft,
                     Text = "Japanese"
                 },
-                new TrackCardFocused(japaneseMockBeatmap, japaneseMockScore)
+                new TrackCardFocused(japaneseMockFixture.Beatmap, japaneseMockFixture.Score)
                 {
                     Anchor = Anchor.Centre,
                     Origin = Anchor.Centre,
@@ -102,34 +60,8 @@ namespace maisim.Game.Tests.Visual
                 }
             };
 
-            var koreanMockBeatmap = new Beatmap
-            {
-                TrackMetadata = new TrackMetadata
-                {
-                    Title = "시간을 달려서 (ROUGH)",
-                    Artist = "GFRIEND",
-                    Bpm = 150,
-                    CoverPath = "Test/snowflake.jpg"
-                },
-                DifficultyLevel = DifficultyLevel.Master,
-                DifficultyRating = 8.88f,
-                IsRemaster = true,
-                MaxSeasonalScore = 999,
-                NoteDesigner = "매우 긴"
-            };
-
-            var koreanMockScore = new Score
-            {
-                Beatmap = koreanMockBeatmap,
-                Tap = 10,
-                Hold = 10,
-                Slide = 10,
-                Touch = 10,
-                Accuracy = 69.69f,
-                Rank = ScoreProcessor.CalculateRank(69.69f),
-                Combo = 794,
-                SeasonalScore = 555
-            };
+            TestFixture koreanMockFixture = new TestFixture("시간을 달려서 (ROUGH)");
+            koreanMockFixture.Beatmap.DifficultyLevel = DifficultyLevel.Master;
 
             Cell(0, 2).Children = new Drawable[]
             {
@@ -139,7 +71,7 @@ namespace maisim.Game.Tests.Visual
                     Origin = Anchor.TopLeft,
                     Text = "Korean"
                 },
-                new TrackCardFocused(koreanMockBeatmap, koreanMockScore)
+                new TrackCardFocused(koreanMockFixture.Beatmap, koreanMockFixture.Score)
                 {
                     Anchor = Anchor.Centre,
                     Origin = Anchor.Centre,
@@ -147,34 +79,18 @@ namespace maisim.Game.Tests.Visual
                 }
             };
 
-            var chineseMockBeatmap = new Beatmap
+            TrackMetadata chineseMockTrackMetadata = new TrackMetadata
             {
-                TrackMetadata = new TrackMetadata
-                {
-                    Title = "陽光彩虹小白馬",
-                    Artist = "大張偉",
-                    Bpm = 150,
-                    CoverPath = "Test/test.jpg"
-                },
-                DifficultyLevel = DifficultyLevel.Expert,
-                DifficultyRating = 18.88f,
-                IsRemaster = true,
-                MaxSeasonalScore = 6969,
-                NoteDesigner = "蔓"
+                Title = "陽光彩虹小白馬",
+                Artist = "大張偉",
+                Bpm = 150,
+                CoverPath = "Test/test.jpg"
             };
 
-            var chineseMockScore = new Score
-            {
-                Beatmap = koreanMockBeatmap,
-                Tap = 10,
-                Hold = 10,
-                Slide = 10,
-                Touch = 10,
-                Accuracy = 2f,
-                Rank = ScoreProcessor.CalculateRank(2f),
-                Combo = 794,
-                SeasonalScore = 999
-            };
+            TestFixture chineseMockFixture = new TestFixture();
+            chineseMockFixture.Beatmap = TestUtil.GetRandomBeatmap(chineseMockTrackMetadata);
+            chineseMockFixture.Beatmap.DifficultyLevel = DifficultyLevel.Expert;
+            chineseMockFixture.Score = TestUtil.GetRandomScore(chineseMockFixture.Beatmap);
 
             Cell(1, 0).Children = new Drawable[]
             {
@@ -184,7 +100,7 @@ namespace maisim.Game.Tests.Visual
                     Origin = Anchor.TopLeft,
                     Text = "Chinese"
                 },
-                new TrackCardFocused(chineseMockBeatmap, chineseMockScore)
+                new TrackCardFocused(chineseMockFixture.Beatmap, chineseMockFixture.Score)
                 {
                     Anchor = Anchor.Centre,
                     Origin = Anchor.Centre,
@@ -192,51 +108,35 @@ namespace maisim.Game.Tests.Visual
                 }
             };
 
-            //should cover all languages based on latin alphabet
-            var englishMockBeatmap = new Beatmap
+            // should cover all languages based on latin alphabet
+            TrackMetadata englishMockTrackMetadata = new TrackMetadata
             {
-                TrackMetadata = new TrackMetadata
-                {
-                    Title = "EXiT THIS EARTH'S ATOMOSPHERE",
-                    Artist = "Camellia",
-                    Bpm = 120,
-                    CoverPath = "Test/test.jpg"
-                },
-                DifficultyLevel = DifficultyLevel.Basic,
-                DifficultyRating = 5.21f,
-                IsRemaster = true,
-                MaxSeasonalScore = 865,
-                NoteDesigner = "someone"
+                Title = "EXiT THIS EARTH'S ATOMOSPHERE",
+                Artist = "Camellia",
+                Bpm = 120,
+                CoverPath = "Test/test.jpg"
             };
 
-            var englishMockScore = new Score
-            {
-                Beatmap = englishMockBeatmap,
-                Tap = 10,
-                Hold = 10,
-                Slide = 10,
-                Touch = 10,
-                Accuracy = 94.00f,
-                Rank = ScoreProcessor.CalculateRank(94.00f),
-                Combo = 650,
-                SeasonalScore = 350
-            };
+            TestFixture englishMockFixture = new TestFixture();
+            englishMockFixture.Beatmap = TestUtil.GetRandomBeatmap(englishMockTrackMetadata);
+            englishMockFixture.Beatmap.DifficultyLevel = DifficultyLevel.Basic;
+            englishMockFixture.Score = TestUtil.GetRandomScore(englishMockFixture.Beatmap);
 
             Cell(1, 1).Children = new Drawable[]
-{
+            {
                 new MaisimSpriteText
                 {
                     Anchor = Anchor.TopLeft,
                     Origin = Anchor.TopLeft,
                     Text = "English (Latin)"
                 },
-                new TrackCardFocused(englishMockBeatmap, englishMockScore)
+                new TrackCardFocused(englishMockFixture.Beatmap, englishMockFixture.Score)
                 {
                     Anchor = Anchor.Centre,
                     Origin = Anchor.Centre,
                     Scale = new Vector2(0.7f)
                 }
-};
+            };
         }
     }
 }
