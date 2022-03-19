@@ -15,7 +15,7 @@ namespace maisim.Game.Screen.Gameplay
     {
         public static readonly float SPAWNER_MULTIPLIER = 75f;
 
-        public static readonly float NOTE_SPEED = 2f;
+        public static readonly float NOTE_SPEED = 1f;
 
         public static readonly float DISTANCE_ON_DESPAWN = 40f;
 
