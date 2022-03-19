@@ -22,7 +22,7 @@ namespace maisim.Game.Component.Gameplay
             337.5f
         };
 
-        private static readonly float lane_multiplier = 284.5f; // TODO: Still not sure on this. But when the outline circle is working, this should be changed too.
+        public static readonly float LANE_MULTIPLIER = 284.5f; // TODO: Still not sure on this. But when the outline circle is working, this should be changed too.
 
         [BackgroundDependencyLoader]
         private void load()
@@ -49,8 +49,8 @@ namespace maisim.Game.Component.Gameplay
                 AddInternal(new Circle
                 {
                     Position = new Vector2(
-                        -(lane_multiplier * (float)Math.Cos((angle + 90f) * (float)(Math.PI / 180))),
-                        -(lane_multiplier * (float)Math.Sin((angle + 90f) * (float)(Math.PI / 180)))
+                        -(LANE_MULTIPLIER * (float)Math.Cos((angle + 90f) * (float)(Math.PI / 180))),
+                        -(LANE_MULTIPLIER * (float)Math.Sin((angle + 90f) * (float)(Math.PI / 180)))
                     ),
                     Anchor = Anchor.Centre,
                     Origin = Anchor.Centre,
