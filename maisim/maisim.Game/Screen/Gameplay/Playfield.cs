@@ -58,8 +58,6 @@ namespace maisim.Game.Screen.Gameplay
         {
             foreach (Drawable note in InternalChildren.ToList())
             {
-                // TODO: Make the note despawn when it's out of the ring
-
                 // We have a lot of note type so we need to check on its type before we can update it
                 if (note is DrawableTapNote tapNote)
                 {
