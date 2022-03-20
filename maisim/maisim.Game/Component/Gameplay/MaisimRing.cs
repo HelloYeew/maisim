@@ -22,7 +22,7 @@ namespace maisim.Game.Component.Gameplay
             337.5f
         };
 
-        public static readonly float LANE_MULTIPLIER = 284.5f; // TODO: Still not sure on this. But when the outline circle is working, this should be changed too.
+        public const float LANE_MULTIPLIER = 284.5f; // TODO: Still not sure on this. But when the outline circle is working, this should be changed too.
 
         [BackgroundDependencyLoader]
         private void load()

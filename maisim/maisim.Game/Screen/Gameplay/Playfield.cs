@@ -13,11 +13,11 @@ namespace maisim.Game.Screen.Gameplay
     /// </summary>
     public class Playfield : osu.Framework.Screens.Screen
     {
-        public static readonly float SPAWNER_MULTIPLIER = 75f;
+        public const float SPAWNER_MULTIPLIER = 75f;
 
-        public static readonly float NOTE_SPEED = 1f;
+        public const float NOTE_SPEED = 1f;
 
-        public static readonly float DISTANCE_ON_DESPAWN = 40f;
+        public const float DISTANCE_ON_DESPAWN = 40f;
 
         [BackgroundDependencyLoader]
         private void load()
@@ -65,8 +65,8 @@ namespace maisim.Game.Screen.Gameplay
                     Vector2 sensorPosition = NoteLaneExtension.GetSensorPosition(tapNote.Lane);
                     Vector2 notePosition = tapNote.Position;
 
-                    if (MathUtils.CalculateDistance(spawnerPosition, sensorPosition) + DISTANCE_ON_DESPAWN <
-                        MathUtils.CalculateDistance(notePosition, spawnerPosition))
+                    if (MathUtils.EuclideanDistance(spawnerPosition, sensorPosition) + DISTANCE_ON_DESPAWN <
+                        MathUtils.EuclideanDistance(notePosition, spawnerPosition))
                     {
                         note.FadeOut(100, Easing.InBounce);
                         Scheduler.AddDelayed(() => RemoveInternal(note), 500);
