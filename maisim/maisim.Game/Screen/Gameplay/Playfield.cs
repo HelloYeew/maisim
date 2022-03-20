@@ -61,14 +61,10 @@ namespace maisim.Game.Screen.Gameplay
                 // We have a lot of note type so we need to check on its type before we can update it
                 if (note is DrawableTapNote tapNote)
                 {
-                    Vector2 spawnerPosition = NoteLaneExtension.GetSpawnerPosition(tapNote.Lane);
-                    Vector2 sensorPosition = NoteLaneExtension.GetSensorPosition(tapNote.Lane);
-                    Vector2 notePosition = tapNote.Position;
-
-                    if (MathUtils.EuclideanDistance(spawnerPosition, sensorPosition) + DISTANCE_ON_DESPAWN <
-                        MathUtils.EuclideanDistance(notePosition, spawnerPosition))
+                    if (MathUtils.EuclideanDistance(NoteLaneExtension.GetSpawnerPosition(tapNote.Lane), NoteLaneExtension.GetSensorPosition(tapNote.Lane)) + DISTANCE_ON_DESPAWN <
+                        MathUtils.EuclideanDistance(tapNote.Position, NoteLaneExtension.GetSpawnerPosition(tapNote.Lane)))
                     {
-                        note.FadeOut(100, Easing.InBounce);
+                        note.FadeOut(50, Easing.InBounce);
                         Scheduler.AddDelayed(() => RemoveInternal(note), 500);
                     }
                     else
