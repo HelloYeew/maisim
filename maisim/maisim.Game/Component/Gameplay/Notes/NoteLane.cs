@@ -1,4 +1,6 @@
 ﻿using System;
+using maisim.Game.Screen.Gameplay;
+using osuTK;
 
 namespace maisim.Game.Component.Gameplay.Notes
 {
@@ -50,6 +52,32 @@ namespace maisim.Game.Component.Gameplay.Notes
                 default:
                     throw new ArgumentOutOfRangeException(nameof(lane));
             }
+        }
+
+        /// <summary>
+        /// Return the lane's spawner position for the specified lane.
+        /// </summary>
+        /// <param name="lane">A specified <see cref="NoteLane"/></param>
+        /// <returns>Spawner position in <see cref="Vector2"/> format.</returns>
+        public static Vector2 GetSpawnerPosition(NoteLane lane)
+        {
+            return new Vector2(
+                -(Playfield.SPAWNER_MULTIPLIER * (float)Math.Cos((GetAngle(lane) + 90f) * (float)(Math.PI / 180))),
+                -(Playfield.SPAWNER_MULTIPLIER * (float)Math.Sin((GetAngle(lane) + 90f) * (float)(Math.PI / 180)))
+            );
+        }
+
+        /// <summary>
+        /// Return the lane's sensor position for the specified lane.
+        /// </summary>
+        /// <param name="lane">A specified <see cref="NoteLane"/></param>
+        /// <returns>Sensor position in <see cref="Vector2"/> format.</returns>
+        public static Vector2 GetSensorPosition(NoteLane lane)
+        {
+            return new Vector2(
+                -(MaisimRing.LANE_MULTIPLIER * (float)Math.Cos((GetAngle(lane) + 90f) * (float)(Math.PI / 180))),
+                -(MaisimRing.LANE_MULTIPLIER * (float)Math.Sin((GetAngle(lane) + 90f) * (float)(Math.PI / 180)))
+            );
         }
     }
 }

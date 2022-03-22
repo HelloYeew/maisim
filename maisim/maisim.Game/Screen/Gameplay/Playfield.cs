@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Linq;
 using maisim.Game.Component.Gameplay.Notes;
+using maisim.Game.Utils;
 using osu.Framework.Allocation;
 using osu.Framework.Graphics;
 using osuTK;
@@ -11,9 +13,11 @@ namespace maisim.Game.Screen.Gameplay
     /// </summary>
     public class Playfield : osu.Framework.Screens.Screen
     {
-        public static readonly float SPAWNER_MULTIPLIER = 75f;
+        public const float SPAWNER_MULTIPLIER = 75f;
 
-        public static readonly float NOTE_SPEED = 0.5f;
+        public const float NOTE_SPEED = 1f;
+
+        public const float DISTANCE_ON_DESPAWN = 40f;
 
         [BackgroundDependencyLoader]
         private void load()
@@ -52,19 +56,26 @@ namespace maisim.Game.Screen.Gameplay
 
         protected override void Update()
         {
-            foreach (Drawable note in InternalChildren)
+            foreach (Drawable note in InternalChildren.ToList())
             {
-                // TODO: Make the note despawn when it's out of the ring
-
                 // We have a lot of note type so we need to check on its type before we can update it
                 if (note is DrawableTapNote tapNote)
                 {
-                    note.Position += new Vector2(
-                        -(NOTE_SPEED * (float)Math.Cos((NoteLaneExtension.GetAngle(tapNote.Lane) + 90f) *
-                                                               (float)(Math.PI / 180))),
-                        -(NOTE_SPEED * (float)Math.Sin((NoteLaneExtension.GetAngle(tapNote.Lane) + 90f) *
-                                                               (float)(Math.PI / 180)))
-                    );
+                    if (MathUtils.EuclideanDistance(NoteLaneExtension.GetSpawnerPosition(tapNote.Lane), NoteLaneExtension.GetSensorPosition(tapNote.Lane)) + DISTANCE_ON_DESPAWN <
+                        MathUtils.EuclideanDistance(tapNote.Position, NoteLaneExtension.GetSpawnerPosition(tapNote.Lane)))
+                    {
+                        note.FadeOut(50, Easing.InBounce);
+                        Scheduler.AddDelayed(() => RemoveInternal(note), 500);
+                    }
+                    else
+                    {
+                        note.Position += new Vector2(
+                            -(NOTE_SPEED * (float)Math.Cos((NoteLaneExtension.GetAngle(tapNote.Lane) + 90f) *
+                                                           (float)(Math.PI / 180))),
+                            -(NOTE_SPEED * (float)Math.Sin((NoteLaneExtension.GetAngle(tapNote.Lane) + 90f) *
+                                                           (float)(Math.PI / 180)))
+                        );
+                    }
                 }
             }
 
