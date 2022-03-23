@@ -45,6 +45,15 @@ namespace maisim.Game
             AddFont(Resources, @"Fonts/Comfortaa/Comfortaa-BoldItalic");
             AddFont(Resources, @"Fonts/Comfortaa/Comfortaa-Italic");
             AddFont(Resources, @"Fonts/Comfortaa/Comfortaa-Light");
+
+            AddFont(Resources, @"Fonts/Kanit/Kanit-Bold");
+
+            AddFont(Resources, @"Fonts/GothicA1/GothicA1-Bold");
+
+            AddFont(Resources, @"Fonts/Noto/Noto-Basic");
+            AddFont(Resources, @"Fonts/Noto/Noto-Hangul");
+            AddFont(Resources, @"Fonts/Noto/Noto-CJK-Basic");
+            AddFont(Resources, @"Fonts/Noto/Noto-CJK-Compatibility");
         }
 
         protected override IReadOnlyDependencyContainer CreateChildDependencies(IReadOnlyDependencyContainer parent)
