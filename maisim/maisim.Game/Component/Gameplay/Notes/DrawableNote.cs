@@ -29,5 +29,10 @@ namespace maisim.Game.Component.Gameplay.Notes
         /// <param name="textureStore"><see cref="TextureStore"/> in load operation.</param>
         /// <returns>List of drawable include all note part that will be initialize on load.</returns>
         protected abstract Drawable[] AddNoteParts(TextureStore textureStore);
+
+        /// <summary>
+        /// The time that the note need to be hit.
+        /// </summary>
+        public double TargetTime;
     }
 }
