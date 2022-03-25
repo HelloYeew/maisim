@@ -65,7 +65,6 @@ namespace maisim.Game.Screen.Gameplay
                         if (tapNote.TargetTime != 0f && Clock.TimeInfo.Current >= tapNote.TargetTime - TIME_NOTE_APPEARS)
                         {
                             AddInternal(note);
-                            Logger.Log($"Note spawn at {Clock.TimeInfo.Current}", LoggingTarget.Runtime, LogLevel.Debug);
                             NotesPool.Remove(tapNote);
                         }
                     }
@@ -82,7 +81,6 @@ namespace maisim.Game.Screen.Gameplay
                         // Enter despawning state
                         note.FadeOut(50, Easing.InBounce);
                         Scheduler.AddDelayed(() => RemoveInternal(note), 500);
-                        Logger.LogPrint("Despawned at " + Clock.TimeInfo.Current);
                     }
                     else
                     {
