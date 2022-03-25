@@ -22,6 +22,9 @@ namespace maisim.Game.Screen.Gameplay
 
         public const float DISTANCE_ON_DESPAWN = 40f;
 
+        /// <summary>
+        /// The time that note need to be spawn before the note's target time.
+        /// </summary>
         public const float TIME_NOTE_APPEARS = 500f;
 
         public List<DrawableNote> NotesPool;
