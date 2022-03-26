@@ -52,6 +52,12 @@ namespace maisim.Game.Screen.Gameplay
         {
             AddInternal(new DrawableTapNote
             {
+                Position = new Vector2(
+                    -(SPAWNER_MULTIPLIER *
+                      (float)Math.Cos((NoteLaneExtension.GetAngle(lane) + 90f) * (float)(Math.PI / 180))),
+                    -(SPAWNER_MULTIPLIER *
+                      (float)Math.Sin((NoteLaneExtension.GetAngle(lane) + 90f) * (float)(Math.PI / 180)))
+                ),
                 Lane = lane
             });
         }
@@ -67,6 +73,12 @@ namespace maisim.Game.Screen.Gameplay
                     {
                         if (tapNote.TargetTime != 0f && Clock.TimeInfo.Current >= tapNote.TargetTime - TIME_NOTE_APPEARS)
                         {
+                            note.Position = new Vector2(
+                                -(SPAWNER_MULTIPLIER *
+                                  (float)Math.Cos((NoteLaneExtension.GetAngle(tapNote.Lane) + 90f) * (float)(Math.PI / 180))),
+                                -(SPAWNER_MULTIPLIER *
+                                  (float)Math.Sin((NoteLaneExtension.GetAngle(tapNote.Lane) + 90f) * (float)(Math.PI / 180)))
+                            );
                             AddInternal(note);
                             NotesPool.Remove(tapNote);
                         }

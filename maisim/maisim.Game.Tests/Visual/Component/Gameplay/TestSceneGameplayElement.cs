@@ -18,12 +18,7 @@ namespace maisim.Game.Tests.Visual.Component.Gameplay
                     Origin = Anchor.TopLeft,
                     Text = nameof(DrawableTapNote)
                 },
-                new DrawableTapNote
-                {
-                    Anchor = Anchor.Centre,
-                    Origin = Anchor.Centre,
-                    Scale = new Vector2(1.5f)
-                }
+                new DrawableTapNote()
             };
 
             Cell(0, 1).Children = new Drawable[]
