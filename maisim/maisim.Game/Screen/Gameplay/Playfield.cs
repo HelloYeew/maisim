@@ -79,6 +79,7 @@ namespace maisim.Game.Screen.Gameplay
             {
                 if (tapNote.TargetTime != 0f)
                 {
+                    // Update the position
                     double speed = MathUtils.EuclideanDistance(
                         NoteLaneExtension.GetSpawnerPosition(tapNote.Lane),
                         NoteLaneExtension.GetSensorPosition(tapNote.Lane)) / TIME_NOTE_APPEARS;
@@ -89,7 +90,8 @@ namespace maisim.Game.Screen.Gameplay
                 }
                 else
                 {
-                    // Update the position
+                    // This is for the note that spawn using SpawnTapNote method and no TargetTime specified in the test scene.
+                    // Will remove it when the note spawn system is complete.
                     tapNote.Position += new Vector2(
                         -(NOTE_SPEED * (float)Math.Cos((NoteLaneExtension.GetAngle(tapNote.Lane) + 90f) *
                                                        (float)(Math.PI / 180))),
@@ -100,30 +102,42 @@ namespace maisim.Game.Screen.Gameplay
             }
         }
 
+        /// <summary>
+        /// Spawn the note from the pool to the playfield and remove it from the pool.
+        /// </summary>
+        /// <param name="note">The target note</param>
+        private void spawnNoteFromPool(DrawableNote note)
+        {
+            // We have a lot of note type so we need to check on its type before we can update it
+            if (note is DrawableTapNote tapNote)
+            {
+                if (tapNote.TargetTime != 0f && Clock.TimeInfo.Current >= tapNote.TargetTime - TIME_NOTE_APPEARS)
+                {
+                    // Add note to the drawable and remove it from the pool
+                    note.Position = new Vector2(
+                        -(SPAWNER_MULTIPLIER *
+                          (float)Math.Cos((NoteLaneExtension.GetAngle(tapNote.Lane) + 90f) * (float)(Math.PI / 180))),
+                        -(SPAWNER_MULTIPLIER *
+                          (float)Math.Sin((NoteLaneExtension.GetAngle(tapNote.Lane) + 90f) * (float)(Math.PI / 180)))
+                    );
+                    AddInternal(note);
+                    NotesPool.Remove(tapNote);
+                }
+            }
+        }
+
         protected override void Update()
         {
+            // Add note from the pool to the playfield drawable
             if (NotesPool != null)
             {
-                foreach (Drawable note in NotesPool.ToList())
+                foreach (DrawableNote note in NotesPool.ToList())
                 {
-                    // We have a lot of note type so we need to check on its type before we can update it
-                    if (note is DrawableTapNote tapNote)
-                    {
-                        if (tapNote.TargetTime != 0f && Clock.TimeInfo.Current >= tapNote.TargetTime - TIME_NOTE_APPEARS)
-                        {
-                            note.Position = new Vector2(
-                                -(SPAWNER_MULTIPLIER *
-                                  (float)Math.Cos((NoteLaneExtension.GetAngle(tapNote.Lane) + 90f) * (float)(Math.PI / 180))),
-                                -(SPAWNER_MULTIPLIER *
-                                  (float)Math.Sin((NoteLaneExtension.GetAngle(tapNote.Lane) + 90f) * (float)(Math.PI / 180)))
-                            );
-                            AddInternal(note);
-                            NotesPool.Remove(tapNote);
-                        }
-                    }
+                    spawnNoteFromPool(note);
                 }
             }
 
+            // Update the position of the notes
             foreach (Drawable note in InternalChildren.ToList())
             {
                 if (note is DrawableTapNote tapNote)
