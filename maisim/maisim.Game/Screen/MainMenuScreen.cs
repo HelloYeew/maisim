@@ -74,10 +74,8 @@ namespace maisim.Game.Screen
             };
         }
 
-        public override void OnEntering(IScreen last)
+        public override void OnEntering(ScreenTransitionEvent e)
         {
-            base.OnEntering(last);
-
             this.FadeInFromZero(500);
         }
     }
