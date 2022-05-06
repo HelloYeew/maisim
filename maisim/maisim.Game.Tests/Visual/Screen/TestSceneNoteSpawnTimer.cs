@@ -15,7 +15,6 @@ public class TestSceneNoteSpawnTimer : maisimTestScene
     {
         Add(playfieldScreen = new PlayfieldScreen {RelativeSizeAxes = Axes.Both});
 
-
         playfieldScreen.Playfield.NotesPool = new List<DrawableNote>
         {
             new DrawableTapNote()
