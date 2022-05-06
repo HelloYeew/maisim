@@ -40,5 +40,11 @@ namespace maisim.Game.Component.Gameplay.Notes
         /// Update the note position.
         /// </summary>
         public abstract void UpdatePosition(Playfield playfield);
+
+        /// <summary>
+        /// Check that the note can start to despawn state.
+        /// </summary>
+        /// <returns>True if the note can start despawn state.</returns>
+        public abstract bool CanDespawn();
     }
 }

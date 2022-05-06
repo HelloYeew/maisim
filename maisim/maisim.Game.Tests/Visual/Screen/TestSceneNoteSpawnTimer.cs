@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using maisim.Game.Component.Gameplay.Notes;
 using maisim.Game.Screen.Gameplay;
 using NUnit.Framework;
