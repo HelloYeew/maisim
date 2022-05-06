@@ -16,6 +16,11 @@ namespace maisim.Game.Screen.Gameplay
         /// </summary>
         public Playfield Playfield { get; set; }
 
+        public PlayfieldScreen()
+        {
+            Playfield = new Playfield();
+        }
+
         [BackgroundDependencyLoader]
         private void load()
         {
@@ -32,7 +37,6 @@ namespace maisim.Game.Screen.Gameplay
                     Anchor = Anchor.Centre,
                     Origin = Anchor.Centre,
                 },
-                Playfield = new Playfield()
             };
         }
     }
