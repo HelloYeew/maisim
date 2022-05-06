@@ -1,4 +1,5 @@
-﻿using osu.Framework.Allocation;
+﻿using maisim.Game.Screen.Gameplay;
+using osu.Framework.Allocation;
 using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
 using osu.Framework.Graphics.Textures;
@@ -34,5 +35,10 @@ namespace maisim.Game.Component.Gameplay.Notes
         /// The time that the note need to be hit.
         /// </summary>
         public double TargetTime;
+
+        /// <summary>
+        /// Update the note position.
+        /// </summary>
+        public abstract void UpdatePosition(Playfield playfield);
     }
 }

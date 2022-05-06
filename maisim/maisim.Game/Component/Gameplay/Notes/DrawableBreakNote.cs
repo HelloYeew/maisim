@@ -1,4 +1,5 @@
-﻿using osu.Framework.Graphics;
+﻿using maisim.Game.Screen.Gameplay;
+using osu.Framework.Graphics;
 using osu.Framework.Graphics.Sprites;
 using osu.Framework.Graphics.Textures;
 
@@ -22,6 +23,11 @@ namespace maisim.Game.Component.Gameplay.Notes
                     Texture = textureStore.Get("Notes/Break.png")
                 }
             };
+        }
+
+        public override void UpdatePosition(Playfield playfield)
+        {
+
         }
     }
 }

@@ -1,12 +1,9 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using maisim.Game.Component.Gameplay.Notes;
-using maisim.Game.Utils;
 using osu.Framework.Allocation;
 using osu.Framework.Graphics;
-using osu.Framework.Logging;
 using osuTK;
 
 namespace maisim.Game.Screen.Gameplay
@@ -63,46 +60,6 @@ namespace maisim.Game.Screen.Gameplay
         }
 
         /// <summary>
-        /// Update the target <see cref="DrawableNote"/>'s position.
-        /// </summary>
-        /// <param name="tapNote">The <see cref="DrawableTapNote"/> that want to update.</param>
-        private void updateTapNotePosition(DrawableTapNote tapNote)
-        {
-            if (MathUtils.EuclideanDistance(NoteLaneExtension.GetSpawnerPosition(tapNote.Lane), NoteLaneExtension.GetSensorPosition(tapNote.Lane)) + DISTANCE_ON_DESPAWN <
-                MathUtils.EuclideanDistance(tapNote.Position, NoteLaneExtension.GetSpawnerPosition(tapNote.Lane)))
-            {
-                // Enter despawning state
-                tapNote.FadeOut(50, Easing.InBounce);
-                Scheduler.AddDelayed(() => RemoveInternal(tapNote), 500);
-            }
-            else
-            {
-                if (tapNote.TargetTime != 0f)
-                {
-                    // Update the position
-                    double speed = MathUtils.EuclideanDistance(
-                        NoteLaneExtension.GetSpawnerPosition(tapNote.Lane),
-                        NoteLaneExtension.GetSensorPosition(tapNote.Lane)) / TIME_NOTE_APPEARS;
-                    tapNote.Position = new Vector2(
-                        (float) (tapNote.Position.X + ((float)(speed * (-(float)Math.Cos((NoteLaneExtension.GetAngle(tapNote.Lane) + 90f) * (float)(Math.PI / 180)))) * Clock.ElapsedFrameTime)),
-                        (float) (tapNote.Position.Y + ((float)(speed * (-(float)Math.Sin((NoteLaneExtension.GetAngle(tapNote.Lane) + 90f) * (float)(Math.PI / 180)))) * Clock.ElapsedFrameTime))
-                        );
-                }
-                else
-                {
-                    // This is for the note that spawn using SpawnTapNote method and no TargetTime specified in the test scene.
-                    // Will remove it when the note spawn system is complete.
-                    tapNote.Position += new Vector2(
-                        -(NOTE_SPEED * (float)Math.Cos((NoteLaneExtension.GetAngle(tapNote.Lane) + 90f) *
-                                                       (float)(Math.PI / 180))),
-                        -(NOTE_SPEED * (float)Math.Sin((NoteLaneExtension.GetAngle(tapNote.Lane) + 90f) *
-                                                       (float)(Math.PI / 180)))
-                    );
-                }
-            }
-        }
-
-        /// <summary>
         /// Spawn the note from the pool to the playfield and remove it from the pool.
         /// </summary>
         /// <param name="note">The target note</param>
@@ -140,9 +97,9 @@ namespace maisim.Game.Screen.Gameplay
             // Update the position of the notes
             foreach (Drawable note in InternalChildren.ToList())
             {
-                if (note is DrawableTapNote tapNote)
+                if (note is DrawableNote drawableNote)
                 {
-                    updateTapNotePosition(tapNote);
+                    drawableNote.UpdatePosition(this);
                 }
             }
 
