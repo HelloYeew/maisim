@@ -75,8 +75,8 @@ namespace maisim.Game.Screen
                 }
             };
 
-            ITrackStore trackStore = maisimGame.trackStore;
-            Track track = trackStore.Get("test.mp3");
+            ITrackStore trackStore = audioManager.Tracks;
+            Track track = trackStore.Get("test2.m4a");
             track.Looping = true;
             track.Start();
         }

@@ -5,6 +5,7 @@ using osu.Framework.Graphics.Containers;
 using osu.Framework.IO.Stores;
 using osuTK;
 using maisim.Resources;
+using osu.Framework.Audio;
 
 namespace maisim.Game
 {
@@ -17,6 +18,10 @@ namespace maisim.Game
         protected override Container<Drawable> Content { get; }
 
         private MaisimTextureStore textureStore;
+
+        public MaisimStore Store;
+
+        public AudioManager AudioManager;
 
         protected maisimGameBase()
         {
@@ -60,6 +65,8 @@ namespace maisim.Game
         {
             var dependencies = new DependencyContainer(base.CreateChildDependencies(parent));
             dependencies.Cache(textureStore = new MaisimTextureStore(Host.CreateTextureLoaderStore(new NamespacedResourceStore<byte[]>(Resources, "Textures"))));
+            dependencies.Cache(Store = new MaisimStore(Host.Storage.GetStorageForDirectory("tracks")));
+            dependencies.Cache(AudioManager = new AudioManager(Host.AudioThread, new NamespacedResourceStore<byte[]>(new MaisimStore(Host.Storage), "tracks"), new NamespacedResourceStore<byte[]>(Resources, "Samples")));
             return dependencies;
         }
     }
