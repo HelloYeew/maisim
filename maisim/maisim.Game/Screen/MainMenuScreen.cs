@@ -1,5 +1,7 @@
 ﻿using maisim.Game.Component;
 using osu.Framework.Allocation;
+using osu.Framework.Audio;
+using osu.Framework.Audio.Track;
 using osu.Framework.Extensions.Color4Extensions;
 using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
@@ -16,7 +18,7 @@ namespace maisim.Game.Screen
     public class MainMenuScreen : osu.Framework.Screens.Screen
     {
         [BackgroundDependencyLoader]
-        private void load()
+        private void load(AudioManager audioManager)
         {
             InternalChildren = new Drawable[]
             {
@@ -72,6 +74,11 @@ namespace maisim.Game.Screen
                     }
                 }
             };
+
+            ITrackStore trackStore = maisimGame.trackStore;
+            Track track = trackStore.Get("test.mp3");
+            track.Looping = true;
+            track.Start();
         }
 
         public override void OnEntering(ScreenTransitionEvent e)
