@@ -1,4 +1,5 @@
-﻿using maisim.Game.Component;
+﻿using System;
+using maisim.Game.Component;
 using osu.Framework.Allocation;
 using osu.Framework.Audio;
 using osu.Framework.Audio.Track;
@@ -17,6 +18,10 @@ namespace maisim.Game.Screen
     /// </summary>
     public class MainMenuScreen : osu.Framework.Screens.Screen
     {
+        private Track track;
+
+        private ITrackStore trackStore;
+
         [BackgroundDependencyLoader]
         private void load(AudioManager audioManager)
         {
@@ -75,15 +80,38 @@ namespace maisim.Game.Screen
                 }
             };
 
-            ITrackStore trackStore = audioManager.Tracks;
-            Track track = trackStore.Get("test2.m4a");
+            trackStore = audioManager.Tracks;
+            track = trackStore.Get("test4");
+            // track = trackStore.Get("rei/ReI");
             track.Looping = true;
+            // track.Seek(50000);
             track.Start();
         }
 
         public override void OnEntering(ScreenTransitionEvent e)
         {
+            track.Start();
+
             this.FadeInFromZero(500);
+        }
+
+        public override void OnSuspending(ScreenTransitionEvent e)
+        {
+            track.Stop();
+        }
+
+        public override void OnResuming(ScreenTransitionEvent e)
+        {
+            track.Start();
+
+            base.OnResuming(e);
+        }
+
+        public override bool OnExiting(ScreenExitEvent screenExitEvent)
+        {
+            track.Stop();
+
+            return base.OnExiting(screenExitEvent);
         }
     }
 }
