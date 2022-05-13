@@ -65,7 +65,8 @@ namespace maisim.Game.Screen
                                 {
                                     Anchor = Anchor.Centre,
                                     Origin = Anchor.Centre,
-                                    Size = new Vector2(300,300)
+                                    Size = new Vector2(300,300),
+                                    Action = Game.Exit
                                 }
                             }
                         }
