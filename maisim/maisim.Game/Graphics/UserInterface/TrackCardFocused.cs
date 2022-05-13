@@ -226,7 +226,7 @@ namespace maisim.Game.Component
                                                                             {
                                                                                 Anchor = Anchor.CentreRight,
                                                                                 Origin = Anchor.CentreRight,
-                                                                                Text = $"{score.SeasonalScore.ToString()}/{beatmap.MaxSeasonalScore.ToString()}",
+                                                                                Text = $"",
                                                                                 Font = MaisimFont.GetFont(size: 13),
                                                                                 Colour = Color4.White
                                                                             }
