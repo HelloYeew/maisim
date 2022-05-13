@@ -25,5 +25,10 @@ namespace maisim.Game.Component.Gameplay.Notes
                 }
             };
         }
+
+        public override string GetEncodeString()
+        {
+            return "";
+        }
     }
 }

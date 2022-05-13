@@ -1,3 +1,4 @@
+using maisim.Game.Database;
 using maisim.Game.Store;
 using osu.Framework.Allocation;
 using osu.Framework.Graphics;
@@ -5,6 +6,7 @@ using osu.Framework.Graphics.Containers;
 using osu.Framework.IO.Stores;
 using osuTK;
 using maisim.Resources;
+using Microsoft.EntityFrameworkCore;
 
 namespace maisim.Game
 {
@@ -13,6 +15,9 @@ namespace maisim.Game
         // Anything in this class is shared between the test browser and the game implementation.
         // It allows for caching global dependencies that should be accessible to tests, or changing
         // the screen scaling for all components including the test browser and framework overlays.
+
+        [Cached]
+        private BeatmapDatabaseContext BeatmapDatabase = new BeatmapDatabaseContext();
 
         protected override Container<Drawable> Content { get; }
 
@@ -26,6 +31,8 @@ namespace maisim.Game
                 // You may want to change TargetDrawSize to your "default" resolution, which will decide how things scale and position when using absolute coordinates.
                 TargetDrawSize = new Vector2(1366, 768)
             });
+
+            BeatmapDatabase.Database.Migrate();
         }
 
         [BackgroundDependencyLoader]
@@ -54,6 +61,8 @@ namespace maisim.Game
             AddFont(Resources, @"Fonts/Noto/Noto-Hangul");
             AddFont(Resources, @"Fonts/Noto/Noto-CJK-Basic");
             AddFont(Resources, @"Fonts/Noto/Noto-CJK-Compatibility");
+
+
         }
 
         protected override IReadOnlyDependencyContainer CreateChildDependencies(IReadOnlyDependencyContainer parent)

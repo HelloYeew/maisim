@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using maisim.Game.Beatmaps;
 using Microsoft.EntityFrameworkCore;
 
@@ -10,13 +11,12 @@ namespace maisim.Game.Database
         public DbSet<Beatmap> Beatmaps { get; set; }
         public DbSet<BeatmapSet> BeatmapSets { get; set; }
 
-        public static string DATABASE_NAME = "beatmaps.db";
-
         public string DatabasePath { get; set; }
 
-        public BeatmapDatabaseContext(string databasePath)
+        public BeatmapDatabaseContext()
         {
-            DatabasePath = Path.Join(databasePath, DATABASE_NAME);
+            // Get the database path in %APPDATA%\
+            DatabasePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "maisim", "beatmaps.db");
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

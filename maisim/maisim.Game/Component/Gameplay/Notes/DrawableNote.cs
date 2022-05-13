@@ -24,10 +24,21 @@ namespace maisim.Game.Component.Gameplay.Notes
         }
 
         /// <summary>
+        /// The time that the note need to be hit.
+        /// </summary>
+        public double TargetTime;
+
+        /// <summary>
         /// Add the note sprite parts to the main class container.
         /// </summary>
         /// <param name="textureStore"><see cref="TextureStore"/> in load operation.</param>
         /// <returns>List of drawable include all note part that will be initialize on load.</returns>
         protected abstract Drawable[] AddNoteParts(TextureStore textureStore);
+
+        /// <summary>
+        /// Get string representation of the note in beatmap file.
+        /// </summary>
+        /// <returns></returns>
+        public abstract string GetEncodeString();
     }
 }
