@@ -21,6 +21,7 @@ public class TestBeatmapIO
     {
         mockBeatmapSet = new BeatmapSet()
         {
+            DatabaseID = 1,
             Creator = "Yeew",
             BeatmapSetID = 1,
             AudioFileName = "test.mp3",
@@ -43,6 +44,7 @@ public class TestBeatmapIO
 
         mockBeatmapOne = new Beatmap
         {
+            DatabaseID = 1,
             TrackMetadata = mockTrackMetadata,
             DifficultyLevel = DifficultyLevel.Basic,
             DifficultyRating = 10,
@@ -52,6 +54,7 @@ public class TestBeatmapIO
 
         mockBeatmapTwo = new Beatmap
         {
+            DatabaseID = 2,
             TrackMetadata = mockTrackMetadata,
             DifficultyLevel = DifficultyLevel.Advanced,
             DifficultyRating = 10,
@@ -70,22 +73,22 @@ public class TestBeatmapIO
             new DrawableTapNote()
             {
                 Lane = NoteLane.Lane1,
-                TargetTime = 5.2323f
+                TargetTime = 5.2323
             },
             new DrawableTapNote()
             {
                 Lane = NoteLane.Lane2,
-                TargetTime = 23.23f
+                TargetTime = 23.23
             },
             new DrawableTapNote()
             {
                 Lane = NoteLane.Lane4,
-                TargetTime = 44.44f
+                TargetTime = 44.44
             },
             new DrawableTapNote()
             {
                 Lane = NoteLane.Lane3,
-                TargetTime = 55.445f
+                TargetTime = 55.445
             },
         };
     }

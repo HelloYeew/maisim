@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 using maisim.Game.Component.Gameplay.Notes;
+using maisim.Game.Store;
 using osu.Framework.Logging;
 
 namespace maisim.Game.Beatmaps
@@ -34,12 +35,11 @@ namespace maisim.Game.Beatmaps
                 throw new Exception("No beatmaps to encode");
 
             // Check if target directory exists
-            if (!Directory.Exists(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
-                    "maisim", "beatmaps",
+            if (!Directory.Exists(Path.Combine(MaisimFilePath.BeatmapFilePath,
                     $"{BeatmapSet.DatabaseID.ToString()} {BeatmapSet.TrackMetadata.Artist} - {BeatmapSet.TrackMetadata.Title}")))
             {
                 Directory.CreateDirectory(Path.Combine(
-                    Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "maisim", "beatmaps",
+                    MaisimFilePath.BeatmapFilePath,
                     $"{BeatmapSet.DatabaseID.ToString()} {BeatmapSet.TrackMetadata.Artist} - {BeatmapSet.TrackMetadata.Title}"));
             }
 
@@ -47,7 +47,7 @@ namespace maisim.Game.Beatmaps
             foreach (var beatmap in Beatmaps)
             {
                 using (StreamWriter file = File.CreateText(Path.Combine(
-                           Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "maisim", "beatmaps",
+                           MaisimFilePath.BeatmapFilePath,
                            $"{BeatmapSet.DatabaseID.ToString()} {BeatmapSet.TrackMetadata.Artist} - {BeatmapSet.TrackMetadata.Title}",
                            $"{beatmap.Key.DatabaseID.ToString()}.msbm")))
                 {
@@ -96,7 +96,7 @@ namespace maisim.Game.Beatmaps
             }
 
             using (StreamWriter file = File.CreateText(Path.Combine(
-                       Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "maisim", "beatmaps",
+                       MaisimFilePath.BeatmapFilePath,
                        $"{BeatmapSet.DatabaseID.ToString()} {BeatmapSet.TrackMetadata.Artist} - {BeatmapSet.TrackMetadata.Title}",
                        $"{BeatmapSet.DatabaseID.ToString()}.msbs")))
             {
@@ -123,7 +123,7 @@ namespace maisim.Game.Beatmaps
             }
 
             Logger.LogPrint("Encoding complete, file saved to " + Path.Combine(
-                Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "maisim", "beatmaps",
+                MaisimFilePath.BeatmapFilePath,
                 $"{BeatmapSet.DatabaseID.ToString()} {BeatmapSet.TrackMetadata.Artist} - {BeatmapSet.TrackMetadata.Title}",
                 $"{BeatmapSet.DatabaseID.ToString()}.msbs"));
         }
