@@ -91,26 +91,12 @@ namespace maisim.Game.Screen
         {
             base.OnEntering(e);
 
-            warningSprite.RotateTo(10);
-            warningSprite.FadeOut();
-            warningSprite.ScaleTo(0.5f);
-
-            warningSprite.Delay(500).FadeIn(500).ScaleTo(1, 500, Easing.OutQuint);
-
-            using (BeginDelayedSequence(3000))
-            {
-                warningSprite.FadeColour(Color4.Yellow, 200, Easing.OutQuint);
-                warningSprite.MoveToY(icon_y * 1.3f, 500, Easing.OutCirc)
-                    .RotateTo(-360, 520, Easing.OutQuint)
-                    .Then()
-                    .MoveToY(icon_y, 160, Easing.InQuart)
-                    .FadeColour(Color4.Yellow, 160);
-            }
+            warningSprite.FlashColour(Color4Extensions.FromHex("ffffed"), 500, Easing.OutQuint).Loop();
 
             this.FadeInFromZero(500)
-                .Then(4000)
+                .Then(3000)
                 .FadeOut(250)
-                .ScaleTo(0.9f, 250, Easing.OutQuint)
+                .ScaleTo(0.5f, 250, Easing.OutQuint)
                 .Finally(next =>
                 {
                     if (nextScreen != null)
