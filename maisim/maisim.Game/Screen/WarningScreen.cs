@@ -96,7 +96,7 @@ namespace maisim.Game.Screen
             this.FadeInFromZero(500)
                 .Then(3000)
                 .FadeOut(250)
-                .ScaleTo(0.5f, 250, Easing.OutQuint)
+                .MoveToY(-200, 250, Easing.OutQuint)
                 .Finally(next =>
                 {
                     if (nextScreen != null)
