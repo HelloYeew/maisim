@@ -29,7 +29,6 @@ namespace maisim.Game.Screen
             if (LoadState < LoadState.Ready)
             {
                 Schedule(() => screenPushed(prev, next));
-                return;
             }
         }
     }

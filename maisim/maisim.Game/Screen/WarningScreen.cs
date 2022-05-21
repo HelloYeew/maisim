@@ -9,6 +9,9 @@ using osuTK.Graphics;
 
 namespace maisim.Game.Screen
 {
+    /// <summary>
+    /// A welcome screen that's show when the game is first loaded that this project is a work in progress.
+    /// </summary>
     public class WarningScreen : osu.Framework.Screens.Screen
     {
         private SpriteIcon warningSprite;
@@ -70,14 +73,6 @@ namespace maisim.Game.Screen
                     Font = new FontUsage(size: 30),
                     Y = 40f
                 },
-                new SpriteText()
-                {
-                    Anchor = Anchor.Centre,
-                    Origin = Anchor.Centre,
-                    Text = "- HelloYeew",
-                    Font = new FontUsage(size: 30),
-                    Y = 80f
-                },
             };
         }
 
@@ -91,10 +86,16 @@ namespace maisim.Game.Screen
         {
             base.OnEntering(e);
 
+            warningSprite.RotateTo(-10)
+                .MoveToY(icon_y - 30, 250, Easing.OutQuint)
+                .RotateTo(360, 750, Easing.OutQuint)
+                .Then()
+                .MoveToY(icon_y, 250, Easing.OutQuint);
+
             warningSprite.FlashColour(Color4Extensions.FromHex("ffffed"), 500, Easing.OutQuint).Loop();
 
             this.FadeInFromZero(500)
-                .Then(3000)
+                .Then(2500)
                 .FadeOut(250)
                 .MoveToY(-200, 250, Easing.OutQuint)
                 .Finally(next =>
