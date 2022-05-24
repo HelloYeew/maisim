@@ -25,11 +25,11 @@ namespace maisim.Game.Tests.Visual.Component
                         RelativeSizeAxes = Axes.Both,
                         Colour = Color4.DimGray
                     },
-                    new MainMenuButton("Test", FontAwesome.Solid.Smile)
+                    new MainMenuButton("Test", FontAwesome.Solid.Smile, Color4.Aqua)
                     {
                         Anchor = Anchor.Centre,
                         Origin = Anchor.Centre,
-                        Size = new Vector2(250)
+                        Scale = new Vector2(1.5f)
                     }
                 }
             };

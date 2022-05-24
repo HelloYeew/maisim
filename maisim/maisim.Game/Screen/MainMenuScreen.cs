@@ -7,6 +7,7 @@ using osu.Framework.Graphics.Shapes;
 using osu.Framework.Graphics.Sprites;
 using osu.Framework.Screens;
 using osuTK;
+using osuTK.Graphics;
 
 namespace maisim.Game.Screen
 {
@@ -45,23 +46,23 @@ namespace maisim.Game.Screen
                             RelativePositionAxes = Axes.Y,
                             Children = new Drawable[]
                             {
-                                new MainMenuButton("Play",FontAwesome.Solid.Play)
+                                new MainMenuButton("Play",FontAwesome.Solid.Play, Color4.Aqua)
                                 {
                                     Anchor = Anchor.Centre,
                                     Origin = Anchor.Centre,
                                     Size = new Vector2(300,300),
                                     Action = () => this.Push(new SongSelectionScreen())
-                                },new MainMenuButton("Edit",FontAwesome.Solid.Edit)
+                                },new MainMenuButton("Edit",FontAwesome.Solid.Edit, Color4.Aqua)
                                 {
                                     Anchor = Anchor.Centre,
                                     Origin = Anchor.Centre,
                                     Size = new Vector2(300,300)
-                                },new MainMenuButton("Browse",FontAwesome.Solid.ListUl)
+                                },new MainMenuButton("Browse",FontAwesome.Solid.ListUl, Color4.Aqua)
                                 {
                                     Anchor = Anchor.Centre,
                                     Origin = Anchor.Centre,
                                     Size = new Vector2(300,300)
-                                },new MainMenuButton("Exit",FontAwesome.Solid.DoorOpen)
+                                },new MainMenuButton("Exit",FontAwesome.Solid.DoorOpen, Color4.Aqua)
                                 {
                                     Anchor = Anchor.Centre,
                                     Origin = Anchor.Centre,

@@ -24,66 +24,26 @@ namespace maisim.Game.Component
         private DrawableSample drawableClickSample;
         private readonly string buttonText;
         private readonly IconUsage buttonIcon;
+        private Color4 buttonColor;
 
-        public MainMenuButton(string buttonText, IconUsage buttonIcon)
+        public MainMenuButton(string buttonText, IconUsage buttonIcon, Color4 buttonColor)
         {
             this.buttonText = buttonText;
             this.buttonIcon = buttonIcon;
+            this.buttonColor = buttonColor;
         }
 
         [BackgroundDependencyLoader]
         private void load(ISampleStore sampleStore)
         {
-            InternalChild = new CircularContainer
+            InternalChild = new Container()
             {
-                Anchor = Anchor.Centre,
-                Origin = Anchor.Centre,
-                Size = new Vector2(250, 250),
-                Children = new Drawable[]
+                new Box()
                 {
-                    new Circle
-                    {
-                        RelativeSizeAxes = Axes.Both,
-                        Anchor = Anchor.Centre,
-                        Origin = Anchor.Centre,
-                        Colour = Color4Extensions.FromHex("73bfe9"),
-                        BorderThickness = 10,
-                        BorderColour = Color4.White,
-                        Masking = true,
-                    },
-                    new GridContainer
-                    {
-                        RelativeSizeAxes = Axes.Both,
-                        RowDimensions = new[]
-                        {
-                            new Dimension(GridSizeMode.Absolute, 175),
-                            new Dimension(GridSizeMode.Absolute, 75),
-                        },
-                        Content = new[]
-                        {
-                            new Drawable[]
-                            {
-                                new SpriteIcon
-                                {
-                                    Anchor = Anchor.Centre,
-                                    Origin = Anchor.Centre,
-                                    Icon = buttonIcon,
-                                    Size = new Vector2(80,80),
-                                    Colour = Colour4.White
-                                }
-                            },new Drawable[]
-                            {
-                                new MaisimSpriteText
-                                {
-                                    Text = buttonText,
-                                    Font = MaisimFont.GetFont(size: 40f),
-                                    Anchor = Anchor.TopCentre,
-                                    Origin = Anchor.TopCentre,
-                                    Colour = Color4.White
-                                }
-                            }
-                        }
-                    }
+                    Anchor = Anchor.CentreRight,
+                    Origin = Anchor.CentreRight,
+                    RelativeSizeAxes = Axes.Both,
+                    Colour = buttonColor
                 }
             };
 
