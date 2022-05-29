@@ -14,62 +14,62 @@ namespace maisim.Game.Scores
                 return ScoreRank.SSSPlus;
             }
 
-            if (accuracy >= 100 && accuracy <= 100.49f)
+            if (accuracy >= 100)
             {
                 return ScoreRank.SSS;
             }
 
-            if (accuracy >= 99.5f && accuracy <= 99.99f)
+            if (accuracy >= 99.5f)
             {
                 return ScoreRank.SSPlus;
             }
 
-            if (accuracy >= 99 && accuracy <= 99.49f)
+            if (accuracy >= 99)
             {
                 return ScoreRank.SS;
             }
 
-            if (accuracy >= 98 && accuracy <= 98.99f)
+            if (accuracy >= 98)
             {
                 return ScoreRank.SPlus;
             }
 
-            if (accuracy >= 97 && accuracy <= 97.99f)
+            if (accuracy >= 97)
             {
                 return ScoreRank.S;
             }
 
-            if (accuracy >= 94 && accuracy <= 96.99f)
+            if (accuracy >= 94)
             {
                 return ScoreRank.AAA;
             }
 
-            if (accuracy >= 90 && accuracy <= 93.99f)
+            if (accuracy >= 90)
             {
                 return ScoreRank.AA;
             }
 
-            if (accuracy >= 80 && accuracy <= 89.99f)
+            if (accuracy >= 80)
             {
                 return ScoreRank.A;
             }
 
-            if (accuracy >= 75 && accuracy <= 79.99f)
+            if (accuracy >= 75)
             {
                 return ScoreRank.BBB;
             }
 
-            if (accuracy >= 70 && accuracy <= 74.99f)
+            if (accuracy >= 70)
             {
                 return ScoreRank.BB;
             }
 
-            if (accuracy >= 60 && accuracy <= 69.99f)
+            if (accuracy >= 60)
             {
                 return ScoreRank.B;
             }
 
-            if (accuracy >= 50 && accuracy <= 59.99f)
+            if (accuracy >= 50)
             {
                 return ScoreRank.C;
             }
