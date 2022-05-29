@@ -74,12 +74,8 @@ namespace maisim.Game.Scores
                 return ScoreRank.C;
             }
 
-            if (accuracy <= 49.99f)
-            {
-                return ScoreRank.D;
-            }
+            return ScoreRank.D;
 
-            throw new ArgumentOutOfRangeException(nameof(accuracy));
         }
     }
 }
