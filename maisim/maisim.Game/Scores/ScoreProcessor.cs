@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace maisim.Game.Scores
+﻿namespace maisim.Game.Scores
 {
     /// <summary>
     /// Class that represent as the score calculator.
