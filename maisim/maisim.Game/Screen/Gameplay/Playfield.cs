@@ -4,6 +4,7 @@ using System.Linq;
 using maisim.Game.Component.Gameplay.Notes;
 using osu.Framework.Allocation;
 using osu.Framework.Graphics;
+using osu.Framework.Graphics.Containers;
 using osuTK;
 
 namespace maisim.Game.Screen.Gameplay
@@ -11,7 +12,7 @@ namespace maisim.Game.Screen.Gameplay
     /// <summary>
     /// A main playfield that contains all the notes and manages their rendering.
     /// </summary>
-    public class Playfield : osu.Framework.Screens.Screen
+    public class Playfield : Container
     {
         public const float SPAWNER_MULTIPLIER = 75f;
 
@@ -29,7 +30,7 @@ namespace maisim.Game.Screen.Gameplay
         [BackgroundDependencyLoader]
         private void load()
         {
-
+            RelativeSizeAxes = Axes.Both;
         }
 
         /// <summary>
@@ -85,14 +86,6 @@ namespace maisim.Game.Screen.Gameplay
 
         protected override void Update()
         {
-            // Add note from the pool to the playfield drawable
-            if (NotesPool != null)
-            {
-                foreach (DrawableNote note in NotesPool.ToList())
-                {
-                    spawnNoteFromPool(note);
-                }
-            }
 
             // Update the position of the notes
             foreach (Drawable note in InternalChildren.ToList())
