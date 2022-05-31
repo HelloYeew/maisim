@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using maisim.Game.Component.Gameplay.Notes;
 using osu.Framework.Allocation;
 using osu.Framework.Graphics;
@@ -39,7 +38,7 @@ namespace maisim.Game.Screen.Gameplay
         /// <param name="note">A desired <see cref="DrawableNote"/>.</param>
         public void SpawnNote(DrawableNote note)
         {
-            AddInternal(note);
+            Add(note);
         }
 
         /// <summary>
@@ -48,7 +47,7 @@ namespace maisim.Game.Screen.Gameplay
         /// <param name="lane">The <see cref="NoteLane"/> that the <see cref="DrawableTapNote"/> want to spawn.</param>
         public void SpawnTapNote(NoteLane lane)
         {
-            AddInternal(new DrawableTapNote
+            Add(new DrawableTapNote
             {
                 Position = new Vector2(
                     -(SPAWNER_MULTIPLIER *
@@ -56,54 +55,10 @@ namespace maisim.Game.Screen.Gameplay
                     -(SPAWNER_MULTIPLIER *
                       (float)Math.Sin((NoteLaneExtension.GetAngle(lane) + 90f) * (float)(Math.PI / 180)))
                 ),
-                Lane = lane
+                Lane = lane,
+                TargetTime = Clock.CurrentTime + TIME_NOTE_APPEARS + 1
             });
         }
 
-        /// <summary>
-        /// Spawn the note from the pool to the playfield and remove it from the pool.
-        /// </summary>
-        /// <param name="note">The target note</param>
-        private void spawnNoteFromPool(DrawableNote note)
-        {
-            // We have a lot of note type so we need to check on its type before we can update it
-            if (note is DrawableTapNote tapNote)
-            {
-                if (tapNote.TargetTime != 0f && Clock.TimeInfo.Current >= tapNote.TargetTime - TIME_NOTE_APPEARS)
-                {
-                    // Add note to the drawable and remove it from the pool
-                    note.Position = new Vector2(
-                        -(SPAWNER_MULTIPLIER *
-                          (float)Math.Cos((NoteLaneExtension.GetAngle(tapNote.Lane) + 90f) * (float)(Math.PI / 180))),
-                        -(SPAWNER_MULTIPLIER *
-                          (float)Math.Sin((NoteLaneExtension.GetAngle(tapNote.Lane) + 90f) * (float)(Math.PI / 180)))
-                    );
-                    AddInternal(note);
-                    NotesPool.Remove(tapNote);
-                }
-            }
-        }
-
-        protected override void Update()
-        {
-
-            // Update the position of the notes
-            foreach (Drawable note in InternalChildren.ToList())
-            {
-                if (note is DrawableNote drawableNote)
-                {
-                    if (drawableNote.CanDespawn)
-                    {
-                        Scheduler.AddDelayed(() => RemoveInternal(drawableNote), 500);
-                    }
-                    else
-                    {
-                        drawableNote.UpdatePosition(this);
-                    }
-                }
-            }
-
-            base.Update();
-        }
     }
 }

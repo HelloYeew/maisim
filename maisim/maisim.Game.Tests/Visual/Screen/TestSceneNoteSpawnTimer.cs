@@ -1,7 +1,9 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using maisim.Game.Component.Gameplay.Notes;
 using maisim.Game.Screen.Gameplay;
 using NUnit.Framework;
+using osu.Framework.Allocation;
 using osu.Framework.Graphics;
 
 namespace maisim.Game.Tests.Visual.Screen;
@@ -10,43 +12,22 @@ public class TestSceneNoteSpawnTimer : maisimTestScene
 {
     private PlayfieldScreen playfieldScreen;
 
-    [SetUp]
-    public void SetUp()
-    {
-        Add(playfieldScreen = new PlayfieldScreen {RelativeSizeAxes = Axes.Both});
 
-        playfieldScreen.Playfield.NotesPool = new List<DrawableNote>
-        {
-            new DrawableTapNote()
+    [BackgroundDependencyLoader]
+    private void load()
+    {
+        Add(playfieldScreen = new PlayfieldScreen { RelativeSizeAxes = Axes.Both });
+        AddStep("spawn notes", spawnNotes);
+    }
+
+    private void spawnNotes()
+    {
+        playfieldScreen.Playfield.Children = Enumerable.Range(0, (int)NoteLane.Lane8).Select<int, Drawable>(i =>
+            new DrawableTapNote
             {
-                Lane = NoteLane.Lane1,
-                TargetTime = 5000f
-            },
-            new DrawableTapNote()
-            {
-                Lane = NoteLane.Lane2,
-                TargetTime = 7000f
-            },
-            new DrawableTapNote()
-            {
-                Lane = NoteLane.Lane3,
-                TargetTime = 9000f
-            },
-            new DrawableTapNote()
-            {
-                Lane = NoteLane.Lane4,
-                TargetTime = 11000f
-            },
-            new DrawableTapNote()
-            {
-                Lane = NoteLane.Lane5,
-                TargetTime = 13000f
-            },
-            new DrawableTapNote()
-            {
-                Lane = NoteLane.Lane6,
-                TargetTime = 15000f
-            },
-        };
+                Lane = (NoteLane)i,
+                TargetTime = Clock.CurrentTime + i * 1000
+            }
+        ).ToList().AsReadOnly();
     }
 }

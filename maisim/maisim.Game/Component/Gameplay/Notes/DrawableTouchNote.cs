@@ -66,11 +66,6 @@ namespace maisim.Game.Component.Gameplay.Notes
             };
         }
 
-        public override void UpdatePosition(Playfield playfield)
-        {
-
-        }
-
         public override bool CanDespawn => false;
     }
 }

@@ -18,15 +18,6 @@ namespace maisim.Game.Tests.Visual.Screen
         public void SetUp()
         {
             Add(playfieldScreen = new PlayfieldScreen {RelativeSizeAxes = Axes.Both});
-
-            AddStep("random spawn note", () => playfieldScreen.Playfield.SpawnNote(new DrawableTouchNote
-            {
-                Anchor = Anchor.Centre,
-                Origin = Anchor.Centre,
-                Position = new Vector2(random.NextFloatInRange(-300.0f, 300.0f),
-                    random.NextFloatInRange(-300.0f, 300.0f)),
-                Scale = new Vector2(1.5f)
-            }));
             AddStep("spawn tap note on lane 1", () => playfieldScreen.Playfield.SpawnTapNote(NoteLane.Lane1));
             AddStep("spawn tap note on lane 2", () => playfieldScreen.Playfield.SpawnTapNote(NoteLane.Lane2));
             AddStep("spawn tap note on lane 3", () => playfieldScreen.Playfield.SpawnTapNote(NoteLane.Lane3));
