@@ -45,6 +45,6 @@ namespace maisim.Game.Component.Gameplay.Notes
         /// Check that the note can start to despawn state.
         /// </summary>
         /// <returns>True if the note can start despawn state.</returns>
-        public abstract bool CanDespawn();
+        public abstract bool CanDespawn { get; }
     }
 }

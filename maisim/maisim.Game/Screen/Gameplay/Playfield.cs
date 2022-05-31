@@ -92,7 +92,7 @@ namespace maisim.Game.Screen.Gameplay
             {
                 if (note is DrawableNote drawableNote)
                 {
-                    if (drawableNote.CanDespawn())
+                    if (drawableNote.CanDespawn)
                     {
                         Scheduler.AddDelayed(() => RemoveInternal(drawableNote), 500);
                     }

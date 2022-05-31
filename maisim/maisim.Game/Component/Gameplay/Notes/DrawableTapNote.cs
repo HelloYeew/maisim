@@ -49,9 +49,17 @@ namespace maisim.Game.Component.Gameplay.Notes
                     NoteLaneExtension.GetSpawnerPosition(Lane),
                     NoteLaneExtension.GetSensorPosition(Lane)) / Playfield.TIME_NOTE_APPEARS;
                 Position = new Vector2(
-                    (float) (Position.X + ((float)(speed * (-(float)Math.Cos((NoteLaneExtension.GetAngle(Lane) + 90f) * (float)(Math.PI / 180)))) * playfield.Clock.ElapsedFrameTime)),
-                    (float) (Position.Y + ((float)(speed * (-(float)Math.Sin((NoteLaneExtension.GetAngle(Lane) + 90f) * (float)(Math.PI / 180)))) * playfield.Clock.ElapsedFrameTime))
-                    );
+                    (float)(Position.X +
+                            ((float)(speed *
+                                     (-(float)Math.Cos(
+                                         (NoteLaneExtension.GetAngle(Lane) + 90f) * (float)(Math.PI / 180)))) *
+                             playfield.Clock.ElapsedFrameTime)),
+                    (float)(Position.Y +
+                            ((float)(speed *
+                                     (-(float)Math.Sin(
+                                         (NoteLaneExtension.GetAngle(Lane) + 90f) * (float)(Math.PI / 180)))) *
+                             playfield.Clock.ElapsedFrameTime))
+                );
             }
             else
             {
@@ -59,23 +67,29 @@ namespace maisim.Game.Component.Gameplay.Notes
                 // Will remove it when the note spawn system is complete.
                 Position += new Vector2(
                     -(Playfield.NOTE_SPEED * (float)Math.Cos((NoteLaneExtension.GetAngle(Lane) + 90f) *
-                                                   (float)(Math.PI / 180))),
+                                                             (float)(Math.PI / 180))),
                     -(Playfield.NOTE_SPEED * (float)Math.Sin((NoteLaneExtension.GetAngle(Lane) + 90f) *
-                                                   (float)(Math.PI / 180)))
+                                                             (float)(Math.PI / 180)))
                 );
             }
         }
 
-        public override bool CanDespawn()
+        public override bool CanDespawn
         {
-            if (MathUtils.EuclideanDistance(NoteLaneExtension.GetSpawnerPosition(Lane), NoteLaneExtension.GetSensorPosition(Lane)) + Playfield.DISTANCE_ON_DESPAWN <
-                MathUtils.EuclideanDistance(Position, NoteLaneExtension.GetSpawnerPosition(Lane)))
+            get
             {
-                // Enter despawning state
-                this.FadeOut(50, Easing.InBounce);
-                return true;
+                if (MathUtils.EuclideanDistance(NoteLaneExtension.GetSpawnerPosition(Lane),
+                        NoteLaneExtension.GetSensorPosition(Lane)) + Playfield.DISTANCE_ON_DESPAWN <
+                    MathUtils.EuclideanDistance(Position, NoteLaneExtension.GetSpawnerPosition(Lane)))
+                {
+                    // Enter despawning state
+                    this.FadeOut(50, Easing.InBounce);
+                    return true;
+                }
+
+                return false;
             }
-            return false;
         }
+
     }
 }

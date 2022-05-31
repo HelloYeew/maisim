@@ -30,9 +30,6 @@ namespace maisim.Game.Component.Gameplay.Notes
 
         }
 
-        public override bool CanDespawn()
-        {
-            return false;
-        }
+        public override bool CanDespawn => false;
     }
 }
