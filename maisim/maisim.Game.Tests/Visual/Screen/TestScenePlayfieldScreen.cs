@@ -4,7 +4,6 @@ using maisim.Game.Screen.Gameplay;
 using maisim.Game.Utils;
 using NUnit.Framework;
 using osu.Framework.Graphics;
-using osuTK;
 
 namespace maisim.Game.Tests.Visual.Screen
 {

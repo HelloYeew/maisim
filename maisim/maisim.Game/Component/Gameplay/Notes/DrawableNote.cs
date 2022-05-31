@@ -17,7 +17,7 @@ namespace maisim.Game.Component.Gameplay.Notes
     {
         public NoteLane Lane { get; set; }
 
-        protected readonly Bindable<NoteActivationState> State = new Bindable<NoteActivationState>(NoteActivationState.Inactive);
+        protected readonly Bindable<NoteActivationState> State = new Bindable<NoteActivationState>();
 
         [BackgroundDependencyLoader]
         private void load(TextureStore textureStore)
