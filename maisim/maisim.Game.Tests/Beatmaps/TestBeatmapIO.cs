@@ -3,102 +3,103 @@ using maisim.Game.Beatmaps;
 using maisim.Game.Component.Gameplay.Notes;
 using NUnit.Framework;
 
-namespace maisim.Game.Tests.Beatmaps;
-
-public class TestBeatmapIO
+namespace maisim.Game.Tests.Beatmaps
 {
-    private BeatmapSet mockBeatmapSet;
-
-    private TrackMetadata mockTrackMetadata;
-
-    private Beatmap mockBeatmapOne;
-
-    private Beatmap mockBeatmapTwo;
-
-    private List<DrawableNote> mockNoteList;
-
-    public TestBeatmapIO()
+    public class TestBeatmapIO
     {
-        mockBeatmapSet = new BeatmapSet()
-        {
-            DatabaseID = 1,
-            Creator = "Yeew",
-            BeatmapSetID = 1,
-            AudioFileName = "test.mp3",
-            PreviewTime = 555
-        };
+        private BeatmapSet mockBeatmapSet;
 
-        mockTrackMetadata = new TrackMetadata()
-        {
-            Title = "Lemon",
-            TitleUnicode = "Lemon",
-            Artist = "Kenshi Yonezu",
-            ArtistUnicode = "米津玄師",
-            Source = "sauce",
-            Bpm = 80,
-            CoverPath = "lemon.jpg",
-            ConnectBeatmapSet = mockBeatmapSet
-        };
+        private TrackMetadata mockTrackMetadata;
 
-        mockBeatmapSet.TrackMetadata = mockTrackMetadata;
+        private Beatmap mockBeatmapOne;
 
-        mockBeatmapOne = new Beatmap
-        {
-            DatabaseID = 1,
-            TrackMetadata = mockTrackMetadata,
-            DifficultyLevel = DifficultyLevel.Basic,
-            DifficultyRating = 10,
-            NoteDesigner = "Yeew",
-            BeatmapID = 1
-        };
+        private Beatmap mockBeatmapTwo;
 
-        mockBeatmapTwo = new Beatmap
-        {
-            DatabaseID = 2,
-            TrackMetadata = mockTrackMetadata,
-            DifficultyLevel = DifficultyLevel.Advanced,
-            DifficultyRating = 10,
-            NoteDesigner = "Yeew",
-            BeatmapID = 2
-        };
+        private List<DrawableNote> mockNoteList;
 
-        mockBeatmapSet.Beatmaps = new List<Beatmap>
+        public TestBeatmapIO()
         {
-            mockBeatmapOne,
-            mockBeatmapTwo
-        };
-
-        mockNoteList = new List<DrawableNote>()
-        {
-            new DrawableTapNote()
+            mockBeatmapSet = new BeatmapSet()
             {
-                Lane = NoteLane.Lane1,
-                TargetTime = 5.2323
-            },
-            new DrawableTapNote()
-            {
-                Lane = NoteLane.Lane2,
-                TargetTime = 23.23
-            },
-            new DrawableTapNote()
-            {
-                Lane = NoteLane.Lane4,
-                TargetTime = 44.44
-            },
-            new DrawableTapNote()
-            {
-                Lane = NoteLane.Lane3,
-                TargetTime = 55.445
-            },
-        };
-    }
+                DatabaseID = 1,
+                Creator = "Yeew",
+                BeatmapSetID = 1,
+                AudioFileName = "test.mp3",
+                PreviewTime = 555
+            };
 
-    [Test]
-    public void TestEncodeBeatmap()
-    {
-        BeatmapEncoder encoder = new BeatmapEncoder(mockBeatmapSet, mockTrackMetadata);
-        encoder.AddBeatmap(mockBeatmapOne, mockNoteList);
-        encoder.AddBeatmap(mockBeatmapTwo, mockNoteList);
-        encoder.Encode();
+            mockTrackMetadata = new TrackMetadata()
+            {
+                Title = "Lemon",
+                TitleUnicode = "Lemon",
+                Artist = "Kenshi Yonezu",
+                ArtistUnicode = "米津玄師",
+                Source = "sauce",
+                Bpm = 80,
+                CoverPath = "lemon.jpg",
+                ConnectBeatmapSet = mockBeatmapSet
+            };
+
+            mockBeatmapSet.TrackMetadata = mockTrackMetadata;
+
+            mockBeatmapOne = new Beatmap
+            {
+                DatabaseID = 1,
+                TrackMetadata = mockTrackMetadata,
+                DifficultyLevel = DifficultyLevel.Basic,
+                DifficultyRating = 10,
+                NoteDesigner = "Yeew",
+                BeatmapID = 1
+            };
+
+            mockBeatmapTwo = new Beatmap
+            {
+                DatabaseID = 2,
+                TrackMetadata = mockTrackMetadata,
+                DifficultyLevel = DifficultyLevel.Advanced,
+                DifficultyRating = 10,
+                NoteDesigner = "Yeew",
+                BeatmapID = 2
+            };
+
+            mockBeatmapSet.Beatmaps = new List<Beatmap>
+            {
+                mockBeatmapOne,
+                mockBeatmapTwo
+            };
+
+            mockNoteList = new List<DrawableNote>()
+            {
+                new DrawableTapNote()
+                {
+                    Lane = NoteLane.Lane1,
+                    TargetTime = 5.2323
+                },
+                new DrawableTapNote()
+                {
+                    Lane = NoteLane.Lane2,
+                    TargetTime = 23.23
+                },
+                new DrawableTapNote()
+                {
+                    Lane = NoteLane.Lane4,
+                    TargetTime = 44.44
+                },
+                new DrawableTapNote()
+                {
+                    Lane = NoteLane.Lane3,
+                    TargetTime = 55.445
+                },
+            };
+        }
+
+        [Test]
+        public void TestEncodeBeatmap()
+        {
+            BeatmapEncoder encoder = new BeatmapEncoder(mockBeatmapSet, mockTrackMetadata);
+            encoder.AddBeatmap(mockBeatmapOne, mockNoteList);
+            encoder.AddBeatmap(mockBeatmapTwo, mockNoteList);
+            encoder.Encode();
+        }
     }
 }
