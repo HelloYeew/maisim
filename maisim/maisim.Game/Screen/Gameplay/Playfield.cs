@@ -50,7 +50,7 @@ namespace maisim.Game.Screen.Gameplay
             Add(new DrawableTapNote
             {
                 Lane = lane,
-                TargetTime = Clock.CurrentTime + TIME_NOTE_APPEARS + 1
+                TargetTime = Clock.CurrentTime + TIME_NOTE_APPEARS + 100
             });
         }
 
