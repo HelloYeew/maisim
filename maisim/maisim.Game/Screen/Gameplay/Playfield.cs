@@ -49,12 +49,6 @@ namespace maisim.Game.Screen.Gameplay
         {
             Add(new DrawableTapNote
             {
-                Position = new Vector2(
-                    -(SPAWNER_MULTIPLIER *
-                      (float)Math.Cos((NoteLaneExtension.GetAngle(lane) + 90f) * (float)(Math.PI / 180))),
-                    -(SPAWNER_MULTIPLIER *
-                      (float)Math.Sin((NoteLaneExtension.GetAngle(lane) + 90f) * (float)(Math.PI / 180)))
-                ),
                 Lane = lane,
                 TargetTime = Clock.CurrentTime + TIME_NOTE_APPEARS + 1
             });
