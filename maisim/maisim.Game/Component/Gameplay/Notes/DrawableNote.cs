@@ -15,6 +15,9 @@ namespace maisim.Game.Component.Gameplay.Notes
     /// </summary>
     public abstract class DrawableNote : CompositeDrawable
     {
+        public readonly double FADE_IN_TIME = 75f;
+        public readonly double FADE_OUT_TIME = 50f;
+
         public NoteLane Lane { get; set; }
 
         protected readonly Bindable<NoteActivationState> State = new Bindable<NoteActivationState>();
@@ -61,10 +64,14 @@ namespace maisim.Game.Component.Gameplay.Notes
         {
             base.Update();
 
+            // Start spawning animation but not update its position.
+            if (Clock.TimeInfo.Current >= TargetTime - Playfield.TIME_NOTE_APPEARS - FADE_IN_TIME && State.Value == NoteActivationState.Inactive)
+                State.Value = NoteActivationState.Spawning;
+
             // note active state should become Active when the clock time reaches near the target time
-            if (Clock.TimeInfo.Current >= TargetTime - Playfield.TIME_NOTE_APPEARS && State.Value == NoteActivationState.Inactive)
+            if (Clock.TimeInfo.Current >= TargetTime - Playfield.TIME_NOTE_APPEARS && State.Value == NoteActivationState.Spawning)
                 State.Value = NoteActivationState.Active;
-            
+
             if (State.Value == NoteActivationState.Active)
                 UpdatePosition();
 
@@ -80,8 +87,8 @@ namespace maisim.Game.Component.Gameplay.Notes
         {
             switch (e.NewValue)
             {
-                case NoteActivationState.Active:
-                    this.FadeIn(75, Easing.InBounce);
+                case NoteActivationState.Spawning:
+                    this.FadeIn(FADE_IN_TIME, Easing.InBounce);
                     break;
 
                 case NoteActivationState.Inactive:
@@ -123,6 +130,7 @@ namespace maisim.Game.Component.Gameplay.Notes
     public enum NoteActivationState
     {
         Inactive, // Not active yet / not active anymore
+        Spawning,
         Active,
         Judged, // Judged, not active anymore
     }
