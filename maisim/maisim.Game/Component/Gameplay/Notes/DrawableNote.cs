@@ -16,7 +16,6 @@ namespace maisim.Game.Component.Gameplay.Notes
     public abstract class DrawableNote : CompositeDrawable
     {
         public readonly double FADE_IN_TIME = 75f;
-        public readonly double FADE_OUT_TIME = 50f;
 
         public NoteLane Lane { get; set; }
 
