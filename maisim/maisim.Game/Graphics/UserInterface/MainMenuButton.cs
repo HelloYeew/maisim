@@ -34,30 +34,28 @@ namespace maisim.Game.Component
         [BackgroundDependencyLoader]
         private void load(ISampleStore sampleStore)
         {
-            InternalChild = new CircularContainer
+            InternalChild = new Container
             {
                 Anchor = Anchor.Centre,
                 Origin = Anchor.Centre,
-                Size = new Vector2(250, 250),
+                Size = new Vector2(540, 80),
+                CornerRadius = 5,
                 Children = new Drawable[]
                 {
-                    new Circle
+                    new Box
                     {
                         RelativeSizeAxes = Axes.Both,
-                        Anchor = Anchor.Centre,
-                        Origin = Anchor.Centre,
-                        Colour = Color4Extensions.FromHex("73bfe9"),
-                        BorderThickness = 10,
-                        BorderColour = Color4.White,
-                        Masking = true,
+                        Anchor = Anchor.CentreRight,
+                        Origin = Anchor.CentreRight,
+                        Colour = Color4Extensions.FromHex("73bfe9")
                     },
                     new GridContainer
                     {
                         RelativeSizeAxes = Axes.Both,
-                        RowDimensions = new[]
+                        ColumnDimensions = new[]
                         {
-                            new Dimension(GridSizeMode.Absolute, 175),
-                            new Dimension(GridSizeMode.Absolute, 75),
+                            new Dimension(GridSizeMode.Absolute, 100),
+                            new Dimension(GridSizeMode.Absolute, 175)
                         },
                         Content = new[]
                         {
@@ -66,21 +64,18 @@ namespace maisim.Game.Component
                                 new SpriteIcon
                                 {
                                     Anchor = Anchor.Centre,
-                                    Origin = Anchor.Centre,
+                                    Origin = Anchor.CentreLeft,
                                     Icon = buttonIcon,
-                                    Size = new Vector2(80,80),
+                                    Size = new Vector2(50),
                                     Colour = Colour4.White
-                                }
-                            },new Drawable[]
-                            {
-                                new MaisimSpriteText
+                                },new MaisimSpriteText
                                 {
                                     Text = buttonText,
                                     Font = MaisimFont.GetFont(size: 40f),
-                                    Anchor = Anchor.TopCentre,
-                                    Origin = Anchor.TopCentre,
+                                    Anchor = Anchor.CentreLeft,
+                                    Origin = Anchor.CentreLeft,
                                     Colour = Color4.White
-                                }
+                                },
                             }
                         }
                     }

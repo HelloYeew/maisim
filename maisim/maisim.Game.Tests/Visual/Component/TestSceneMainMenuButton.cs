@@ -16,7 +16,7 @@ namespace maisim.Game.Tests.Visual.Component
             {
                 Anchor = Anchor.Centre,
                 Origin = Anchor.Centre,
-                Size = new Vector2(300),
+                Size = new Vector2(600),
                 Masking = true,
                 Children = new Drawable[]
                 {
