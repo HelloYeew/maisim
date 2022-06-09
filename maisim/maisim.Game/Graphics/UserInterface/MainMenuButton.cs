@@ -1,4 +1,3 @@
-using maisim.Game.Graphics;
 using maisim.Game.Graphics.Sprites;
 using osu.Framework.Allocation;
 using osu.Framework.Audio.Sample;
@@ -13,7 +12,7 @@ using osu.Framework.Input.Events;
 using osuTK;
 using osuTK.Graphics;
 
-namespace maisim.Game.Component
+namespace maisim.Game.Graphics.UserInterface
 {
     /// <summary>
     /// A button used on the main menu screen.
@@ -41,7 +40,10 @@ namespace maisim.Game.Component
                 Anchor = Anchor.Centre,
                 Origin = Anchor.Centre,
                 Size = new Vector2(500, 70),
-                CornerRadius = 5,
+                Masking = true,
+                CornerRadius = 35,
+                BorderThickness = 5,
+                BorderColour = Color4.White,
                 Children = new Drawable[]
                 {
                     new Box
@@ -57,7 +59,7 @@ namespace maisim.Game.Component
                         ColumnDimensions = new[]
                         {
                             new Dimension(GridSizeMode.Absolute, 100),
-                            new Dimension(GridSizeMode.Absolute, 300)
+                            new Dimension(GridSizeMode.Absolute, 400)
                         },
                         Content = new[]
                         {
@@ -75,7 +77,7 @@ namespace maisim.Game.Component
                                             Anchor = Anchor.Centre,
                                             Origin = Anchor.Centre,
                                             Icon = buttonIcon,
-                                            Size = new Vector2(50),
+                                            Size = new Vector2(40),
                                             Colour = Color4Extensions.FromHex("ffffff")
                                         }
                                     }
