@@ -1,5 +1,4 @@
-﻿using maisim.Game.Component;
-using maisim.Game.Graphics.UserInterface;
+﻿using maisim.Game.Graphics.UserInterface;
 using osu.Framework.Allocation;
 using osu.Framework.Extensions.Color4Extensions;
 using osu.Framework.Graphics;
@@ -25,7 +24,6 @@ namespace maisim.Game.Screen
                     Anchor = Anchor.BottomRight,
                     Origin = Anchor.BottomRight,
                     Size = new Vector2(400, 400),
-                    Scale = new Vector2(0.8f),
                     Children = new Drawable[]
                     {
                         new FillFlowContainer
@@ -35,30 +33,30 @@ namespace maisim.Game.Screen
                             RelativeSizeAxes = Axes.Y,
                             RelativePositionAxes = Axes.Y,
                             Spacing = new Vector2(0, 10),
-                            Position = new Vector2(-100, 0),
+                            Position = new Vector2(-70, 0),
                             Children = new Drawable[]
                             {
                                 new MainMenuButton("Play",FontAwesome.Solid.Play,Color4Extensions.FromHex("73E99B"))
                                 {
                                     Anchor = Anchor.Centre,
                                     Origin = Anchor.Centre,
-                                    Size = new Vector2(540,80),
+                                    Size = new Vector2(400, 60),
                                     Action = () => this.Push(new SongSelectionScreen())
                                 },new MainMenuButton("Edit",FontAwesome.Solid.Edit,Color4Extensions.FromHex("E9C173"))
                                 {
                                     Anchor = Anchor.Centre,
                                     Origin = Anchor.Centre,
-                                    Size = new Vector2(540,80)
+                                    Size = new Vector2(400, 60)
                                 },new MainMenuButton("Browse",FontAwesome.Solid.ListUl,Color4Extensions.FromHex("E773E9"))
                                 {
                                     Anchor = Anchor.Centre,
                                     Origin = Anchor.Centre,
-                                    Size = new Vector2(540,80)
+                                    Size = new Vector2(400, 60)
                                 },new MainMenuButton("Exit",FontAwesome.Solid.DoorOpen,Color4Extensions.FromHex("E97373"))
                                 {
                                     Anchor = Anchor.Centre,
                                     Origin = Anchor.Centre,
-                                    Size = new Vector2(540,80)
+                                    Size = new Vector2(400, 60)
                                 }
                             }
                         }

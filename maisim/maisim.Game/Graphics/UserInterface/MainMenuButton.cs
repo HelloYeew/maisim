@@ -39,9 +39,9 @@ namespace maisim.Game.Graphics.UserInterface
             {
                 Anchor = Anchor.Centre,
                 Origin = Anchor.Centre,
-                Size = new Vector2(500, 70),
+                Size = new Vector2(400, 60),
                 Masking = true,
-                CornerRadius = 35,
+                CornerRadius = 30,
                 BorderThickness = 5,
                 BorderColour = Color4.White,
                 Children = new Drawable[]
@@ -77,7 +77,7 @@ namespace maisim.Game.Graphics.UserInterface
                                             Anchor = Anchor.Centre,
                                             Origin = Anchor.Centre,
                                             Icon = buttonIcon,
-                                            Size = new Vector2(40),
+                                            Size = new Vector2(30),
                                             Colour = Color4Extensions.FromHex("ffffff")
                                         }
                                     }
@@ -91,7 +91,7 @@ namespace maisim.Game.Graphics.UserInterface
                                         Anchor = Anchor.CentreLeft,
                                         Origin = Anchor.CentreLeft,
                                         Text = buttonText,
-                                        Font = MaisimFont.GetFont(size: 40f)
+                                        Font = MaisimFont.GetFont(size: 35f)
                                     }
                                 }
                             }
