@@ -1,9 +1,12 @@
-﻿using maisim.Game.Graphics.UserInterface;
+﻿using maisim.Game.Graphics.Sprites;
+using maisim.Game.Graphics.UserInterface;
 using osu.Framework.Allocation;
 using osu.Framework.Extensions.Color4Extensions;
 using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
+using osu.Framework.Graphics.Shapes;
 using osu.Framework.Graphics.Sprites;
+using osu.Framework.Graphics.Textures;
 using osu.Framework.Screens;
 using osuTK;
 
@@ -15,7 +18,7 @@ namespace maisim.Game.Screen
     public class MainMenuScreen : osu.Framework.Screens.Screen
     {
         [BackgroundDependencyLoader]
-        private void load()
+        private void load(TextureStore textureStore)
         {
             InternalChildren = new Drawable[]
             {
@@ -24,6 +27,7 @@ namespace maisim.Game.Screen
                     Anchor = Anchor.BottomRight,
                     Origin = Anchor.BottomRight,
                     Size = new Vector2(400, 400),
+                    Position = new Vector2(-70, 0),
                     Children = new Drawable[]
                     {
                         new FillFlowContainer
@@ -33,7 +37,6 @@ namespace maisim.Game.Screen
                             RelativeSizeAxes = Axes.Y,
                             RelativePositionAxes = Axes.Y,
                             Spacing = new Vector2(0, 10),
-                            Position = new Vector2(-70, 0),
                             Children = new Drawable[]
                             {
                                 new MainMenuButton("Play",FontAwesome.Solid.Play,Color4Extensions.FromHex("73E99B"))
@@ -61,6 +64,18 @@ namespace maisim.Game.Screen
                             }
                         }
                     }
+                }, new Sprite
+                {
+                    Anchor = Anchor.TopLeft,
+                    Origin = Anchor.TopLeft,
+                    Texture = textureStore.Get("logo"),
+                    Size = new Vector2(300),
+                    Position = new Vector2(30, 30),
+                }, new MaisimSpriteText
+                {
+                    Anchor = Anchor.BottomLeft,
+                    Origin = Anchor.BottomLeft,
+                    Text = "Maisim development build"
                 }
             };
         }
