@@ -3,7 +3,6 @@ using osu.Framework.Allocation;
 using osu.Framework.Extensions.Color4Extensions;
 using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
-using osu.Framework.Graphics.Shapes;
 using osu.Framework.Graphics.Sprites;
 using osu.Framework.Screens;
 using osuTK;
@@ -22,50 +21,43 @@ namespace maisim.Game.Screen
             {
                 new Container
                 {
-                    Anchor = Anchor.Centre,
-                    Origin = Anchor.Centre,
+                    Anchor = Anchor.BottomRight,
+                    Origin = Anchor.BottomRight,
                     Size = new Vector2(400, 400),
-                    RelativeSizeAxes = Axes.X,
+                    Scale = new Vector2(0.8f),
                     Children = new Drawable[]
                     {
-                        new Box
-                        {
-                            Anchor = Anchor.Centre,
-                            Origin = Anchor.Centre,
-                            RelativePositionAxes = Axes.Both,
-                            RelativeSizeAxes = Axes.X,
-                            Size = new Vector2(300, 300),
-                            Colour = Color4Extensions.FromHex("f5be39"),
-                        },
                         new FillFlowContainer
                         {
                             Anchor = Anchor.Centre,
                             Origin = Anchor.Centre,
-                            RelativeSizeAxes = Axes.X,
+                            RelativeSizeAxes = Axes.Y,
                             RelativePositionAxes = Axes.Y,
+                            Spacing = new Vector2(0, 10),
+                            Position = new Vector2(-100, 0),
                             Children = new Drawable[]
                             {
-                                new MainMenuButton("Play",FontAwesome.Solid.Play)
+                                new MainMenuButton("Play",FontAwesome.Solid.Play,Color4Extensions.FromHex("73E99B"))
                                 {
                                     Anchor = Anchor.Centre,
                                     Origin = Anchor.Centre,
-                                    Size = new Vector2(300,300),
+                                    Size = new Vector2(540,80),
                                     Action = () => this.Push(new SongSelectionScreen())
-                                },new MainMenuButton("Edit",FontAwesome.Solid.Edit)
+                                },new MainMenuButton("Edit",FontAwesome.Solid.Edit,Color4Extensions.FromHex("E9C173"))
                                 {
                                     Anchor = Anchor.Centre,
                                     Origin = Anchor.Centre,
-                                    Size = new Vector2(300,300)
-                                },new MainMenuButton("Browse",FontAwesome.Solid.ListUl)
+                                    Size = new Vector2(540,80)
+                                },new MainMenuButton("Browse",FontAwesome.Solid.ListUl,Color4Extensions.FromHex("E773E9"))
                                 {
                                     Anchor = Anchor.Centre,
                                     Origin = Anchor.Centre,
-                                    Size = new Vector2(300,300)
-                                },new MainMenuButton("Exit",FontAwesome.Solid.DoorOpen)
+                                    Size = new Vector2(540,80)
+                                },new MainMenuButton("Exit",FontAwesome.Solid.DoorOpen,Color4Extensions.FromHex("E97373"))
                                 {
                                     Anchor = Anchor.Centre,
                                     Origin = Anchor.Centre,
-                                    Size = new Vector2(300,300)
+                                    Size = new Vector2(540,80)
                                 }
                             }
                         }
