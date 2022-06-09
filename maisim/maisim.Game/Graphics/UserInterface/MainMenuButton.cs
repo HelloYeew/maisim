@@ -24,11 +24,13 @@ namespace maisim.Game.Component
         private DrawableSample drawableClickSample;
         private readonly string buttonText;
         private readonly IconUsage buttonIcon;
+        private readonly Color4 buttonColor;
 
-        public MainMenuButton(string buttonText, IconUsage buttonIcon)
+        public MainMenuButton(string buttonText, IconUsage buttonIcon, Color4 buttonColor)
         {
             this.buttonText = buttonText;
             this.buttonIcon = buttonIcon;
+            this.buttonColor = buttonColor;
         }
 
         [BackgroundDependencyLoader]
@@ -38,7 +40,7 @@ namespace maisim.Game.Component
             {
                 Anchor = Anchor.Centre,
                 Origin = Anchor.Centre,
-                Size = new Vector2(540, 80),
+                Size = new Vector2(500, 70),
                 CornerRadius = 5,
                 Children = new Drawable[]
                 {
@@ -47,7 +49,7 @@ namespace maisim.Game.Component
                         RelativeSizeAxes = Axes.Both,
                         Anchor = Anchor.CentreRight,
                         Origin = Anchor.CentreRight,
-                        Colour = Color4Extensions.FromHex("73bfe9")
+                        Colour = buttonColor
                     },
                     new GridContainer
                     {
@@ -55,27 +57,41 @@ namespace maisim.Game.Component
                         ColumnDimensions = new[]
                         {
                             new Dimension(GridSizeMode.Absolute, 100),
-                            new Dimension(GridSizeMode.Absolute, 175)
+                            new Dimension(GridSizeMode.Absolute, 300)
                         },
                         Content = new[]
                         {
                             new Drawable[]
                             {
-                                new SpriteIcon
+                                new Container
                                 {
-                                    Anchor = Anchor.Centre,
-                                    Origin = Anchor.CentreLeft,
-                                    Icon = buttonIcon,
-                                    Size = new Vector2(50),
-                                    Colour = Colour4.White
-                                },new MaisimSpriteText
-                                {
-                                    Text = buttonText,
-                                    Font = MaisimFont.GetFont(size: 40f),
                                     Anchor = Anchor.CentreLeft,
                                     Origin = Anchor.CentreLeft,
-                                    Colour = Color4.White
-                                },
+                                    Size = new Vector2(100, 70),
+                                    Children = new Drawable[]
+                                    {
+                                        new SpriteIcon
+                                        {
+                                            Anchor = Anchor.Centre,
+                                            Origin = Anchor.Centre,
+                                            Icon = buttonIcon,
+                                            Size = new Vector2(50),
+                                            Colour = Color4Extensions.FromHex("ffffff")
+                                        }
+                                    }
+                                },new Container
+                                {
+                                    Anchor = Anchor.CentreLeft,
+                                    Origin = Anchor.CentreLeft,
+                                    Size = new Vector2(400, 70),
+                                    Child = new MaisimSpriteText()
+                                    {
+                                        Anchor = Anchor.CentreLeft,
+                                        Origin = Anchor.CentreLeft,
+                                        Text = buttonText,
+                                        Font = MaisimFont.GetFont(size: 40f)
+                                    }
+                                }
                             }
                         }
                     }
