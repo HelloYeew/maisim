@@ -16,6 +16,12 @@ namespace maisim.Game.Screen
     /// </summary>
     public class MainMenuScreen : osu.Framework.Screens.Screen
     {
+        private Sprite maisimLogo;
+        private MainMenuButton playButton;
+        private MainMenuButton editButton;
+        private MainMenuButton browseButton;
+        private MainMenuButton exitButton;
+
         [BackgroundDependencyLoader]
         private void load(TextureStore textureStore)
         {
@@ -38,38 +44,49 @@ namespace maisim.Game.Screen
                             Spacing = new Vector2(0, 10),
                             Children = new Drawable[]
                             {
-                                new MainMenuButton("Play",FontAwesome.Solid.Play,Color4Extensions.FromHex("73E99B"))
+                                playButton = new MainMenuButton("Play",FontAwesome.Solid.Play,Color4Extensions.FromHex("73E99B"))
                                 {
                                     Anchor = Anchor.Centre,
                                     Origin = Anchor.Centre,
                                     Size = new Vector2(400, 60),
+                                    Scale = new Vector2(0),
                                     Action = () => this.Push(new SongSelectionScreen())
-                                },new MainMenuButton("Edit",FontAwesome.Solid.Edit,Color4Extensions.FromHex("E9C173"))
+                                },editButton = new MainMenuButton("Edit",FontAwesome.Solid.Edit,Color4Extensions.FromHex("E9C173"))
                                 {
                                     Anchor = Anchor.Centre,
                                     Origin = Anchor.Centre,
-                                    Size = new Vector2(400, 60)
-                                },new MainMenuButton("Browse",FontAwesome.Solid.ListUl,Color4Extensions.FromHex("E773E9"))
+                                    Size = new Vector2(400, 60),
+                                    Scale = new Vector2(0)
+                                },browseButton = new MainMenuButton("Browse",FontAwesome.Solid.ListUl,Color4Extensions.FromHex("E773E9"))
                                 {
                                     Anchor = Anchor.Centre,
                                     Origin = Anchor.Centre,
-                                    Size = new Vector2(400, 60)
-                                },new MainMenuButton("Exit",FontAwesome.Solid.DoorOpen,Color4Extensions.FromHex("E97373"))
+                                    Size = new Vector2(400, 60),
+                                    Scale = new Vector2(0)
+                                },exitButton = new MainMenuButton("Exit",FontAwesome.Solid.DoorOpen,Color4Extensions.FromHex("E97373"))
                                 {
                                     Anchor = Anchor.Centre,
                                     Origin = Anchor.Centre,
-                                    Size = new Vector2(400, 60)
+                                    Size = new Vector2(400, 60),
+                                    Scale = new Vector2(0)
                                 }
                             }
                         }
                     }
-                }, new Sprite
+                },new Container()
                 {
                     Anchor = Anchor.TopLeft,
                     Origin = Anchor.TopLeft,
-                    Texture = textureStore.Get("logo"),
                     Size = new Vector2(300),
                     Position = new Vector2(30, 30),
+                    Child = maisimLogo = new Sprite
+                    {
+                        Anchor = Anchor.Centre,
+                        Origin = Anchor.Centre,
+                        Texture = textureStore.Get("logo"),
+                        Size = new Vector2(300),
+                        Scale = new Vector2(0)
+                    }
                 }, new MaisimSpriteText
                 {
                     Anchor = Anchor.BottomLeft,
@@ -81,7 +98,21 @@ namespace maisim.Game.Screen
 
         public override void OnEntering(ScreenTransitionEvent e)
         {
-            this.FadeInFromZero(500);
+            maisimLogo.ScaleTo(1, 1000, Easing.OutQuint);
+            playButton.ScaleTo(1, 700, Easing.OutQuint);
+            editButton.ScaleTo(1, 800, Easing.OutQuint);
+            browseButton.ScaleTo(1, 900, Easing.OutQuint);
+            exitButton.ScaleTo(1, 1000, Easing.OutQuint);
+        }
+
+        public override bool OnExiting(ScreenExitEvent e)
+        {
+            maisimLogo.ScaleTo(0, 1000, Easing.OutQuint);
+            playButton.ScaleTo(0, 1000, Easing.OutQuint);
+            editButton.ScaleTo(0, 900, Easing.OutQuint);
+            browseButton.ScaleTo(0, 800, Easing.OutQuint);
+            exitButton.ScaleTo(0, 700, Easing.OutQuint);
+            return base.OnExiting(e);
         }
     }
 }
