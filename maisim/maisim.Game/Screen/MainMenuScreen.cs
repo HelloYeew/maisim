@@ -21,6 +21,7 @@ namespace maisim.Game.Screen
         private MainMenuButton editButton;
         private MainMenuButton browseButton;
         private MainMenuButton exitButton;
+        private MaisimSpriteText versionText;
 
         [BackgroundDependencyLoader]
         private void load(TextureStore textureStore)
@@ -73,7 +74,7 @@ namespace maisim.Game.Screen
                             }
                         }
                     }
-                },new Container()
+                },new Container
                 {
                     Anchor = Anchor.TopLeft,
                     Origin = Anchor.TopLeft,
@@ -87,11 +88,12 @@ namespace maisim.Game.Screen
                         Size = new Vector2(300),
                         Scale = new Vector2(0)
                     }
-                }, new MaisimSpriteText
+                },versionText = new MaisimSpriteText
                 {
                     Anchor = Anchor.BottomLeft,
                     Origin = Anchor.BottomLeft,
-                    Text = "Maisim development build"
+                    Text = "Maisim development build",
+                    Scale = new Vector2(0)
                 }
             };
         }
@@ -103,16 +105,17 @@ namespace maisim.Game.Screen
             editButton.ScaleTo(1, 800, Easing.OutQuint);
             browseButton.ScaleTo(1, 900, Easing.OutQuint);
             exitButton.ScaleTo(1, 1000, Easing.OutQuint);
+            versionText.ScaleTo(1, 1000, Easing.OutQuint);
         }
 
-        public override bool OnExiting(ScreenExitEvent e)
+        public override void OnSuspending(ScreenTransitionEvent e)
         {
-            maisimLogo.ScaleTo(0, 1000, Easing.OutQuint);
-            playButton.ScaleTo(0, 1000, Easing.OutQuint);
-            editButton.ScaleTo(0, 900, Easing.OutQuint);
-            browseButton.ScaleTo(0, 800, Easing.OutQuint);
-            exitButton.ScaleTo(0, 700, Easing.OutQuint);
-            return base.OnExiting(e);
+            this.MoveToY(-1000, 1000, Easing.OutQuint);
+        }
+
+        public override void OnResuming(ScreenTransitionEvent e)
+        {
+            this.MoveToY(0, 1000, Easing.OutQuint);
         }
     }
 }
