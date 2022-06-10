@@ -81,7 +81,8 @@ namespace maisim.Game.Graphics.UserInterface
                                             Colour = Color4Extensions.FromHex("ffffff")
                                         }
                                     }
-                                },new Container
+                                },
+                                new Container
                                 {
                                     Anchor = Anchor.CentreLeft,
                                     Origin = Anchor.CentreLeft,
