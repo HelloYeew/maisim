@@ -24,6 +24,7 @@ namespace maisim.Game.Graphics.UserInterface
         private readonly string buttonText;
         private readonly IconUsage buttonIcon;
         private readonly Color4 buttonColor;
+        private Box buttonBox;
 
         public MainMenuButton(string buttonText, IconUsage buttonIcon, Color4 buttonColor)
         {
@@ -46,7 +47,7 @@ namespace maisim.Game.Graphics.UserInterface
                 BorderColour = Color4.White,
                 Children = new Drawable[]
                 {
-                    new Box
+                    buttonBox = new Box
                     {
                         RelativeSizeAxes = Axes.Both,
                         Anchor = Anchor.CentreRight,
@@ -107,8 +108,27 @@ namespace maisim.Game.Graphics.UserInterface
 
         protected override bool OnHover(HoverEvent e)
         {
+            buttonBox.Colour = buttonColor.Darken(0.25f);
             drawableHoverSample.Play();
             return base.OnHover(e);
+        }
+
+        protected override void OnHoverLost(HoverLostEvent e)
+        {
+            buttonBox.Colour = buttonColor;
+            base.OnHoverLost(e);
+        }
+
+        protected override bool OnMouseDown(MouseDownEvent e)
+        {
+            buttonBox.Colour = buttonColor.Darken(0.5f);
+            return base.OnMouseDown(e);
+        }
+
+        protected override void OnMouseUp(MouseUpEvent e)
+        {
+            buttonBox.Colour = buttonColor;
+            base.OnMouseUp(e);
         }
 
         protected override bool OnClick(ClickEvent e)
