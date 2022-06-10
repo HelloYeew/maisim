@@ -51,19 +51,22 @@ namespace maisim.Game.Screen
                                     Size = new Vector2(400, 60),
                                     Scale = new Vector2(0),
                                     Action = () => this.Push(new SongSelectionScreen())
-                                },editButton = new MainMenuButton("Edit",FontAwesome.Solid.Edit,Color4Extensions.FromHex("E9C173"))
+                                },
+                                editButton = new MainMenuButton("Edit",FontAwesome.Solid.Edit,Color4Extensions.FromHex("E9C173"))
                                 {
                                     Anchor = Anchor.Centre,
                                     Origin = Anchor.Centre,
                                     Size = new Vector2(400, 60),
                                     Scale = new Vector2(0)
-                                },browseButton = new MainMenuButton("Browse",FontAwesome.Solid.ListUl,Color4Extensions.FromHex("E773E9"))
+                                },
+                                browseButton = new MainMenuButton("Browse",FontAwesome.Solid.ListUl,Color4Extensions.FromHex("E773E9"))
                                 {
                                     Anchor = Anchor.Centre,
                                     Origin = Anchor.Centre,
                                     Size = new Vector2(400, 60),
                                     Scale = new Vector2(0)
-                                },exitButton = new MainMenuButton("Exit",FontAwesome.Solid.DoorOpen,Color4Extensions.FromHex("E97373"))
+                                },
+                                exitButton = new MainMenuButton("Exit",FontAwesome.Solid.DoorOpen,Color4Extensions.FromHex("E97373"))
                                 {
                                     Anchor = Anchor.Centre,
                                     Origin = Anchor.Centre,
@@ -73,7 +76,8 @@ namespace maisim.Game.Screen
                             }
                         }
                     }
-                },new Container()
+                },
+                new Container
                 {
                     Anchor = Anchor.TopLeft,
                     Origin = Anchor.TopLeft,
@@ -87,7 +91,8 @@ namespace maisim.Game.Screen
                         Size = new Vector2(300),
                         Scale = new Vector2(0)
                     }
-                }, new MaisimSpriteText
+                },
+                new MaisimSpriteText
                 {
                     Anchor = Anchor.BottomLeft,
                     Origin = Anchor.BottomLeft,
