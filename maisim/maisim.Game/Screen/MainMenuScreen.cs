@@ -93,7 +93,7 @@ namespace maisim.Game.Screen
                         Scale = new Vector2(0)
                     }
                 },
-                new MaisimSpriteText
+                versionText = new MaisimSpriteText
                 {
                     Anchor = Anchor.BottomLeft,
                     Origin = Anchor.BottomLeft,
@@ -115,12 +115,12 @@ namespace maisim.Game.Screen
 
         public override void OnSuspending(ScreenTransitionEvent e)
         {
-            this.MoveToY(-1000, 1000, Easing.OutQuint);
+            this.MoveToY(-DrawHeight, 1000, Easing.OutExpo);
         }
 
         public override void OnResuming(ScreenTransitionEvent e)
         {
-            this.MoveToY(0, 1000, Easing.OutQuint);
+            this.MoveToY(0, 1000, Easing.OutExpo);
         }
     }
 }
