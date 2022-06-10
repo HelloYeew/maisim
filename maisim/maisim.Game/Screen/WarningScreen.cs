@@ -46,6 +46,7 @@ namespace maisim.Game.Screen
                     Origin = Anchor.Centre,
                     Icon = FontAwesome.Solid.ExclamationTriangle,
                     Size = new Vector2(40),
+                    Alpha = 0,
                     Y = icon_y,
                     Colour = Color4.Yellow
                 },
@@ -86,7 +87,8 @@ namespace maisim.Game.Screen
         {
             base.OnEntering(e);
 
-            warningSprite.RotateTo(-10)
+            warningSprite.FadeIn(1000)
+                .RotateTo(-10)
                 .MoveToY(icon_y - 30, 250, Easing.OutQuint)
                 .RotateTo(360, 750, Easing.OutQuint)
                 .Then()
@@ -95,7 +97,7 @@ namespace maisim.Game.Screen
             warningSprite.FlashColour(Color4Extensions.FromHex("ffffed"), 500, Easing.OutQuint).Loop();
 
             this.FadeInFromZero(500)
-                .Then(2500)
+                .Then(5000)
                 .FadeOut(250)
                 .MoveToY(-200, 250, Easing.OutQuint)
                 .Finally(next =>
