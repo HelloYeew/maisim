@@ -10,7 +10,10 @@ namespace maisim.Game.Tests.Visual.Screen
         [SetUp]
         public void SetUp()
         {
-            Add(new ScreenStack(new WarningScreen(null)) {RelativeSizeAxes = Axes.Both});
+            Add(new ScreenStack(new WarningScreen(null))
+            {
+                RelativeSizeAxes = Axes.Both
+            });
         }
     }
 }
