@@ -46,7 +46,6 @@ namespace maisim.Game.Screen
                     Origin = Anchor.Centre,
                     Icon = FontAwesome.Solid.ExclamationTriangle,
                     Size = new Vector2(40),
-                    Alpha = 0,
                     Y = icon_y,
                     Colour = Color4.Yellow
                 },
@@ -87,8 +86,7 @@ namespace maisim.Game.Screen
         {
             base.OnEntering(e);
 
-            warningSprite.FadeIn(1000)
-                .RotateTo(-10)
+            warningSprite.RotateTo(-10)
                 .MoveToY(icon_y - 30, 250, Easing.OutQuint)
                 .RotateTo(360, 750, Easing.OutQuint)
                 .Then()
