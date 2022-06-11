@@ -1,9 +1,6 @@
 using maisim.Game.Graphics.Sprites;
-using osu.Framework.Allocation;
-using osu.Framework.Audio.Sample;
 using osu.Framework.Extensions.Color4Extensions;
 using osu.Framework.Graphics;
-using osu.Framework.Graphics.Audio;
 using osu.Framework.Graphics.Containers;
 using osu.Framework.Graphics.Shapes;
 using osu.Framework.Graphics.Sprites;
@@ -19,21 +16,13 @@ namespace maisim.Game.Graphics.UserInterface
     /// </summary>
     public class MainMenuButton : Button
     {
-        private readonly string buttonText;
-        private readonly IconUsage buttonIcon;
         private readonly Color4 buttonColor;
-        private Box buttonBox;
+        private readonly Box buttonBox;
 
         public MainMenuButton(string buttonText, IconUsage buttonIcon, Color4 buttonColor)
         {
-            this.buttonText = buttonText;
-            this.buttonIcon = buttonIcon;
             this.buttonColor = buttonColor;
-        }
 
-        [BackgroundDependencyLoader]
-        private void load()
-        {
             InternalChild = new Container
             {
                 Anchor = Anchor.Centre,
