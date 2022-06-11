@@ -19,8 +19,6 @@ namespace maisim.Game.Graphics.UserInterface
     /// </summary>
     public class MainMenuButton : Button
     {
-        private DrawableSample drawableHoverSample;
-        private DrawableSample drawableClickSample;
         private readonly string buttonText;
         private readonly IconUsage buttonIcon;
         private readonly Color4 buttonColor;
@@ -34,7 +32,7 @@ namespace maisim.Game.Graphics.UserInterface
         }
 
         [BackgroundDependencyLoader]
-        private void load(ISampleStore sampleStore)
+        private void load()
         {
             InternalChild = new Container
             {
@@ -98,18 +96,15 @@ namespace maisim.Game.Graphics.UserInterface
                                 }
                             }
                         }
-                    }
+                    },
+                    new ClickHoverSounds()
                 }
             };
-
-            drawableHoverSample = new DrawableSample(sampleStore.Get("hover.wav"));
-            drawableClickSample = new DrawableSample(sampleStore.Get("click.wav"));
         }
 
         protected override bool OnHover(HoverEvent e)
         {
             buttonBox.Colour = buttonColor.Darken(0.25f);
-            drawableHoverSample.Play();
             return base.OnHover(e);
         }
 
@@ -129,12 +124,6 @@ namespace maisim.Game.Graphics.UserInterface
         {
             buttonBox.Colour = buttonColor;
             base.OnMouseUp(e);
-        }
-
-        protected override bool OnClick(ClickEvent e)
-        {
-            drawableClickSample.Play();
-            return base.OnClick(e);
         }
     }
 }
