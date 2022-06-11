@@ -40,8 +40,7 @@ namespace maisim.Game
                 }
             });
 
-            // screenStack.Push(new BackgroundScreen());
-            screenStack.Push(new MainMenuScreen());
+            screenStack.Push(new WarningScreen(new MainMenuScreen()));
         }
     }
 }
