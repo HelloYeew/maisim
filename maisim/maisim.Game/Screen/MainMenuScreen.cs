@@ -25,8 +25,12 @@ namespace maisim.Game.Screen
         private MainMenuButton exitButton;
         private MaisimSpriteText versionText;
 
+        private Track track;
+
+        private ITrackStore trackStore;
+
         [BackgroundDependencyLoader]
-        private void load(TextureStore textureStore)
+        private void load(TextureStore textureStore, AudioManager audioManager)
         {
             InternalChildren = new Drawable[]
             {
@@ -109,11 +113,11 @@ namespace maisim.Game.Screen
             // track = trackStore.Get("rei/ReI");
             track.Looping = true;
             // track.Seek(50000);
-            track.Start();
         }
 
         public override void OnEntering(ScreenTransitionEvent e)
         {
+            track.Start();
             maisimLogo.ScaleTo(1, 1000, Easing.OutQuint);
             playButton.ScaleTo(1, 700, Easing.OutQuint);
             editButton.ScaleTo(1, 800, Easing.OutQuint);
@@ -124,24 +128,15 @@ namespace maisim.Game.Screen
 
         public override void OnSuspending(ScreenTransitionEvent e)
         {
-            this.MoveToY(-DrawHeight, 1000, Easing.OutExpo);
-        }
-
-        public override void OnResuming(ScreenTransitionEvent e)
-        {
-            this.MoveToY(0, 1000, Easing.OutExpo);
-        }
-
-        public override void OnSuspending(ScreenTransitionEvent e)
-        {
             track.Stop();
+            this.MoveToY(-DrawHeight, 1000, Easing.OutExpo);
         }
 
         public override void OnResuming(ScreenTransitionEvent e)
         {
             track.Start();
 
-            base.OnResuming(e);
+            this.MoveToY(0, 1000, Easing.OutExpo);
         }
 
         public override bool OnExiting(ScreenExitEvent screenExitEvent)
