@@ -1,6 +1,6 @@
 # maisim
 
-A free and open-source, community-powered clone of SEGA's Maimai game powered by the [osu!framework](https://github.com/ppy/osu-framework).
+A free and open-source, community-powered based on circular-lane-style gameplay powered by the [osu!framework](https://github.com/ppy/osu-framework).
 
 Note : project name isn't final (yet?).
 
@@ -8,7 +8,7 @@ Note : project name isn't final (yet?).
 
 The project is still in an infancy stage. Current priorities are creating UI pieces from the figma designs and getting basic gameplay working. Stuff like UI adjustment and etc. might come later.
 
-There are plans to develop along this a website so the game can be a whole experience by itself, offering you things Maimai doesn't.
+There are plans to develop along this a website so the game can be a whole experience by itself.
 
 Figma designs are available at the [project's wiki](https://github.com/HelloYeew/maisim/wiki/Figma-link).
 
@@ -25,14 +25,14 @@ Want to contribute? That's cool ! We got a lot of things to do at all scales :
 
 Don't hesitate to make a discussion and we will try to answer as fast as we can.
 
-You know C# ? You can try picking an issue up and make a pull request and we will review it.
+You know C# ? You can try picking an issue up or pick some topic to work on [project board](https://github.com/users/HelloYeew/projects/1),make a pull request and we will review it.
 
 ## Developing maisim
 
 The following items are required to be installed on your computer in order to develop maisim:
 
 - The [.NET 6 SDK](https://dotnet.microsoft.com/en-us/download) or higher
-- Developing for mobile requires a Xamarin installation, which ships with Visual Studio 2019+ or Visual Studio for Mac.
+- Developing for mobile requires a Xamarin installation, which ships with Visual Studio 2022 or Visual Studio for Mac.
 - The use of a C# IDE (Rider, Visual Studio) is highly recommended to browse through the codebase.
 
 Getting started with developing maisim is as follows:
@@ -77,5 +77,3 @@ If you're using an IDE, it should be automatically picking the development profi
 ## Licence
 
 This project is licensed under the MIT license. Please see [the licence file](LICENSE) for more information. tl;dr you can do whatever you want as long as you include the original copyright and license notice in any copy of the software/source.
-
-Original idea for Maimai from SEGA(TM).
