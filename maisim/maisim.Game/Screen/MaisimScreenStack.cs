@@ -20,17 +20,6 @@ namespace maisim.Game.Screen
                     RelativeSizeAxes = Axes.Both
                 }
             };
-
-            ScreenPushed += screenPushed;
-        }
-
-        private void screenPushed(IScreen prev, IScreen next)
-        {
-            if (LoadState < LoadState.Ready)
-            {
-                Schedule(() => screenPushed(prev, next));
-                return;
-            }
         }
     }
 }
