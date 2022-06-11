@@ -170,7 +170,7 @@ namespace maisim.Game.Component
                                                                             {
                                                                                 Anchor = Anchor.Centre,
                                                                                 Origin = Anchor.Centre,
-                                                                                Text = $"{score.Accuracy.ToString(CultureInfo.InvariantCulture)}%",
+                                                                                Text = $"{score.Accuracy.ToString("0.00", CultureInfo.InvariantCulture)}%",
                                                                                 Font = MaisimFont.GetFont(size: 20),
                                                                                 Colour = Color4.White
                                                                             }
