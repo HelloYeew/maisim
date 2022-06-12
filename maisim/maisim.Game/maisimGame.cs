@@ -23,6 +23,8 @@ namespace maisim.Game
 
         private Toolbar toolbar;
 
+        private float toolbarOffset => (toolbar?.Position.Y ?? 0) + (toolbar?.DrawHeight ?? 0);
+
         [BackgroundDependencyLoader]
         private void load()
         {
@@ -46,7 +48,7 @@ namespace maisim.Game
                     {
                         screenStack = new MaisimScreenStack
                         {
-                            RelativeSizeAxes = Axes.Both
+                            RelativeSizeAxes = Axes.Both,
                         }
                     }
                 },
@@ -56,6 +58,13 @@ namespace maisim.Game
             loadComponentSingleFile(toolbar = new Toolbar(), topMostOverlayContent.Add);
 
             screenStack.Push(new WarningScreen(new MainMenuScreen()));
+        }
+
+        protected override void UpdateAfterChildren()
+        {
+            base.UpdateAfterChildren();
+
+            screenOffsetContainer.Padding = new MarginPadding { Top = toolbarOffset };
         }
 
         private Task asyncLoadStream;
