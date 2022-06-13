@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Threading.Tasks;
-using maisim.Game.Graphics.UserInterface;
+using maisim.Game.Graphics.UserInterface.Toolbar;
 using maisim.Game.Screen;
 using osu.Framework.Allocation;
 using osu.Framework.Graphics;

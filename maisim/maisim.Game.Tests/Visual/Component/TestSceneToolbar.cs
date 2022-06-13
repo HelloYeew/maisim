@@ -1,4 +1,4 @@
-using maisim.Game.Graphics.UserInterface;
+using maisim.Game.Graphics.UserInterface.Toolbar;
 
 namespace maisim.Game.Tests.Visual.Screen;
 
