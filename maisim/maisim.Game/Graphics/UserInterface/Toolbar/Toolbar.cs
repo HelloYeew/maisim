@@ -49,7 +49,7 @@ namespace maisim.Game.Graphics.UserInterface.Toolbar
                     AutoSizeAxes = Axes.X,
                     Children = new Drawable[]
                     {
-                        new ToolbarButton()
+                        new ToolbarSettingsButton()
                     }
                 },
                 new FillFlowContainer

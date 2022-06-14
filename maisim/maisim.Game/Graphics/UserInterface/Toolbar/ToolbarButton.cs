@@ -1,3 +1,4 @@
+using maisim.Game.Graphics.Containers;
 using maisim.Game.Graphics.Sprites;
 using osu.Framework.Allocation;
 using osu.Framework.Extensions.Color4Extensions;
@@ -9,6 +10,7 @@ using osu.Framework.Graphics.Shapes;
 using osu.Framework.Graphics.Sprites;
 using osu.Framework.Graphics.Textures;
 using osu.Framework.Input.Events;
+using osu.Framework.Localisation;
 using osuTK;
 using osuTK.Graphics;
 
@@ -17,15 +19,15 @@ namespace maisim.Game.Graphics.UserInterface.Toolbar
     public class ToolbarButton : ClickableContainer
     {
         protected virtual Anchor TooltipAnchor => Anchor.TopLeft;
-        private readonly Box HoverBackground;
+        private readonly Box hoverBackground;
         private readonly Box flashBackground;
-        private readonly FillFlowContainer Flow;
-        private readonly Container IconContainer;
+        private readonly FillFlowContainer flow;
+        private readonly ConstrainedIconContainer IconContainer;
         private readonly MaisimSpriteText DrawableText;
         private readonly FillFlowContainer tooltipContainer;
-        private readonly MaisimSpriteText tooltip2;
-        private readonly MaisimSpriteText keyBindingTooltip;
         private readonly MaisimSpriteText tooltip1;
+        private readonly MaisimSpriteText tooltip2;
+        private readonly Container BackgroundContainer;
 
         [Resolved]
         private TextureStore textures { get; set; }
@@ -36,7 +38,7 @@ namespace maisim.Game.Graphics.UserInterface.Toolbar
             RelativeSizeAxes = Axes.Y;
             Children = new Drawable[]
             {
-                HoverBackground = new Box
+                hoverBackground = new Box
                 {
                     RelativeSizeAxes = Axes.Both,
                     Colour = Toolbar.toolbarColour.Opacity(180),
@@ -49,7 +51,7 @@ namespace maisim.Game.Graphics.UserInterface.Toolbar
                     Alpha = 0,
                     Colour = Color4.White.Opacity(100)
                 },
-                Flow = new FillFlowContainer()
+                flow = new FillFlowContainer()
                 {
                     Direction = FillDirection.Horizontal,
                     Spacing = new Vector2(5),
@@ -58,33 +60,21 @@ namespace maisim.Game.Graphics.UserInterface.Toolbar
                     Padding = new MarginPadding { Left = Toolbar.HEIGHT / 2, Right = Toolbar.HEIGHT / 2 },
                     RelativeSizeAxes = Axes.Y,
                     AutoSizeAxes = Axes.X,
-                    Child = IconContainer = new Container() {
-                        Anchor = Anchor.CentreLeft,
-                        Origin = Anchor.CentreLeft,
-                        Size = new Vector2(26),
-                        Child = new Container()
+                    Children = new Drawable[]
+                    {
+                        IconContainer = new ConstrainedIconContainer
                         {
+                            Anchor = Anchor.CentreLeft,
+                            Origin = Anchor.CentreLeft,
                             Size = new Vector2(26),
-                            Children = new Drawable[]
-                            {
-                                new Circle()
-                                {
-                                    Size = new Vector2(Toolbar.HEIGHT - 5),
-                                    Anchor = Anchor.Centre,
-                                    Origin = Anchor.Centre,
-                                    Colour = Color4.Yellow,  // TODO: Make color provider class
-                                },
-                                new SpriteIcon()
-                                {
-                                    Anchor = Anchor.Centre,
-                                    Origin = Anchor.Centre,
-                                    Icon = FontAwesome.Solid.Cog,
-                                    Colour = Color4.Black,
-                                    Size = new Vector2(35),
-                                }
-                            }
-                        }
-                    }
+                            Alpha = 0
+                        },
+                        DrawableText = new MaisimSpriteText
+                        {
+                            Anchor = Anchor.CentreLeft,
+                            Origin = Anchor.CentreLeft,
+                        },
+                    },
                 },
                 tooltipContainer = new FillFlowContainer
                 {
@@ -102,7 +92,6 @@ namespace maisim.Game.Graphics.UserInterface.Toolbar
                             Origin = TooltipAnchor,
                             Shadow = true,
                             Font = MaisimFont.GetFont(size:30),
-                            Text = "wang"
                         },
                         new FillFlowContainer
                         {
@@ -113,12 +102,44 @@ namespace maisim.Game.Graphics.UserInterface.Toolbar
                             Child = tooltip2 = new MaisimSpriteText
                             {
                                 Font = MaisimFont.GetFont(size:20),
-                                Text = "kljasdfkljfas"
                             }
                         }
                     }
-                }
+                },
+                new ClickHoverSounds()
             };
+        }
+
+        public void SetIcon(Drawable icon)
+        {
+            IconContainer.Icon = icon;
+            IconContainer.Show();
+        }
+
+        public void SetIcon(string textureName)
+        {
+            SetIcon(new Sprite
+            {
+                Texture = textures.Get(textureName),
+            });
+        }
+
+        public LocalisableString Text
+        {
+            get => DrawableText.Text;
+            set => DrawableText.Text = value;
+        }
+
+        public LocalisableString TooltipMainText
+        {
+            get => tooltip1.Text;
+            set => tooltip1.Text = value;
+        }
+
+        public LocalisableString TooltipSubText
+        {
+            get => tooltip2.Text;
+            set => tooltip2.Text = value;
         }
 
         protected override bool OnMouseDown(MouseDownEvent e) => true;
@@ -132,7 +153,7 @@ namespace maisim.Game.Graphics.UserInterface.Toolbar
 
         protected override bool OnHover(HoverEvent e)
         {
-            HoverBackground.FadeIn(200);
+            hoverBackground.FadeIn(200);
             tooltipContainer.FadeIn(100);
 
             return base.OnHover(e);
@@ -140,7 +161,7 @@ namespace maisim.Game.Graphics.UserInterface.Toolbar
 
         protected override void OnHoverLost(HoverLostEvent e)
         {
-            HoverBackground.FadeOut(200);
+            hoverBackground.FadeOut(200);
             tooltipContainer.FadeOut(100);
         }
     }
