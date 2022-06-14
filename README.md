@@ -25,7 +25,7 @@ Want to contribute? That's cool ! We got a lot of things to do at all scales :
 
 Don't hesitate to make a discussion and we will try to answer as fast as we can.
 
-You know C# ? You can try picking an issue up or pick some topic to work on [project board](https://github.com/users/HelloYeew/projects/1),make a pull request and we will review it.
+You know C# ? You can try picking an issue up or pick some topic to work on from [project board](https://github.com/users/HelloYeew/projects/1), make a pull request and we will review it.
 
 ## Developing maisim
 
