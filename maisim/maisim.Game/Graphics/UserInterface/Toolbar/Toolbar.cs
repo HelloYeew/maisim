@@ -61,7 +61,8 @@ namespace maisim.Game.Graphics.UserInterface.Toolbar
                     AutoSizeAxes = Axes.X,
                     Children = new Drawable[]
                     {
-
+                        new ToolbarNowPlayingButton(),
+                        new ToolbarNotificationsButton()
                     }
                 }
             };

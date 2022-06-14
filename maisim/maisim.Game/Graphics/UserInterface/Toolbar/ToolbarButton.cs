@@ -18,6 +18,9 @@ namespace maisim.Game.Graphics.UserInterface.Toolbar
 {
     public class ToolbarButton : ClickableContainer
     {
+        [Resolved]
+        private TextureStore textures { get; set; }
+
         protected virtual Anchor TooltipAnchor => Anchor.TopLeft;
         private readonly Box hoverBackground;
         private readonly Box flashBackground;
@@ -28,9 +31,6 @@ namespace maisim.Game.Graphics.UserInterface.Toolbar
         private readonly MaisimSpriteText tooltip1;
         private readonly MaisimSpriteText tooltip2;
         private readonly Container BackgroundContainer;
-
-        [Resolved]
-        private TextureStore textures { get; set; }
 
         public ToolbarButton()
         {
@@ -49,7 +49,8 @@ namespace maisim.Game.Graphics.UserInterface.Toolbar
                 {
                     RelativeSizeAxes = Axes.Both,
                     Alpha = 0,
-                    Colour = Color4.White.Opacity(100)
+                    Colour = Color4.White.Opacity(100),
+                    Blending = BlendingParameters.Additive
                 },
                 flow = new FillFlowContainer()
                 {
@@ -106,6 +107,7 @@ namespace maisim.Game.Graphics.UserInterface.Toolbar
                         }
                     }
                 },
+                // TODO: Find a new sound for toolbar buttons
                 new ClickHoverSounds()
             };
         }
@@ -163,31 +165,6 @@ namespace maisim.Game.Graphics.UserInterface.Toolbar
         {
             hoverBackground.FadeOut(200);
             tooltipContainer.FadeOut(100);
-        }
-    }
-
-    public class OpaqueBackground : Container
-    {
-        public OpaqueBackground()
-        {
-            RelativeSizeAxes = Axes.Both;
-            Masking = true;
-            MaskingSmoothness = 0;
-            EdgeEffect = new EdgeEffectParameters
-            {
-                Type = EdgeEffectType.Shadow,
-                Colour = Color4.Black.Opacity(40),
-                Radius = 5,
-            };
-
-            Children = new Drawable[]
-            {
-                new Box
-                {
-                    RelativeSizeAxes = Axes.Both,
-                    Colour = Toolbar.toolbarColour
-                },
-            };
         }
     }
 }

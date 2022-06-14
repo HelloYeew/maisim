@@ -14,13 +14,11 @@ namespace maisim.Game.Graphics.UserInterface.Toolbar
         {
             SetIcon(new SpriteIcon()
             {
-                Anchor = Anchor.Centre,
-                Origin = Anchor.Centre,
                 Icon = FontAwesome.Solid.Cog,
                 Colour = Color4.Black
             });
             TooltipMainText = "settings";
-            TooltipSubText = "adjust your wang";
+            TooltipSubText = "adjust your maisim settings";
         }
     }
 }
