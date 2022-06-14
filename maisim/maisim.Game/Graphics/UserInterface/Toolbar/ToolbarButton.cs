@@ -5,7 +5,6 @@ using osu.Framework.Extensions.Color4Extensions;
 using osu.Framework.Extensions.EnumExtensions;
 using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
-using osu.Framework.Graphics.Effects;
 using osu.Framework.Graphics.Shapes;
 using osu.Framework.Graphics.Sprites;
 using osu.Framework.Graphics.Textures;
@@ -67,7 +66,7 @@ namespace maisim.Game.Graphics.UserInterface.Toolbar
                         {
                             Anchor = Anchor.CentreLeft,
                             Origin = Anchor.CentreLeft,
-                            Size = new Vector2(26),
+                            Size = new Vector2(28),
                             Alpha = 0
                         },
                         DrawableText = new MaisimSpriteText
@@ -116,14 +115,6 @@ namespace maisim.Game.Graphics.UserInterface.Toolbar
         {
             IconContainer.Icon = icon;
             IconContainer.Show();
-        }
-
-        public void SetIcon(string textureName)
-        {
-            SetIcon(new Sprite
-            {
-                Texture = textures.Get(textureName),
-            });
         }
 
         public LocalisableString Text

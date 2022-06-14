@@ -14,7 +14,7 @@ namespace maisim.Game.Graphics.UserInterface.Toolbar
     {
         private const double transition_time = 500;
         public static float HEIGHT = 60;
-        public static readonly Color4 toolbarColour = Color4Extensions.FromHex("#ADADAD"); // TODO: Convert it to MaisimColour
+        public static readonly Color4 toolbarColour = MaisimColour.Gray(0.5f);
 
         // Toolbar and its components need keyboard input even when hidden.
         public override bool PropagateNonPositionalInputSubTree => true;
@@ -61,6 +61,7 @@ namespace maisim.Game.Graphics.UserInterface.Toolbar
                     AutoSizeAxes = Axes.X,
                     Children = new Drawable[]
                     {
+                        new ToolbarUserButton(),
                         new ToolbarNowPlayingButton(),
                         new ToolbarNotificationsButton()
                     }
