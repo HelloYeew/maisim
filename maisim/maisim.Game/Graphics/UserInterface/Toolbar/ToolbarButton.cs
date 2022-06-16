@@ -38,7 +38,7 @@ namespace maisim.Game.Graphics.UserInterface.Toolbar
                 hoverBackground = new Box
                 {
                     RelativeSizeAxes = Axes.Both,
-                    Colour = Toolbar.toolbarColour.Opacity(180),
+                    Colour = Color4.White.Opacity(70),
                     Blending = BlendingParameters.Additive,
                     Alpha = 0,
                 },
