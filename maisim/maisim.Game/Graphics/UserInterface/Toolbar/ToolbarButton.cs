@@ -67,7 +67,7 @@ namespace maisim.Game.Graphics.UserInterface.Toolbar
                             Anchor = Anchor.CentreLeft,
                             Origin = Anchor.CentreLeft,
                             Size = new Vector2(28),
-                            Alpha = 0
+                            Alpha = 0,
                         },
                         DrawableText = new MaisimSpriteText
                         {

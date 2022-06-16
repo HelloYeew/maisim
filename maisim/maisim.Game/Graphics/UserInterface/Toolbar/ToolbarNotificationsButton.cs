@@ -13,7 +13,7 @@ namespace maisim.Game.Graphics.UserInterface.Toolbar
             SetIcon(new SpriteIcon()
             {
                 Icon = FontAwesome.Solid.Bell,
-                Colour = Color4.Black
+                Colour = Color4.White
             });
             TooltipMainText = "notifications";
             TooltipSubText = "see what's happening";

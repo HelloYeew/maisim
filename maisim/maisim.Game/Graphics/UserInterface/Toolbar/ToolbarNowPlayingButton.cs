@@ -13,7 +13,7 @@ namespace maisim.Game.Graphics.UserInterface.Toolbar
             SetIcon(new SpriteIcon()
             {
                 Icon = FontAwesome.Solid.Play,
-                Colour = Color4.Black
+                Colour = Color4.White
             });
             TooltipMainText = "now playing";
             TooltipSubText = "what's playing now";

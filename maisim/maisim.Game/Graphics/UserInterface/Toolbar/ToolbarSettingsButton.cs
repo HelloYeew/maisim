@@ -10,7 +10,7 @@ namespace maisim.Game.Graphics.UserInterface.Toolbar
             SetIcon(new SpriteIcon()
             {
                 Icon = FontAwesome.Solid.Cog,
-                Colour = Color4.Black
+                Colour = Color4.White
             });
             TooltipMainText = "settings";
             TooltipSubText = "adjust your maisim settings";
