@@ -6,7 +6,6 @@ using osu.Framework.Extensions.EnumExtensions;
 using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
 using osu.Framework.Graphics.Shapes;
-using osu.Framework.Graphics.Sprites;
 using osu.Framework.Graphics.Textures;
 using osu.Framework.Input.Events;
 using osu.Framework.Localisation;
@@ -24,12 +23,11 @@ namespace maisim.Game.Graphics.UserInterface.Toolbar
         private readonly Box hoverBackground;
         private readonly Box flashBackground;
         private readonly FillFlowContainer flow;
-        private readonly ConstrainedIconContainer IconContainer;
-        private readonly MaisimSpriteText DrawableText;
+        private readonly ConstrainedIconContainer iconContainer;
+        private readonly MaisimSpriteText drawableText;
         private readonly FillFlowContainer tooltipContainer;
         private readonly MaisimSpriteText tooltip1;
         private readonly MaisimSpriteText tooltip2;
-        private readonly Container BackgroundContainer;
 
         public ToolbarButton()
         {
@@ -62,14 +60,14 @@ namespace maisim.Game.Graphics.UserInterface.Toolbar
                     AutoSizeAxes = Axes.X,
                     Children = new Drawable[]
                     {
-                        IconContainer = new ConstrainedIconContainer
+                        iconContainer = new ConstrainedIconContainer
                         {
                             Anchor = Anchor.CentreLeft,
                             Origin = Anchor.CentreLeft,
                             Size = new Vector2(28),
                             Alpha = 0,
                         },
-                        DrawableText = new MaisimSpriteText
+                        drawableText = new MaisimSpriteText
                         {
                             Anchor = Anchor.CentreLeft,
                             Origin = Anchor.CentreLeft,
@@ -113,14 +111,14 @@ namespace maisim.Game.Graphics.UserInterface.Toolbar
 
         public void SetIcon(Drawable icon)
         {
-            IconContainer.Icon = icon;
-            IconContainer.Show();
+            iconContainer.Icon = icon;
+            iconContainer.Show();
         }
 
         public LocalisableString Text
         {
-            get => DrawableText.Text;
-            set => DrawableText.Text = value;
+            get => drawableText.Text;
+            set => drawableText.Text = value;
         }
 
         public LocalisableString TooltipMainText
