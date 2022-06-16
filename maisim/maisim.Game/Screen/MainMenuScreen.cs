@@ -116,14 +116,14 @@ namespace maisim.Game.Screen
 
         public override void OnSuspending(ScreenTransitionEvent e)
         {
-            this.ScaleTo(0.2f, 1000, Easing.OutQuint);
-            this.MoveToX(-DrawWidth, 1000, Easing.OutExpo);
+            this.ScaleTo(0f, 750, Easing.OutQuint);
+            this.MoveToX(-DrawWidth, 750, Easing.OutExpo);
         }
 
         public override void OnResuming(ScreenTransitionEvent e)
         {
-            this.ScaleTo(1, 1000, Easing.OutQuint);
-            this.MoveToX(0, 1000, Easing.OutExpo);
+            this.ScaleTo(1, 750, Easing.OutQuint);
+            this.MoveToX(0, 750, Easing.OutExpo);
         }
     }
 }
