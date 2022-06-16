@@ -14,7 +14,7 @@ namespace maisim.Game.Graphics.UserInterface.Toolbar
     {
         private const double transition_time = 500;
         public static float HEIGHT = 60;
-        public static readonly Color4 toolbarColour = Color4.Black.Opacity(0.7f);
+        public static readonly Color4 TOOLBAR_COLOUR = Color4.Black.Opacity(0.7f);
 
         // Toolbar and its components need keyboard input even when hidden.
         public override bool PropagateNonPositionalInputSubTree => true;
@@ -95,7 +95,7 @@ namespace maisim.Game.Graphics.UserInterface.Toolbar
                     new Box
                     {
                         RelativeSizeAxes = Axes.Both,
-                        Colour = toolbarColour,
+                        Colour = TOOLBAR_COLOUR,
                     },
                     gradientBackground = new Box
                     {
@@ -104,7 +104,7 @@ namespace maisim.Game.Graphics.UserInterface.Toolbar
                         Alpha = 0,
                         Height = 100,
                         Colour = ColourInfo.GradientVertical(
-                            toolbarColour.Opacity(0.7f), toolbarColour.Opacity(0)),
+                            TOOLBAR_COLOUR.Opacity(0.7f), TOOLBAR_COLOUR.Opacity(0)),
                     },
                 };
             }
