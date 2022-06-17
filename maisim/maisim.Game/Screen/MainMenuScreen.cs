@@ -1,5 +1,6 @@
 ﻿using maisim.Game.Graphics.Sprites;
 using maisim.Game.Graphics.UserInterface;
+using maisim.Game.Graphics.UserInterface.Toolbar;
 using osu.Framework.Allocation;
 using osu.Framework.Audio;
 using osu.Framework.Audio.Track;
@@ -130,13 +131,16 @@ namespace maisim.Game.Screen
         {
             track.Stop();
             this.MoveToY(-DrawHeight, 1000, Easing.OutExpo);
+            this.ScaleTo(0f, 750, Easing.OutQuint);
+            this.MoveToX(-DrawWidth, 750, Easing.OutExpo);
         }
 
         public override void OnResuming(ScreenTransitionEvent e)
         {
             track.Start();
-
             this.MoveToY(0, 1000, Easing.OutExpo);
+            this.ScaleTo(1, 750, Easing.OutQuint);
+            this.MoveToX(0, 750, Easing.OutExpo);
         }
 
         public override bool OnExiting(ScreenExitEvent screenExitEvent)
