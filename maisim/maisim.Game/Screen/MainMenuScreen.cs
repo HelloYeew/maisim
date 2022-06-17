@@ -1,5 +1,6 @@
 ﻿using maisim.Game.Graphics.Sprites;
 using maisim.Game.Graphics.UserInterface;
+using maisim.Game.Graphics.UserInterface.Toolbar;
 using osu.Framework.Allocation;
 using osu.Framework.Extensions.Color4Extensions;
 using osu.Framework.Graphics;
@@ -115,12 +116,14 @@ namespace maisim.Game.Screen
 
         public override void OnSuspending(ScreenTransitionEvent e)
         {
-            this.MoveToY(-DrawHeight, 1000, Easing.OutExpo);
+            this.ScaleTo(0f, 750, Easing.OutQuint);
+            this.MoveToX(-DrawWidth, 750, Easing.OutExpo);
         }
 
         public override void OnResuming(ScreenTransitionEvent e)
         {
-            this.MoveToY(0, 1000, Easing.OutExpo);
+            this.ScaleTo(1, 750, Easing.OutQuint);
+            this.MoveToX(0, 750, Easing.OutExpo);
         }
     }
 }

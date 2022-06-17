@@ -11,6 +11,9 @@ namespace maisim.Game.Graphics
     /// </summary>
     public class MaisimColour
     {
+        public static Color4 Gray(float amt) => new Color4(amt, amt, amt, 1f);
+        public static Color4 Gray(byte amt) => new Color4(amt, amt, amt, 255);
+
         /// <summary>
         /// Get the colour for <see cref="TrackCard"/> and <see cref="TrackCardFocused"/> background colour.
         /// </summary>
