@@ -110,7 +110,7 @@ namespace maisim.Game.Screen
             };
 
             trackStore = audioManager.Tracks;
-            track = trackStore.Get("rainbow");
+            track = trackStore.Get("test1");
             // track = trackStore.Get("rei/ReI");
             track.Looping = true;
             // track.Seek(50000);
