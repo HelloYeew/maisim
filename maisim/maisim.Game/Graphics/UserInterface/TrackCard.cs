@@ -10,6 +10,7 @@ using osu.Framework.Graphics.Containers;
 using osu.Framework.Graphics.Shapes;
 using osu.Framework.Graphics.Sprites;
 using osu.Framework.Graphics.Textures;
+using osu.Framework.Localisation;
 using osuTK;
 using osuTK.Graphics;
 
@@ -133,7 +134,7 @@ namespace maisim.Game.Component
                                                             {
                                                                 Anchor = Anchor.Centre,
                                                                 Origin = Anchor.Centre,
-                                                                Text = $"{score.Accuracy.ToString("0.00", CultureInfo.InvariantCulture)}%",
+                                                                Text = $"{new LocalisableString(score.Accuracy.ToString("0.00"))}%",
                                                                 Font = MaisimFont.GetFont(size: 20),
                                                                 Colour = Color4.White
                                                             }
