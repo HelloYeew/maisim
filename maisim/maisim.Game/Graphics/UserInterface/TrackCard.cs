@@ -1,16 +1,15 @@
-﻿using System.Globalization;
-using maisim.Game.Beatmaps;
+﻿using maisim.Game.Beatmaps;
 using maisim.Game.Graphics;
 using maisim.Game.Graphics.Sprites;
 using maisim.Game.Scores;
 using osu.Framework.Allocation;
 using osu.Framework.Extensions.Color4Extensions;
+using osu.Framework.Extensions.LocalisationExtensions;
 using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
 using osu.Framework.Graphics.Shapes;
 using osu.Framework.Graphics.Sprites;
 using osu.Framework.Graphics.Textures;
-using osu.Framework.Localisation;
 using osuTK;
 using osuTK.Graphics;
 
@@ -134,7 +133,7 @@ namespace maisim.Game.Component
                                                             {
                                                                 Anchor = Anchor.Centre,
                                                                 Origin = Anchor.Centre,
-                                                                Text = $"{new LocalisableString(score.Accuracy.ToString("0.00"))}%",
+                                                                Text = score.Accuracy.ToLocalisableString("0.00\\%"),
                                                                 Font = MaisimFont.GetFont(size: 20),
                                                                 Colour = Color4.White
                                                             }

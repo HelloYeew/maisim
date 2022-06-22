@@ -1,16 +1,15 @@
-﻿using System.Globalization;
-using maisim.Game.Beatmaps;
+﻿using maisim.Game.Beatmaps;
 using maisim.Game.Graphics;
 using maisim.Game.Graphics.Sprites;
 using maisim.Game.Scores;
 using osu.Framework.Allocation;
 using osu.Framework.Extensions.Color4Extensions;
+using osu.Framework.Extensions.LocalisationExtensions;
 using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
 using osu.Framework.Graphics.Shapes;
 using osu.Framework.Graphics.Sprites;
 using osu.Framework.Graphics.Textures;
-using osu.Framework.Localisation;
 using osuTK;
 using osuTK.Graphics;
 
@@ -23,7 +22,6 @@ namespace maisim.Game.Component
     {
         public TrackCardFocused(Beatmap beatmap, Score score) : base(beatmap, score)
         {
-
         }
 
         [BackgroundDependencyLoader]
@@ -33,7 +31,7 @@ namespace maisim.Game.Component
             {
                 Anchor = Anchor.Centre,
                 Origin = Anchor.Centre,
-                Size = new Vector2(300,384),
+                Size = new Vector2(300, 384),
                 Children = new Drawable[]
                 {
                     new Box
@@ -43,7 +41,8 @@ namespace maisim.Game.Component
                         RelativeSizeAxes = Axes.Both,
                         Colour = MaisimColour.GetDifficultyColor(beatmap.DifficultyLevel),
                         Size = new Vector2(1)
-                    },new GridContainer
+                    },
+                    new GridContainer
                     {
                         RelativeSizeAxes = Axes.Both,
                         RowDimensions = new[]
@@ -66,7 +65,8 @@ namespace maisim.Game.Component
                                     Texture = textureStore.Get(beatmap.TrackMetadata.CoverPath),
                                     Scale = new Vector2(0.6f)
                                 }
-                            },new Drawable[]
+                            },
+                            new Drawable[]
                             {
                                 new Container
                                 {
@@ -80,14 +80,16 @@ namespace maisim.Game.Component
                                             RelativeSizeAxes = Axes.Both,
                                             Colour = Color4Extensions.FromHex("#003d7d"),
                                             Size = new Vector2(0.9f, 0.5f)
-                                        },new Box
+                                        },
+                                        new Box
                                         {
                                             Anchor = Anchor.BottomCentre,
                                             Origin = Anchor.BottomCentre,
                                             RelativeSizeAxes = Axes.Both,
                                             Colour = Color4Extensions.FromHex("#0c2e5e"),
                                             Size = new Vector2(0.9f, 0.5f)
-                                        },new Container
+                                        },
+                                        new Container
                                         {
                                             Anchor = Anchor.TopCentre,
                                             Origin = Anchor.TopCentre,
@@ -100,7 +102,8 @@ namespace maisim.Game.Component
                                                 Text = beatmap.TrackMetadata.Title,
                                                 Colour = Color4.White
                                             }
-                                        },new Container
+                                        },
+                                        new Container
                                         {
                                             Anchor = Anchor.BottomCentre,
                                             Origin = Anchor.BottomCentre,
@@ -116,7 +119,8 @@ namespace maisim.Game.Component
                                         }
                                     }
                                 }
-                            },new Drawable[]
+                            },
+                            new Drawable[]
                             {
                                 new Container
                                 {
@@ -147,7 +151,7 @@ namespace maisim.Game.Component
                                                             ColumnDimensions = new[]
                                                             {
                                                                 new Dimension(GridSizeMode.Absolute, 105),
-                                                                new Dimension(GridSizeMode.Absolute, 24),
+                                                                new Dimension(GridSizeMode.Absolute, 24)
                                                             },
                                                             Content = new[]
                                                             {
@@ -166,17 +170,21 @@ namespace maisim.Game.Component
                                                                                 Anchor = Anchor.TopLeft,
                                                                                 Origin = Anchor.TopLeft,
                                                                                 RelativeSizeAxes = Axes.Both,
-                                                                                Colour = Color4Extensions.FromHex("#1a497f"),
-                                                                            },new MaisimSpriteText
+                                                                                Colour = Color4Extensions.FromHex(
+                                                                                    "#1a497f")
+                                                                            },
+                                                                            new MaisimSpriteText
                                                                             {
                                                                                 Anchor = Anchor.Centre,
                                                                                 Origin = Anchor.Centre,
-                                                                                Text = $"{new LocalisableString(score.Accuracy.ToString("0.00"))}%",
+                                                                                Text = score.Accuracy
+                                                                                    .ToLocalisableString("0.00\\%"),
                                                                                 Font = MaisimFont.GetFont(size: 20),
                                                                                 Colour = Color4.White
                                                                             }
                                                                         }
-                                                                    },new Container
+                                                                    },
+                                                                    new Container
                                                                     {
                                                                         Anchor = Anchor.TopRight,
                                                                         Origin = Anchor.TopRight,
@@ -189,18 +197,22 @@ namespace maisim.Game.Component
                                                                                 Anchor = Anchor.TopRight,
                                                                                 Origin = Anchor.TopRight,
                                                                                 RelativeSizeAxes = Axes.Both,
-                                                                                Colour = Color4Extensions.FromHex("#1a497f"),
-                                                                            },new MaisimSpriteText
+                                                                                Colour = Color4Extensions.FromHex(
+                                                                                    "#1a497f")
+                                                                            },
+                                                                            new MaisimSpriteText
                                                                             {
                                                                                 Anchor = Anchor.Centre,
                                                                                 Origin = Anchor.Centre,
-                                                                                Text = ScoreRankExtensions.ToString(score.Rank),
+                                                                                Text = ScoreRankExtensions.ToString(
+                                                                                    score.Rank),
                                                                                 Font = MaisimFont.GetFont(size: 20),
                                                                                 Colour = Color4.White
                                                                             }
                                                                         }
                                                                     }
-                                                                },new Drawable[]
+                                                                },
+                                                                new Drawable[]
                                                                 {
                                                                     new Container
                                                                     {
@@ -215,19 +227,24 @@ namespace maisim.Game.Component
                                                                                 Anchor = Anchor.TopLeft,
                                                                                 Origin = Anchor.TopLeft,
                                                                                 RelativeSizeAxes = Axes.Both,
-                                                                                Colour = Color4Extensions.FromHex("#1a497f")
-                                                                            },new MaisimSpriteText
+                                                                                Colour = Color4Extensions.FromHex(
+                                                                                    "#1a497f")
+                                                                            },
+                                                                            new MaisimSpriteText
                                                                             {
                                                                                 Anchor = Anchor.CentreLeft,
                                                                                 Origin = Anchor.CentreLeft,
                                                                                 Text = "DXSCORE",
                                                                                 Font = MaisimFont.GetFont(size: 13),
-                                                                                Colour = Color4Extensions.FromHex("#9cdb96")
-                                                                            },new MaisimSpriteText
+                                                                                Colour = Color4Extensions.FromHex(
+                                                                                    "#9cdb96")
+                                                                            },
+                                                                            new MaisimSpriteText
                                                                             {
                                                                                 Anchor = Anchor.CentreRight,
                                                                                 Origin = Anchor.CentreRight,
-                                                                                Text = $"{score.SeasonalScore.ToString()}/{beatmap.MaxSeasonalScore.ToString()}",
+                                                                                Text =
+                                                                                    $"{score.SeasonalScore.ToString()}/{beatmap.MaxSeasonalScore.ToString()}",
                                                                                 Font = MaisimFont.GetFont(size: 13),
                                                                                 Colour = Color4.White
                                                                             }
@@ -236,13 +253,14 @@ namespace maisim.Game.Component
                                                                 }
                                                             }
                                                         }
-                                                    },new Container
+                                                    },
+                                                    new Container
                                                     {
                                                         // TODO: Implement the parameter to this container
                                                         Anchor = Anchor.Centre,
                                                         Origin = Anchor.Centre,
                                                         RelativeSizeAxes = Axes.Both,
-                                                        Size = new Vector2(0.82f,0.8f),
+                                                        Size = new Vector2(0.82f, 0.8f),
                                                         Child = new GridContainer
                                                         {
                                                             RelativeSizeAxes = Axes.Both,
@@ -262,17 +280,21 @@ namespace maisim.Game.Component
                                                                                 Anchor = Anchor.Centre,
                                                                                 Origin = Anchor.Centre,
                                                                                 RelativeSizeAxes = Axes.Both,
-                                                                                Colour = Color4Extensions.FromHex("#f0d285")
-                                                                            },new MaisimSpriteText
+                                                                                Colour = Color4Extensions.FromHex(
+                                                                                    "#f0d285")
+                                                                            },
+                                                                            new MaisimSpriteText
                                                                             {
                                                                                 Anchor = Anchor.Centre,
                                                                                 Origin = Anchor.Centre,
                                                                                 Text = "AP",
                                                                                 Font = MaisimFont.GetFont(size: 20),
-                                                                                Colour = Color4Extensions.FromHex("#76301a")
+                                                                                Colour = Color4Extensions.FromHex(
+                                                                                    "#76301a")
                                                                             }
                                                                         }
-                                                                    },new Container
+                                                                    },
+                                                                    new Container
                                                                     {
                                                                         Anchor = Anchor.Centre,
                                                                         Origin = Anchor.Centre,
@@ -284,14 +306,17 @@ namespace maisim.Game.Component
                                                                                 Anchor = Anchor.Centre,
                                                                                 Origin = Anchor.Centre,
                                                                                 RelativeSizeAxes = Axes.Both,
-                                                                                Colour = Color4Extensions.FromHex("#f0d285")
-                                                                            },new MaisimSpriteText
+                                                                                Colour = Color4Extensions.FromHex(
+                                                                                    "#f0d285")
+                                                                            },
+                                                                            new MaisimSpriteText
                                                                             {
                                                                                 Anchor = Anchor.Centre,
                                                                                 Origin = Anchor.Centre,
                                                                                 Text = "FDX+",
                                                                                 Font = MaisimFont.GetFont(size: 20),
-                                                                                Colour = Color4Extensions.FromHex("#76301a")
+                                                                                Colour = Color4Extensions.FromHex(
+                                                                                    "#76301a")
                                                                             }
                                                                         }
                                                                     }
@@ -304,7 +329,8 @@ namespace maisim.Game.Component
                                         }
                                     }
                                 }
-                            },new Drawable[]
+                            },
+                            new Drawable[]
                             {
                                 new Container
                                 {
@@ -318,13 +344,15 @@ namespace maisim.Game.Component
                                             Text = "NOTES DESIGNER",
                                             Font = MaisimFont.GetFont(size: 12),
                                             Colour = Color4.Black
-                                        },new MaisimSpriteText
+                                        },
+                                        new MaisimSpriteText
                                         {
                                             Anchor = Anchor.BottomLeft,
                                             Origin = Anchor.BottomLeft,
                                             Text = beatmap.NoteDesigner,
                                             Colour = Color4.Black
-                                        },new MaisimSpriteText
+                                        },
+                                        new MaisimSpriteText
                                         {
                                             Anchor = Anchor.BottomRight,
                                             Origin = Anchor.BottomRight,
