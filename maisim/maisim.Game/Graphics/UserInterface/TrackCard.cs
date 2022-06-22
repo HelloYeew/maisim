@@ -133,7 +133,7 @@ namespace maisim.Game.Component
                                                             {
                                                                 Anchor = Anchor.Centre,
                                                                 Origin = Anchor.Centre,
-                                                                Text = score.Accuracy.ToLocalisableString("0.00\\%"),
+                                                                Text = score.Accuracy.ToLocalisableString("0.0000\\%"),
                                                                 Font = MaisimFont.GetFont(size: 20),
                                                                 Colour = Color4.White
                                                             }
