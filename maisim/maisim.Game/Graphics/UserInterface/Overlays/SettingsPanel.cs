@@ -1,0 +1,77 @@
+using osu.Framework.Allocation;
+using osu.Framework.Graphics;
+using osu.Framework.Graphics.Containers;
+using osu.Framework.Graphics.Primitives;
+using osu.Framework.Graphics.Shapes;
+using osu.Framework.Graphics.UserInterface;
+using osuTK;
+using osuTK.Graphics;
+
+namespace maisim.Game.Graphics.UserInterface.Overlays
+{
+    public class SettingsPanel : MaisimFocusedOverlayContainer
+    {
+        public const float CONTENT_MARGINS = 20;
+
+        public const float TRANSITION_LENGTH = 600;
+
+        public const float WIDTH = 400;
+
+        protected Container<Drawable> ContentContainer;
+
+        protected virtual float ExpandedPosition => 0;
+
+        public SettingsPanel()
+        {
+            RelativeSizeAxes = Axes.Y;
+            AutoSizeAxes = Axes.X;
+        }
+
+        [BackgroundDependencyLoader]
+        private void load()
+        {
+            InternalChild = ContentContainer = new NonMaskedContent
+            {
+                X = -WIDTH + ExpandedPosition,
+                Width = WIDTH,
+                RelativeSizeAxes = Axes.Y,
+                Children = new Drawable[]
+                {
+                    new Box
+                    {
+                        Anchor = Anchor.TopRight,
+                        Origin = Anchor.TopRight,
+                        Scale = new Vector2(2, 1), // over-extend to the left for transitions
+                        RelativeSizeAxes = Axes.Both,
+                        Colour = MaisimColour.Gray(0.2f),
+                        Alpha = 1
+                    }
+                }
+            };
+        }
+
+        protected override void PopIn()
+        {
+            base.PopIn();
+
+            ContentContainer.MoveToX(ExpandedPosition, TRANSITION_LENGTH, Easing.OutQuint);
+
+            this.FadeTo(1, TRANSITION_LENGTH, Easing.OutQuint);
+        }
+
+        protected override void PopOut()
+        {
+            base.PopOut();
+
+            ContentContainer.MoveToX(-WIDTH, TRANSITION_LENGTH, Easing.OutQuint);
+
+            this.FadeTo(0, TRANSITION_LENGTH, Easing.OutQuint);
+        }
+
+        private class NonMaskedContent : Container<Drawable>
+        {
+            // masking breaks the pan-out transform with nested sub-settings panels.
+            protected override bool ComputeIsMaskedAway(RectangleF maskingBounds) => false;
+        }
+    }
+}
