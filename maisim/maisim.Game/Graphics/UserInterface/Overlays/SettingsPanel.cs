@@ -1,4 +1,7 @@
+
+using System.Collections.Generic;
 using osu.Framework.Allocation;
+using osu.Framework.Extensions.IEnumerableExtensions;
 using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
 using osu.Framework.Graphics.Primitives;
@@ -18,8 +21,15 @@ namespace maisim.Game.Graphics.UserInterface.Overlays
         public const float WIDTH = 400;
 
         protected Container<Drawable> ContentContainer;
+        private FillFlowContainer scrollContainer;
 
         protected virtual float ExpandedPosition => 0;
+
+        protected virtual IEnumerable<SettingsSection> CreateSections() => null;
+
+        protected virtual Drawable CreateHeader() => new Container();
+
+        protected virtual Drawable CreateFooter() => new Container();
 
         public SettingsPanel()
         {
@@ -48,6 +58,14 @@ namespace maisim.Game.Graphics.UserInterface.Overlays
                     }
                 }
             };
+
+            Add(scrollContainer = new FillFlowContainer()
+            {
+                Masking = true,
+                RelativeSizeAxes = Axes.Both,
+            });
+
+            CreateSections()?.ForEach(scrollContainer.Add);
         }
 
         protected override void PopIn()

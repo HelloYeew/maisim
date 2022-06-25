@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using osu.Framework.Allocation;
 using osu.Framework.Graphics;
 using osu.Framework.Graphics.Sprites;
@@ -16,10 +17,14 @@ namespace maisim.Game.Graphics.UserInterface.Overlays
         public LocalisableString Title => "settings";
         public LocalisableString Description => "adjust your maisim settings";
 
-        public SettingsOverlay()
-        {
+        protected override Drawable CreateHeader() => new SettingsHeader(Title, Description);
 
-        }
+        protected override IEnumerable<SettingsSection> CreateSections() => new SettingsSection[]
+        {
+            new SettingsHeader(Title, Description),
+            new GeneralSection(),
+            new AudioSection(),
+        };
 
         [BackgroundDependencyLoader]
         private void load()
