@@ -22,8 +22,8 @@ namespace maisim.Game.Graphics.UserInterface.Overlays
         protected override IEnumerable<SettingsSection> CreateSections() => new SettingsSection[]
         {
             new SettingsHeader(Title, Description),
-            new GeneralSection(),
             new AudioSection(),
+            new DebugSection()
         };
 
         [BackgroundDependencyLoader]

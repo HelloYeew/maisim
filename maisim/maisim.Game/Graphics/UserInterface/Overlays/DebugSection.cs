@@ -1,0 +1,18 @@
+using osu.Framework.Graphics;
+using osu.Framework.Localisation;
+
+namespace maisim.Game.Graphics.UserInterface.Overlays
+{
+    public class DebugSection : SettingsSection
+    {
+        public override LocalisableString Header => "debug";
+
+        public DebugSection()
+        {
+            Children = new Drawable[]
+            {
+                new UpdateSettings()
+            };
+        }
+    }
+}
