@@ -85,7 +85,7 @@ namespace maisim.Game.Graphics.UserInterface.Overlays
                             {
                                 new MaisimSpriteText
                                 {
-                                    Font = MaisimFont.Comfortaa.With(size: header_size),
+                                    Font = MaisimFont.GetFont(size: header_size),
                                     Text = Header,
                                     Colour = Color4.White,
                                     Margin = new MarginPadding
