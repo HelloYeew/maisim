@@ -1,3 +1,4 @@
+using maisim.Game.Graphics.Sprites;
 using osu.Framework.Allocation;
 using osu.Framework.Audio;
 using osu.Framework.Graphics;
@@ -16,9 +17,33 @@ namespace maisim.Game.Graphics.UserInterface.Overlays
         {
             Children = new Drawable[]
             {
+                new MaisimSpriteText
+                {
+                    Text = "Master"
+                },
                 new BasicSliderBar<double>
                 {
                     Current = audio.Volume,
+                    KeyboardStep = 0.01f,
+                    Size = new Vector2(SettingsPanel.WIDTH - 20, 20),
+                },
+                new MaisimSpriteText
+                {
+                    Text = "Effect"
+                },
+                new BasicSliderBar<double>
+                {
+                    Current = audio.VolumeSample,
+                    KeyboardStep = 0.01f,
+                    Size = new Vector2(SettingsPanel.WIDTH - 20, 20),
+                },
+                new MaisimSpriteText
+                {
+                    Text = "Track"
+                },
+                new BasicSliderBar<double>
+                {
+                    Current = audio.VolumeTrack,
                     KeyboardStep = 0.01f,
                     Size = new Vector2(SettingsPanel.WIDTH - 20, 20),
                 }
