@@ -5,6 +5,7 @@ using osu.Framework.Graphics.UserInterface;
 using osu.Framework.Localisation;
 using osu.Framework.Platform;
 using osuTK;
+using osuTK.Graphics;
 
 namespace maisim.Game.Graphics.UserInterface.Overlays
 {
@@ -26,9 +27,8 @@ namespace maisim.Game.Graphics.UserInterface.Overlays
                     Text = "logs location : " + storage.GetFullPath(@"logs"),
                     Font = MaisimFont.Comfortaa.With(size: 20),
                 },
-                new MaisimButton
+                new MaisimButton("open maisim folder", Color4.MediumPurple, Color4.White)
                 {
-                    Text = "open maisim folder",
                     Action = () => storage.PresentExternally(),
                     Size = new Vector2(SettingsPanel.WIDTH, 40),
                 }
