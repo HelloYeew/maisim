@@ -34,8 +34,6 @@ namespace maisim.Game.Graphics.UserInterface
                 Size = new Vector2(400, 60),
                 Masking = true,
                 CornerRadius = 30,
-                BorderThickness = 5,
-                BorderColour = buttonOutlineColor,
                 Children = new Drawable[]
                 {
                     new Box
