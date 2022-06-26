@@ -26,7 +26,7 @@ namespace maisim.Game.Graphics.UserInterface.Overlays
                     Text = "logs location : " + storage.GetFullPath(@"logs"),
                     Font = MaisimFont.Comfortaa.With(size: 20),
                 },
-                new BasicButton
+                new MaisimButton
                 {
                     Text = "open maisim folder",
                     Action = () => storage.PresentExternally(),
