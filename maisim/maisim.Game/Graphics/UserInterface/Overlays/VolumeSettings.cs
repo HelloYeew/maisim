@@ -25,7 +25,7 @@ namespace maisim.Game.Graphics.UserInterface.Overlays
                 {
                     Current = audio.Volume,
                     KeyboardStep = 0.01f,
-                    Size = new Vector2(SettingsPanel.WIDTH - 20, 20),
+                    Size = new Vector2(SettingsPanel.WIDTH - (SettingsPanel.CONTENT_MARGINS * 2), 20),
                 },
                 new MaisimSpriteText
                 {
@@ -35,7 +35,7 @@ namespace maisim.Game.Graphics.UserInterface.Overlays
                 {
                     Current = audio.VolumeSample,
                     KeyboardStep = 0.01f,
-                    Size = new Vector2(SettingsPanel.WIDTH - 20, 20),
+                    Size = new Vector2(SettingsPanel.WIDTH - (SettingsPanel.CONTENT_MARGINS * 2), 20),
                 },
                 new MaisimSpriteText
                 {
@@ -45,7 +45,7 @@ namespace maisim.Game.Graphics.UserInterface.Overlays
                 {
                     Current = audio.VolumeTrack,
                     KeyboardStep = 0.01f,
-                    Size = new Vector2(SettingsPanel.WIDTH - 20, 20),
+                    Size = new Vector2(SettingsPanel.WIDTH - (SettingsPanel.CONTENT_MARGINS * 2), 20),
                 }
             };
         }

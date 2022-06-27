@@ -31,7 +31,7 @@ namespace maisim.Game.Graphics.UserInterface
             {
                 Anchor = Anchor.Centre,
                 Origin = Anchor.Centre,
-                Size = new Vector2(400, 60),
+                Size = new Vector2(350, 50),
                 Masking = true,
                 CornerRadius = 30,
                 Children = new Drawable[]

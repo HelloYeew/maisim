@@ -56,11 +56,13 @@ namespace maisim.Game.Graphics.UserInterface.Overlays
                 new MaisimSpriteText
                 {
                     Text = Header,
-                    Margin = new MarginPadding { Vertical = (header_height - header_font_size) * 0.5f, Horizontal = SettingsPanel.CONTENT_MARGINS },
                     Font = MaisimFont.GetFont(size: header_font_size),
                 },
                 FlowContent
             });
+
+            Margin = new MarginPadding
+                {Vertical = (header_height - header_font_size) * 0.5f, Horizontal = SettingsPanel.CONTENT_MARGINS};
         }
     }
 }
