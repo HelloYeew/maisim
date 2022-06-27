@@ -26,12 +26,12 @@ namespace maisim.Game.Graphics.UserInterface.Overlays
                 {
                     Text = "logs location : " + storage.GetFullPath(@"logs"),
                     Font = MaisimFont.Comfortaa.With(size: 20),
-                    MaxWidth = SettingsPanel.WIDTH - (SettingsPanel.CONTENT_MARGINS * 2)
+                    MaxWidth = SECTION_WIDTH
                 },
                 new MaisimButton("open maisim folder", Color4.MediumPurple, Color4.White)
                 {
                     Action = () => storage.PresentExternally(),
-                    Size = new Vector2(SettingsPanel.WIDTH - (SettingsPanel.CONTENT_MARGINS * 2), 40),
+                    Size = new Vector2(SECTION_WIDTH, 40),
                 }
             };
         }

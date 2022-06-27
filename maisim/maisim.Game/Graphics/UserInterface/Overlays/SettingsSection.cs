@@ -19,6 +19,8 @@ namespace maisim.Game.Graphics.UserInterface.Overlays
 
         private IBindable<SettingsSection> selectedSection;
 
+        public abstract bool EnableSeperator { get; }
+
         public abstract LocalisableString Header { get; }
 
         public IEnumerable<IFilterable> FilterableChildren => Children.OfType<IFilterable>();
@@ -56,15 +58,22 @@ namespace maisim.Game.Graphics.UserInterface.Overlays
         [BackgroundDependencyLoader]
         private void load()
         {
+            if (EnableSeperator)
+            {
+                AddRangeInternal(new Drawable[]
+                {
+                    new Box
+                    {
+                        Name = "separator",
+                        Colour = Colour4.Aquamarine,
+                        RelativeSizeAxes = Axes.X,
+                        Height = border_size,
+                    }
+                });
+            }
+
             AddRangeInternal(new Drawable[]
             {
-                new Box
-                {
-                    Name = "separator",
-                    Colour = Colour4.Aquamarine,
-                    RelativeSizeAxes = Axes.X,
-                    Height = border_size,
-                },
                 new Container
                 {
                     Padding = new MarginPadding {Top = border_size},

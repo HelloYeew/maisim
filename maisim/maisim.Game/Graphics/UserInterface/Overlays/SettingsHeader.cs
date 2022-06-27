@@ -18,6 +18,8 @@ namespace maisim.Game.Graphics.UserInterface.Overlays
             this.subheading = subheading;
         }
 
+        public override bool EnableSeperator => false;
+
         public override LocalisableString Header => "";
 
         [BackgroundDependencyLoader]
@@ -25,7 +27,10 @@ namespace maisim.Game.Graphics.UserInterface.Overlays
         {
             RelativeSizeAxes = Axes.X;
             AutoSizeAxes = Axes.Y;
-
+            Margin = new MarginPadding
+            {
+                Horizontal = SettingsPanel.CONTENT_MARGINS
+            };
             Children = new Drawable[]
             {
                 new TextFlowContainer
