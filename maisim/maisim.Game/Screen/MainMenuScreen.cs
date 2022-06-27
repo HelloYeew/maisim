@@ -107,7 +107,7 @@ namespace maisim.Game.Screen
                 {
                     Anchor = Anchor.BottomLeft,
                     Origin = Anchor.BottomLeft,
-                    Text = "Maisim development build",
+                    Text = "maisim development build",
                     Scale = new Vector2(0)
                 }
             };
