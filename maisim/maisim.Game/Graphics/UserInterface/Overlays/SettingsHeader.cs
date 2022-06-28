@@ -48,7 +48,7 @@ namespace maisim.Game.Graphics.UserInterface.Overlays
                     flow.AddText(subheading, subheader =>
                     {
                         subheader.Colour = Color4.White;
-                        subheader.Font = MaisimFont.GetFont(size:18);
+                        subheader.Font = MaisimFont.Comfortaa.With(size: 20);
                     });
                 })
             };

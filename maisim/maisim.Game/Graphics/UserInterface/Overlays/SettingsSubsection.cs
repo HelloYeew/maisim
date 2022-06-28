@@ -47,7 +47,7 @@ namespace maisim.Game.Graphics.UserInterface.Overlays
 
         protected const float SECTION_WIDTH = SettingsPanel.WIDTH - (SettingsPanel.CONTENT_MARGINS * 2);
         private const int header_height = 43;
-        private const int header_font_size = 20;
+        private const int header_font_size = 25;
 
         [BackgroundDependencyLoader]
         private void load()

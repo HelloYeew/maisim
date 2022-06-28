@@ -19,7 +19,8 @@ namespace maisim.Game.Graphics.UserInterface.Overlays
             {
                 new MaisimSpriteText
                 {
-                    Text = "Master"
+                    Text = "Master",
+                    Font = MaisimFont.Comfortaa.With(size: 22)
                 },
                 new BasicSliderBar<double>
                 {
@@ -29,7 +30,8 @@ namespace maisim.Game.Graphics.UserInterface.Overlays
                 },
                 new MaisimSpriteText
                 {
-                    Text = "Effect"
+                    Text = "Effect",
+                    Font = MaisimFont.Comfortaa.With(size: 22)
                 },
                 new BasicSliderBar<double>
                 {
@@ -39,7 +41,8 @@ namespace maisim.Game.Graphics.UserInterface.Overlays
                 },
                 new MaisimSpriteText
                 {
-                    Text = "Track"
+                    Text = "Track",
+                    Font = MaisimFont.Comfortaa.With(size: 22)
                 },
                 new BasicSliderBar<double>
                 {

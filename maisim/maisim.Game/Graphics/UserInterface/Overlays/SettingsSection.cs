@@ -23,7 +23,7 @@ namespace maisim.Game.Graphics.UserInterface.Overlays
 
         public const int ITEM_SPACING = 14;
 
-        private const int header_size = 24;
+        private const int header_size = 30;
         private const int border_size = 4;
 
         [Resolved(canBeNull: true)] private SettingsPanel settingsPanel { get; set; }
