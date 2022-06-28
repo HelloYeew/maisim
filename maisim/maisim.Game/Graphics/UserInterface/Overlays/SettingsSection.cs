@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-using System.Linq;
 using maisim.Game.Graphics.Sprites;
 using osu.Framework.Allocation;
 using osu.Framework.Bindables;
@@ -23,17 +21,10 @@ namespace maisim.Game.Graphics.UserInterface.Overlays
 
         public abstract LocalisableString Header { get; }
 
-        public IEnumerable<IFilterable> FilterableChildren => Children.OfType<IFilterable>();
-        public virtual IEnumerable<LocalisableString> FilterTerms => new[] {Header};
-
         public const int ITEM_SPACING = 14;
 
         private const int header_size = 24;
         private const int border_size = 4;
-
-        private const float inactive_alpha = 0.8f;
-
-        private bool matchingFilter = true;
 
         [Resolved(canBeNull: true)] private SettingsPanel settingsPanel { get; set; }
 

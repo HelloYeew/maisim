@@ -28,7 +28,6 @@ namespace maisim.Game.Screen
 
         // TODO: This is the test track only for test the settings menu. This must be remove later.
         private Track track;
-        private DrawableTrack drawableTrack;
 
         [BackgroundDependencyLoader]
         private void load(TextureStore textureStore, ITrackStore tracks)
