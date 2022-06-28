@@ -12,7 +12,7 @@ namespace maisim.Game.Graphics.UserInterface.Overlays
         {
             Children = new Drawable[]
             {
-                new UpdateSettings()
+                new FolderSettings()
             };
         }
     }

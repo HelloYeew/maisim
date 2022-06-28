@@ -12,7 +12,7 @@ using osuTK.Graphics;
 
 namespace maisim.Game.Graphics.UserInterface.Overlays
 {
-    public abstract class SettingsSection : Container, IHasFilterableChildren
+    public abstract class SettingsSection : Container
     {
         protected FillFlowContainer FlowContent;
         protected override Container<Drawable> Content => FlowContent;
@@ -109,23 +109,5 @@ namespace maisim.Game.Graphics.UserInterface.Overlays
                 },
             });
         }
-
-        public bool MatchingFilter
-        {
-            get => matchingFilter;
-            set
-            {
-                bool wasPresent = IsPresent;
-
-                matchingFilter = value;
-
-                if (IsPresent != wasPresent)
-                    Invalidate(Invalidation.Presence);
-            }
-        }
-
-        public bool FilteringActive { get; set; }
-
-        private bool isCurrentSection => selectedSection.Value == this;
     }
 }

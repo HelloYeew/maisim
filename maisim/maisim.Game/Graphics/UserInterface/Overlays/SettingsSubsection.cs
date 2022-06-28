@@ -45,7 +45,7 @@ namespace maisim.Game.Graphics.UserInterface.Overlays
             };
         }
 
-        public const float SECTION_WIDTH = SettingsPanel.WIDTH - (SettingsPanel.CONTENT_MARGINS * 2);
+        protected const float SECTION_WIDTH = SettingsPanel.WIDTH - (SettingsPanel.CONTENT_MARGINS * 2);
         private const int header_height = 43;
         private const int header_font_size = 20;
 
