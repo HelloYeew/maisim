@@ -6,6 +6,7 @@ using osu.Framework.Audio;
 using osu.Framework.Audio.Track;
 using osu.Framework.Extensions.Color4Extensions;
 using osu.Framework.Graphics;
+using osu.Framework.Graphics.Audio;
 using osu.Framework.Graphics.Containers;
 using osu.Framework.Graphics.Sprites;
 using osu.Framework.Graphics.Textures;
@@ -33,6 +34,9 @@ namespace maisim.Game.Screen
         [BackgroundDependencyLoader]
         private void load(TextureStore textureStore, AudioManager audioManager)
         {
+            track = tracks.Get(@"testtrack.mp3");
+            track.Looping = true;
+
             InternalChildren = new Drawable[]
             {
                 new Container
@@ -104,7 +108,7 @@ namespace maisim.Game.Screen
                 {
                     Anchor = Anchor.BottomLeft,
                     Origin = Anchor.BottomLeft,
-                    Text = "Maisim development build",
+                    Text = "maisim development build",
                     Scale = new Vector2(0)
                 }
             };
@@ -125,6 +129,8 @@ namespace maisim.Game.Screen
             browseButton.ScaleTo(1, 900, Easing.OutQuint);
             exitButton.ScaleTo(1, 1000, Easing.OutQuint);
             versionText.ScaleTo(1, 1000, Easing.OutQuint);
+
+            track.Start();
         }
 
         public override void OnSuspending(ScreenTransitionEvent e)

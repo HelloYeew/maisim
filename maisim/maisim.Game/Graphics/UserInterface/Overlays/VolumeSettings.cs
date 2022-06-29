@@ -19,33 +19,36 @@ namespace maisim.Game.Graphics.UserInterface.Overlays
             {
                 new MaisimSpriteText
                 {
-                    Text = "Master"
+                    Text = "Master",
+                    Font = MaisimFont.Comfortaa.With(size: 22)
                 },
                 new BasicSliderBar<double>
                 {
                     Current = audio.Volume,
                     KeyboardStep = 0.01f,
-                    Size = new Vector2(SettingsPanel.WIDTH - 20, 20),
+                    Size = new Vector2(SettingsPanel.WIDTH - (SettingsPanel.CONTENT_MARGINS * 2), 20),
                 },
                 new MaisimSpriteText
                 {
-                    Text = "Effect"
+                    Text = "Effect",
+                    Font = MaisimFont.Comfortaa.With(size: 22)
                 },
                 new BasicSliderBar<double>
                 {
                     Current = audio.VolumeSample,
                     KeyboardStep = 0.01f,
-                    Size = new Vector2(SettingsPanel.WIDTH - 20, 20),
+                    Size = new Vector2(SECTION_WIDTH, 20),
                 },
                 new MaisimSpriteText
                 {
-                    Text = "Track"
+                    Text = "Track",
+                    Font = MaisimFont.Comfortaa.With(size: 22)
                 },
                 new BasicSliderBar<double>
                 {
                     Current = audio.VolumeTrack,
                     KeyboardStep = 0.01f,
-                    Size = new Vector2(SettingsPanel.WIDTH - 20, 20),
+                    Size = new Vector2(SECTION_WIDTH, 20),
                 }
             };
         }

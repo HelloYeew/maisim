@@ -5,13 +5,14 @@ namespace maisim.Game.Graphics.UserInterface.Overlays
 {
     public class DebugSection : SettingsSection
     {
+        public override bool EnableSeperator => true;
         public override LocalisableString Header => "debug";
 
         public DebugSection()
         {
             Children = new Drawable[]
             {
-                new UpdateSettings()
+                new FolderSettings()
             };
         }
     }

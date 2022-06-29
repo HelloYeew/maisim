@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-using System.Linq;
 using maisim.Game.Graphics.Sprites;
 using osu.Framework.Allocation;
 using osu.Framework.Bindables;
@@ -12,26 +10,21 @@ using osuTK.Graphics;
 
 namespace maisim.Game.Graphics.UserInterface.Overlays
 {
-    public abstract class SettingsSection : Container, IHasFilterableChildren
+    public abstract class SettingsSection : Container
     {
         protected FillFlowContainer FlowContent;
         protected override Container<Drawable> Content => FlowContent;
 
         private IBindable<SettingsSection> selectedSection;
 
-        public abstract LocalisableString Header { get; }
+        public abstract bool EnableSeperator { get; }
 
-        public IEnumerable<IFilterable> FilterableChildren => Children.OfType<IFilterable>();
-        public virtual IEnumerable<LocalisableString> FilterTerms => new[] {Header};
+        public abstract LocalisableString Header { get; }
 
         public const int ITEM_SPACING = 14;
 
-        private const int header_size = 24;
+        private const int header_size = 30;
         private const int border_size = 4;
-
-        private const float inactive_alpha = 0.8f;
-
-        private bool matchingFilter = true;
 
         [Resolved(canBeNull: true)] private SettingsPanel settingsPanel { get; set; }
 
@@ -56,15 +49,22 @@ namespace maisim.Game.Graphics.UserInterface.Overlays
         [BackgroundDependencyLoader]
         private void load()
         {
+            if (EnableSeperator)
+            {
+                AddRangeInternal(new Drawable[]
+                {
+                    new Box
+                    {
+                        Name = "separator",
+                        Colour = Colour4.Aquamarine,
+                        RelativeSizeAxes = Axes.X,
+                        Height = border_size,
+                    }
+                });
+            }
+
             AddRangeInternal(new Drawable[]
             {
-                new Box
-                {
-                    Name = "separator",
-                    Colour = Colour4.Aquamarine,
-                    RelativeSizeAxes = Axes.X,
-                    Height = border_size,
-                },
                 new Container
                 {
                     Padding = new MarginPadding {Top = border_size},
@@ -85,7 +85,7 @@ namespace maisim.Game.Graphics.UserInterface.Overlays
                             {
                                 new MaisimSpriteText
                                 {
-                                    Font = MaisimFont.Comfortaa.With(size: header_size),
+                                    Font = MaisimFont.GetFont(size: header_size),
                                     Text = Header,
                                     Colour = Color4.White,
                                     Margin = new MarginPadding
@@ -100,23 +100,5 @@ namespace maisim.Game.Graphics.UserInterface.Overlays
                 },
             });
         }
-
-        public bool MatchingFilter
-        {
-            get => matchingFilter;
-            set
-            {
-                bool wasPresent = IsPresent;
-
-                matchingFilter = value;
-
-                if (IsPresent != wasPresent)
-                    Invalidate(Invalidation.Presence);
-            }
-        }
-
-        public bool FilteringActive { get; set; }
-
-        private bool isCurrentSection => selectedSection.Value == this;
     }
 }

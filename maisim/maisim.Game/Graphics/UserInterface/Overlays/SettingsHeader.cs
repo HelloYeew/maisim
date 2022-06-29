@@ -18,6 +18,8 @@ namespace maisim.Game.Graphics.UserInterface.Overlays
             this.subheading = subheading;
         }
 
+        public override bool EnableSeperator => false;
+
         public override LocalisableString Header => "";
 
         [BackgroundDependencyLoader]
@@ -25,7 +27,10 @@ namespace maisim.Game.Graphics.UserInterface.Overlays
         {
             RelativeSizeAxes = Axes.X;
             AutoSizeAxes = Axes.Y;
-
+            Margin = new MarginPadding
+            {
+                Horizontal = SettingsPanel.CONTENT_MARGINS
+            };
             Children = new Drawable[]
             {
                 new TextFlowContainer
@@ -37,13 +42,13 @@ namespace maisim.Game.Graphics.UserInterface.Overlays
                     flow.AddText(heading, header =>
                     {
                         header.Colour = Color4.White;
-                        header.Font = MaisimFont.Comfortaa.With(size: 40);
+                        header.Font = MaisimFont.GetFont(size:40);
                     });
                     flow.NewLine();
                     flow.AddText(subheading, subheader =>
                     {
                         subheader.Colour = Color4.White;
-                        subheader.Font = MaisimFont.Comfortaa.With(size: 18);
+                        subheader.Font = MaisimFont.Comfortaa.With(size: 20);
                     });
                 })
             };

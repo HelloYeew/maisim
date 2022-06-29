@@ -45,8 +45,9 @@ namespace maisim.Game.Graphics.UserInterface.Overlays
             };
         }
 
+        protected const float SECTION_WIDTH = SettingsPanel.WIDTH - (SettingsPanel.CONTENT_MARGINS * 2);
         private const int header_height = 43;
-        private const int header_font_size = 20;
+        private const int header_font_size = 25;
 
         [BackgroundDependencyLoader]
         private void load()
@@ -56,11 +57,16 @@ namespace maisim.Game.Graphics.UserInterface.Overlays
                 new MaisimSpriteText
                 {
                     Text = Header,
-                    Margin = new MarginPadding { Vertical = (header_height - header_font_size) * 0.5f, Horizontal = SettingsPanel.CONTENT_MARGINS },
                     Font = MaisimFont.GetFont(size: header_font_size),
                 },
                 FlowContent
             });
+
+            Margin = new MarginPadding
+            {
+                Vertical = (header_height - header_font_size) * 0.5f,
+                Horizontal = SettingsPanel.CONTENT_MARGINS
+            };
         }
     }
 }
