@@ -14,9 +14,9 @@ namespace maisim.Game.Screen
     /// <summary>
     /// The song selection screen that shows a list of all the songs to the user who can select a track to play from there.
     /// </summary>
-    public class SongSelectionScreen : osu.Framework.Screens.Screen, IMaisimScreen
+    public class SongSelectionScreen : MaisimScreen
     {
-        public float BackgroundParallaxAmount => 0.2f;
+        public override float BackgroundParallaxAmount => 0.2f;
 
         [BackgroundDependencyLoader]
         private void load()

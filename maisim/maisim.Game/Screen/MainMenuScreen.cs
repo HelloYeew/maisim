@@ -14,7 +14,7 @@ namespace maisim.Game.Screen
     /// <summary>
     /// The main menu screen that includes all the main menu components.
     /// </summary>
-    public class MainMenuScreen : osu.Framework.Screens.Screen, IMaisimScreen
+    public class MainMenuScreen : MaisimScreen
     {
         private Sprite maisimLogo;
         private MainMenuButton playButton;
@@ -125,6 +125,6 @@ namespace maisim.Game.Screen
             this.MoveToX(0, 750, Easing.OutExpo);
         }
 
-        public float BackgroundParallaxAmount => 0.5f;
+        public override float BackgroundParallaxAmount => 0.5f;
     }
 }
