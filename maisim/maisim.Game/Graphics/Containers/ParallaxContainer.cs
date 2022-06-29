@@ -18,8 +18,6 @@ namespace maisim.Game.Graphics.Containers
 
         private const float parallax_duration = 100;
 
-        private bool firstUpdate = true;
-
         private readonly Container content;
         private InputManager input;
 
@@ -66,8 +64,6 @@ namespace maisim.Game.Graphics.Containers
 
             content.Position = Interpolation.ValueAt(elapsed, content.Position, offset, 0, parallax_duration, Easing.OutQuint);
             content.Scale = Interpolation.ValueAt(elapsed, content.Scale, new Vector2(1 + Math.Abs(ParallaxAmount)), 0, 1000, Easing.OutQuint);
-
-            firstUpdate = false;
         }
     }
 }
