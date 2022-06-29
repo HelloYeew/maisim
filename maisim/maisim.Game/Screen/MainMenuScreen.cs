@@ -34,9 +34,6 @@ namespace maisim.Game.Screen
         [BackgroundDependencyLoader]
         private void load(TextureStore textureStore, AudioManager audioManager)
         {
-            track = tracks.Get(@"testtrack.mp3");
-            track.Looping = true;
-
             InternalChildren = new Drawable[]
             {
                 new Container
