@@ -16,7 +16,7 @@ namespace maisim.Game.Screen
     /// </summary>
     public class SongSelectionScreen : osu.Framework.Screens.Screen, IMaisimScreen
     {
-        public float BackgroundParallaxAmount => 0;
+        public float BackgroundParallaxAmount => 0.2f;
 
         [BackgroundDependencyLoader]
         private void load()
