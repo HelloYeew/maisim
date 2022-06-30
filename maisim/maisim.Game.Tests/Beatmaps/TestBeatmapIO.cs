@@ -73,22 +73,22 @@ namespace maisim.Game.Tests.Beatmaps
                 new DrawableTapNote()
                 {
                     Lane = NoteLane.Lane1,
-                    TargetTime = 5.2323
+                    TargetTime = 5232
                 },
                 new DrawableTapNote()
                 {
                     Lane = NoteLane.Lane2,
-                    TargetTime = 23.23
+                    TargetTime = 23230
                 },
                 new DrawableTapNote()
                 {
                     Lane = NoteLane.Lane4,
-                    TargetTime = 44.44
+                    TargetTime = 44440
                 },
                 new DrawableTapNote()
                 {
                     Lane = NoteLane.Lane3,
-                    TargetTime = 55.445
+                    TargetTime = 55445
                 },
             };
         }

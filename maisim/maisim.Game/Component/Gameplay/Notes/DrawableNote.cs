@@ -24,7 +24,7 @@ namespace maisim.Game.Component.Gameplay.Notes
         }
 
         /// <summary>
-        /// The time that the note need to be hit.
+        /// The time that the note need to be hit in milliseconds.
         /// </summary>
         public double TargetTime;
 
