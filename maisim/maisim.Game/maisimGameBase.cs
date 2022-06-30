@@ -1,3 +1,4 @@
+using maisim.Game.Configuration;
 using maisim.Game.Store;
 using osu.Framework.Allocation;
 using osu.Framework.Graphics;
@@ -5,6 +6,9 @@ using osu.Framework.Graphics.Containers;
 using osu.Framework.IO.Stores;
 using osuTK;
 using maisim.Resources;
+using osu.Framework.Development;
+using osu.Framework.Logging;
+using osu.Framework.Platform;
 
 namespace maisim.Game
 {
@@ -17,6 +21,12 @@ namespace maisim.Game
         protected override Container<Drawable> Content { get; }
 
         private MaisimTextureStore textureStore;
+
+        protected MaisimConfigManager LocalConfig { get; private set; }
+
+        protected Storage Storage { get; set; }
+
+        private DependencyContainer dependencies;
 
         protected maisimGameBase()
         {
@@ -54,13 +64,22 @@ namespace maisim.Game
             AddFont(Resources, @"Fonts/Noto/Noto-Hangul");
             AddFont(Resources, @"Fonts/Noto/Noto-CJK-Basic");
             AddFont(Resources, @"Fonts/Noto/Noto-CJK-Compatibility");
+
+            dependencies.Cache(textureStore = new MaisimTextureStore(Host.CreateTextureLoaderStore(new NamespacedResourceStore<byte[]>(Resources, "Textures"))));
+            dependencies.CacheAs(this);
+            dependencies.CacheAs(LocalConfig);
         }
 
-        protected override IReadOnlyDependencyContainer CreateChildDependencies(IReadOnlyDependencyContainer parent)
+        public override void SetHost(GameHost host)
         {
-            var dependencies = new DependencyContainer(base.CreateChildDependencies(parent));
-            dependencies.Cache(textureStore = new MaisimTextureStore(Host.CreateTextureLoaderStore(new NamespacedResourceStore<byte[]>(Resources, "Textures"))));
-            return dependencies;
+            base.SetHost(host);
+            Logger.Log(host.Storage.GetFullPath("logs"));
+            Storage = host.Storage;
+            LocalConfig ??= DebugUtils.IsDebugBuild
+                ? new DevelopmentMaisimConfigManager(Storage)
+                : new MaisimConfigManager(Storage);
         }
+
+        protected override IReadOnlyDependencyContainer CreateChildDependencies(IReadOnlyDependencyContainer parent) => dependencies = new DependencyContainer(base.CreateChildDependencies(parent));
     }
 }
