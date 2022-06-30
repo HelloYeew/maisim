@@ -7,7 +7,7 @@ namespace maisim.Game.Tests
     {
         public static void Main()
         {
-            using (GameHost host = Host.GetSuitableDesktopHost("maisim-test", new HostOptions { BindIPC = true }))
+            using (GameHost host = Host.GetSuitableDesktopHost("maisim", new HostOptions { BindIPC = true }))
             using (var game = new maisimTestBrowser())
                 host.Run(game);
         }

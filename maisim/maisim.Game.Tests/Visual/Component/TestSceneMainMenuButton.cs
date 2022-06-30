@@ -1,4 +1,6 @@
 using maisim.Game.Component;
+using maisim.Game.Graphics.UserInterface;
+using osu.Framework.Extensions.Color4Extensions;
 using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
 using osu.Framework.Graphics.Shapes;
@@ -16,7 +18,7 @@ namespace maisim.Game.Tests.Visual.Component
             {
                 Anchor = Anchor.Centre,
                 Origin = Anchor.Centre,
-                Size = new Vector2(300),
+                Size = new Vector2(600),
                 Masking = true,
                 Children = new Drawable[]
                 {
@@ -25,11 +27,11 @@ namespace maisim.Game.Tests.Visual.Component
                         RelativeSizeAxes = Axes.Both,
                         Colour = Color4.DimGray
                     },
-                    new MainMenuButton("Test", FontAwesome.Solid.Smile)
+                    new MainMenuButton("Cool Button", FontAwesome.Solid.Smile, Color4Extensions.FromHex("73bfe9"))
                     {
                         Anchor = Anchor.Centre,
                         Origin = Anchor.Centre,
-                        Size = new Vector2(250)
+                        Size = new Vector2(540, 80)
                     }
                 }
             };

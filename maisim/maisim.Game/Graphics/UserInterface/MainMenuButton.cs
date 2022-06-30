@@ -1,10 +1,6 @@
-using maisim.Game.Graphics;
 using maisim.Game.Graphics.Sprites;
-using osu.Framework.Allocation;
-using osu.Framework.Audio.Sample;
 using osu.Framework.Extensions.Color4Extensions;
 using osu.Framework.Graphics;
-using osu.Framework.Graphics.Audio;
 using osu.Framework.Graphics.Containers;
 using osu.Framework.Graphics.Shapes;
 using osu.Framework.Graphics.Sprites;
@@ -13,94 +9,110 @@ using osu.Framework.Input.Events;
 using osuTK;
 using osuTK.Graphics;
 
-namespace maisim.Game.Component
+namespace maisim.Game.Graphics.UserInterface
 {
     /// <summary>
     /// A button used on the main menu screen.
     /// </summary>
     public class MainMenuButton : Button
     {
-        private DrawableSample drawableHoverSample;
-        private DrawableSample drawableClickSample;
-        private readonly string buttonText;
-        private readonly IconUsage buttonIcon;
+        private readonly Color4 buttonColor;
+        private readonly Box buttonBox;
 
-        public MainMenuButton(string buttonText, IconUsage buttonIcon)
+        public MainMenuButton(string buttonText, IconUsage buttonIcon, Color4 buttonColor)
         {
-            this.buttonText = buttonText;
-            this.buttonIcon = buttonIcon;
-        }
+            this.buttonColor = buttonColor;
 
-        [BackgroundDependencyLoader]
-        private void load(ISampleStore sampleStore)
-        {
-            InternalChild = new CircularContainer
+            InternalChild = new Container
             {
                 Anchor = Anchor.Centre,
                 Origin = Anchor.Centre,
-                Size = new Vector2(250, 250),
+                Size = new Vector2(400, 60),
+                Masking = true,
+                CornerRadius = 30,
+                BorderThickness = 5,
+                BorderColour = Color4.White,
                 Children = new Drawable[]
                 {
-                    new Circle
+                    buttonBox = new Box
                     {
                         RelativeSizeAxes = Axes.Both,
-                        Anchor = Anchor.Centre,
-                        Origin = Anchor.Centre,
-                        Colour = Color4Extensions.FromHex("73bfe9"),
-                        BorderThickness = 10,
-                        BorderColour = Color4.White,
-                        Masking = true,
+                        Anchor = Anchor.CentreRight,
+                        Origin = Anchor.CentreRight,
+                        Colour = buttonColor
                     },
                     new GridContainer
                     {
                         RelativeSizeAxes = Axes.Both,
-                        RowDimensions = new[]
+                        ColumnDimensions = new[]
                         {
-                            new Dimension(GridSizeMode.Absolute, 175),
-                            new Dimension(GridSizeMode.Absolute, 75),
+                            new Dimension(GridSizeMode.Absolute, 100),
+                            new Dimension(GridSizeMode.Absolute, 400)
                         },
                         Content = new[]
                         {
                             new Drawable[]
                             {
-                                new SpriteIcon
+                                new Container
                                 {
-                                    Anchor = Anchor.Centre,
-                                    Origin = Anchor.Centre,
-                                    Icon = buttonIcon,
-                                    Size = new Vector2(80,80),
-                                    Colour = Colour4.White
-                                }
-                            },new Drawable[]
-                            {
-                                new MaisimSpriteText
+                                    Anchor = Anchor.CentreLeft,
+                                    Origin = Anchor.CentreLeft,
+                                    Size = new Vector2(100, 70),
+                                    Children = new Drawable[]
+                                    {
+                                        new SpriteIcon
+                                        {
+                                            Anchor = Anchor.Centre,
+                                            Origin = Anchor.Centre,
+                                            Icon = buttonIcon,
+                                            Size = new Vector2(30),
+                                            Colour = Color4Extensions.FromHex("ffffff")
+                                        }
+                                    }
+                                },
+                                new Container
                                 {
-                                    Text = buttonText,
-                                    Font = MaisimFont.GetFont(size: 40f),
-                                    Anchor = Anchor.TopCentre,
-                                    Origin = Anchor.TopCentre,
-                                    Colour = Color4.White
+                                    Anchor = Anchor.CentreLeft,
+                                    Origin = Anchor.CentreLeft,
+                                    Size = new Vector2(400, 70),
+                                    Child = new MaisimSpriteText()
+                                    {
+                                        Anchor = Anchor.CentreLeft,
+                                        Origin = Anchor.CentreLeft,
+                                        Text = buttonText,
+                                        Font = MaisimFont.GetFont(size: 35f)
+                                    }
                                 }
                             }
                         }
-                    }
+                    },
+                    new ClickHoverSounds()
                 }
             };
-
-            drawableHoverSample = new DrawableSample(sampleStore.Get("hover.wav"));
-            drawableClickSample = new DrawableSample(sampleStore.Get("click.wav"));
         }
 
         protected override bool OnHover(HoverEvent e)
         {
-            drawableHoverSample.Play();
+            buttonBox.Colour = buttonColor.Darken(0.25f);
             return base.OnHover(e);
         }
 
-        protected override bool OnClick(ClickEvent e)
+        protected override void OnHoverLost(HoverLostEvent e)
         {
-            drawableClickSample.Play();
-            return base.OnClick(e);
+            buttonBox.Colour = buttonColor;
+            base.OnHoverLost(e);
+        }
+
+        protected override bool OnMouseDown(MouseDownEvent e)
+        {
+            buttonBox.Colour = buttonColor.Darken(0.5f);
+            return base.OnMouseDown(e);
+        }
+
+        protected override void OnMouseUp(MouseUpEvent e)
+        {
+            buttonBox.Colour = buttonColor;
+            base.OnMouseUp(e);
         }
     }
 }
