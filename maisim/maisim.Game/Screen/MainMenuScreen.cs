@@ -1,6 +1,5 @@
 ﻿using maisim.Game.Graphics.Sprites;
 using maisim.Game.Graphics.UserInterface;
-using maisim.Game.Graphics.UserInterface.Toolbar;
 using osu.Framework.Allocation;
 using osu.Framework.Extensions.Color4Extensions;
 using osu.Framework.Graphics;
@@ -15,7 +14,7 @@ namespace maisim.Game.Screen
     /// <summary>
     /// The main menu screen that includes all the main menu components.
     /// </summary>
-    public class MainMenuScreen : osu.Framework.Screens.Screen
+    public class MainMenuScreen : MaisimScreen
     {
         private Sprite maisimLogo;
         private MainMenuButton playButton;
@@ -125,5 +124,7 @@ namespace maisim.Game.Screen
             this.ScaleTo(1, 750, Easing.OutQuint);
             this.MoveToX(0, 750, Easing.OutExpo);
         }
+
+        public override float BackgroundParallaxAmount => 0.5f;
     }
 }
