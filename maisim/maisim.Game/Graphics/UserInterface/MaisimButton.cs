@@ -16,16 +16,10 @@ namespace maisim.Game.Graphics.UserInterface
         private readonly Color4 buttonColor;
         private readonly Box buttonBox;
 
-        [BackgroundDependencyLoader]
-        private void load()
-        {
-            CornerRadius = 30;
-        }
-
         public MaisimButton(string text, Color4 buttonColor, Color4 buttonOutlineColor)
         {
             this.buttonColor = buttonColor;
-
+            CornerRadius = 30;
             InternalChild = new Container
             {
                 Anchor = Anchor.Centre,

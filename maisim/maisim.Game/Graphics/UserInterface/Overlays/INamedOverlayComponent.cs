@@ -4,7 +4,7 @@ using osu.Framework.Localisation;
 namespace maisim.Game.Graphics.UserInterface.Overlays
 {
     /// <summary>
-    /// An overlay component interface that's bind with the <see cref="Toolbar"/>
+    /// An interface for an overlay whose visibility state is bound to one of the buttons on the <see cref="Toolbar"/>
     /// </summary>
     public interface INamedOverlayComponent
     {
