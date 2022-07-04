@@ -14,7 +14,7 @@ namespace maisim.Game.Screen
         {
             InternalChildren = new Drawable[]
             {
-                new BackgroundComponent("testbackground")
+                new BackgroundComponent("background4")
                 {
                     Anchor = Anchor.Centre,
                     Origin = Anchor.Centre,
