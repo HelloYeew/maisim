@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Threading.Tasks;
+using maisim.Game.Graphics.UserInterface.Overlays;
 using maisim.Game.Graphics.UserInterface.Toolbar;
 using maisim.Game.Screen;
 using osu.Framework.Allocation;
@@ -23,14 +24,23 @@ namespace maisim.Game
 
         private Toolbar toolbar;
 
+        private SettingsOverlay Settings;
+
+        private Container overlayContent;
+
+        private Container rightFloatingOverlayContent;
+
+        private Container leftFloatingOverlayContent;
+
         private float toolbarOffset => (toolbar?.Position.Y ?? 0) + (toolbar?.DrawHeight ?? 0);
+
+        protected override IReadOnlyDependencyContainer CreateChildDependencies(IReadOnlyDependencyContainer parent) =>
+            dependencies = new DependencyContainer(base.CreateChildDependencies(parent));
 
         [BackgroundDependencyLoader]
         private void load()
         {
-            // Add your top-level game components here.
-            // A screen stack and sample screen has been provided for convenience, but you can replace it if you don't want to use screens.
-            // Child = screenStack = new ScreenStack {RelativeSizeAxes = Axes.Both};
+            dependencies.CacheAs(this);
 
             Add(screenStack = new MaisimScreenStack());
         }
@@ -52,10 +62,21 @@ namespace maisim.Game
                         }
                     }
                 },
+                new Container
+                {
+                    RelativeSizeAxes = Axes.Both,
+                    Children = new Drawable[]
+                    {
+                        overlayContent = new Container { RelativeSizeAxes = Axes.Both },
+                        rightFloatingOverlayContent = new Container { RelativeSizeAxes = Axes.Both },
+                        leftFloatingOverlayContent = new Container { RelativeSizeAxes = Axes.Both },
+                    }
+                },
                 topMostOverlayContent = new Container { RelativeSizeAxes = Axes.Both }
             });
 
             loadComponentSingleFile(toolbar = new Toolbar(), topMostOverlayContent.Add);
+            loadComponentSingleFile(Settings = new SettingsOverlay(), leftFloatingOverlayContent.Add, true);
 
             screenStack.Push(new WarningScreen(new MainMenuScreen()));
         }
