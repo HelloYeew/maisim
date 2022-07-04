@@ -15,8 +15,6 @@ namespace maisim.Game.Graphics.UserInterface.Overlays
         protected FillFlowContainer FlowContent;
         protected override Container<Drawable> Content => FlowContent;
 
-        private IBindable<SettingsSection> selectedSection;
-
         public abstract bool EnableSeperator { get; }
 
         public abstract LocalisableString Header { get; }

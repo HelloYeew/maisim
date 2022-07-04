@@ -1,6 +1,5 @@
 ﻿using maisim.Game.Graphics.Sprites;
 using maisim.Game.Graphics.UserInterface;
-using maisim.Game.Graphics.UserInterface.Toolbar;
 using osu.Framework.Allocation;
 using osu.Framework.Audio;
 using osu.Framework.Audio.Track;
@@ -18,7 +17,7 @@ namespace maisim.Game.Screen
     /// <summary>
     /// The main menu screen that includes all the main menu components.
     /// </summary>
-    public class MainMenuScreen : osu.Framework.Screens.Screen
+    public class MainMenuScreen : MaisimScreen
     {
         private Sprite maisimLogo;
         private MainMenuButton playButton;
@@ -111,7 +110,7 @@ namespace maisim.Game.Screen
             };
 
             trackStore = audioManager.Tracks;
-            track = trackStore.Get("yumesekai.m4a");
+            track = trackStore.Get("jangnara");
             // track = trackStore.Get("rei/ReI");
             track.Looping = true;
             // track.Seek(50000);
@@ -152,5 +151,7 @@ namespace maisim.Game.Screen
 
             return base.OnExiting(screenExitEvent);
         }
+
+        public override float BackgroundParallaxAmount => 0.5f;
     }
 }

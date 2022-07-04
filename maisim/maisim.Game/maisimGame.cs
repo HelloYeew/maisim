@@ -26,8 +26,6 @@ namespace maisim.Game
 
         private SettingsOverlay Settings;
 
-        private Container overlayOffsetContainer;
-
         private Container overlayContent;
 
         private Container rightFloatingOverlayContent;
@@ -64,7 +62,7 @@ namespace maisim.Game
                         }
                     }
                 },
-                overlayOffsetContainer = new Container
+                new Container
                 {
                     RelativeSizeAxes = Axes.Both,
                     Children = new Drawable[]

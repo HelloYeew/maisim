@@ -7,7 +7,7 @@ namespace maisim.Game.Screen
     /// <summary>
     /// A screen that holds a stack of backgrounds for the other screens.
     /// </summary>
-    public class BackgroundScreen : osu.Framework.Screens.Screen
+    public class BackgroundScreen : MaisimScreen
     {
         [BackgroundDependencyLoader]
         private void load()
@@ -23,5 +23,7 @@ namespace maisim.Game.Screen
                 }
             };
         }
+
+        public override float BackgroundParallaxAmount => 0f;
     }
 }

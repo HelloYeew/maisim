@@ -12,11 +12,13 @@ namespace maisim.Game.Screen
     /// <summary>
     /// A welcome screen that's show when the game is first loaded that this project is a work in progress.
     /// </summary>
-    public class WarningScreen : osu.Framework.Screens.Screen
+    public class WarningScreen : MaisimScreen
     {
         private SpriteIcon warningSprite;
 
         private readonly osu.Framework.Screens.Screen nextScreen;
+
+        public override float BackgroundParallaxAmount => 0.5f;
 
         private readonly float icon_y = -100f;
 
