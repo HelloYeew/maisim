@@ -25,13 +25,13 @@ namespace maisim.Game
 
         private MaisimTextureStore textureStore;
 
-        public MaisimStore Store;
-
-        public AudioManager AudioManager;
-
         protected MaisimConfigManager LocalConfig { get; private set; }
 
         protected Storage Storage { get; set; }
+
+        public MaisimStore Store;
+
+        public AudioManager AudioManager;
 
         private DependencyContainer dependencies;
 
@@ -75,6 +75,8 @@ namespace maisim.Game
             AddFont(Resources, @"Fonts/Noto/Noto-CJK-Compatibility");
 
             dependencies.Cache(textureStore = new MaisimTextureStore(Host.CreateTextureLoaderStore(new NamespacedResourceStore<byte[]>(Resources, "Textures"))));
+            dependencies.Cache(Store = new MaisimStore(Host.Storage.GetStorageForDirectory("tracks")));
+            dependencies.Cache(AudioManager = new AudioManager(Host.AudioThread, new NamespacedResourceStore<byte[]>(new MaisimStore(Host.Storage), "tracks"), new NamespacedResourceStore<byte[]>(Resources, "Samples")));
             dependencies.CacheAs(this);
             dependencies.CacheAs(LocalConfig);
         }
@@ -82,12 +84,6 @@ namespace maisim.Game
         protected override void LoadComplete()
         {
             base.LoadComplete();
-
-            var dependencies = new DependencyContainer(base.CreateChildDependencies(parent));
-            dependencies.Cache(textureStore = new MaisimTextureStore(Host.CreateTextureLoaderStore(new NamespacedResourceStore<byte[]>(Resources, "Textures"))));
-            dependencies.Cache(Store = new MaisimStore(Host.Storage.GetStorageForDirectory("tracks")));
-            dependencies.Cache(AudioManager = new AudioManager(Host.AudioThread, new NamespacedResourceStore<byte[]>(new MaisimStore(Host.Storage), "tracks"), new NamespacedResourceStore<byte[]>(Resources, "Samples")));
-            return dependencies;
 
             fpsDisplayVisible = LocalConfig.GetBindable<bool>(MaisimSetting.ShowFpsDisplay);
             fpsDisplayVisible.ValueChanged += visible => { FrameStatistics.Value = visible.NewValue ? FrameStatisticsMode.Minimal : FrameStatisticsMode.None; };
