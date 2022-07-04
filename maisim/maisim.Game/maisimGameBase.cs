@@ -35,7 +35,7 @@ namespace maisim.Game
 
         private DependencyContainer dependencies;
 
-        private Bindable<bool> fpsDisplayVisible
+        private Bindable<bool> fpsDisplayVisible;
 
         protected maisimGameBase()
         {
