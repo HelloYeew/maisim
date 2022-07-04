@@ -1,3 +1,4 @@
+using maisim.Game.Configuration;
 using maisim.Game.Store;
 using osu.Framework.Allocation;
 using osu.Framework.Graphics;
@@ -6,6 +7,11 @@ using osu.Framework.IO.Stores;
 using osuTK;
 using maisim.Resources;
 using osu.Framework.Audio;
+using osu.Framework.Bindables;
+using osu.Framework.Development;
+using osu.Framework.Graphics.Performance;
+using osu.Framework.Logging;
+using osu.Framework.Platform;
 
 namespace maisim.Game
 {
@@ -22,6 +28,14 @@ namespace maisim.Game
         public MaisimStore Store;
 
         public AudioManager AudioManager;
+
+        protected MaisimConfigManager LocalConfig { get; private set; }
+
+        protected Storage Storage { get; set; }
+
+        private DependencyContainer dependencies;
+
+        private Bindable<bool> fpsDisplayVisible
 
         protected maisimGameBase()
         {
@@ -59,15 +73,37 @@ namespace maisim.Game
             AddFont(Resources, @"Fonts/Noto/Noto-Hangul");
             AddFont(Resources, @"Fonts/Noto/Noto-CJK-Basic");
             AddFont(Resources, @"Fonts/Noto/Noto-CJK-Compatibility");
+
+            dependencies.Cache(textureStore = new MaisimTextureStore(Host.CreateTextureLoaderStore(new NamespacedResourceStore<byte[]>(Resources, "Textures"))));
+            dependencies.CacheAs(this);
+            dependencies.CacheAs(LocalConfig);
         }
 
-        protected override IReadOnlyDependencyContainer CreateChildDependencies(IReadOnlyDependencyContainer parent)
+        protected override void LoadComplete()
         {
+            base.LoadComplete();
+
             var dependencies = new DependencyContainer(base.CreateChildDependencies(parent));
             dependencies.Cache(textureStore = new MaisimTextureStore(Host.CreateTextureLoaderStore(new NamespacedResourceStore<byte[]>(Resources, "Textures"))));
             dependencies.Cache(Store = new MaisimStore(Host.Storage.GetStorageForDirectory("tracks")));
             dependencies.Cache(AudioManager = new AudioManager(Host.AudioThread, new NamespacedResourceStore<byte[]>(new MaisimStore(Host.Storage), "tracks"), new NamespacedResourceStore<byte[]>(Resources, "Samples")));
             return dependencies;
+
+            fpsDisplayVisible = LocalConfig.GetBindable<bool>(MaisimSetting.ShowFpsDisplay);
+            fpsDisplayVisible.ValueChanged += visible => { FrameStatistics.Value = visible.NewValue ? FrameStatisticsMode.Minimal : FrameStatisticsMode.None; };
+            fpsDisplayVisible.TriggerChange();
         }
+
+        public override void SetHost(GameHost host)
+        {
+            base.SetHost(host);
+            Logger.Log(host.Storage.GetFullPath("logs"));
+            Storage = host.Storage;
+            LocalConfig ??= DebugUtils.IsDebugBuild
+                ? new DevelopmentMaisimConfigManager(Storage)
+                : new MaisimConfigManager(Storage);
+        }
+
+        protected override IReadOnlyDependencyContainer CreateChildDependencies(IReadOnlyDependencyContainer parent) => dependencies = new DependencyContainer(base.CreateChildDependencies(parent));
     }
 }

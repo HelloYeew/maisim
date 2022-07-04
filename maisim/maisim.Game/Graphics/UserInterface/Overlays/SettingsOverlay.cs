@@ -23,6 +23,8 @@ namespace maisim.Game.Graphics.UserInterface.Overlays
         {
             new SettingsHeader(Title, Description),
             new AudioSection(),
+            new UserInterfaceSection(),
+            new GraphicsSection(),
             new DebugSection()
         };
 
