@@ -1,4 +1,7 @@
 using System;
+using maisim.Game.Configuration;
+using osu.Framework.Allocation;
+using osu.Framework.Bindables;
 using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
 using osu.Framework.Input;
@@ -20,6 +23,8 @@ namespace maisim.Game.Graphics.Containers
 
         private readonly Container content;
         private InputManager input;
+        private Bindable<bool> parallaxEnabled;
+        private bool firstUpdate = true;
 
         public ParallaxContainer()
         {
@@ -34,6 +39,20 @@ namespace maisim.Game.Graphics.Containers
 
         protected override Container<Drawable> Content => content;
 
+        [BackgroundDependencyLoader]
+        private void load(MaisimConfigManager config)
+        {
+            parallaxEnabled = config.GetBindable<bool>(MaisimSetting.MenuParallax);
+            parallaxEnabled.ValueChanged += delegate
+            {
+                if (!parallaxEnabled.Value)
+                {
+                    content.MoveTo(Vector2.Zero, firstUpdate ? 0 : 1000, Easing.OutQuint);
+                    content.Scale = new Vector2(1 + Math.Abs(ParallaxAmount));
+                }
+            };
+        }
+
         protected override void LoadComplete()
         {
             base.LoadComplete();
@@ -44,26 +63,31 @@ namespace maisim.Game.Graphics.Containers
         {
             base.Update();
 
-            Vector2 offset = Vector2.Zero;
-
-            if (input.CurrentState.Mouse != null)
+            if (parallaxEnabled.Value)
             {
-                var sizeDiv2 = DrawSize / 2;
+                Vector2 offset = Vector2.Zero;
 
-                Vector2 relativeAmount = ToLocalSpace(input.CurrentState.Mouse.Position) - sizeDiv2;
+                if (input.CurrentState.Mouse != null)
+                {
+                    var sizeDiv2 = DrawSize / 2;
 
-                const float base_factor = 0.999f;
+                    Vector2 relativeAmount = ToLocalSpace(input.CurrentState.Mouse.Position) - sizeDiv2;
 
-                relativeAmount.X = (float)(Math.Sign(relativeAmount.X) * Interpolation.Damp(0, 1, base_factor, Math.Abs(relativeAmount.X)));
-                relativeAmount.Y = (float)(Math.Sign(relativeAmount.Y) * Interpolation.Damp(0, 1, base_factor, Math.Abs(relativeAmount.Y)));
+                    const float base_factor = 0.999f;
 
-                offset = relativeAmount * sizeDiv2 * ParallaxAmount;
+                    relativeAmount.X = (float)(Math.Sign(relativeAmount.X) * Interpolation.Damp(0, 1, base_factor, Math.Abs(relativeAmount.X)));
+                    relativeAmount.Y = (float)(Math.Sign(relativeAmount.Y) * Interpolation.Damp(0, 1, base_factor, Math.Abs(relativeAmount.Y)));
+
+                    offset = relativeAmount * sizeDiv2 * ParallaxAmount;
+                }
+
+                double elapsed = Math.Clamp(Clock.ElapsedFrameTime, 0, parallax_duration);
+
+                content.Position = Interpolation.ValueAt(elapsed, content.Position, offset, 0, parallax_duration, Easing.OutQuint);
+                content.Scale = Interpolation.ValueAt(elapsed, content.Scale, new Vector2(1 + Math.Abs(ParallaxAmount)), 0, 1000, Easing.OutQuint);
             }
 
-            double elapsed = Math.Clamp(Clock.ElapsedFrameTime, 0, parallax_duration);
-
-            content.Position = Interpolation.ValueAt(elapsed, content.Position, offset, 0, parallax_duration, Easing.OutQuint);
-            content.Scale = Interpolation.ValueAt(elapsed, content.Scale, new Vector2(1 + Math.Abs(ParallaxAmount)), 0, 1000, Easing.OutQuint);
+            firstUpdate = false;
         }
     }
 }

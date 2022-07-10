@@ -5,7 +5,7 @@ using osu.Framework.Platform;
 using osuTK;
 using osuTK.Graphics;
 
-namespace maisim.Game.Graphics.UserInterface.Overlays
+namespace maisim.Game.Graphics.UserInterface.Overlays.Settings.Debugs
 {
     public class FolderSettings : SettingsSubsection
     {
