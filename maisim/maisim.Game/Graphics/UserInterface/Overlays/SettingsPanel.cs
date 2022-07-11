@@ -21,15 +21,15 @@ namespace maisim.Game.Graphics.UserInterface.Overlays
 
         protected override Container<Drawable> Content => ContentContainer;
 
-        private FillFlowContainer scrollContainer;
+        private FillFlowContainer flowSections;
 
         protected virtual float ExpandedPosition => 0;
 
         protected virtual IEnumerable<SettingsSection> CreateSections() => null;
 
-        protected virtual Drawable CreateHeader() => new Container();
+        protected virtual Drawable CreateHeader() => null;
 
-        protected virtual Drawable CreateFooter() => new Container();
+        protected virtual Drawable CreateFooter() => null;
 
         public SettingsPanel()
         {
@@ -59,13 +59,21 @@ namespace maisim.Game.Graphics.UserInterface.Overlays
                 }
             };
 
-            Add(scrollContainer = new FillFlowContainer()
+            Add(new BasicScrollContainer
             {
-                Masking = true,
+                ScrollbarVisible = false,
                 RelativeSizeAxes = Axes.Both,
+                Child = flowSections = new FillFlowContainer
+                {
+                    Direction = FillDirection.Vertical,
+                    AutoSizeAxes = Axes.Y,
+                    RelativeSizeAxes = Axes.X,
+                }
             });
 
-            CreateSections()?.ForEach(scrollContainer.Add);
+            flowSections.Add(CreateHeader() ?? Empty());
+            CreateSections()?.ForEach(flowSections.Add);
+            flowSections.Add(CreateFooter() ?? Empty());
         }
 
         protected override void PopIn()
