@@ -23,6 +23,8 @@ namespace maisim.Game.Graphics.UserInterface.Overlays
         protected override IEnumerable<SettingsSection> CreateSections() => new SettingsSection[]
         {
             new AudioSection(),
+            new UserInterfaceSection(),
+            new GraphicsSection(),
             new DebugSection()
         };
 
