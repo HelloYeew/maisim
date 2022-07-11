@@ -18,6 +18,9 @@ namespace maisim.Game.Graphics.UserInterface.Overlays
         public const float WIDTH = 400;
 
         protected Container<Drawable> ContentContainer;
+
+        protected override Container<Drawable> Content => ContentContainer;
+
         private FillFlowContainer scrollContainer;
 
         protected virtual float ExpandedPosition => 0;
