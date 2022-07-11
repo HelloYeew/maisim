@@ -14,6 +14,7 @@ namespace maisim.Game.Graphics.UserInterface.Overlays
             Icon = FontAwesome.Solid.Cog,
             Colour = Color4.White
         };
+
         public LocalisableString Title => "settings";
         public LocalisableString Description => "adjust your maisim settings";
 
@@ -21,7 +22,6 @@ namespace maisim.Game.Graphics.UserInterface.Overlays
 
         protected override IEnumerable<SettingsSection> CreateSections() => new SettingsSection[]
         {
-            new SettingsHeader(Title, Description),
             new AudioSection(),
             new UserInterfaceSection(),
             new GraphicsSection(),
