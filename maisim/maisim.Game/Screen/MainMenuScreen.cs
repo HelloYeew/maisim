@@ -109,7 +109,7 @@ namespace maisim.Game.Screen
             };
 
             trackStore = audioManager.Tracks;
-            track = trackStore.Get("jangnara");
+            track = trackStore.Get("innocence");
             // track = trackStore.Get("rei/ReI");
             track.Looping = true;
             // track.Seek(50000);
