@@ -20,6 +20,7 @@ namespace maisim.Game.Component
         private DrawableSample drawableHoverSample;
         private DrawableSample drawableClickSample;
         private Circle button;
+        private Container scaleContainer;
 
         [BackgroundDependencyLoader]
         private void load(ISampleStore sampleStore)
@@ -28,31 +29,37 @@ namespace maisim.Game.Component
             Origin = Anchor.BottomLeft;
             Size = new Vector2(80);
             Position = new Vector2(20, -20);
-            InternalChildren = new Drawable[]
+            InternalChild = scaleContainer = new Container()
             {
-                button = new Circle
+                Anchor = Anchor.Centre,
+                Origin = Anchor.Centre,
+                Size = new Vector2(80),
+                Children = new Drawable[]
                 {
-                    Anchor = Anchor.Centre,
-                    Origin = Anchor.Centre,
-                    RelativeSizeAxes = Axes.Both,
-                    Colour = MaisimColour.BackButtonColor,
-                    BorderThickness = 10,
-                    BorderColour = Color4.White,
-                    Masking = true
-                },
-                new Container
-                {
-                    Anchor = Anchor.Centre,
-                    Origin = Anchor.Centre,
-                    RelativeSizeAxes = Axes.Both,
-                    Child = new SpriteIcon
+                    button = new Circle
                     {
                         Anchor = Anchor.Centre,
                         Origin = Anchor.Centre,
                         RelativeSizeAxes = Axes.Both,
-                        Size = new Vector2(0.5f),
-                        Icon = FontAwesome.Solid.ArrowLeft,
-                        Colour = Color4.White
+                        Colour = MaisimColour.BackButtonColor,
+                        BorderThickness = 10,
+                        BorderColour = Color4.White,
+                        Masking = true
+                    },
+                    new Container
+                    {
+                        Anchor = Anchor.Centre,
+                        Origin = Anchor.Centre,
+                        RelativeSizeAxes = Axes.Both,
+                        Child = new SpriteIcon
+                        {
+                            Anchor = Anchor.Centre,
+                            Origin = Anchor.Centre,
+                            RelativeSizeAxes = Axes.Both,
+                            Size = new Vector2(0.5f),
+                            Icon = FontAwesome.Solid.ArrowLeft,
+                            Colour = Color4.White
+                        }
                     }
                 }
             };
@@ -63,7 +70,7 @@ namespace maisim.Game.Component
 
         protected override bool OnHover(HoverEvent e)
         {
-            button.Colour = MaisimColour.BackButtonColor.Darken(0.25f);
+            button.FadeColour(MaisimColour.BackButtonColor.Darken(0.25f), 100);
             drawableHoverSample.Play();
             return base.OnHover(e);
         }
@@ -82,13 +89,15 @@ namespace maisim.Game.Component
 
         protected override bool OnMouseDown(MouseDownEvent e)
         {
-            button.Colour = MaisimColour.BackButtonColor.Darken(0.5f);
+            button.FadeColour(MaisimColour.BackButtonColor.Darken(0.5f), 100);
+            scaleContainer.ScaleTo(0.9f, 100, Easing.OutQuint);
             return base.OnMouseDown(e);
         }
 
         protected override void OnMouseUp(MouseUpEvent e)
         {
-            button.Colour = MaisimColour.BackButtonColor;
+            button.FadeColour(MaisimColour.BackButtonColor, 100);
+            scaleContainer.ScaleTo(1, 100, Easing.OutBack);
             base.OnMouseUp(e);
         }
     }
