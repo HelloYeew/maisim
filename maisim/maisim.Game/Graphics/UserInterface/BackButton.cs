@@ -1,5 +1,4 @@
 using maisim.Game.Graphics;
-using maisim.Game.Graphics.Sprites;
 using osu.Framework.Allocation;
 using osu.Framework.Audio.Sample;
 using osu.Framework.Extensions.Color4Extensions;
@@ -20,30 +19,31 @@ namespace maisim.Game.Component
 
         private DrawableSample drawableHoverSample;
         private DrawableSample drawableClickSample;
+        private Circle button;
 
         [BackgroundDependencyLoader]
         private void load(ISampleStore sampleStore)
         {
             Anchor = Anchor.BottomLeft;
             Origin = Anchor.BottomLeft;
-            Size = new Vector2(100);
+            Size = new Vector2(80);
             Position = new Vector2(20, -20);
             InternalChildren = new Drawable[]
             {
-                new Circle
+                button = new Circle
                 {
-                    Anchor = Anchor.BottomLeft,
-                    Origin = Anchor.BottomLeft,
+                    Anchor = Anchor.Centre,
+                    Origin = Anchor.Centre,
                     RelativeSizeAxes = Axes.Both,
-                    Colour = Color4Extensions.FromHex("205ac8"),
-                    Masking = true,
-                    BorderThickness = 5,
-                    BorderColour = Color4.White
+                    Colour = MaisimColour.BackButtonColor,
+                    BorderThickness = 10,
+                    BorderColour = Color4.White,
+                    Masking = true
                 },
                 new Container
                 {
-                    Anchor = Anchor.BottomLeft,
-                    Origin = Anchor.BottomLeft,
+                    Anchor = Anchor.Centre,
+                    Origin = Anchor.Centre,
                     RelativeSizeAxes = Axes.Both,
                     Child = new SpriteIcon
                     {
@@ -63,14 +63,33 @@ namespace maisim.Game.Component
 
         protected override bool OnHover(HoverEvent e)
         {
+            button.Colour = MaisimColour.BackButtonColor.Darken(0.25f);
             drawableHoverSample.Play();
             return base.OnHover(e);
+        }
+
+        protected override void OnHoverLost(HoverLostEvent e)
+        {
+            button.Colour = MaisimColour.BackButtonColor;
+            base.OnHoverLost(e);
         }
 
         protected override bool OnClick(ClickEvent e)
         {
             drawableClickSample.Play();
             return base.OnClick(e);
+        }
+
+        protected override bool OnMouseDown(MouseDownEvent e)
+        {
+            button.Colour = MaisimColour.BackButtonColor.Darken(0.5f);
+            return base.OnMouseDown(e);
+        }
+
+        protected override void OnMouseUp(MouseUpEvent e)
+        {
+            button.Colour = MaisimColour.BackButtonColor;
+            base.OnMouseUp(e);
         }
     }
 }
