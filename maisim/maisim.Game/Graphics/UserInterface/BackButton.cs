@@ -7,9 +7,11 @@ using osu.Framework.Graphics;
 using osu.Framework.Graphics.Audio;
 using osu.Framework.Graphics.Containers;
 using osu.Framework.Graphics.Shapes;
+using osu.Framework.Graphics.Sprites;
 using osu.Framework.Graphics.UserInterface;
 using osu.Framework.Input.Events;
 using osuTK;
+using osuTK.Graphics;
 
 namespace maisim.Game.Component
 {
@@ -22,27 +24,35 @@ namespace maisim.Game.Component
         [BackgroundDependencyLoader]
         private void load(ISampleStore sampleStore)
         {
+            Anchor = Anchor.BottomLeft;
+            Origin = Anchor.BottomLeft;
+            Size = new Vector2(100);
+            Position = new Vector2(20, -20);
             InternalChildren = new Drawable[]
             {
                 new Circle
                 {
-                    RelativeSizeAxes = Axes.Both,
                     Anchor = Anchor.BottomLeft,
-                    Origin = Anchor.Centre,
-                    Size = new Vector2(1),
+                    Origin = Anchor.BottomLeft,
+                    RelativeSizeAxes = Axes.Both,
                     Colour = Color4Extensions.FromHex("205ac8"),
-                },new Container
+                    Masking = true,
+                    BorderThickness = 5,
+                    BorderColour = Color4.White
+                },
+                new Container
                 {
-                    RelativeSizeAxes = Axes.Both,
                     Anchor = Anchor.BottomLeft,
-                    Origin = Anchor.Centre,
-                    Size = new Vector2(.4f),
-                    Child = new MaisimSpriteText
+                    Origin = Anchor.BottomLeft,
+                    RelativeSizeAxes = Axes.Both,
+                    Child = new SpriteIcon
                     {
-                        Text = "Back",
-                        Anchor = Anchor.TopRight,
+                        Anchor = Anchor.Centre,
                         Origin = Anchor.Centre,
-                        Font = MaisimFont.GetFont(size: 50f)
+                        RelativeSizeAxes = Axes.Both,
+                        Size = new Vector2(0.5f),
+                        Icon = FontAwesome.Solid.ArrowLeft,
+                        Colour = Color4.White
                     }
                 }
             };
