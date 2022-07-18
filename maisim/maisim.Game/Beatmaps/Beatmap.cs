@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace maisim.Game.Beatmaps
 {
@@ -7,6 +8,7 @@ namespace maisim.Game.Beatmaps
     /// </summary>
     public class Beatmap
     {
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Key]
         public int DatabaseID { get; set; }
 

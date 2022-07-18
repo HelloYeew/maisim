@@ -9,6 +9,7 @@ namespace maisim.Game.Beatmaps
     /// <seealso cref="maisim.Game.Beatmaps.Beatmap"/>
     public class TrackMetadata
     {
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Key]
         public int ID { get; set; }
 
