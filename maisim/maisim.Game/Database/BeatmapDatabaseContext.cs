@@ -27,7 +27,6 @@ namespace maisim.Game.Database
             {
                 Logger.Log($"Beatmap database not found, creating new one at {DatabasePath}", LoggingTarget.Database);
                 Database.EnsureCreated();
-                Database.Migrate();
             } else
             {
                 Logger.Log($"Beatmap database found at {DatabasePath}", LoggingTarget.Database);
