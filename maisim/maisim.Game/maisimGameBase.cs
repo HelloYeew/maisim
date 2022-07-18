@@ -21,7 +21,6 @@ namespace maisim.Game
         // It allows for caching global dependencies that should be accessible to tests, or changing
         // the screen scaling for all components including the test browser and framework overlays.
 
-        [Cached]
         private BeatmapDatabaseContext beatmapDatabase = new BeatmapDatabaseContext();
 
         protected override Container<Drawable> Content { get; }
