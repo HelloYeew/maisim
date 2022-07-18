@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using maisim.Game.Beatmaps;
 using maisim.Game.Component.Gameplay.Notes;
+using maisim.Game.Database;
 using NUnit.Framework;
 
 namespace maisim.Game.Tests.Beatmaps
@@ -19,9 +20,10 @@ namespace maisim.Game.Tests.Beatmaps
 
         public TestBeatmapIO()
         {
+            var database = new BeatmapDatabaseContext();
+
             mockBeatmapSet = new BeatmapSet()
             {
-                DatabaseID = 1,
                 Creator = "Yeew",
                 BeatmapSetID = 1,
                 AudioFileName = "test.mp3",
@@ -44,7 +46,6 @@ namespace maisim.Game.Tests.Beatmaps
 
             mockBeatmapOne = new Beatmap
             {
-                DatabaseID = 1,
                 TrackMetadata = mockTrackMetadata,
                 DifficultyLevel = DifficultyLevel.Basic,
                 DifficultyRating = 10,
@@ -54,7 +55,6 @@ namespace maisim.Game.Tests.Beatmaps
 
             mockBeatmapTwo = new Beatmap
             {
-                DatabaseID = 2,
                 TrackMetadata = mockTrackMetadata,
                 DifficultyLevel = DifficultyLevel.Advanced,
                 DifficultyRating = 10,
@@ -67,6 +67,13 @@ namespace maisim.Game.Tests.Beatmaps
                 mockBeatmapOne,
                 mockBeatmapTwo
             };
+
+            database.BeatmapSets.Add(mockBeatmapSet);
+
+            database.TrackMetadatas.Add(mockTrackMetadata);
+
+            database.Beatmaps.Add(mockBeatmapOne);
+            database.Beatmaps.Add(mockBeatmapTwo);
 
             mockNoteList = new List<DrawableNote>()
             {

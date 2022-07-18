@@ -1,18 +1,17 @@
 using maisim.Game.Database;
 using maisim.Game.Configuration;
 using maisim.Game.Store;
+using maisim.Resources;
 using osu.Framework.Allocation;
 using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
 using osu.Framework.IO.Stores;
-using osuTK;
-using maisim.Resources;
-using Microsoft.EntityFrameworkCore;
 using osu.Framework.Bindables;
 using osu.Framework.Development;
 using osu.Framework.Graphics.Performance;
 using osu.Framework.Logging;
 using osu.Framework.Platform;
+using osuTK;
 
 namespace maisim.Game
 {
@@ -23,7 +22,7 @@ namespace maisim.Game
         // the screen scaling for all components including the test browser and framework overlays.
 
         [Cached]
-        private BeatmapDatabaseContext BeatmapDatabase = new BeatmapDatabaseContext();
+        private BeatmapDatabaseContext beatmapDatabase = new BeatmapDatabaseContext();
 
         protected override Container<Drawable> Content { get; }
 
@@ -45,8 +44,6 @@ namespace maisim.Game
                 // You may want to change TargetDrawSize to your "default" resolution, which will decide how things scale and position when using absolute coordinates.
                 TargetDrawSize = new Vector2(1366, 768)
             });
-
-            BeatmapDatabase.Database.Migrate();
         }
 
         [BackgroundDependencyLoader]
@@ -79,6 +76,7 @@ namespace maisim.Game
             dependencies.Cache(textureStore = new MaisimTextureStore(Host.CreateTextureLoaderStore(new NamespacedResourceStore<byte[]>(Resources, "Textures"))));
             dependencies.CacheAs(this);
             dependencies.CacheAs(LocalConfig);
+            dependencies.CacheAs(beatmapDatabase);
         }
 
         protected override void LoadComplete()
