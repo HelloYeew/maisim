@@ -9,8 +9,8 @@ using maisim.Game.Database;
 namespace maisim.Game.Migrations
 {
     [DbContext(typeof(BeatmapDatabaseContext))]
-    [Migration("20220513205432_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20220718172110_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
