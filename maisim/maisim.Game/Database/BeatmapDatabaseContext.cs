@@ -21,9 +21,14 @@ namespace maisim.Game.Database
 
         public BeatmapDatabaseContext()
         {
-            // Get the database path in %APPDATA%\
-            DatabasePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "maisim", "beatmaps.db");
 
+        }
+
+        public void InitializeDatabase(string databasePath)
+        {
+            // Get the database path in %APPDATA%\
+            // DatabasePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "maisim", "beatmaps.db");
+            DatabasePath = Path.Combine(databasePath, "beatmaps.db");
 
             // Find that is the database exists, if not, create it.
             if (!File.Exists(DatabasePath))
