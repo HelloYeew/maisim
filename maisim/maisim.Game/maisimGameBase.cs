@@ -23,7 +23,7 @@ namespace maisim.Game
         // It allows for caching global dependencies that should be accessible to tests, or changing
         // the screen scaling for all components including the test browser and framework overlays.
 
-        private BeatmapDatabaseContext beatmapDatabase;
+        // private BeatmapDatabaseContext beatmapDatabase;
 
         protected override Container<Drawable> Content { get; }
 
@@ -77,12 +77,12 @@ namespace maisim.Game
             Logger.Log(Host.Storage.GetFullPath(""));
             Logger.Log(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData));
 
-            beatmapDatabase = new BeatmapDatabaseContext();
+            // beatmapDatabase = new BeatmapDatabaseContext();
 
             dependencies.Cache(textureStore = new MaisimTextureStore(Host.CreateTextureLoaderStore(new NamespacedResourceStore<byte[]>(Resources, "Textures"))));
             dependencies.CacheAs(this);
             dependencies.CacheAs(LocalConfig);
-            dependencies.CacheAs(beatmapDatabase);
+            // dependencies.CacheAs(beatmapDatabase);
         }
 
         protected override void LoadComplete()
