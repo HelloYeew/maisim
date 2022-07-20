@@ -40,5 +40,7 @@ namespace maisim.Game.Graphics
                     throw new ArgumentOutOfRangeException(nameof(difficultyLevel));
             }
         }
+
+        public static Color4 BackButtonColor => Color4Extensions.FromHex("205ac8");
     }
 }
