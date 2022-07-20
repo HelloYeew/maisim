@@ -74,8 +74,8 @@ namespace maisim.Game
             AddFont(Resources, @"Fonts/Noto/Noto-CJK-Basic");
             AddFont(Resources, @"Fonts/Noto/Noto-CJK-Compatibility");
 
-            Logger.Log(Host.Storage.GetFullPath(""));
-            Logger.Log(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData));
+            Logger.Log("Game storage path : " + Host.Storage.GetFullPath(""), LoggingTarget.Database);
+            Logger.Log("Environment application data : "+ Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), LoggingTarget.Database);
 
             beatmapDatabase.InitializeDatabase(Host.Storage.GetFullPath(""));
 
