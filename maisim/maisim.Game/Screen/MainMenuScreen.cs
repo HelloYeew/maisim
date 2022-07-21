@@ -30,7 +30,7 @@ namespace maisim.Game.Screen
         private ITrackStore trackStore;
 
         [BackgroundDependencyLoader]
-        private void load(TextureStore textureStore, AudioManager audioManager)
+        private void load(TextureStore textureStore, AudioManager audioManager, ITrackStore tracks)
         {
             InternalChildren = new Drawable[]
             {
@@ -108,9 +108,11 @@ namespace maisim.Game.Screen
                 }
             };
 
-            trackStore = audioManager.Tracks;
-            track = trackStore.Get("innocence.m4a");
+            // trackStore = audioManager.Tracks;
+            // track = trackStore.Get("innocence.m4a");
             // track = trackStore.Get("rei/ReI");
+
+            track = tracks.Get(@"testtrack2.mp3");
             track.Looping = true;
             // track.Seek(50000);
         }
