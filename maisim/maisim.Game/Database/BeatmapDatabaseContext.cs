@@ -28,20 +28,11 @@ namespace maisim.Game.Database
             // Find that is the database exists, if not, create it.
             if (Database.EnsureCreated())
             {
-                Logger.Log($"Beatmap database found at {DatabasePath}", LoggingTarget.Database);
-                // If database need to be upgraded, do it.
-                if (Database.GetPendingMigrations().Any())
-                {
-                    Logger.Log($"Beatmap database needs to be upgraded, upgrading it", LoggingTarget.Database);
-                    Database.Migrate();
-                }
-                else
-                {
-                    Logger.Log("Beatmap database is up to date", LoggingTarget.Database);
-                }
+                Logger.Log($"Beatmap database not found, creating new one at {DatabasePath}", LoggingTarget.Database);
             } else
             {
-                Logger.Log($"Beatmap database not found, creating new one at {DatabasePath}", LoggingTarget.Database);
+                Logger.Log($"Beatmap database found at {DatabasePath}", LoggingTarget.Database);
+                // TODO: Auto migrate database when new version is released.
             }
         }
 
