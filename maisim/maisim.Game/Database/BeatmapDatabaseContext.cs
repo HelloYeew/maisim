@@ -1,9 +1,7 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
+using System.Linq;
 using maisim.Game.Beatmaps;
 using Microsoft.EntityFrameworkCore;
-using osu.Framework;
-using osu.Framework.Allocation;
 using osu.Framework.Logging;
 
 namespace maisim.Game.Database
@@ -34,7 +32,12 @@ namespace maisim.Game.Database
             } else
             {
                 Logger.Log($"Beatmap database found at {DatabasePath}", LoggingTarget.Database);
-                Database.Migrate();
+                // If database need to be upgraded, do it.
+                if (Database.GetMigrations().Any())
+                {
+                    Logger.Log($"Beatmap database needs to be upgraded, upgrading it", LoggingTarget.Database);
+                    Database.Migrate();
+                }
             }
         }
 
