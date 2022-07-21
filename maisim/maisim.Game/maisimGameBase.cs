@@ -1,5 +1,4 @@
 using System;
-using System.IO;
 using maisim.Game.Database;
 using maisim.Game.Configuration;
 using maisim.Game.Store;
@@ -82,6 +81,7 @@ namespace maisim.Game
             dependencies.Cache(textureStore = new MaisimTextureStore(Host.CreateTextureLoaderStore(new NamespacedResourceStore<byte[]>(Resources, "Textures"))));
             dependencies.CacheAs(this);
             dependencies.CacheAs(LocalConfig);
+            dependencies.CacheAs(beatmapDatabase);
         }
 
         protected override void LoadComplete()
