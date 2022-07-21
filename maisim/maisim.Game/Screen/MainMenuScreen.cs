@@ -112,11 +112,12 @@ namespace maisim.Game.Screen
                 }
             };
 
-            // trackStore = audioManager.Tracks;
-            // track = trackStore.Get("innocence.m4a");
+            trackStore = audioManager.Tracks;
+            track = trackStore.Get("innocence.m4a") ?? tracks.Get(@"testtrack2.mp3");
+            track.Looping = true;
             // track = trackStore.Get("rei/ReI");
 
-            track = tracks.Get(@"testtrack2.mp3");
+
             track.Looping = true;
             // track.Seek(50000);
         }
