@@ -26,10 +26,7 @@ namespace maisim.Game.Database
             DatabasePath = Path.Combine(databasePath, "beatmaps.db");
 
             // Find that is the database exists, if not, create it.
-            if (!Database.EnsureCreated())
-            {
-                Logger.Log($"Beatmap database not found, creating new one at {DatabasePath}", LoggingTarget.Database);
-            } else
+            if (Database.EnsureCreated())
             {
                 Logger.Log($"Beatmap database found at {DatabasePath}", LoggingTarget.Database);
                 // If database need to be upgraded, do it.
@@ -42,6 +39,9 @@ namespace maisim.Game.Database
                 {
                     Logger.Log("Beatmap database is up to date", LoggingTarget.Database);
                 }
+            } else
+            {
+                Logger.Log($"Beatmap database not found, creating new one at {DatabasePath}", LoggingTarget.Database);
             }
         }
 
