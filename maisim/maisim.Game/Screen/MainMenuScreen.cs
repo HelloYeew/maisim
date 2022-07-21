@@ -2,14 +2,18 @@
 using System.Globalization;
 using maisim.Game.Graphics.Sprites;
 using maisim.Game.Graphics.UserInterface;
+using maisim.Game.Graphics.UserInterface.Overlays;
 using osu.Framework.Allocation;
 using osu.Framework.Audio;
 using osu.Framework.Audio.Track;
+using osu.Framework.Bindables;
 using osu.Framework.Extensions.Color4Extensions;
 using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
+using osu.Framework.Graphics.Shapes;
 using osu.Framework.Graphics.Sprites;
 using osu.Framework.Graphics.Textures;
+using osu.Framework.Graphics.UserInterface;
 using osu.Framework.Graphics.Visualisation.Audio;
 using osu.Framework.Logging;
 using osu.Framework.Screens;
@@ -29,6 +33,10 @@ namespace maisim.Game.Screen
         private MainMenuButton exitButton;
         private MaisimSpriteText versionText;
 
+        private BasicSliderBar<double> trackLengthSlider;
+        private BindableDouble trackLength = new BindableDouble();
+        private BindableDouble trackCurrentAmplitude = new BindableDouble();
+
         private Track track;
 
         private ITrackStore trackStore;
@@ -36,6 +44,11 @@ namespace maisim.Game.Screen
         [BackgroundDependencyLoader]
         private void load(TextureStore textureStore, AudioManager audioManager, ITrackStore tracks)
         {
+            trackLength.MinValue = 0;
+            trackLength.MaxValue = 1;
+            trackCurrentAmplitude.MinValue = 0;
+            trackCurrentAmplitude.MaxValue = 1;
+
             InternalChildren = new Drawable[]
             {
                 new Container
@@ -55,6 +68,22 @@ namespace maisim.Game.Screen
                             Spacing = new Vector2(0, 10),
                             Children = new Drawable[]
                             {
+                                new BasicSliderBar<double>
+                                {
+                                    Anchor = Anchor.Centre,
+                                    Origin = Anchor.Centre,
+                                    Current = trackCurrentAmplitude,
+                                    KeyboardStep = 0.01f,
+                                    Size = new Vector2(400, 30),
+                                },
+                                trackLengthSlider = new BasicSliderBar<double>
+                                {
+                                    Anchor = Anchor.Centre,
+                                    Origin = Anchor.Centre,
+                                    Current = trackLength,
+                                    KeyboardStep = 0.01f,
+                                    Size = new Vector2(400, 30),
+                                },
                                 playButton = new MainMenuButton("Play",FontAwesome.Solid.Play,Color4Extensions.FromHex("73E99B"))
                                 {
                                     Anchor = Anchor.Centre,
@@ -113,10 +142,9 @@ namespace maisim.Game.Screen
             };
 
             trackStore = audioManager.Tracks;
-            track = trackStore.Get("innocence.m4a") ?? tracks.Get(@"testtrack2.mp3");
+            track = trackStore.Get("test1") ?? tracks.Get(@"testtrack2.mp3");
             track.Looping = true;
             // track = trackStore.Get("rei/ReI");
-
 
             track.Looping = true;
             // track.Seek(50000);
@@ -139,6 +167,8 @@ namespace maisim.Game.Screen
         {
             // Logger.LogPrint(track.CurrentAmplitudes.Maximum.ToString(CultureInfo.CurrentCulture));
             // maisimLogo.ScaleTo(new Vector2(Math.Min(1.5f, 0.4f + track.CurrentAmplitudes.Maximum)), 10, Easing.OutQuint);
+            trackLength.Set(track.CurrentTime / track.Length);
+            trackCurrentAmplitude.Set(track.CurrentAmplitudes.Maximum);
 
             base.Update();
         }
