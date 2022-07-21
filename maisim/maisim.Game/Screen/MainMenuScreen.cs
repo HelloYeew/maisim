@@ -1,4 +1,6 @@
-﻿using maisim.Game.Graphics.Sprites;
+﻿using System;
+using System.Globalization;
+using maisim.Game.Graphics.Sprites;
 using maisim.Game.Graphics.UserInterface;
 using osu.Framework.Allocation;
 using osu.Framework.Audio;
@@ -8,6 +10,8 @@ using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
 using osu.Framework.Graphics.Sprites;
 using osu.Framework.Graphics.Textures;
+using osu.Framework.Graphics.Visualisation.Audio;
+using osu.Framework.Logging;
 using osu.Framework.Screens;
 using osuTK;
 
@@ -128,6 +132,14 @@ namespace maisim.Game.Screen
             versionText.ScaleTo(1, 1000, Easing.OutQuint);
 
             track.Start();
+        }
+
+        protected override void Update()
+        {
+            Logger.Log(track.CurrentAmplitudes.Maximum.ToString(CultureInfo.CurrentCulture));
+            maisimLogo.ScaleTo(new Vector2(Math.Min(1.5f, 0.4f + track.CurrentAmplitudes.Maximum)), 10, Easing.OutQuint);
+
+            base.Update();
         }
 
         public override void OnSuspending(ScreenTransitionEvent e)
