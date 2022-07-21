@@ -136,8 +136,8 @@ namespace maisim.Game.Screen
 
         protected override void Update()
         {
-            Logger.LogPrint(track.CurrentAmplitudes.Maximum.ToString(CultureInfo.CurrentCulture));
-            maisimLogo.ScaleTo(new Vector2(Math.Min(1.5f, 0.4f + track.CurrentAmplitudes.Maximum)), 10, Easing.OutQuint);
+            // Logger.LogPrint(track.CurrentAmplitudes.Maximum.ToString(CultureInfo.CurrentCulture));
+            // maisimLogo.ScaleTo(new Vector2(Math.Min(1.5f, 0.4f + track.CurrentAmplitudes.Maximum)), 10, Easing.OutQuint);
 
             base.Update();
         }
