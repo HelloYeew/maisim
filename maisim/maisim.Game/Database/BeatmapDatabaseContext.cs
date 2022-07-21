@@ -16,7 +16,6 @@ namespace maisim.Game.Database
         public DbSet<TrackMetadata> TrackMetadatas { get; set; }
         public DbSet<Beatmap> Beatmaps { get; set; }
         public DbSet<BeatmapSet> BeatmapSets { get; set; }
-
         public string DatabasePath { get; set; }
 
         public BeatmapDatabaseContext()
@@ -26,18 +25,16 @@ namespace maisim.Game.Database
 
         public void InitializeDatabase(string databasePath)
         {
-            // Get the database path in %APPDATA%\
-            // DatabasePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "maisim", "beatmaps.db");
             DatabasePath = Path.Combine(databasePath, "beatmaps.db");
 
             // Find that is the database exists, if not, create it.
-            if (!File.Exists(DatabasePath))
+            if (!Database.EnsureCreated())
             {
                 Logger.Log($"Beatmap database not found, creating new one at {DatabasePath}", LoggingTarget.Database);
-                Database.EnsureCreated();
             } else
             {
                 Logger.Log($"Beatmap database found at {DatabasePath}", LoggingTarget.Database);
+                Database.Migrate();
             }
         }
 
