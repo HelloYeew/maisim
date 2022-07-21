@@ -33,10 +33,14 @@ namespace maisim.Game.Database
             {
                 Logger.Log($"Beatmap database found at {DatabasePath}", LoggingTarget.Database);
                 // If database need to be upgraded, do it.
-                if (Database.GetMigrations().Any())
+                if (Database.GetPendingMigrations().Any())
                 {
                     Logger.Log($"Beatmap database needs to be upgraded, upgrading it", LoggingTarget.Database);
                     Database.Migrate();
+                }
+                else
+                {
+                    Logger.Log("Beatmap database is up to date", LoggingTarget.Database);
                 }
             }
         }
