@@ -29,7 +29,7 @@ namespace maisim.Game.Component
             Origin = Anchor.BottomLeft;
             Size = new Vector2(80);
             Position = new Vector2(20, -20);
-            InternalChild = scaleContainer = new Container()
+            InternalChild = scaleContainer = new Container
             {
                 Anchor = Anchor.Centre,
                 Origin = Anchor.Centre,

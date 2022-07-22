@@ -1,5 +1,8 @@
+using System;
+using maisim.Game.Database;
 using maisim.Game.Configuration;
 using maisim.Game.Store;
+using maisim.Resources;
 using osu.Framework.Allocation;
 using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
@@ -12,6 +15,7 @@ using osu.Framework.Development;
 using osu.Framework.Graphics.Performance;
 using osu.Framework.Logging;
 using osu.Framework.Platform;
+using osuTK;
 
 namespace maisim.Game
 {
@@ -20,6 +24,8 @@ namespace maisim.Game
         // Anything in this class is shared between the test browser and the game implementation.
         // It allows for caching global dependencies that should be accessible to tests, or changing
         // the screen scaling for all components including the test browser and framework overlays.
+
+        private BeatmapDatabaseContext beatmapDatabase = new BeatmapDatabaseContext();
 
         protected override Container<Drawable> Content { get; }
 
@@ -74,11 +80,17 @@ namespace maisim.Game
             AddFont(Resources, @"Fonts/Noto/Noto-CJK-Basic");
             AddFont(Resources, @"Fonts/Noto/Noto-CJK-Compatibility");
 
+            Logger.Log("Game storage path : " + Host.Storage.GetFullPath(""), LoggingTarget.Database);
+            Logger.Log("Environment application data : "+ Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), LoggingTarget.Database);
+
+            beatmapDatabase.InitializeDatabase(Host.Storage.GetFullPath(""));
+
             dependencies.Cache(textureStore = new MaisimTextureStore(Host.CreateTextureLoaderStore(new NamespacedResourceStore<byte[]>(Resources, "Textures"))));
             dependencies.Cache(Store = new MaisimStore(Host.Storage.GetStorageForDirectory("tracks")));
             dependencies.Cache(AudioManager = new AudioManager(Host.AudioThread, new NamespacedResourceStore<byte[]>(new MaisimStore(Host.Storage), "tracks"), new NamespacedResourceStore<byte[]>(Resources, "Samples")));
             dependencies.CacheAs(this);
             dependencies.CacheAs(LocalConfig);
+            dependencies.CacheAs(beatmapDatabase);
         }
 
         protected override void LoadComplete()

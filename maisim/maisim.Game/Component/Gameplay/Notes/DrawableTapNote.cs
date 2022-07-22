@@ -45,6 +45,11 @@ namespace maisim.Game.Component.Gameplay.Notes
             };
         }
 
+        public override string GetEncodeString()
+        {
+            return "1," + NoteLaneExtension.GetNumberByNoteLane(Lane) + "," + TargetTime;
+        }
+        
         public override bool CanDespawn => MathUtils.EuclideanDistance(NoteLaneExtension.GetSpawnerPosition(Lane), NoteLaneExtension.GetSensorPosition(Lane)) + Playfield.DISTANCE_ON_DESPAWN < MathUtils.EuclideanDistance(Position, NoteLaneExtension.GetSpawnerPosition(Lane));
     }
 
