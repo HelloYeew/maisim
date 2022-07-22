@@ -111,8 +111,6 @@ namespace maisim.Game.Utils
                 TrackMetadata = trackMetadata ?? GetRandomTrackMetadata(),
                 DifficultyLevel = GetRandomDifficultyLevel(),
                 DifficultyRating = random.Next(1, 10),
-                IsRemaster = random.Next(2) == 1,
-                MaxSeasonalScore = random.NextInRange(100, 10000),
                 NoteDesigner = GetRandomName()
             };
         }
@@ -141,7 +139,6 @@ namespace maisim.Game.Utils
                 Accuracy = accuracy,
                 Rank = ScoreProcessor.CalculateRank(accuracy),
                 Combo = random.NextInRange(1, 500),
-                SeasonalScore = random.NextInRange(1, (int)beatmap.MaxSeasonalScore)
             };
         }
     }
