@@ -16,24 +16,9 @@ namespace maisim.Game.Database
         public DbSet<BeatmapSet> BeatmapSets { get; set; }
         public string DatabasePath { get; set; }
 
-        public BeatmapDatabaseContext()
+        public BeatmapDatabaseContext(string databasePath)
         {
-
-        }
-
-        public void InitializeDatabase(string databasePath)
-        {
-            DatabasePath = Path.Combine(databasePath, "beatmaps.db");
-
-            // Find that is the database exists, if not, create it.
-            if (Database.EnsureCreated())
-            {
-                Logger.Log($"Beatmap database not found, creating new one at {DatabasePath}", LoggingTarget.Database);
-            } else
-            {
-                Logger.Log($"Beatmap database found at {DatabasePath}", LoggingTarget.Database);
-                // TODO: Auto migrate database when new version is released.
-            }
+            DatabasePath = databasePath;
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
