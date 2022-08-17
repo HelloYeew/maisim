@@ -78,7 +78,7 @@ namespace maisim.Game
 
             beatmapDatabase = new BeatmapDatabaseContextFactory(Host.Storage.GetFullPath(""));
 
-            dependencies.Cache(textureStore = new MaisimTextureStore(Host.CreateTextureLoaderStore(new NamespacedResourceStore<byte[]>(Resources, "Textures"))));
+            dependencies.Cache(textureStore = new MaisimTextureStore(Host.Renderer, Host.CreateTextureLoaderStore(new NamespacedResourceStore<byte[]>(Resources, "Textures"))));
             dependencies.CacheAs(this);
             dependencies.CacheAs(LocalConfig);
             dependencies.CacheAs(beatmapDatabase);
