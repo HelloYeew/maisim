@@ -27,11 +27,6 @@ namespace maisim.Game.Component.Gameplay.Notes
             };
         }
 
-        public override string GetEncodeString()
-        {
-            return "";
-        }
-        
         public override bool CanDespawn => false;
     }
 }

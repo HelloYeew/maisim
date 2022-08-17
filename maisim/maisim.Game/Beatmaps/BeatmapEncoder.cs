@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 using maisim.Game.Component.Gameplay.Notes;
+using maisim.Game.Notes;
 using maisim.Game.Store;
 using osu.Framework.Logging;
 
@@ -14,18 +15,18 @@ namespace maisim.Game.Beatmaps
 
         public TrackMetadata TrackMetadata { get; set; }
 
-        public List<KeyValuePair<Beatmap, List<DrawableNote>>> Beatmaps { get; set; }
+        public List<KeyValuePair<Beatmap, List<INote>>> Beatmaps { get; set; }
 
         public BeatmapEncoder(BeatmapSet beatmapSet, TrackMetadata trackMetadata)
         {
             TrackMetadata = trackMetadata;
             BeatmapSet = beatmapSet;
-            Beatmaps = new List<KeyValuePair<Beatmap, List<DrawableNote>>>();
+            Beatmaps = new List<KeyValuePair<Beatmap, List<INote>>>();
         }
 
-        public void AddBeatmap(Beatmap beatmap, List<DrawableNote> notes)
+        public void AddBeatmap(Beatmap beatmap, List<INote> notes)
         {
-            Beatmaps.Add(new KeyValuePair<Beatmap, List<DrawableNote>>(beatmap, notes));
+            Beatmaps.Add(new KeyValuePair<Beatmap, List<INote>>(beatmap, notes));
         }
 
         public void Encode()

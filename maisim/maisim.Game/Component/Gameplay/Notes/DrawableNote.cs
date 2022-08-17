@@ -54,12 +54,6 @@ namespace maisim.Game.Component.Gameplay.Notes
         protected abstract Drawable[] AddNoteParts(TextureStore textureStore);
 
         /// <summary>
-        /// Get string representation of the note in beatmap file.
-        /// </summary>
-        /// <returns></returns>
-        public abstract string GetEncodeString();
-
-        /// <summary>
         /// Check that the note can start to despawn state.
         /// </summary>
         /// <returns>True if the note can start despawn state.</returns>
