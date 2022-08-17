@@ -1,6 +1,4 @@
-using maisim.Game.Component.Gameplay.Notes;
-
-namespace maisim.Game.Notes
+namespace maisim.Game.Gameplay.Notes
 {
     /// <summary>
     /// The normal TAP note.

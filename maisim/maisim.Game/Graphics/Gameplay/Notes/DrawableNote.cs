@@ -1,4 +1,5 @@
 ﻿using System;
+using maisim.Game.Gameplay.Notes;
 using maisim.Game.Screen.Gameplay;
 using maisim.Game.Utils;
 using osu.Framework.Allocation;
@@ -8,7 +9,7 @@ using osu.Framework.Graphics.Containers;
 using osu.Framework.Graphics.Textures;
 using osuTK;
 
-namespace maisim.Game.Component.Gameplay.Notes
+namespace maisim.Game.Graphics.Gameplay.Notes
 {
     /// <summary>
     /// A base abstract class for notes in the gameplay.

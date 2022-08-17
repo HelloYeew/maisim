@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
-using maisim.Game.Component.Gameplay.Notes;
-using maisim.Game.Notes;
+using maisim.Game.Gameplay.Notes;
 using maisim.Game.Store;
 using osu.Framework.Logging;
 

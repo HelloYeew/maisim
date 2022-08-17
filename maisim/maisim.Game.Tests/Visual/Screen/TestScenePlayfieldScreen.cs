@@ -1,5 +1,5 @@
 ﻿using System;
-using maisim.Game.Component.Gameplay.Notes;
+using maisim.Game.Gameplay.Notes;
 using maisim.Game.Screen.Gameplay;
 using maisim.Game.Utils;
 using NUnit.Framework;

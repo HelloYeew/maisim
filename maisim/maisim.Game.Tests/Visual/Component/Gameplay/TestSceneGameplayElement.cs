@@ -1,4 +1,4 @@
-﻿using maisim.Game.Component.Gameplay.Notes;
+﻿using maisim.Game.Graphics.Gameplay.Notes;
 using osu.Framework.Graphics;
 using osu.Framework.Graphics.Sprites;
 using osu.Framework.Testing;

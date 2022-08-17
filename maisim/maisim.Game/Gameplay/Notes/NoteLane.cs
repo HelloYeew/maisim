@@ -1,8 +1,9 @@
 ﻿using System;
+using maisim.Game.Graphics.Gameplay;
 using maisim.Game.Screen.Gameplay;
 using osuTK;
 
-namespace maisim.Game.Component.Gameplay.Notes
+namespace maisim.Game.Gameplay.Notes
 {
     /// <summary>
     /// Represent a lane value for note type that spawn on the specified lane.

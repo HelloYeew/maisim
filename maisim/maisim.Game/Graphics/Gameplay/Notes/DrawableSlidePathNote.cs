@@ -1,14 +1,14 @@
-﻿using maisim.Game.Screen.Gameplay;
-using osu.Framework.Graphics;
+﻿using osu.Framework.Graphics;
 using osu.Framework.Graphics.Sprites;
 using osu.Framework.Graphics.Textures;
+using osuTK;
 
-namespace maisim.Game.Component.Gameplay.Notes
+namespace maisim.Game.Graphics.Gameplay.Notes
 {
     /// <summary>
-    /// Class represent the TAP note when it will appear at the same time.
+    /// Class represent the arrow path in the slider of SLIDE note.
     /// </summary>
-    public class DrawableTapBothNote : DrawableNote
+    public class DrawableSlidePathNote : DrawableNote
     {
         protected override Drawable[] AddNoteParts(TextureStore textureStore)
         {
@@ -20,7 +20,8 @@ namespace maisim.Game.Component.Gameplay.Notes
                     Anchor = Anchor.Centre,
                     Origin = Anchor.Centre,
                     FillMode = FillMode.Fill,
-                    Texture = textureStore.Get("Notes/TapBoth.png")
+                    Scale = new Vector2(0.5f),
+                    Texture = textureStore.Get("Notes/SlidePath.png")
                 }
             };
         }

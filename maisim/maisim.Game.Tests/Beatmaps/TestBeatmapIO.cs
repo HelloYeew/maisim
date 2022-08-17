@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using maisim.Game.Beatmaps;
-using maisim.Game.Component.Gameplay.Notes;
 using maisim.Game.Database;
-using maisim.Game.Notes;
+using maisim.Game.Gameplay.Notes;
 using NUnit.Framework;
 
 namespace maisim.Game.Tests.Beatmaps

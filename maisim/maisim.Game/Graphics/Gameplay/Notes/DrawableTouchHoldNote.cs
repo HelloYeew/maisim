@@ -1,14 +1,13 @@
-﻿using maisim.Game.Screen.Gameplay;
-using osu.Framework.Graphics;
+﻿using osu.Framework.Graphics;
 using osu.Framework.Graphics.Sprites;
 using osu.Framework.Graphics.Textures;
 
-namespace maisim.Game.Component.Gameplay.Notes
+namespace maisim.Game.Graphics.Gameplay.Notes
 {
     /// <summary>
-    /// Class represent the BREAK note.
+    /// Class represent the TOUCH HOLD note.
     /// </summary>
-    public class DrawableBreakNote : DrawableNote
+    public class TouchHold : DrawableNote
     {
         protected override Drawable[] AddNoteParts(TextureStore textureStore)
         {
@@ -20,7 +19,7 @@ namespace maisim.Game.Component.Gameplay.Notes
                     Anchor = Anchor.Centre,
                     Origin = Anchor.Centre,
                     FillMode = FillMode.Fill,
-                    Texture = textureStore.Get("Notes/Break.png")
+                    Texture = textureStore.Get("Notes/TouchHold.png")
                 }
             };
         }
