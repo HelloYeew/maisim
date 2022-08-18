@@ -1,4 +1,4 @@
-﻿using maisim.Game.Component.Gameplay;
+﻿using maisim.Game.Graphics.Gameplay;
 using osu.Framework.Allocation;
 using osu.Framework.Graphics;
 using osu.Framework.Screens;

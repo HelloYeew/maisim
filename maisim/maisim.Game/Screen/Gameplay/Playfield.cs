@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using maisim.Game.Component.Gameplay.Notes;
+using maisim.Game.Gameplay.Notes;
+using maisim.Game.Graphics.Gameplay.Notes;
 using osu.Framework.Allocation;
 using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;

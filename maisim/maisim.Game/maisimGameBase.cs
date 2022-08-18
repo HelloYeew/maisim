@@ -1,16 +1,18 @@
+using System;
+using maisim.Game.Database;
 using maisim.Game.Configuration;
 using maisim.Game.Store;
+using maisim.Resources;
 using osu.Framework.Allocation;
 using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
 using osu.Framework.IO.Stores;
-using osuTK;
-using maisim.Resources;
 using osu.Framework.Bindables;
 using osu.Framework.Development;
 using osu.Framework.Graphics.Performance;
 using osu.Framework.Logging;
 using osu.Framework.Platform;
+using osuTK;
 
 namespace maisim.Game
 {
@@ -19,6 +21,8 @@ namespace maisim.Game
         // Anything in this class is shared between the test browser and the game implementation.
         // It allows for caching global dependencies that should be accessible to tests, or changing
         // the screen scaling for all components including the test browser and framework overlays.
+
+        private BeatmapDatabaseContextFactory beatmapDatabase;
 
         protected override Container<Drawable> Content { get; }
 
@@ -69,9 +73,15 @@ namespace maisim.Game
             AddFont(Resources, @"Fonts/Noto/Noto-CJK-Basic");
             AddFont(Resources, @"Fonts/Noto/Noto-CJK-Compatibility");
 
+            Logger.Log("Game storage path : " + Host.Storage.GetFullPath(""), LoggingTarget.Database);
+            Logger.Log("Environment application data : "+ Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), LoggingTarget.Database);
+
+            beatmapDatabase = new BeatmapDatabaseContextFactory(Host.Storage.GetFullPath(""));
+
             dependencies.Cache(textureStore = new MaisimTextureStore(Host.Renderer, Host.CreateTextureLoaderStore(new NamespacedResourceStore<byte[]>(Resources, "Textures"))));
             dependencies.CacheAs(this);
             dependencies.CacheAs(LocalConfig);
+            dependencies.CacheAs(beatmapDatabase);
         }
 
         protected override void LoadComplete()

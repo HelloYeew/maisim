@@ -22,7 +22,5 @@ namespace maisim.Game.Scores
         public ScoreRank Rank { get; set; }
 
         public int Combo { get; set; }
-
-        public int SeasonalScore { get; set; }
     }
 }

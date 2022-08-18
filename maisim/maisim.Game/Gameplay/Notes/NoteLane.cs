@@ -1,8 +1,9 @@
 ﻿using System;
+using maisim.Game.Graphics.Gameplay;
 using maisim.Game.Screen.Gameplay;
 using osuTK;
 
-namespace maisim.Game.Component.Gameplay.Notes
+namespace maisim.Game.Gameplay.Notes
 {
     /// <summary>
     /// Represent a lane value for note type that spawn on the specified lane.
@@ -78,6 +79,36 @@ namespace maisim.Game.Component.Gameplay.Notes
                 -(MaisimRing.LANE_MULTIPLIER * (float)Math.Cos((GetAngle(lane) + 90f) * (float)(Math.PI / 180))),
                 -(MaisimRing.LANE_MULTIPLIER * (float)Math.Sin((GetAngle(lane) + 90f) * (float)(Math.PI / 180)))
             );
+        }
+
+        /// <summary>
+        /// Return the lane number for the specified lane.
+        /// </summary>
+        /// <param name="lane">A specified <see cref="NoteLane"/></param>
+        /// <returns>The lane number</returns>
+        public static int GetNumberByNoteLane(NoteLane lane)
+        {
+            switch (lane)
+            {
+                case NoteLane.Lane1:
+                    return 1;
+                case NoteLane.Lane2:
+                    return 2;
+                case NoteLane.Lane3:
+                    return 3;
+                case NoteLane.Lane4:
+                    return 4;
+                case NoteLane.Lane5:
+                    return 5;
+                case NoteLane.Lane6:
+                    return 6;
+                case NoteLane.Lane7:
+                    return 7;
+                case NoteLane.Lane8:
+                    return 8;
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(lane));
+            }
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿using maisim.Game.Beatmaps;
+using maisim.Game.Beatmaps;
 using maisim.Game.Graphics;
 using maisim.Game.Graphics.Sprites;
 using maisim.Game.Scores;
@@ -238,15 +238,6 @@ namespace maisim.Game.Component
                                                                                 Font = MaisimFont.GetFont(size: 13),
                                                                                 Colour = Color4Extensions.FromHex(
                                                                                     "#9cdb96")
-                                                                            },
-                                                                            new MaisimSpriteText
-                                                                            {
-                                                                                Anchor = Anchor.CentreRight,
-                                                                                Origin = Anchor.CentreRight,
-                                                                                Text =
-                                                                                    $"{score.SeasonalScore.ToString()}/{beatmap.MaxSeasonalScore.ToString()}",
-                                                                                Font = MaisimFont.GetFont(size: 13),
-                                                                                Colour = Color4.White
                                                                             }
                                                                         }
                                                                     }
