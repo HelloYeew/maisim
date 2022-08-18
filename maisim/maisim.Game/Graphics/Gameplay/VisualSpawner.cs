@@ -7,7 +7,7 @@ using osu.Framework.Graphics.Shapes;
 using osuTK;
 using osuTK.Graphics;
 
-namespace maisim.Game.Component.Gameplay
+namespace maisim.Game.Graphics.Gameplay
 {
     /// <summary>
     /// A note spawner at the center of the ring that show as the visual indicator, not the actual spawner.

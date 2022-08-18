@@ -88,25 +88,6 @@ namespace maisim.Game.Tests.Visual.Component
                     Scale = new Vector2(0.7f)
                 }
             };
-
-            TrackTestFixture remasterMockFixture = new TrackTestFixture("Tenkai e no Kippu");
-            remasterMockFixture.Beatmap.DifficultyLevel = DifficultyLevel.Remaster;
-
-            Cell(1, 1).Children = new Drawable[]
-            {
-                new SpriteText
-                {
-                    Anchor = Anchor.TopLeft,
-                    Origin = Anchor.TopLeft,
-                    Text = nameof(DifficultyLevel.Remaster)
-                },
-                new TrackCard(remasterMockFixture.Beatmap, remasterMockFixture.Score)
-                {
-                    Anchor = Anchor.Centre,
-                    Origin = Anchor.Centre,
-                    Scale = new Vector2(0.7f)
-                }
-            };
         }
     }
 }
