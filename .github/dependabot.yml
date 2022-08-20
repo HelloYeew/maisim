@@ -9,3 +9,10 @@ updates:
     directory: "maisim/" # Location of package manifests
     schedule:
       interval: "daily"
+    ignore:
+      # Ignore all EFCore update since it's not supported by current .NET version of the project 
+      - dependency-name: "Microsoft.EntityFrameworkCore.Sqlite"
+      - dependency-name: "Microsoft.EntityFrameworkCore.Design"
+      - dependency-name: "Microsoft.EntityFrameworkCore"
+    reviewers:
+      - "HelloYeew"
