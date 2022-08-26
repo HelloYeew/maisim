@@ -48,7 +48,7 @@ namespace maisim.Game.Screen
                             RelativeSizeAxes = Axes.Both,
                             Children = new Drawable[]
                             {
-                                new TrackMenuCard(mockFixture.BeatmapSet)
+                                new BeatmapSetCard(mockFixture.BeatmapSet)
                                 {
                                     Anchor = Anchor.TopCentre,
                                     Origin = Anchor.TopCentre,
