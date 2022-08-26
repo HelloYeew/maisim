@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using maisim.Game.Beatmaps;
 using maisim.Game.Scores;
@@ -167,6 +168,40 @@ namespace maisim.Game.Utils
             }
             Beatmap = TestUtil.CreateMockBeatmap(TrackMetadata);
             Score = TestUtil.CreateMockScore(Beatmap);
+        }
+    }
+
+    public class BeatmapSetTestFixture
+    {
+        public BeatmapSet BeatmapSet { get; set; }
+        public TrackMetadata trackMetadata { get; set; }
+        // Create 4 difficulity level beatmap for this beatmap set.
+        public List<Beatmap> beatmaps = new List<Beatmap>();
+
+        public BeatmapSetTestFixture(string trackTitle = null)
+        {
+            if (trackTitle == null)
+            {
+                trackMetadata = TestUtil.GetRandomTrackMetadata();
+            }
+            else
+            {
+                // Find the trackMetadata with the given title, if cannot find, use a random one.
+                trackMetadata = TestUtil.FULL_TRACK_METADATA_LIST.FirstOrDefault(x => x.Title == trackTitle) ?? TestUtil.GetRandomTrackMetadata();
+            }
+            for (int i = 0; i < 4; i++)
+            {
+                beatmaps.Add(TestUtil.CreateMockBeatmap(trackMetadata));
+            }
+            BeatmapSet = new BeatmapSet()
+            {
+                TrackMetadata = trackMetadata,
+                Creator = TestUtil.GetRandomName(),
+                BeatmapSetID = 10,
+                Beatmaps = beatmaps,
+                AudioFileName = "Test/lemon.mp3",
+                PreviewTime = RandomExtensions.NextInRange(new Random(), 1, 10000)
+            };
         }
     }
 }

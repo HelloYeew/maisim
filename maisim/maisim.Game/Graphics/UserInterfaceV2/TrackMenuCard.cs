@@ -1,3 +1,4 @@
+using maisim.Game.Beatmaps;
 using maisim.Game.Graphics.Sprites;
 using osu.Framework.Allocation;
 using osu.Framework.Extensions.Color4Extensions;
@@ -13,6 +14,13 @@ namespace maisim.Game.Graphics.UserInterfaceV2
 {
     public class TrackMenuCard : CompositeDrawable
     {
+        private readonly BeatmapSet beatmapSet;
+
+        public TrackMenuCard(BeatmapSet beatmapSet)
+        {
+            this.beatmapSet = beatmapSet;
+        }
+
         [BackgroundDependencyLoader]
         private void load(TextureStore textureStore)
         {
@@ -64,7 +72,7 @@ namespace maisim.Game.Graphics.UserInterfaceV2
                                             Origin = Anchor.Centre,
                                             Size = new Vector2(98, 98),
                                             FillMode = FillMode.Fill,
-                                            Texture = textureStore.Get("Test/sukino-skill.jpg")
+                                            Texture = textureStore.Get(beatmapSet.TrackMetadata.CoverPath)
                                         }
                                     }
                                 },
@@ -103,7 +111,7 @@ namespace maisim.Game.Graphics.UserInterfaceV2
                                             {
                                                 Anchor = Anchor.Centre,
                                                 Origin = Anchor.Centre,
-                                                Text = "Title",
+                                                Text = beatmapSet.TrackMetadata.Title,
                                                 Colour = Color4.White
                                             }
                                         },
@@ -118,7 +126,7 @@ namespace maisim.Game.Graphics.UserInterfaceV2
                                             {
                                                 Anchor = Anchor.Centre,
                                                 Origin = Anchor.Centre,
-                                                Text = "Artists",
+                                                Text = beatmapSet.TrackMetadata.Artist,
                                                 Colour = Color4Extensions.FromHex("#b8b8b8")
                                             }
                                         }

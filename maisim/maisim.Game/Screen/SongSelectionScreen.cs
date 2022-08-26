@@ -1,5 +1,6 @@
 using maisim.Game.Beatmaps;
 using maisim.Game.Component;
+using maisim.Game.Graphics.UserInterfaceV2;
 using maisim.Game.Scores;
 using maisim.Game.Utils;
 using osu.Framework.Allocation;
@@ -21,7 +22,7 @@ namespace maisim.Game.Screen
         [BackgroundDependencyLoader]
         private void load()
         {
-            TrackTestFixture mockFixture = new TrackTestFixture();
+            BeatmapSetTestFixture mockFixture = new BeatmapSetTestFixture();
 
             InternalChildren = new Drawable[]
             {
@@ -47,12 +48,11 @@ namespace maisim.Game.Screen
                             RelativeSizeAxes = Axes.Both,
                             Children = new Drawable[]
                             {
-                                new TrackCardFocused(mockFixture.Beatmap, mockFixture.Score)
+                                new TrackMenuCard(mockFixture.BeatmapSet)
                                 {
                                     Anchor = Anchor.TopCentre,
                                     Origin = Anchor.TopCentre,
                                     RelativePositionAxes = Axes.Both,
-                                    Size = new Vector2(300,384)
                                 }
                             }
                         }

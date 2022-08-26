@@ -13,9 +13,9 @@ namespace maisim.Game.Tests.Visual.ComponentV2
     {
         public TestSceneTrackMenuCard()
         {
-            TrackTestFixture mockObject = new TrackTestFixture();
+            BeatmapSetTestFixture mockObject = new BeatmapSetTestFixture();
 
-            Child = new TrackMenuCard
+            Child = new TrackMenuCard(mockObject.BeatmapSet)
             {
                 Anchor = Anchor.Centre,
                 Origin = Anchor.Centre,
