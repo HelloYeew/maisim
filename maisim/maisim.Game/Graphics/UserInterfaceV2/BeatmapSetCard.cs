@@ -83,7 +83,8 @@ namespace maisim.Game.Graphics.UserInterfaceV2
                                 new Container
                                 {
                                     RelativeSizeAxes = Axes.Both,
-                                    CornerRadius = 20,
+                                    Masking = true,
+                                    CornerRadius = 30,
                                     Children = new Drawable[]
                                     {
                                         new Box
@@ -143,13 +144,6 @@ namespace maisim.Game.Graphics.UserInterfaceV2
                                     Size = new Vector2(130, 127),
                                     Children = new Drawable[]
                                     {
-                                        new Box()
-                                        {
-                                            Anchor = Anchor.TopCentre,
-                                            Origin = Anchor.TopCentre,
-                                            Colour = Colour4.Pink,
-                                            Size = new Vector2(130, 63.5f),
-                                        },
                                         new Container()
                                         {
                                             Anchor = Anchor.TopCentre,
