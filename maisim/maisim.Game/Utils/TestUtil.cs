@@ -189,10 +189,6 @@ namespace maisim.Game.Utils
                 // Find the trackMetadata with the given title, if cannot find, use a random one.
                 trackMetadata = TestUtil.FULL_TRACK_METADATA_LIST.FirstOrDefault(x => x.Title == trackTitle) ?? TestUtil.GetRandomTrackMetadata();
             }
-            for (int i = 0; i < 4; i++)
-            {
-                beatmaps.Add(TestUtil.CreateMockBeatmap(trackMetadata));
-            }
             BeatmapSet = new BeatmapSet()
             {
                 TrackMetadata = trackMetadata,
@@ -202,6 +198,14 @@ namespace maisim.Game.Utils
                 AudioFileName = "Test/lemon.mp3",
                 PreviewTime = RandomExtensions.NextInRange(new Random(), 1, 10000)
             };
+            for (int i = 0; i < 4; i++)
+            {
+                Beatmap dummyBeatmap = TestUtil.CreateMockBeatmap(trackMetadata);
+                dummyBeatmap.DifficultyLevel = (DifficultyLevel)i;
+                dummyBeatmap.DifficultyRating = RandomExtensions.NextInRange(new Random(), 3*i+1, 3*i+3);
+                dummyBeatmap.NoteDesigner = BeatmapSet.Creator;
+                beatmaps.Add(dummyBeatmap);
+            }
         }
     }
 }
