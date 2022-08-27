@@ -22,6 +22,8 @@ namespace maisim.Game.Beatmaps
 
         public int PreviewTime { get; set; }
 
+        public bool UseLocalFile { get; set; }
+
         public override string ToString()
         {
             return $"({BeatmapSetID}) {TrackMetadata.Title} - {TrackMetadata.Artist}";
