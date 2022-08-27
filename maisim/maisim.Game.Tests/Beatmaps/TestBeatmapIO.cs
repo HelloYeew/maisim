@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using maisim.Game.Beatmaps;
 using maisim.Game.Database;
 using maisim.Game.Gameplay.Notes;
@@ -21,7 +20,7 @@ namespace maisim.Game.Tests.Beatmaps
 
         public TestBeatmapIo()
         {
-            var database = new BeatmapDatabaseContextFactory(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData));
+            var database = new BeatmapDatabaseContext();
 
             mockBeatmapSet = new BeatmapSet()
             {
