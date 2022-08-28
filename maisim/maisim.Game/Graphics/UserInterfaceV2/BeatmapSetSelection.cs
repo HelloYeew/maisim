@@ -17,7 +17,7 @@ namespace maisim.Game.Graphics.UserInterfaceV2
             Origin = Anchor.TopLeft;
             RelativeSizeAxes = Axes.Y;
             Position = new Vector2(120, 0);
-            Size = new Vector2(325, 1);
+            Size = new Vector2(400, 1);
             InternalChildren = new Drawable[]
             {
                 new Box
@@ -32,7 +32,7 @@ namespace maisim.Game.Graphics.UserInterfaceV2
                 {
                     Anchor = Anchor.Centre,
                     Origin = Anchor.Centre,
-                    Scale = new Vector2(0.48f, 0.48f),
+                    Scale = new Vector2(0.6f, 0.6f),
                 }
             };
         }

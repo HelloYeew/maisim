@@ -36,7 +36,7 @@ namespace maisim.Game.Screen
                     Anchor = Anchor.TopRight,
                     Origin = Anchor.TopRight,
                     RelativeSizeAxes = Axes.Y,
-                    Size = new Vector2(585, 0.8f),
+                    Size = new Vector2(750, 0.825f),
                     Position = new Vector2(-20, 20),
                     Masking = true,
                     CornerRadius = 30,
