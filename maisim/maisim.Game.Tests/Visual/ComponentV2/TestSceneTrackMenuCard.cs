@@ -24,7 +24,7 @@ namespace maisim.Game.Tests.Visual.ComponentV2
 
             foreach (var beatmap in mockObject.BeatmapSet.Beatmaps)
             {
-                beatmapList += (beatmap + "\n");
+                beatmapList += beatmap + "\n";
             }
 
             Children = new Drawable[]

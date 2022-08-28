@@ -42,5 +42,7 @@ namespace maisim.Game.Graphics
         }
 
         public static Color4 BackButtonColor => Color4Extensions.FromHex("205ac8");
+
+        public static Color4 SongSelectionContainerColor => Color4Extensions.FromHex("d9d9d9");
     }
 }

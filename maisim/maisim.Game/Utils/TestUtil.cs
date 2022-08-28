@@ -174,9 +174,8 @@ namespace maisim.Game.Utils
     public class BeatmapSetTestFixture
     {
         public BeatmapSet BeatmapSet { get; set; }
-        public TrackMetadata trackMetadata { get; set; }
-        // Create 4 difficulity level beatmap for this beatmap set.
-        public List<Beatmap> beatmaps = new List<Beatmap>();
+        private TrackMetadata trackMetadata { get; set; }
+        private List<Beatmap> beatmaps = new List<Beatmap>();
 
         public BeatmapSetTestFixture(string trackTitle = null)
         {

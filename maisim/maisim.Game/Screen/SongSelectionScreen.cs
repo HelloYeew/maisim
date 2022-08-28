@@ -1,5 +1,7 @@
 using maisim.Game.Beatmaps;
 using maisim.Game.Component;
+using maisim.Game.Graphics;
+using maisim.Game.Graphics.UserInterface.Toolbar;
 using maisim.Game.Graphics.UserInterfaceV2;
 using maisim.Game.Scores;
 using maisim.Game.Utils;
@@ -7,8 +9,10 @@ using osu.Framework.Allocation;
 using osu.Framework.Extensions.Color4Extensions;
 using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
+using osu.Framework.Graphics.Shapes;
 using osu.Framework.Screens;
 using osuTK;
+using osuTK.Graphics;
 
 namespace maisim.Game.Screen
 {
@@ -26,38 +30,29 @@ namespace maisim.Game.Screen
 
             InternalChildren = new Drawable[]
             {
-                new Container
+                new BeatmapSetSelection(),
+                new Container()
                 {
-                    Anchor = Anchor.Centre,
-                    Origin = Anchor.Centre,
-                    Size = new Vector2(320,320),
-                    RelativePositionAxes = Axes.X,
+                    Anchor = Anchor.TopRight,
+                    Origin = Anchor.TopRight,
+                    RelativeSizeAxes = Axes.Y,
+                    Size = new Vector2(585, 0.8f),
+                    Position = new Vector2(-20, 20),
+                    Masking = true,
+                    CornerRadius = 30,
                     Children = new Drawable[]
                     {
-                        new SongSelectionBackground(Color4Extensions.FromHex("fb5f99"))
+                        new Box
                         {
-                            Anchor = Anchor.Centre,
-                            Origin = Anchor.Centre,
-                            RelativePositionAxes = Axes.Both,
-                            RelativeSizeAxes = Axes.Both,
-                        },new Container
-                        {
-                            Anchor = Anchor.TopCentre,
-                            Origin = Anchor.TopCentre,
-                            RelativePositionAxes = Axes.Both,
-                            RelativeSizeAxes = Axes.Both,
-                            Children = new Drawable[]
-                            {
-                                new BeatmapSetCard(mockFixture.BeatmapSet)
-                                {
-                                    Anchor = Anchor.TopCentre,
-                                    Origin = Anchor.TopCentre,
-                                    RelativePositionAxes = Axes.Both,
-                                }
-                            }
+                            Anchor = Anchor.TopRight,
+                            Origin = Anchor.TopRight,
+                            Colour = MaisimColour.SongSelectionContainerColor,
+                            Alpha = 0.5f,
+                            RelativeSizeAxes = Axes.Both
                         }
                     }
-                },new BackButton
+                },
+                new BackButton
                 {
                     Anchor = Anchor.BottomLeft,
                     Origin = Anchor.BottomLeft,
