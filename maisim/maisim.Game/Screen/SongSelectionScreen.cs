@@ -31,26 +31,11 @@ namespace maisim.Game.Screen
             InternalChildren = new Drawable[]
             {
                 new BeatmapSetSelection(),
-                new Container()
+                new BeatmapSetInfoBox()
                 {
                     Anchor = Anchor.TopRight,
                     Origin = Anchor.TopRight,
                     RelativeSizeAxes = Axes.Y,
-                    Size = new Vector2(750, 0.825f),
-                    Position = new Vector2(-20, 20),
-                    Masking = true,
-                    CornerRadius = 30,
-                    Children = new Drawable[]
-                    {
-                        new Box
-                        {
-                            Anchor = Anchor.TopRight,
-                            Origin = Anchor.TopRight,
-                            Colour = MaisimColour.SongSelectionContainerColor,
-                            Alpha = 0.5f,
-                            RelativeSizeAxes = Axes.Both
-                        }
-                    }
                 },
                 new BackButton
                 {
