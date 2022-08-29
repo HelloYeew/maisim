@@ -28,6 +28,23 @@ namespace maisim.Game.Graphics.UserInterfaceV2
                     Colour = MaisimColour.SongSelectionContainerColor,
                     Alpha = 0.5f
                 },
+                new Container()
+                {
+                    Anchor = Anchor.Centre,
+                    Origin = Anchor.Centre,
+                    RelativeSizeAxes = Axes.X,
+                    Size = new Vector2(1, 90),
+                    CornerRadius = 10,
+                    Masking = true,
+                    BorderColour = MaisimColour.SongSelectionContainerBorderColor,
+                    BorderThickness = 3,
+                    Child = new Box()
+                    {
+                        RelativeSizeAxes = Axes.Both,
+                        Colour = MaisimColour.SongSelectionContainerBorderColor,
+                        Alpha = 0.5f,
+                    }
+                },
                 new BeatmapSetCard(new BeatmapSetTestFixture().BeatmapSet)
                 {
                     Anchor = Anchor.Centre,
