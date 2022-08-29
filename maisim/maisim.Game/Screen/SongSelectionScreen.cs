@@ -6,6 +6,7 @@ using maisim.Game.Graphics.UserInterfaceV2;
 using maisim.Game.Scores;
 using maisim.Game.Utils;
 using osu.Framework.Allocation;
+using osu.Framework.Bindables;
 using osu.Framework.Extensions.Color4Extensions;
 using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
@@ -23,6 +24,8 @@ namespace maisim.Game.Screen
     {
         public override float BackgroundParallaxAmount => 0.2f;
 
+        private Bindable<DifficultyLevel> bindableDifficultyLevel = new Bindable<DifficultyLevel>();
+
         [BackgroundDependencyLoader]
         private void load()
         {
@@ -31,7 +34,7 @@ namespace maisim.Game.Screen
             InternalChildren = new Drawable[]
             {
                 new BeatmapSetSelection(),
-                new BeatmapSetInfoBox()
+                new BeatmapSetInfoBox(bindableDifficultyLevel)
                 {
                     Anchor = Anchor.TopRight,
                     Origin = Anchor.TopRight,

@@ -1,4 +1,6 @@
+using maisim.Game.Beatmaps;
 using osu.Framework.Allocation;
+using osu.Framework.Bindables;
 using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
 using osu.Framework.Graphics.Shapes;
@@ -11,6 +13,13 @@ namespace maisim.Game.Graphics.UserInterfaceV2
     /// </summary>
     public class BeatmapSetInfoBox : CompositeDrawable
     {
+        private Bindable<DifficultyLevel> bindableDifficultyLevel = new Bindable<DifficultyLevel>();
+
+        public BeatmapSetInfoBox(Bindable<DifficultyLevel> bindableDifficultyLevel)
+        {
+            this.bindableDifficultyLevel = bindableDifficultyLevel;
+        }
+
         [BackgroundDependencyLoader]
         private void load()
         {
@@ -18,7 +27,7 @@ namespace maisim.Game.Graphics.UserInterfaceV2
             Size = new Vector2(750, 0.825f);
             Position = new Vector2(-20, 20);
             Masking = true;
-            CornerRadius = 30;
+            CornerRadius = 10;
             InternalChildren = new Drawable[]
             {
                 new Box
@@ -28,6 +37,11 @@ namespace maisim.Game.Graphics.UserInterfaceV2
                     Colour = MaisimColour.SongSelectionContainerColor,
                     Alpha = 0.5f,
                     RelativeSizeAxes = Axes.Both
+                },
+                new BeatmapCard(bindableDifficultyLevel)
+                {
+                    Anchor = Anchor.TopRight,
+                    Origin = Anchor.TopRight,
                 }
             };
         }
