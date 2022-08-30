@@ -1,5 +1,7 @@
+using maisim.Game.Beatmaps;
 using maisim.Game.Utils;
 using osu.Framework.Allocation;
+using osu.Framework.Bindables;
 using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
 using osu.Framework.Graphics.Shapes;
@@ -9,6 +11,14 @@ namespace maisim.Game.Graphics.UserInterfaceV2
 {
     public class BeatmapSetSelection : CompositeDrawable
     {
+        // TODO: Remove this when we can read a beatmap from database and has a global beatmap set
+        private Bindable<BeatmapSet> bindableBeatmapSet;
+
+        public BeatmapSetSelection(Bindable<BeatmapSet> bindableBeatmapSet)
+        {
+            this.bindableBeatmapSet = bindableBeatmapSet;
+        }
+
         [BackgroundDependencyLoader]
         private void load()
         {
@@ -45,7 +55,7 @@ namespace maisim.Game.Graphics.UserInterfaceV2
                         Alpha = 0.5f,
                     }
                 },
-                new BeatmapSetCard(new BeatmapSetTestFixture().BeatmapSet)
+                new BeatmapSetCard(bindableBeatmapSet.Value)
                 {
                     Anchor = Anchor.Centre,
                     Origin = Anchor.Centre,

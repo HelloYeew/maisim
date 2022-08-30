@@ -32,11 +32,9 @@ namespace maisim.Game.Screen
         [BackgroundDependencyLoader]
         private void load()
         {
-            BeatmapSetTestFixture mockFixture = new BeatmapSetTestFixture();
-
             InternalChildren = new Drawable[]
             {
-                new BeatmapSetSelection(),
+                new BeatmapSetSelection(bindableBeatmapSet),
                 new BeatmapSetInfoBox(bindableDifficultyLevel,bindableBeatmapSet)
                 {
                     Anchor = Anchor.TopRight,
