@@ -1,9 +1,13 @@
 using maisim.Game.Beatmaps;
+using maisim.Game.Graphics.Sprites;
+using maisim.Game.Utils;
 using osu.Framework.Allocation;
 using osu.Framework.Bindables;
 using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
 using osu.Framework.Graphics.Shapes;
+using osu.Framework.Graphics.Sprites;
+using osu.Framework.Graphics.Textures;
 using osuTK;
 
 namespace maisim.Game.Graphics.UserInterfaceV2
@@ -12,15 +16,25 @@ namespace maisim.Game.Graphics.UserInterfaceV2
     {
         private Bindable<DifficultyLevel> bindableDifficultyLevel;
 
-        private Box backgroundBox;
+        private Bindable<BeatmapSet> bindableBeatmapSet;
 
-        public BeatmapCard(Bindable<DifficultyLevel> bindableDifficultyLevel)
+        [Resolved]
+        private TextureStore textures { get; set; }
+
+        private Box backgroundBox;
+        private Sprite albumCover;
+        private MaisimSpriteText titleText;
+        private MaisimSpriteText artistText;
+        private MaisimSpriteText creatorText;
+
+        public BeatmapCard(Bindable<DifficultyLevel> bindableDifficultyLevel, Bindable<BeatmapSet> bindableBeatmapSet)
         {
             this.bindableDifficultyLevel = bindableDifficultyLevel;
+            this.bindableBeatmapSet = bindableBeatmapSet;
         }
 
         [BackgroundDependencyLoader]
-        private void load()
+        private void load(TextureStore textureStore)
         {
             RelativeSizeAxes = Axes.X;
             Size = new Vector2(1, 170);
@@ -37,12 +51,88 @@ namespace maisim.Game.Graphics.UserInterfaceV2
                         RelativeSizeAxes = Axes.Both,
                         CornerRadius = 10,
                         Masking = true,
-                        Child = backgroundBox = new Box()
+                        Children = new Drawable[]
                         {
-                            Anchor = Anchor.TopRight,
-                            Origin = Anchor.TopRight,
-                            RelativeSizeAxes = Axes.Both,
-                            Colour = MaisimColour.GetDifficultyColor(bindableDifficultyLevel.Value)
+                            backgroundBox = new Box()
+                            {
+                                Anchor = Anchor.TopRight,
+                                Origin = Anchor.TopRight,
+                                RelativeSizeAxes = Axes.Both,
+                                Colour = MaisimColour.GetDifficultyColor(bindableDifficultyLevel.Value)
+                            },
+                            new GridContainer()
+                            {
+                                Anchor = Anchor.Centre,
+                                Origin = Anchor.Centre,
+                                RelativeSizeAxes = Axes.Both,
+                                ColumnDimensions = new []
+                                {
+                                    new Dimension(GridSizeMode.Relative, 0.2f),
+                                    new Dimension(GridSizeMode.Relative, 0.8f)
+                                },
+                                Content = new[]
+                                {
+                                    new Drawable[]
+                                    {
+                                        new Container()
+                                        {
+                                            Anchor = Anchor.TopLeft,
+                                            Origin = Anchor.TopLeft,
+                                            RelativeSizeAxes = Axes.Both,
+                                            Padding = new MarginPadding(10),
+                                            Masking = true,
+                                            CornerRadius = 10,
+                                            Child = albumCover = new Sprite()
+                                            {
+                                                Anchor = Anchor.Centre,
+                                                Origin = Anchor.Centre,
+                                                RelativeSizeAxes = Axes.Both,
+                                                FillMode = FillMode.Fill,
+                                                Texture = textureStore.Get(@"Test/sukino-skill")
+                                            }
+                                        },
+                                        new Container()
+                                        {
+                                            Anchor = Anchor.TopLeft,
+                                            Origin = Anchor.TopLeft,
+                                            RelativeSizeAxes = Axes.Both,
+                                            Child = new Container()
+                                            {
+                                                Anchor = Anchor.CentreLeft,
+                                                Origin = Anchor.CentreLeft,
+                                                RelativeSizeAxes = Axes.Both,
+                                                Padding = new MarginPadding(10),
+                                                Children = new Drawable[]
+                                                {
+                                                    titleText = new MaisimSpriteText()
+                                                    {
+                                                        Anchor = Anchor.TopLeft,
+                                                        Origin = Anchor.TopLeft,
+                                                        Text = "Sukino Skill",
+                                                        Font = MaisimFont.GetFont(size:40, weight:MaisimFont.FontWeight.Black),
+                                                        Position = new Vector2(0, 5)
+                                                    },
+                                                    artistText = new MaisimSpriteText()
+                                                    {
+                                                        Anchor = Anchor.CentreLeft,
+                                                        Origin = Anchor.CentreLeft,
+                                                        Text = "Wake Up, Girls!",
+                                                        Font = MaisimFont.GetFont(size:30, weight:MaisimFont.FontWeight.Medium)
+                                                    },
+                                                    creatorText = new MaisimSpriteText()
+                                                    {
+                                                        Anchor = Anchor.BottomLeft,
+                                                        Origin = Anchor.BottomLeft,
+                                                        Text = $"beatmap by {BeatmapUtils.GetNoteDesignerFromBeatmapSet(bindableBeatmapSet.Value, bindableDifficultyLevel.Value)}",
+                                                        Font = MaisimFont.GetFont(size:20, weight:MaisimFont.FontWeight.Medium),
+                                                        Position = new Vector2(0, -15)
+                                                    },
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
                         }
                     }
                 }
@@ -54,6 +144,10 @@ namespace maisim.Game.Graphics.UserInterfaceV2
             base.Update();
 
             backgroundBox.Colour = MaisimColour.GetDifficultyColor(bindableDifficultyLevel.Value);
+            albumCover.Texture = textures.Get(bindableBeatmapSet.Value.TrackMetadata.CoverPath);
+            titleText.Text = bindableBeatmapSet.Value.TrackMetadata.Title;
+            artistText.Text = bindableBeatmapSet.Value.TrackMetadata.Artist;
+            creatorText.Text = $"beatmap by {BeatmapUtils.GetNoteDesignerFromBeatmapSet(bindableBeatmapSet.Value, bindableDifficultyLevel.Value)}";
         }
     }
 }

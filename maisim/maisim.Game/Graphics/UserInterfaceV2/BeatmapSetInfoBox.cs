@@ -13,11 +13,14 @@ namespace maisim.Game.Graphics.UserInterfaceV2
     /// </summary>
     public class BeatmapSetInfoBox : CompositeDrawable
     {
-        private Bindable<DifficultyLevel> bindableDifficultyLevel = new Bindable<DifficultyLevel>();
+        private Bindable<DifficultyLevel> bindableDifficultyLevel;
 
-        public BeatmapSetInfoBox(Bindable<DifficultyLevel> bindableDifficultyLevel)
+        private Bindable<BeatmapSet> bindableBeatmapSet;
+
+        public BeatmapSetInfoBox(Bindable<DifficultyLevel> bindableDifficultyLevel, Bindable<BeatmapSet> bindableBeatmapSet)
         {
             this.bindableDifficultyLevel = bindableDifficultyLevel;
+            this.bindableBeatmapSet = bindableBeatmapSet;
         }
 
         [BackgroundDependencyLoader]
@@ -38,7 +41,7 @@ namespace maisim.Game.Graphics.UserInterfaceV2
                     Alpha = 0.5f,
                     RelativeSizeAxes = Axes.Both
                 },
-                new BeatmapCard(bindableDifficultyLevel)
+                new BeatmapCard(bindableDifficultyLevel, bindableBeatmapSet)
                 {
                     Anchor = Anchor.TopRight,
                     Origin = Anchor.TopRight,

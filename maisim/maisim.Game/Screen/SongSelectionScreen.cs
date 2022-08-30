@@ -24,7 +24,10 @@ namespace maisim.Game.Screen
     {
         public override float BackgroundParallaxAmount => 0.2f;
 
+        // TODO: These two bindables need to pass via DI instead of assign a random one.
         private Bindable<DifficultyLevel> bindableDifficultyLevel = new Bindable<DifficultyLevel>();
+
+        private Bindable<BeatmapSet> bindableBeatmapSet = new Bindable<BeatmapSet>(new BeatmapSetTestFixture().BeatmapSet);
 
         [BackgroundDependencyLoader]
         private void load()
@@ -34,7 +37,7 @@ namespace maisim.Game.Screen
             InternalChildren = new Drawable[]
             {
                 new BeatmapSetSelection(),
-                new BeatmapSetInfoBox(bindableDifficultyLevel)
+                new BeatmapSetInfoBox(bindableDifficultyLevel,bindableBeatmapSet)
                 {
                     Anchor = Anchor.TopRight,
                     Origin = Anchor.TopRight,

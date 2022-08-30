@@ -26,5 +26,22 @@ namespace maisim.Game.Utils
             }
             return (min, max);
         }
+
+        /// <summary>
+        /// Return the note designer of the target <see cref="DifficultyLevel"/> in the list of <see cref="Beatmap"/>
+        /// inside the target <see cref="BeatmapSet"/>.
+        /// </summary>
+        /// <param name="beatmapSet">Target <see cref="BeatmapSet"/></param>
+        /// <param name="difficultyLevel">Target <see cref="DifficultyLevel"/></param>
+        /// <returns>Note designer name</returns>
+        public static string GetNoteDesignerFromBeatmapSet(BeatmapSet beatmapSet, DifficultyLevel difficultyLevel)
+        {
+            foreach (Beatmap beatmap in beatmapSet.Beatmaps)
+            {
+                if (beatmap.DifficultyLevel == difficultyLevel)
+                    return beatmap.NoteDesigner;
+            }
+            return "";
+        }
     }
 }
