@@ -82,7 +82,7 @@ namespace maisim.Game.Graphics.UserInterfaceV2
         protected override void OnMouseUp(MouseUpEvent e)
         {
             backgroundBox.FadeColour(MaisimColour.GetDifficultyColor(difficultyLevel), 100);
-            mainContainer.ScaleTo(1, 100, Easing.OutElastic);
+            mainContainer.ScaleTo(1, 500, Easing.OutElastic);
             base.OnMouseUp(e);
         }
     }
