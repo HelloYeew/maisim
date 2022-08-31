@@ -18,6 +18,16 @@ namespace maisim.Game.Graphics.UserInterfaceV2
 
         private Bindable<BeatmapSet> bindableBeatmapSet;
 
+        private DifficultyLevel difficultyLevel;
+
+        private BeatmapSet beatmapSet;
+
+        private void difficultyLevelChanged(ValueChangedEvent<DifficultyLevel> difficultyLevelEvent) =>
+            updateDifficultyLevel(difficultyLevelEvent.NewValue);
+
+        private void beatmapSetChanged(ValueChangedEvent<BeatmapSet> beatmapSet) =>
+            updateBeatmapSet(beatmapSet.NewValue);
+
         [Resolved]
         private TextureStore textures { get; set; }
 
@@ -137,17 +147,22 @@ namespace maisim.Game.Graphics.UserInterfaceV2
                     }
                 }
             };
+
+            bindableDifficultyLevel.BindValueChanged(difficultyLevelChanged, true);
+            bindableBeatmapSet.BindValueChanged(beatmapSetChanged, true);
         }
 
-        protected override void Update()
+        private void updateDifficultyLevel(DifficultyLevel newDifficultyLevel)
         {
-            base.Update();
+            backgroundBox.Colour = MaisimColour.GetDifficultyColor(newDifficultyLevel);
+        }
 
-            backgroundBox.Colour = MaisimColour.GetDifficultyColor(bindableDifficultyLevel.Value);
-            albumCover.Texture = textures.Get(bindableBeatmapSet.Value.TrackMetadata.CoverPath);
-            titleText.Text = bindableBeatmapSet.Value.TrackMetadata.Title;
-            artistText.Text = bindableBeatmapSet.Value.TrackMetadata.Artist;
-            creatorText.Text = $"beatmap by {BeatmapUtils.GetNoteDesignerFromBeatmapSet(bindableBeatmapSet.Value, bindableDifficultyLevel.Value)}";
+        private void updateBeatmapSet(BeatmapSet newBeatmapSet)
+        {
+            albumCover.Texture = textures.Get(newBeatmapSet.TrackMetadata.CoverPath);
+            titleText.Text = newBeatmapSet.TrackMetadata.Title;
+            artistText.Text = newBeatmapSet.TrackMetadata.Artist;
+            creatorText.Text = $"beatmap by {BeatmapUtils.GetNoteDesignerFromBeatmapSet(newBeatmapSet, bindableDifficultyLevel.Value)}";
         }
     }
 }
