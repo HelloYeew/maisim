@@ -17,6 +17,9 @@ public class TestSceneBeatmapCard : maisimTestScene
 
     private Bindable<BeatmapSet> beatmapSet =  new Bindable<BeatmapSet>(mockBeatmapSet);
 
+    private void difficultyLevelChanged(ValueChangedEvent<DifficultyLevel> difficultyLevelEvent) => updateBeatmapInfo();
+    private void beatmapSetChanged(ValueChangedEvent<BeatmapSet> beatmapSetEvent) => updateBeatmapInfo();
+
     private string beatmapList;
     private TextFlowContainer beatmapListContainer;
 
@@ -38,37 +41,19 @@ public class TestSceneBeatmapCard : maisimTestScene
                 Text = ""
             }
         };
+        difficultyLevel.BindValueChanged(difficultyLevelChanged, true);
+        beatmapSet.BindValueChanged(beatmapSetChanged, true);
         updateBeatmapInfo();
     }
 
     [SetUp]
     public void SetUp()
     {
-        AddStep("Set difficulty level to basic", () =>
-        {
-            difficultyLevel.Value = DifficultyLevel.Basic;
-            updateBeatmapInfo();
-        });
-        AddStep("Set difficulty level to advanced", () =>
-        {
-            difficultyLevel.Value = DifficultyLevel.Advanced;
-            updateBeatmapInfo();
-        });
-        AddStep("Set difficulty level to expert", () =>
-        {
-            difficultyLevel.Value = DifficultyLevel.Expert;
-            updateBeatmapInfo();
-        });
-        AddStep("Set difficulty level to master", () =>
-        {
-            difficultyLevel.Value = DifficultyLevel.Master;
-            updateBeatmapInfo();
-        });
-        AddStep("Get a new beatmap set", () =>
-        {
-            beatmapSet.Value = new BeatmapSetTestFixture().BeatmapSet;
-            updateBeatmapInfo();
-        });
+        AddStep("Set difficulty level to basic", () => difficultyLevel.Value = DifficultyLevel.Basic);
+        AddStep("Set difficulty level to advanced", () => difficultyLevel.Value = DifficultyLevel.Advanced);
+        AddStep("Set difficulty level to expert", () => difficultyLevel.Value = DifficultyLevel.Expert);
+        AddStep("Set difficulty level to master", () => difficultyLevel.Value = DifficultyLevel.Master);
+        AddStep("Get a new beatmap set", () => beatmapSet.Value = new BeatmapSetTestFixture().BeatmapSet);
     }
 
     private void updateBeatmapInfo()
