@@ -12,8 +12,13 @@ using osuTK;
 
 namespace maisim.Game.Graphics.UserInterfaceV2
 {
+    /// <summary>
+    /// A box that's show the info of current binding <see cref="Beatmap"/> inside <see cref="BeatmapSetInfoBox"/>.
+    /// </summary>
     public class BeatmapCard : CompositeDrawable
     {
+        public static readonly float FADE_COLOR_DURATION = 500;
+
         private Bindable<DifficultyLevel> bindableDifficultyLevel;
 
         private Bindable<BeatmapSet> bindableBeatmapSet;
@@ -152,11 +157,19 @@ namespace maisim.Game.Graphics.UserInterfaceV2
             bindableBeatmapSet.BindValueChanged(beatmapSetChanged, true);
         }
 
+        /// <summary>
+        /// Update the related element that use <see cref="difficultyLevel"/>. This method will be called when <see cref="difficultyLevel"/> changed.
+        /// </summary>
+        /// <param name="newDifficultyLevel">New <see cref="DifficultyLevel"/> value</param>
         private void updateDifficultyLevel(DifficultyLevel newDifficultyLevel)
         {
-            backgroundBox.Colour = MaisimColour.GetDifficultyColor(newDifficultyLevel);
+            backgroundBox.FadeColour(MaisimColour.GetDifficultyColor(newDifficultyLevel), FADE_COLOR_DURATION, Easing.OutQuint);
         }
 
+        /// <summary>
+        /// Update the related element that use <see cref="beatmapSet"/>. This method will be called when <see cref="beatmapSet"/> changed.
+        /// </summary>
+        /// <param name="newBeatmapSet">New <see cref="BeatmapSet"/> value</param>
         private void updateBeatmapSet(BeatmapSet newBeatmapSet)
         {
             albumCover.Texture = textures.Get(newBeatmapSet.TrackMetadata.CoverPath);

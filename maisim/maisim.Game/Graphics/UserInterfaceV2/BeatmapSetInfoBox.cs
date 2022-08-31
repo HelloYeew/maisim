@@ -1,10 +1,14 @@
 using maisim.Game.Beatmaps;
+using maisim.Game.Graphics.Sprites;
+using maisim.Game.Graphics.UserInterface;
 using osu.Framework.Allocation;
 using osu.Framework.Bindables;
 using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
 using osu.Framework.Graphics.Shapes;
+using osu.Framework.Graphics.UserInterface;
 using osuTK;
+using osuTK.Graphics;
 
 namespace maisim.Game.Graphics.UserInterfaceV2
 {
@@ -13,6 +17,7 @@ namespace maisim.Game.Graphics.UserInterfaceV2
     /// </summary>
     public class BeatmapSetInfoBox : CompositeDrawable
     {
+        // TODO: Consider to move to DI's working beatmap bindable when implemented.
         private Bindable<DifficultyLevel> bindableDifficultyLevel;
 
         private Bindable<BeatmapSet> bindableBeatmapSet;
@@ -45,7 +50,37 @@ namespace maisim.Game.Graphics.UserInterfaceV2
                 {
                     Anchor = Anchor.TopRight,
                     Origin = Anchor.TopRight,
-                }
+                },
+                new GridContainer()
+                {
+                    Anchor = Anchor.TopRight,
+                    Origin = Anchor.TopRight,
+                    Position = new Vector2(0, 160),
+                    RelativeSizeAxes = Axes.X,
+                    Size = new Vector2(1, 70),
+                    Content = new[]
+                    {
+                        new Drawable[]
+                        {
+                            new DifficultySelectionButton(DifficultyLevel.Basic)
+                            {
+                                Action = () => bindableDifficultyLevel.Value = DifficultyLevel.Basic
+                            },
+                            new DifficultySelectionButton(DifficultyLevel.Advanced)
+                            {
+                                Action = () => bindableDifficultyLevel.Value = DifficultyLevel.Advanced
+                            },
+                            new DifficultySelectionButton(DifficultyLevel.Expert)
+                            {
+                                Action = () => bindableDifficultyLevel.Value = DifficultyLevel.Expert
+                            },
+                            new DifficultySelectionButton(DifficultyLevel.Master)
+                            {
+                                Action = () => bindableDifficultyLevel.Value = DifficultyLevel.Master
+                            },
+                        }
+                    }
+                },
             };
         }
     }

@@ -41,7 +41,7 @@ namespace maisim.Game.Utils
                 if (beatmap.DifficultyLevel == difficultyLevel)
                     return beatmap.NoteDesigner;
             }
-            return "";
+            return "unknown";
         }
     }
 }

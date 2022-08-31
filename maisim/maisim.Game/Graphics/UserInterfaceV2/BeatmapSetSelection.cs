@@ -1,5 +1,4 @@
 using maisim.Game.Beatmaps;
-using maisim.Game.Utils;
 using osu.Framework.Allocation;
 using osu.Framework.Bindables;
 using osu.Framework.Graphics;
@@ -11,7 +10,7 @@ namespace maisim.Game.Graphics.UserInterfaceV2
 {
     public class BeatmapSetSelection : CompositeDrawable
     {
-        // TODO: Remove this when we can read a beatmap from database and has a global beatmap set
+        // TODO: Move to DI this when we can read a beatmap from database and has a global beatmap set
         private Bindable<BeatmapSet> bindableBeatmapSet;
 
         public BeatmapSetSelection(Bindable<BeatmapSet> bindableBeatmapSet)

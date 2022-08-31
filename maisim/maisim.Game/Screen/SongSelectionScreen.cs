@@ -1,19 +1,11 @@
 using maisim.Game.Beatmaps;
 using maisim.Game.Component;
-using maisim.Game.Graphics;
-using maisim.Game.Graphics.UserInterface.Toolbar;
 using maisim.Game.Graphics.UserInterfaceV2;
-using maisim.Game.Scores;
 using maisim.Game.Utils;
 using osu.Framework.Allocation;
 using osu.Framework.Bindables;
-using osu.Framework.Extensions.Color4Extensions;
 using osu.Framework.Graphics;
-using osu.Framework.Graphics.Containers;
-using osu.Framework.Graphics.Shapes;
 using osu.Framework.Screens;
-using osuTK;
-using osuTK.Graphics;
 
 namespace maisim.Game.Screen
 {
