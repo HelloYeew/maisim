@@ -19,10 +19,10 @@ namespace maisim.Game.Utils
         public static readonly TrackMetadata[] FULL_TRACK_METADATA_LIST = {
             new TrackMetadata
             {
-                Title = "Lemon",
-                Artist = "Kenshi Yonezu",
-                Bpm = 80,
-                CoverPath = "Test/lemon.jpg"
+                Title = "Diamond City Lights",
+                Artist = "LazuLight",
+                Bpm = 185,
+                CoverPath = "Test/diamond-city-lights.jpg"
             },
             new TrackMetadata
             {
@@ -142,6 +142,48 @@ namespace maisim.Game.Utils
                 Combo = random.NextInRange(1, 500),
             };
         }
+
+        public static string GetBeatmapSetAudioPath(TrackMetadata trackMetadata)
+        {
+            string title = trackMetadata.Title;
+
+            switch (title)
+            {
+                case "Diamond City Lights":
+                    return "Test/diamond-city-lights.mp3";
+                case "only my railgun":
+                    return "Test/only-my-railgun.m4a";
+                case "RAISE MY SWORD":
+                    return "Test/raise-my-sword.mp3";
+                case "Sukino Skill":
+                    return "Test/sukino-skill.mp3";
+                case "tenkai e no kippu":
+                    return "Test/tenkai-e-no-kippu.mp3";
+                default:
+                    throw new NotImplementedException("The audio path for this track metadata is not implemented yet.");
+            }
+        }
+
+        public static int GetBeatmapSetPreviewTime(TrackMetadata trackMetadata)
+        {
+            string title = trackMetadata.Title;
+
+            switch (title)
+            {
+                case "Diamond City Lights":
+                    return 5700;
+                case "only my railgun":
+                    return 6000;
+                case "RAISE MY SWORD":
+                    return 9600;
+                case "Sukino Skill":
+                    return 5450;
+                case "tenkai e no kippu":
+                    return 8800;
+                default:
+                    throw new NotImplementedException("The preview time for this track metadata is not implemented yet.");
+            }
+        }
     }
 
     public class TrackTestFixture
@@ -186,7 +228,9 @@ namespace maisim.Game.Utils
             else
             {
                 // Find the trackMetadata with the given title, if cannot find, use a random one.
-                trackMetadata = TestUtil.FULL_TRACK_METADATA_LIST.FirstOrDefault(x => x.Title == trackTitle) ?? TestUtil.GetRandomTrackMetadata();
+                // The trackMetadata need to have the audio path set.
+                // Just check that the switch case in TestUtil.GetBeatmapSetAudioPath() is implemented for the track title.
+                trackMetadata = TestUtil.FULL_TRACK_METADATA_LIST.FirstOrDefault(x => x.Title == trackTitle && TestUtil.GetBeatmapSetAudioPath(x) != null) ?? TestUtil.GetRandomTrackMetadata();
             }
             BeatmapSet = new BeatmapSet()
             {
@@ -194,8 +238,8 @@ namespace maisim.Game.Utils
                 Creator = TestUtil.GetRandomName(),
                 BeatmapSetID = 10,
                 Beatmaps = beatmaps,
-                AudioFileName = "Test/lemon.mp3",
-                PreviewTime = RandomExtensions.NextInRange(new Random(), 1, 10000)
+                AudioFileName = TestUtil.GetBeatmapSetAudioPath(trackMetadata),
+                PreviewTime = TestUtil.GetBeatmapSetPreviewTime(trackMetadata)
             };
             for (int i = 0; i < 4; i++)
             {
