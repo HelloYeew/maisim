@@ -1,13 +1,11 @@
 using maisim.Game.Beatmaps;
 using maisim.Game.Component;
-using maisim.Game.Scores;
+using maisim.Game.Graphics.UserInterfaceV2;
 using maisim.Game.Utils;
 using osu.Framework.Allocation;
-using osu.Framework.Extensions.Color4Extensions;
+using osu.Framework.Bindables;
 using osu.Framework.Graphics;
-using osu.Framework.Graphics.Containers;
 using osu.Framework.Screens;
-using osuTK;
 
 namespace maisim.Game.Screen
 {
@@ -18,46 +16,24 @@ namespace maisim.Game.Screen
     {
         public override float BackgroundParallaxAmount => 0.2f;
 
+        // TODO: These two bindables need to pass via DI instead of assign a random one.
+        private Bindable<DifficultyLevel> bindableDifficultyLevel = new Bindable<DifficultyLevel>();
+
+        private Bindable<BeatmapSet> bindableBeatmapSet = new Bindable<BeatmapSet>(new BeatmapSetTestFixture().BeatmapSet);
+
         [BackgroundDependencyLoader]
         private void load()
         {
-            TrackTestFixture mockFixture = new TrackTestFixture();
-
             InternalChildren = new Drawable[]
             {
-                new Container
+                new BeatmapSetSelection(bindableBeatmapSet),
+                new BeatmapSetInfoBox(bindableDifficultyLevel,bindableBeatmapSet)
                 {
-                    Anchor = Anchor.Centre,
-                    Origin = Anchor.Centre,
-                    Size = new Vector2(320,320),
-                    RelativePositionAxes = Axes.X,
-                    Children = new Drawable[]
-                    {
-                        new SongSelectionBackground(Color4Extensions.FromHex("fb5f99"))
-                        {
-                            Anchor = Anchor.Centre,
-                            Origin = Anchor.Centre,
-                            RelativePositionAxes = Axes.Both,
-                            RelativeSizeAxes = Axes.Both,
-                        },new Container
-                        {
-                            Anchor = Anchor.TopCentre,
-                            Origin = Anchor.TopCentre,
-                            RelativePositionAxes = Axes.Both,
-                            RelativeSizeAxes = Axes.Both,
-                            Children = new Drawable[]
-                            {
-                                new TrackCardFocused(mockFixture.Beatmap, mockFixture.Score)
-                                {
-                                    Anchor = Anchor.TopCentre,
-                                    Origin = Anchor.TopCentre,
-                                    RelativePositionAxes = Axes.Both,
-                                    Size = new Vector2(300,384)
-                                }
-                            }
-                        }
-                    }
-                },new BackButton
+                    Anchor = Anchor.TopRight,
+                    Origin = Anchor.TopRight,
+                    RelativeSizeAxes = Axes.Y,
+                },
+                new BackButton
                 {
                     Anchor = Anchor.BottomLeft,
                     Origin = Anchor.BottomLeft,

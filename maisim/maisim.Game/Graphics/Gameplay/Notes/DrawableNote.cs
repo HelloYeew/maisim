@@ -1,4 +1,5 @@
 ﻿using System;
+using maisim.Game.Gameplay.Notes;
 using maisim.Game.Screen.Gameplay;
 using maisim.Game.Utils;
 using osu.Framework.Allocation;
@@ -8,7 +9,7 @@ using osu.Framework.Graphics.Containers;
 using osu.Framework.Graphics.Textures;
 using osuTK;
 
-namespace maisim.Game.Component.Gameplay.Notes
+namespace maisim.Game.Graphics.Gameplay.Notes
 {
     /// <summary>
     /// A base abstract class for notes in the gameplay.
@@ -52,12 +53,6 @@ namespace maisim.Game.Component.Gameplay.Notes
         /// <param name="textureStore"><see cref="TextureStore"/> in load operation.</param>
         /// <returns>List of drawable include all note part that will be initialize on load.</returns>
         protected abstract Drawable[] AddNoteParts(TextureStore textureStore);
-
-        /// <summary>
-        /// Get string representation of the note in beatmap file.
-        /// </summary>
-        /// <returns></returns>
-        public abstract string GetEncodeString();
 
         /// <summary>
         /// Check that the note can start to despawn state.

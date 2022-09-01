@@ -1,14 +1,14 @@
-﻿using maisim.Game.Screen.Gameplay;
-using osu.Framework.Graphics;
+﻿using osu.Framework.Graphics;
 using osu.Framework.Graphics.Sprites;
 using osu.Framework.Graphics.Textures;
+using osuTK;
 
-namespace maisim.Game.Component.Gameplay.Notes
+namespace maisim.Game.Graphics.Gameplay.Notes
 {
     /// <summary>
-    /// Class represent the star in SLIDE note.
+    /// Class represent the arrow path in the slider of SLIDE note.
     /// </summary>
-    public class DrawableSlideStarNote : DrawableNote
+    public class DrawableSlidePathNote : DrawableNote
     {
         protected override Drawable[] AddNoteParts(TextureStore textureStore)
         {
@@ -20,16 +20,12 @@ namespace maisim.Game.Component.Gameplay.Notes
                     Anchor = Anchor.Centre,
                     Origin = Anchor.Centre,
                     FillMode = FillMode.Fill,
-                    Texture = textureStore.Get("Notes/SlideStar.png")
+                    Scale = new Vector2(0.5f),
+                    Texture = textureStore.Get("Notes/SlidePath.png")
                 }
             };
         }
 
-        public override string GetEncodeString()
-        {
-            return "";
-        }
-        
         public override bool CanDespawn => false;
     }
 }

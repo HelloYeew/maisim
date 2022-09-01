@@ -1,12 +1,12 @@
 ﻿using System.Collections.Generic;
 using maisim.Game.Beatmaps;
-using maisim.Game.Component.Gameplay.Notes;
 using maisim.Game.Database;
+using maisim.Game.Gameplay.Notes;
 using NUnit.Framework;
 
 namespace maisim.Game.Tests.Beatmaps
 {
-    public class TestBeatmapIO
+    public class TestBeatmapIo
     {
         private BeatmapSet mockBeatmapSet;
 
@@ -16,9 +16,9 @@ namespace maisim.Game.Tests.Beatmaps
 
         private Beatmap mockBeatmapTwo;
 
-        private List<DrawableNote> mockNoteList;
+        private List<INote> mockNoteList;
 
-        public TestBeatmapIO()
+        public TestBeatmapIo()
         {
             var database = new BeatmapDatabaseContext();
 
@@ -75,24 +75,24 @@ namespace maisim.Game.Tests.Beatmaps
             database.Beatmaps.Add(mockBeatmapOne);
             database.Beatmaps.Add(mockBeatmapTwo);
 
-            mockNoteList = new List<DrawableNote>()
+            mockNoteList = new List<INote>()
             {
-                new DrawableTapNote()
+                new TapNote()
                 {
                     Lane = NoteLane.Lane1,
                     TargetTime = 5232
                 },
-                new DrawableTapNote()
+                new TapNote()
                 {
                     Lane = NoteLane.Lane2,
                     TargetTime = 23230
                 },
-                new DrawableTapNote()
+                new TapNote()
                 {
                     Lane = NoteLane.Lane4,
                     TargetTime = 44440
                 },
-                new DrawableTapNote()
+                new TapNote()
                 {
                     Lane = NoteLane.Lane3,
                     TargetTime = 55445

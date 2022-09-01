@@ -1,14 +1,13 @@
-﻿using maisim.Game.Screen.Gameplay;
-using osu.Framework.Graphics;
+﻿using osu.Framework.Graphics;
 using osu.Framework.Graphics.Sprites;
 using osu.Framework.Graphics.Textures;
 
-namespace maisim.Game.Component.Gameplay.Notes
+namespace maisim.Game.Graphics.Gameplay.Notes
 {
     /// <summary>
-    /// Class represent the TAP note when it will appear at the same time.
+    /// Class represent the TOUCH HOLD note.
     /// </summary>
-    public class DrawableTapBothNote : DrawableNote
+    public class TouchHold : DrawableNote
     {
         protected override Drawable[] AddNoteParts(TextureStore textureStore)
         {
@@ -20,16 +19,11 @@ namespace maisim.Game.Component.Gameplay.Notes
                     Anchor = Anchor.Centre,
                     Origin = Anchor.Centre,
                     FillMode = FillMode.Fill,
-                    Texture = textureStore.Get("Notes/TapBoth.png")
+                    Texture = textureStore.Get("Notes/TouchHold.png")
                 }
             };
         }
 
-        public override string GetEncodeString()
-        {
-            return "";
-        }
-        
         public override bool CanDespawn => false;
     }
 }
