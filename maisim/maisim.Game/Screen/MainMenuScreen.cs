@@ -1,5 +1,4 @@
-﻿using System;
-using maisim.Game.Graphics.Sprites;
+﻿using maisim.Game.Graphics.Sprites;
 using maisim.Game.Graphics.UserInterface;
 using osu.Framework.Allocation;
 using osu.Framework.Audio.Track;
@@ -9,7 +8,6 @@ using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
 using osu.Framework.Graphics.Sprites;
 using osu.Framework.Graphics.Textures;
-using osu.Framework.Logging;
 using osu.Framework.Screens;
 using osuTK;
 
