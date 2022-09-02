@@ -1,12 +1,15 @@
-﻿using maisim.Game.Graphics.Sprites;
+﻿using System;
+using maisim.Game.Graphics.Sprites;
 using maisim.Game.Graphics.UserInterface;
 using osu.Framework.Allocation;
 using osu.Framework.Audio.Track;
+using osu.Framework.Development;
 using osu.Framework.Extensions.Color4Extensions;
 using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
 using osu.Framework.Graphics.Sprites;
 using osu.Framework.Graphics.Textures;
+using osu.Framework.Logging;
 using osu.Framework.Screens;
 using osuTK;
 
@@ -104,7 +107,7 @@ namespace maisim.Game.Screen
                 {
                     Anchor = Anchor.BottomLeft,
                     Origin = Anchor.BottomLeft,
-                    Text = "maisim development build",
+                    Text = DebugUtils.IsDebugBuild ? "maisim development build" : $"maisim v{System.Reflection.Assembly.GetExecutingAssembly().GetName().Version}",
                     Scale = new Vector2(0)
                 }
             };
