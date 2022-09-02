@@ -5,7 +5,6 @@
         Basic,
         Advanced,
         Expert,
-        Master,
-        Remaster
+        Master
     }
 }

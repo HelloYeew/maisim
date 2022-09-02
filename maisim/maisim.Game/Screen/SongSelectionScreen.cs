@@ -61,7 +61,6 @@ namespace maisim.Game.Screen
                 {
                     Anchor = Anchor.BottomLeft,
                     Origin = Anchor.BottomLeft,
-                    Size = new Vector2(400),
                     Action = () => this.Exit()
                 }
             };

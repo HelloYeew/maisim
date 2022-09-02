@@ -36,12 +36,11 @@ namespace maisim.Game.Graphics
                 case DifficultyLevel.Master:
                     return Color4Extensions.FromHex("a051dc");
 
-                case DifficultyLevel.Remaster:
-                    return Color4.White;
-
                 default:
                     throw new ArgumentOutOfRangeException(nameof(difficultyLevel));
             }
         }
+
+        public static Color4 BackButtonColor => Color4Extensions.FromHex("205ac8");
     }
 }
