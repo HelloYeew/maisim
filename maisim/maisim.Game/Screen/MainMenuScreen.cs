@@ -179,6 +179,8 @@ namespace maisim.Game.Screen
             this.MoveToY(-DrawHeight, 1000, Easing.OutExpo);
             this.ScaleTo(0f, 750, Easing.OutQuint);
             this.MoveToX(-DrawWidth, 750, Easing.OutExpo);
+
+            track.Stop();
         }
 
         public override void OnResuming(ScreenTransitionEvent e)
@@ -187,6 +189,8 @@ namespace maisim.Game.Screen
             this.MoveToY(0, 1000, Easing.OutExpo);
             this.ScaleTo(1, 750, Easing.OutQuint);
             this.MoveToX(0, 750, Easing.OutExpo);
+
+            track.Start();
         }
 
         public override bool OnExiting(ScreenExitEvent screenExitEvent)

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using maisim.Game.Beatmaps;
 using maisim.Game.Scores;
+using osu.Framework.Logging;
 
 namespace maisim.Game.Utils
 {
@@ -19,10 +20,10 @@ namespace maisim.Game.Utils
         public static readonly TrackMetadata[] FULL_TRACK_METADATA_LIST = {
             new TrackMetadata
             {
-                Title = "Lemon",
-                Artist = "Kenshi Yonezu",
-                Bpm = 80,
-                CoverPath = "Test/lemon.jpg"
+                Title = "Diamond City Lights",
+                Artist = "LazuLight",
+                Bpm = 185,
+                CoverPath = "Test/diamond-city-lights.jpg"
             },
             new TrackMetadata
             {
@@ -62,6 +63,12 @@ namespace maisim.Game.Utils
                 Artist = "Dragon Guardian",
                 Bpm = 190,
                 CoverPath = "Test/tenkai-e-no-kippu.jpg"
+            },new TrackMetadata
+            {
+                Title = "ReI",
+                Artist = "THE ORAL CIGARETTES",
+                Bpm = 200,
+                CoverPath = "Test/rei.jpeg"
             }
         };
 
@@ -142,6 +149,65 @@ namespace maisim.Game.Utils
                 Combo = random.NextInRange(1, 500),
             };
         }
+
+        /// <summary>
+        /// Get the audio file path that's live in game's resources for testing.
+        /// When using this please set <see cref="BeatmapSet"/>'s `UseLocalPath` to `true`.
+        /// </summary>
+        /// <param name="trackMetadata">The target <see cref="TrackMetadata"/>.</param>
+        /// <returns>Path using in game's resource</returns>
+        public static string GetBeatmapSetAudioPath(TrackMetadata trackMetadata)
+        {
+            string title = trackMetadata.Title;
+
+            Logger.Log("GetBeatmapSetAudioPath: " + title);
+
+            switch (title)
+            {
+                case "Diamond City Lights":
+                    return "Test/diamond-city-lights.mp3";
+                case "only my railgun":
+                    return "Test/only-my-railgun.m4a";
+                case "RAISE MY SWORD":
+                    return "Test/raise-my-sword.mp3";
+                case "Sukino Skill":
+                    return "Test/sukino-skill.mp3";
+                case "Tenkai e no Kippu":
+                    return "Test/tenkai-e-no-kippu.mp3";
+                case "ReI":
+                    return "Test/rei.mp3";
+                default:
+                    return "";
+            }
+        }
+
+        /// <summary>
+        /// Get the preview time of the audio file for target <see cref="TrackMetadata"/>.
+        /// </summary>
+        /// <param name="trackMetadata">The target <see cref="TrackMetadata"/></param>
+        /// <returns>Preview time</returns>
+        public static int GetBeatmapSetPreviewTime(TrackMetadata trackMetadata)
+        {
+            string title = trackMetadata.Title;
+
+            switch (title)
+            {
+                case "Diamond City Lights":
+                    return 57000;
+                case "only my railgun":
+                    return 60000;
+                case "RAISE MY SWORD":
+                    return 96000;
+                case "Sukino Skill":
+                    return 54500;
+                case "Tenkai e no Kippu":
+                    return 88000;
+                case "ReI":
+                    return 75000;
+                default:
+                    return 0;
+            }
+        }
     }
 
     public class TrackTestFixture
@@ -181,7 +247,9 @@ namespace maisim.Game.Utils
         {
             if (trackTitle == null)
             {
-                trackMetadata = TestUtil.GetRandomTrackMetadata();
+                // Shuffle and check that is the trackMetadata's audio file exist.
+                // Use guid to avoid duplicate on the same test.
+                trackMetadata = TestUtil.FULL_TRACK_METADATA_LIST.OrderBy(x => Guid.NewGuid()).FirstOrDefault(x => TestUtil.GetBeatmapSetAudioPath(x) != "");
             }
             else
             {
@@ -194,8 +262,8 @@ namespace maisim.Game.Utils
                 Creator = TestUtil.GetRandomName(),
                 BeatmapSetID = 10,
                 Beatmaps = beatmaps,
-                AudioFileName = "Test/lemon.mp3",
-                PreviewTime = RandomExtensions.NextInRange(new Random(), 1, 10000)
+                AudioFileName = TestUtil.GetBeatmapSetAudioPath(trackMetadata),
+                PreviewTime = TestUtil.GetBeatmapSetPreviewTime(trackMetadata)
             };
             for (int i = 0; i < 4; i++)
             {
