@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using maisim.Game.Beatmaps;
 using maisim.Game.Scores;
+using osu.Framework.Logging;
 
 namespace maisim.Game.Utils
 {
@@ -62,6 +63,12 @@ namespace maisim.Game.Utils
                 Artist = "Dragon Guardian",
                 Bpm = 190,
                 CoverPath = "Test/tenkai-e-no-kippu.jpg"
+            },new TrackMetadata
+            {
+                Title = "ReI",
+                Artist = "THE ORAL CIGARETTES",
+                Bpm = 200,
+                CoverPath = "Test/rei.jpeg"
             }
         };
 
@@ -143,9 +150,17 @@ namespace maisim.Game.Utils
             };
         }
 
+        /// <summary>
+        /// Get the audio file path that's live in game's resources for testing.
+        /// When using this please set <see cref="BeatmapSet"/>'s `UseLocalPath` to `true`.
+        /// </summary>
+        /// <param name="trackMetadata">The target <see cref="TrackMetadata"/>.</param>
+        /// <returns>Path using in game's resource</returns>
         public static string GetBeatmapSetAudioPath(TrackMetadata trackMetadata)
         {
             string title = trackMetadata.Title;
+
+            Logger.Log("GetBeatmapSetAudioPath: " + title);
 
             switch (title)
             {
@@ -157,13 +172,20 @@ namespace maisim.Game.Utils
                     return "Test/raise-my-sword.mp3";
                 case "Sukino Skill":
                     return "Test/sukino-skill.mp3";
-                case "tenkai e no kippu":
+                case "Tenkai e no Kippu":
                     return "Test/tenkai-e-no-kippu.mp3";
+                case "ReI":
+                    return "Test/rei.mp3";
                 default:
-                    throw new NotImplementedException("The audio path for this track metadata is not implemented yet.");
+                    return "";
             }
         }
 
+        /// <summary>
+        /// Get the preview time of the audio file for target <see cref="TrackMetadata"/>.
+        /// </summary>
+        /// <param name="trackMetadata">The target <see cref="TrackMetadata"/></param>
+        /// <returns>Preview time</returns>
         public static int GetBeatmapSetPreviewTime(TrackMetadata trackMetadata)
         {
             string title = trackMetadata.Title;
@@ -171,17 +193,19 @@ namespace maisim.Game.Utils
             switch (title)
             {
                 case "Diamond City Lights":
-                    return 5700;
+                    return 57000;
                 case "only my railgun":
-                    return 6000;
+                    return 60000;
                 case "RAISE MY SWORD":
-                    return 9600;
+                    return 96000;
                 case "Sukino Skill":
-                    return 5450;
-                case "tenkai e no kippu":
-                    return 8800;
+                    return 54500;
+                case "Tenkai e no Kippu":
+                    return 88000;
+                case "ReI":
+                    return 75000;
                 default:
-                    throw new NotImplementedException("The preview time for this track metadata is not implemented yet.");
+                    return 0;
             }
         }
     }
@@ -223,14 +247,14 @@ namespace maisim.Game.Utils
         {
             if (trackTitle == null)
             {
-                trackMetadata = TestUtil.GetRandomTrackMetadata();
+                // Shuffle and check that is the trackMetadata's audio file exist.
+                // Use guid to avoid duplicate on the same test.
+                trackMetadata = TestUtil.FULL_TRACK_METADATA_LIST.OrderBy(x => Guid.NewGuid()).FirstOrDefault(x => TestUtil.GetBeatmapSetAudioPath(x) != "");
             }
             else
             {
                 // Find the trackMetadata with the given title, if cannot find, use a random one.
-                // The trackMetadata need to have the audio path set.
-                // Just check that the switch case in TestUtil.GetBeatmapSetAudioPath() is implemented for the track title.
-                trackMetadata = TestUtil.FULL_TRACK_METADATA_LIST.FirstOrDefault(x => x.Title == trackTitle && TestUtil.GetBeatmapSetAudioPath(x) != null) ?? TestUtil.GetRandomTrackMetadata();
+                trackMetadata = TestUtil.FULL_TRACK_METADATA_LIST.FirstOrDefault(x => x.Title == trackTitle) ?? TestUtil.GetRandomTrackMetadata();
             }
             BeatmapSet = new BeatmapSet()
             {
