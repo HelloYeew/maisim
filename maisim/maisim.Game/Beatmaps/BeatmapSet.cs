@@ -21,12 +21,5 @@ namespace maisim.Game.Beatmaps
         public string AudioFileName { get; set; }
 
         public int PreviewTime { get; set; }
-
-        public bool UseLocalFile { get; set; }
-
-        public override string ToString()
-        {
-            return $"({BeatmapSetID}) {TrackMetadata.Title} - {TrackMetadata.Artist}";
-        }
     }
 }

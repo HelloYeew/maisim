@@ -1,15 +1,13 @@
-using System;
 using maisim.Game.Beatmaps;
 using maisim.Game.Component;
-using maisim.Game.Graphics.UserInterfaceV2;
+using maisim.Game.Scores;
 using maisim.Game.Utils;
-using NUnit.Framework.Internal;
 using osu.Framework.Allocation;
-using osu.Framework.Audio.Track;
-using osu.Framework.Bindables;
+using osu.Framework.Extensions.Color4Extensions;
 using osu.Framework.Graphics;
+using osu.Framework.Graphics.Containers;
 using osu.Framework.Screens;
-using Logger = osu.Framework.Logging.Logger;
+using osuTK;
 
 namespace maisim.Game.Screen
 {
@@ -20,77 +18,52 @@ namespace maisim.Game.Screen
     {
         public override float BackgroundParallaxAmount => 0.2f;
 
-        // TODO: These two bindables need to pass via DI instead of assign a random one.
-        private Bindable<DifficultyLevel> bindableDifficultyLevel = new Bindable<DifficultyLevel>();
-
-        private Bindable<BeatmapSet> bindableBeatmapSet = new Bindable<BeatmapSet>(new BeatmapSetTestFixture().BeatmapSet);
-
-        // TODO: This is for testing purposes only. This must be remove with the upper bindable.
-        private Track currentTrack;
-
         [BackgroundDependencyLoader]
-        private void load(ITrackStore tracks)
+        private void load()
         {
+            TrackTestFixture mockFixture = new TrackTestFixture();
+
             InternalChildren = new Drawable[]
             {
-                new BeatmapSetSelection(bindableBeatmapSet),
-                new BeatmapSetInfoBox(bindableDifficultyLevel,bindableBeatmapSet)
+                new Container
                 {
-                    Anchor = Anchor.TopRight,
-                    Origin = Anchor.TopRight,
-                    RelativeSizeAxes = Axes.Y,
-                },
-                new BackButton
+                    Anchor = Anchor.Centre,
+                    Origin = Anchor.Centre,
+                    Size = new Vector2(320,320),
+                    RelativePositionAxes = Axes.X,
+                    Children = new Drawable[]
+                    {
+                        new SongSelectionBackground(Color4Extensions.FromHex("fb5f99"))
+                        {
+                            Anchor = Anchor.Centre,
+                            Origin = Anchor.Centre,
+                            RelativePositionAxes = Axes.Both,
+                            RelativeSizeAxes = Axes.Both,
+                        },new Container
+                        {
+                            Anchor = Anchor.TopCentre,
+                            Origin = Anchor.TopCentre,
+                            RelativePositionAxes = Axes.Both,
+                            RelativeSizeAxes = Axes.Both,
+                            Children = new Drawable[]
+                            {
+                                new TrackCardFocused(mockFixture.Beatmap, mockFixture.Score)
+                                {
+                                    Anchor = Anchor.TopCentre,
+                                    Origin = Anchor.TopCentre,
+                                    RelativePositionAxes = Axes.Both,
+                                    Size = new Vector2(300,384)
+                                }
+                            }
+                        }
+                    }
+                },new BackButton
                 {
                     Anchor = Anchor.BottomLeft,
                     Origin = Anchor.BottomLeft,
                     Action = () => this.Exit()
                 }
             };
-            currentTrack = tracks.Get(bindableBeatmapSet.Value.AudioFileName);
-            currentTrack.Looping = true;
-        }
-
-        public override void OnEntering(ScreenTransitionEvent e)
-        {
-            currentTrack.Seek(bindableBeatmapSet.Value.PreviewTime);
-            currentTrack.Start();
-
-            base.OnEntering(e);
-        }
-
-        public override void OnSuspending(ScreenTransitionEvent e)
-        {
-            currentTrack.Stop();
-
-            base.OnSuspending(e);
-        }
-
-        public override void OnResuming(ScreenTransitionEvent e)
-        {
-            currentTrack.Start();
-
-            base.OnResuming(e);
-        }
-
-        public override bool OnExiting(ScreenExitEvent e)
-        {
-            currentTrack.Stop();
-
-            return base.OnExiting(e);
-        }
-
-        protected override void Update()
-        {
-            // if track's end is reached, restart it with seeking to the preview time
-            // To make it precise, floor the double to int
-            if (Convert.ToInt32(currentTrack.CurrentTime) == Convert.ToInt32(currentTrack.Length))
-            {
-                currentTrack.Seek(bindableBeatmapSet.Value.PreviewTime);
-                currentTrack.Start();
-            }
-
-            base.Update();
         }
     }
 }
