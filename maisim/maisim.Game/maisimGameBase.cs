@@ -7,6 +7,9 @@ using osu.Framework.Allocation;
 using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
 using osu.Framework.IO.Stores;
+using osuTK;
+using maisim.Resources;
+using osu.Framework.Audio;
 using osu.Framework.Bindables;
 using osu.Framework.Development;
 using osu.Framework.Graphics.Performance;
@@ -22,7 +25,7 @@ namespace maisim.Game
         // It allows for caching global dependencies that should be accessible to tests, or changing
         // the screen scaling for all components including the test browser and framework overlays.
 
-        private BeatmapDatabaseContextFactory beatmapDatabase;
+        private BeatmapDatabaseContext beatmapDatabase = new BeatmapDatabaseContext();
 
         protected override Container<Drawable> Content { get; }
 
@@ -31,6 +34,10 @@ namespace maisim.Game
         protected MaisimConfigManager LocalConfig { get; private set; }
 
         protected Storage Storage { get; set; }
+
+        public MaisimStore Store;
+
+        public AudioManager AudioManager;
 
         private DependencyContainer dependencies;
 
@@ -76,8 +83,10 @@ namespace maisim.Game
             Logger.Log("Game storage path : " + Host.Storage.GetFullPath(""), LoggingTarget.Database);
             Logger.Log("Environment application data : "+ Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), LoggingTarget.Database);
 
-            beatmapDatabase = new BeatmapDatabaseContextFactory(Host.Storage.GetFullPath(""));
-
+            beatmapDatabase.InitializeDatabase(Host.Storage.GetFullPath(""));
+            
+            dependencies.Cache(Store = new MaisimStore(Host.Storage.GetStorageForDirectory("tracks")));
+            dependencies.Cache(AudioManager = new AudioManager(Host.AudioThread, new NamespacedResourceStore<byte[]>(new MaisimStore(Host.Storage), "tracks"), new NamespacedResourceStore<byte[]>(Resources, "Samples")));
             dependencies.Cache(textureStore = new MaisimTextureStore(Host.Renderer, Host.CreateTextureLoaderStore(new NamespacedResourceStore<byte[]>(Resources, "Textures"))));
             dependencies.CacheAs(this);
             dependencies.CacheAs(LocalConfig);

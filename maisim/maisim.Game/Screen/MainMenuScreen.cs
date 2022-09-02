@@ -1,13 +1,22 @@
-﻿using maisim.Game.Graphics.Sprites;
+﻿using System;
+using System.Globalization;
+using maisim.Game.Graphics.Sprites;
 using maisim.Game.Graphics.UserInterface;
+using maisim.Game.Graphics.UserInterface.Overlays;
 using osu.Framework.Allocation;
+using osu.Framework.Audio;
 using osu.Framework.Audio.Track;
 using osu.Framework.Development;
+using osu.Framework.Bindables;
 using osu.Framework.Extensions.Color4Extensions;
 using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
+using osu.Framework.Graphics.Shapes;
 using osu.Framework.Graphics.Sprites;
 using osu.Framework.Graphics.Textures;
+using osu.Framework.Graphics.UserInterface;
+using osu.Framework.Graphics.Visualisation.Audio;
+using osu.Framework.Logging;
 using osu.Framework.Screens;
 using osuTK;
 
@@ -25,14 +34,21 @@ namespace maisim.Game.Screen
         private MainMenuButton exitButton;
         private MaisimSpriteText versionText;
 
-        // TODO: This is the test track only for test the settings menu. This must be remove later.
+        private BasicSliderBar<double> trackLengthSlider;
+        private BindableDouble trackLength = new BindableDouble();
+        private BindableDouble trackCurrentAmplitude = new BindableDouble();
+
         private Track track;
 
+        private ITrackStore trackStore;
+
         [BackgroundDependencyLoader]
-        private void load(TextureStore textureStore, ITrackStore tracks)
+        private void load(TextureStore textureStore, AudioManager audioManager, ITrackStore tracks)
         {
-            track = tracks.Get(@"testtrack.mp3");
-            track.Looping = true;
+            trackLength.MinValue = 0;
+            trackLength.MaxValue = 1;
+            trackCurrentAmplitude.MinValue = 0;
+            trackCurrentAmplitude.MaxValue = 1;
 
             InternalChildren = new Drawable[]
             {
@@ -53,6 +69,22 @@ namespace maisim.Game.Screen
                             Spacing = new Vector2(0, 10),
                             Children = new Drawable[]
                             {
+                                new BasicSliderBar<double>
+                                {
+                                    Anchor = Anchor.Centre,
+                                    Origin = Anchor.Centre,
+                                    Current = trackCurrentAmplitude,
+                                    KeyboardStep = 0.01f,
+                                    Size = new Vector2(400, 30),
+                                },
+                                trackLengthSlider = new BasicSliderBar<double>
+                                {
+                                    Anchor = Anchor.Centre,
+                                    Origin = Anchor.Centre,
+                                    Current = trackLength,
+                                    KeyboardStep = 0.01f,
+                                    Size = new Vector2(400, 30),
+                                },
                                 playButton = new MainMenuButton("Play",FontAwesome.Solid.Play,Color4Extensions.FromHex("73E99B"))
                                 {
                                     Anchor = Anchor.Centre,
@@ -110,10 +142,19 @@ namespace maisim.Game.Screen
                     Scale = new Vector2(0)
                 }
             };
+
+            trackStore = audioManager.Tracks;
+            track = trackStore.Get("buildtrack.mp3") ?? tracks.Get(@"testtrack2.mp3");
+            track.Looping = true;
+            // track = trackStore.Get("rei/ReI");
+
+            track.Looping = true;
+            // track.Seek(50000);
         }
 
         public override void OnEntering(ScreenTransitionEvent e)
         {
+            track.Start();
             maisimLogo.ScaleTo(1, 1000, Easing.OutQuint);
             playButton.ScaleTo(1, 700, Easing.OutQuint);
             editButton.ScaleTo(1, 800, Easing.OutQuint);
@@ -124,16 +165,41 @@ namespace maisim.Game.Screen
             track.Start();
         }
 
+        protected override void Update()
+        {
+            // Logger.LogPrint(track.CurrentAmplitudes.Maximum.ToString(CultureInfo.CurrentCulture));
+            // maisimLogo.ScaleTo(new Vector2(Math.Min(1.5f, 0.4f + track.CurrentAmplitudes.Maximum)), 10, Easing.OutQuint);
+            trackLength.Set(track.CurrentTime / track.Length);
+            trackCurrentAmplitude.Set(track.CurrentAmplitudes.Maximum);
+
+            base.Update();
+        }
+
         public override void OnSuspending(ScreenTransitionEvent e)
         {
+            track.Stop();
+            this.MoveToY(-DrawHeight, 1000, Easing.OutExpo);
             this.ScaleTo(0f, 750, Easing.OutQuint);
             this.MoveToX(-DrawWidth, 750, Easing.OutExpo);
+
+            track.Stop();
         }
 
         public override void OnResuming(ScreenTransitionEvent e)
         {
+            track.Start();
+            this.MoveToY(0, 1000, Easing.OutExpo);
             this.ScaleTo(1, 750, Easing.OutQuint);
             this.MoveToX(0, 750, Easing.OutExpo);
+
+            track.Start();
+        }
+
+        public override bool OnExiting(ScreenExitEvent screenExitEvent)
+        {
+            track.Stop();
+
+            return base.OnExiting(screenExitEvent);
         }
 
         public override float BackgroundParallaxAmount => 0.5f;
