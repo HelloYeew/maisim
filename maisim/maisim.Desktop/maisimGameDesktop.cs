@@ -11,6 +11,9 @@ namespace maisim.Desktop
             var desktopWindow = (SDL2DesktopWindow)host.Window;
 
             desktopWindow.Title = "maisim";
+#if DEBUG
+            desktopWindow.Title += " development";
+#endif
         }
 
 
