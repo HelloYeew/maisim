@@ -11,6 +11,9 @@ using osuTK;
 
 namespace maisim.Game.Graphics.UserInterface
 {
+    /// <summary>
+    /// The game's logo
+    /// </summary>
     public class MaisimLogo : CompositeDrawable
     {
         private static float buttonMultilplier = 119f;
@@ -28,14 +31,14 @@ namespace maisim.Game.Graphics.UserInterface
                 RelativeSizeAxes = Axes.Both,
                 Children = new Drawable[]
                 {
-                    new Circle()
+                    new Circle
                     {
                         Anchor = Anchor.Centre,
                         Origin = Anchor.Centre,
                         RelativeSizeAxes = Axes.Both,
                         Colour = Color4Extensions.FromHex("DEE4F1"),
                     },
-                    new Circle()
+                    new Circle
                     {
                         Anchor = Anchor.Centre,
                         Origin = Anchor.Centre,
