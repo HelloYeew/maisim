@@ -84,7 +84,7 @@ namespace maisim.Game.Screen
         {
             // if track's end is reached, restart it with seeking to the preview time
             // To make it precise, floor the double to int
-            if (Convert.ToInt32(currentTrack.CurrentTime) == Convert.ToInt32(currentTrack.Length))
+            if (currentTrack.HasCompleted)
             {
                 currentTrack.Seek(bindableBeatmapSet.Value.PreviewTime);
                 currentTrack.Start();
