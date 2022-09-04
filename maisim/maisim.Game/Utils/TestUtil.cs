@@ -243,6 +243,11 @@ namespace maisim.Game.Utils
         private TrackMetadata trackMetadata { get; set; }
         private List<Beatmap> beatmaps = new List<Beatmap>();
 
+        /// <summary>
+        /// Generate a random <see cref="BeatmapSet"/> with complete random data.
+        ///
+        /// Note that this method will only generate a <see cref="BeatmapSet"/> that contain the track resources.
+        /// </summary>
         public BeatmapSetTestFixture(string trackTitle = null)
         {
             if (trackTitle == null)
