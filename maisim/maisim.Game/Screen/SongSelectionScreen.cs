@@ -25,9 +25,6 @@ namespace maisim.Game.Screen
 
         private Bindable<BeatmapSet> bindableBeatmapSet = new Bindable<BeatmapSet>(new BeatmapSetTestFixture().BeatmapSet);
 
-        // TODO: This is for testing purposes only. This must be remove with the upper bindable.
-        private Track currentTrack;
-
         [BackgroundDependencyLoader]
         private void load(ITrackStore tracks)
         {
@@ -47,50 +44,6 @@ namespace maisim.Game.Screen
                     Action = () => this.Exit()
                 }
             };
-            currentTrack = tracks.Get(bindableBeatmapSet.Value.AudioFileName);
-            currentTrack.Looping = true;
-        }
-
-        public override void OnEntering(ScreenTransitionEvent e)
-        {
-            currentTrack.Seek(bindableBeatmapSet.Value.PreviewTime);
-            currentTrack.Start();
-
-            base.OnEntering(e);
-        }
-
-        public override void OnSuspending(ScreenTransitionEvent e)
-        {
-            currentTrack.Stop();
-
-            base.OnSuspending(e);
-        }
-
-        public override void OnResuming(ScreenTransitionEvent e)
-        {
-            currentTrack.Start();
-
-            base.OnResuming(e);
-        }
-
-        public override bool OnExiting(ScreenExitEvent e)
-        {
-            currentTrack.Stop();
-
-            return base.OnExiting(e);
-        }
-
-        protected override void Update()
-        {
-            // if track's end is reached, restart it with seeking to the preview time
-            // To make it precise, floor the double to int
-            if (currentTrack.HasCompleted)
-            {
-                currentTrack.Seek(bindableBeatmapSet.Value.PreviewTime);
-                currentTrack.Start();
-            }
-
-            base.Update();
         }
     }
 }
