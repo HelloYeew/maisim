@@ -193,17 +193,17 @@ namespace maisim.Game.Utils
             switch (title)
             {
                 case "Diamond City Lights":
-                    return 57000;
+                    return 57500;
                 case "only my railgun":
-                    return 60000;
+                    return 62000;
                 case "RAISE MY SWORD":
-                    return 96000;
+                    return 96500;
                 case "Sukino Skill":
-                    return 54500;
+                    return 55000;
                 case "Tenkai e no Kippu":
-                    return 88000;
+                    return 88900;
                 case "ReI":
-                    return 75000;
+                    return 76000;
                 default:
                     return 0;
             }
@@ -243,6 +243,11 @@ namespace maisim.Game.Utils
         private TrackMetadata trackMetadata { get; set; }
         private List<Beatmap> beatmaps = new List<Beatmap>();
 
+        /// <summary>
+        /// Generate a random <see cref="BeatmapSet"/> with complete random data.
+        ///
+        /// Note that this method will only generate a <see cref="BeatmapSet"/> that contain the track resources.
+        /// </summary>
         public BeatmapSetTestFixture(string trackTitle = null)
         {
             if (trackTitle == null)
