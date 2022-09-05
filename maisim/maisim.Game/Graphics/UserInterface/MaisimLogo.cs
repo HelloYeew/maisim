@@ -16,7 +16,7 @@ namespace maisim.Game.Graphics.UserInterface
     /// </summary>
     public class MaisimLogo : CompositeDrawable
     {
-        private static float buttonMultilplier = 119f;
+        private const float buttonMultilplier = 119f;
 
         [BackgroundDependencyLoader]
         private void load(TextureStore textureStore)
