@@ -17,7 +17,7 @@ namespace maisim.Game.Screen
     /// </summary>
     public class MainMenuScreen : MaisimScreen
     {
-        private Sprite maisimLogo;
+        private MaisimLogo maisimLogo;
         private MainMenuButton playButton;
         private MainMenuButton editButton;
         private MainMenuButton browseButton;
@@ -91,11 +91,10 @@ namespace maisim.Game.Screen
                     Origin = Anchor.TopLeft,
                     Size = new Vector2(300),
                     Position = new Vector2(30, 30),
-                    Child = maisimLogo = new Sprite
+                    Child = maisimLogo = new MaisimLogo
                     {
                         Anchor = Anchor.Centre,
                         Origin = Anchor.Centre,
-                        Texture = textureStore.Get("logo"),
                         Size = new Vector2(300),
                         Scale = new Vector2(0)
                     }
