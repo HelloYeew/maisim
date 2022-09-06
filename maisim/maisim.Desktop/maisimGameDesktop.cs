@@ -13,9 +13,8 @@ namespace maisim.Desktop
 
             desktopWindow.Title = "maisim";
             if (DebugUtils.IsDebugBuild)
-            {
                 desktopWindow.Title += " development";
-            }
+                
         }
 
         protected override void LoadComplete()
