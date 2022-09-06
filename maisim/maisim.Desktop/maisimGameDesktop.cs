@@ -1,4 +1,5 @@
 ﻿using maisim.Game;
+using osu.Framework.Development;
 using osu.Framework.Platform;
 
 namespace maisim.Desktop
@@ -11,11 +12,10 @@ namespace maisim.Desktop
             var desktopWindow = (SDL2DesktopWindow)host.Window;
 
             desktopWindow.Title = "maisim";
-#if DEBUG
-            desktopWindow.Title += " development";
-#endif
+            if (DebugUtils.IsDebugBuild)
+                desktopWindow.Title += " development";
+                
         }
-
 
         protected override void LoadComplete()
         {
