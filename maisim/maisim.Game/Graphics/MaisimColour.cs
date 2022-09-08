@@ -15,7 +15,7 @@ namespace maisim.Game.Graphics
         public static Color4 Gray(byte amt) => new Color4(amt, amt, amt, 255);
 
         /// <summary>
-        /// Get the colour for <see cref="TrackCard"/> and <see cref="TrackCardFocused"/> background colour.
+        /// Get the colour for <see cref="DifficultyLevel"/> colour.
         /// </summary>
         /// <param name="difficultyLevel"><see cref="DifficultyLevel"/> value</param>
         /// <returns></returns>
@@ -42,5 +42,9 @@ namespace maisim.Game.Graphics
         }
 
         public static Color4 BackButtonColor => Color4Extensions.FromHex("205ac8");
+
+        public static Color4 SongSelectionContainerColor => Color4Extensions.FromHex("d9d9d9");
+
+        public static Color4 SongSelectionContainerBorderColor => Color4Extensions.FromHex("eaea00");
     }
 }

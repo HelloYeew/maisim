@@ -116,12 +116,16 @@ namespace maisim.Game.Screen
         {
             this.ScaleTo(0f, 750, Easing.OutQuint);
             this.MoveToX(-DrawWidth, 750, Easing.OutExpo);
+
+            track.Stop();
         }
 
         public override void OnResuming(ScreenTransitionEvent e)
         {
             this.ScaleTo(1, 750, Easing.OutQuint);
             this.MoveToX(0, 750, Easing.OutExpo);
+
+            track.Start();
         }
 
         public override float BackgroundParallaxAmount => 0.5f;
