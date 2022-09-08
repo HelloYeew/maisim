@@ -16,6 +16,9 @@ namespace maisim.Game.Graphics.UserInterface.Overlays
 {
     public class NowPlayingOverlay : MaisimFocusedOverlayContainer
     {
+        [Resolved]
+        private MusicPlayer musicPlayer { get; set; }
+
         public const float PLAYER_HEIGHT = 130;
         public const float TRANSITION_LENGTH = 600;
         public const float PROGRESS_HEIGHT = 10;
