@@ -2,6 +2,7 @@ using osu.Framework.Allocation;
 using osu.Framework.Audio;
 using osu.Framework.Audio.Track;
 using osu.Framework.Graphics.Containers;
+using osu.Framework.Logging;
 
 namespace maisim.Game.Graphics.UserInterface.Overlays
 {
@@ -13,13 +14,27 @@ namespace maisim.Game.Graphics.UserInterface.Overlays
         private Track track;
         private ITrackStore trackStore;
 
+        [Resolved]
+        private WorkingBeatmap workingBeatmap { get; set; }
+
         [BackgroundDependencyLoader]
-        private void load(AudioManager audioManager, ITrackStore tracks)
+        private void load(AudioManager audioManager, ITrackStore localTrackStore)
         {
             trackStore = audioManager.Tracks;
-            track = trackStore.Get(@"dj-okawari.m4a");
+            Logger.Log(workingBeatmap.CurrentBeatmapSet.Value.AudioFileName);
+            Logger.Log(workingBeatmap.CurrentBeatmapSet.Value.UseLocalFile.ToString());
+            track = workingBeatmap.CurrentBeatmapSet.Value.UseLocalFile ? localTrackStore.Get(workingBeatmap.CurrentBeatmapSet.Value.AudioFileName) : trackStore.Get(workingBeatmap.CurrentBeatmapSet.Value.AudioFileName);
             track.Looping = true;
+            track.Volume.Value = 3.0f;
             track.Start();
+        }
+
+        public void TogglePause()
+        {
+            if (track.IsRunning)
+                track.Stop();
+            else
+                track.Start();
         }
     }
 }

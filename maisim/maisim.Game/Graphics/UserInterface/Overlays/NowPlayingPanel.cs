@@ -19,6 +19,9 @@ namespace maisim.Game.Graphics.UserInterface.Overlays
         [Resolved]
         private MusicPlayer musicPlayer { get; set; }
 
+        [Resolved]
+        private WorkingBeatmap workingBeatmap { get; set; }
+
         public const float PLAYER_HEIGHT = 130;
         public const float TRANSITION_LENGTH = 600;
         public const float PROGRESS_HEIGHT = 10;
@@ -79,7 +82,7 @@ namespace maisim.Game.Graphics.UserInterface.Overlays
                                     Position = new Vector2(0,40),
                                     Font = MaisimFont.GetFont(size:25, italics:true),
                                     Colour = Color4.White,
-                                    Text = "Title"
+                                    Text = workingBeatmap.CurrentBeatmapSet.Value.TrackMetadata.Title
                                 },
                                 artist = new MaisimSpriteText
                                 {
@@ -88,7 +91,7 @@ namespace maisim.Game.Graphics.UserInterface.Overlays
                                     Position = new Vector2(0,45),
                                     Font = MaisimFont.GetFont(size:15, italics:true, weight: MaisimFont.FontWeight.Bold),
                                     Colour = Color4.White,
-                                    Text = "Artist"
+                                    Text = workingBeatmap.CurrentBeatmapSet.Value.TrackMetadata.Artist
                                 },
                                 new Container
                                 {
