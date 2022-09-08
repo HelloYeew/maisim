@@ -5,6 +5,9 @@ using osu.Framework.Graphics.Containers;
 
 namespace maisim.Game.Graphics.UserInterface.Overlays
 {
+    /// <summary>
+    /// The global track player.
+    /// </summary>
     public class MusicPlayer : CompositeDrawable
     {
         private Track track;
@@ -17,11 +20,6 @@ namespace maisim.Game.Graphics.UserInterface.Overlays
             track = trackStore.Get(@"dj-okawari.m4a");
             track.Looping = true;
             track.Start();
-        }
-
-        public Track getCurrentTrack()
-        {
-            return track;
         }
     }
 }
