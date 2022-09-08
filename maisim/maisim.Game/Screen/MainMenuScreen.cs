@@ -1,12 +1,11 @@
 ﻿using maisim.Game.Graphics.Sprites;
 using maisim.Game.Graphics.UserInterface;
 using osu.Framework.Allocation;
-using osu.Framework.Audio.Track;
+using osu.Framework.Development;
 using osu.Framework.Extensions.Color4Extensions;
 using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
 using osu.Framework.Graphics.Sprites;
-using osu.Framework.Graphics.Textures;
 using osu.Framework.Screens;
 using osuTK;
 
@@ -17,22 +16,16 @@ namespace maisim.Game.Screen
     /// </summary>
     public class MainMenuScreen : MaisimScreen
     {
-        private Sprite maisimLogo;
+        private MaisimLogo maisimLogo;
         private MainMenuButton playButton;
         private MainMenuButton editButton;
         private MainMenuButton browseButton;
         private MainMenuButton exitButton;
         private MaisimSpriteText versionText;
 
-        // TODO: This is the test track only for test the settings menu. This must be remove later.
-        private Track track;
-
         [BackgroundDependencyLoader]
-        private void load(TextureStore textureStore, ITrackStore tracks)
+        private void load()
         {
-            track = tracks.Get(@"testtrack.mp3");
-            track.Looping = true;
-
             InternalChildren = new Drawable[]
             {
                 new Container
@@ -91,11 +84,10 @@ namespace maisim.Game.Screen
                     Origin = Anchor.TopLeft,
                     Size = new Vector2(300),
                     Position = new Vector2(30, 30),
-                    Child = maisimLogo = new Sprite
+                    Child = maisimLogo = new MaisimLogo
                     {
                         Anchor = Anchor.Centre,
                         Origin = Anchor.Centre,
-                        Texture = textureStore.Get("logo"),
                         Size = new Vector2(300),
                         Scale = new Vector2(0)
                     }
@@ -104,7 +96,7 @@ namespace maisim.Game.Screen
                 {
                     Anchor = Anchor.BottomLeft,
                     Origin = Anchor.BottomLeft,
-                    Text = "maisim development build",
+                    Text = DebugUtils.IsDebugBuild ? "maisim development build" : $"maisim v{System.Reflection.Assembly.GetExecutingAssembly().GetName().Version}",
                     Scale = new Vector2(0)
                 }
             };
@@ -118,8 +110,6 @@ namespace maisim.Game.Screen
             browseButton.ScaleTo(1, 900, Easing.OutQuint);
             exitButton.ScaleTo(1, 1000, Easing.OutQuint);
             versionText.ScaleTo(1, 1000, Easing.OutQuint);
-
-            track.Start();
         }
 
         public override void OnSuspending(ScreenTransitionEvent e)

@@ -28,6 +28,8 @@ namespace maisim.Game
 
         private NowPlayingOverlay NowPlaying;
 
+        private MusicPlayer musicPlayer;
+
         private Container overlayContent;
 
         private Container rightFloatingOverlayContent;
@@ -80,6 +82,7 @@ namespace maisim.Game
                 topMostOverlayContent = new Container { RelativeSizeAxes = Axes.Both }
             });
 
+            loadComponentSingleFile(musicPlayer = new MusicPlayer(), overlayContent.Add, true);
             loadComponentSingleFile(toolbar = new Toolbar(), topMostOverlayContent.Add);
             loadComponentSingleFile(Settings = new SettingsOverlay(), leftFloatingOverlayContent.Add, true);
             loadComponentSingleFile(new NowPlayingOverlay()
