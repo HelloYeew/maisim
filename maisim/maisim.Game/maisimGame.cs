@@ -26,6 +26,8 @@ namespace maisim.Game
 
         private SettingsOverlay Settings;
 
+        private MusicPlayer musicPlayer;
+
         private Container overlayContent;
 
         private Container rightFloatingOverlayContent;
@@ -77,6 +79,7 @@ namespace maisim.Game
 
             loadComponentSingleFile(toolbar = new Toolbar(), topMostOverlayContent.Add);
             loadComponentSingleFile(Settings = new SettingsOverlay(), leftFloatingOverlayContent.Add, true);
+            loadComponentSingleFile(musicPlayer = new MusicPlayer(), overlayContent.Add, true);
 
             screenStack.Push(new WarningScreen(new MainMenuScreen()));
         }

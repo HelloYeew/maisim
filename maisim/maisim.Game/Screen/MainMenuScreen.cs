@@ -1,13 +1,11 @@
 ﻿using maisim.Game.Graphics.Sprites;
 using maisim.Game.Graphics.UserInterface;
 using osu.Framework.Allocation;
-using osu.Framework.Audio.Track;
 using osu.Framework.Development;
 using osu.Framework.Extensions.Color4Extensions;
 using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
 using osu.Framework.Graphics.Sprites;
-using osu.Framework.Graphics.Textures;
 using osu.Framework.Screens;
 using osuTK;
 
@@ -25,15 +23,9 @@ namespace maisim.Game.Screen
         private MainMenuButton exitButton;
         private MaisimSpriteText versionText;
 
-        // TODO: This is the test track only for test the settings menu. This must be remove later.
-        private Track track;
-
         [BackgroundDependencyLoader]
-        private void load(TextureStore textureStore, ITrackStore tracks)
+        private void load()
         {
-            track = tracks.Get(@"testtrack.mp3");
-            track.Looping = true;
-
             InternalChildren = new Drawable[]
             {
                 new Container
@@ -118,8 +110,6 @@ namespace maisim.Game.Screen
             browseButton.ScaleTo(1, 900, Easing.OutQuint);
             exitButton.ScaleTo(1, 1000, Easing.OutQuint);
             versionText.ScaleTo(1, 1000, Easing.OutQuint);
-
-            track.Start();
         }
 
         public override void OnSuspending(ScreenTransitionEvent e)
