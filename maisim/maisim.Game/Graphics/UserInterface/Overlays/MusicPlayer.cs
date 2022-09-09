@@ -13,9 +13,15 @@ namespace maisim.Game.Graphics.UserInterface.Overlays
     {
         private Track track;
         private ITrackStore trackStore;
+        public readonly bool startOnLoaded;
 
         [Resolved]
         private WorkingBeatmap workingBeatmap { get; set; }
+
+        public MusicPlayer(bool startOnLoaded = false)
+        {
+            this.startOnLoaded = startOnLoaded;
+        }
 
         [BackgroundDependencyLoader]
         private void load(AudioManager audioManager, ITrackStore localTrackStore)
@@ -25,8 +31,8 @@ namespace maisim.Game.Graphics.UserInterface.Overlays
             Logger.Log(workingBeatmap.CurrentBeatmapSet.Value.UseLocalFile.ToString());
             track = workingBeatmap.CurrentBeatmapSet.Value.UseLocalFile ? localTrackStore.Get(workingBeatmap.CurrentBeatmapSet.Value.AudioFileName) : trackStore.Get(workingBeatmap.CurrentBeatmapSet.Value.AudioFileName);
             track.Looping = true;
-            track.Volume.Value = 3.0f;
-            track.Start();
+            if (startOnLoaded)
+                track.Start();
         }
 
         public void TogglePause()
@@ -35,6 +41,11 @@ namespace maisim.Game.Graphics.UserInterface.Overlays
                 track.Stop();
             else
                 track.Start();
+        }
+
+        public Track GetTrack()
+        {
+            return track;
         }
     }
 }

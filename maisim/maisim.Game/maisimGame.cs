@@ -87,7 +87,7 @@ namespace maisim.Game
             loadComponentSingleFile(workingBeatmap = new WorkingBeatmap(), overlayContent.Add, true);
             loadComponentSingleFile(toolbar = new Toolbar(), topMostOverlayContent.Add);
             loadComponentSingleFile(Settings = new SettingsOverlay(), leftFloatingOverlayContent.Add, true);
-            loadComponentSingleFile(musicPlayer = new MusicPlayer(), overlayContent.Add, true);
+            loadComponentSingleFile(musicPlayer = new MusicPlayer(true), overlayContent.Add, true);
             loadComponentSingleFile(new NowPlayingOverlay()
             {
                 Anchor = Anchor.TopRight,
