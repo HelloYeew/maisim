@@ -269,7 +269,7 @@ namespace maisim.Game.Utils
                 Beatmaps = beatmaps,
                 AudioFileName = TestUtil.GetBeatmapSetAudioPath(trackMetadata),
                 PreviewTime = TestUtil.GetBeatmapSetPreviewTime(trackMetadata),
-                UseLocalFile = false
+                UseLocalFile = true
             };
             for (int i = 0; i < 4; i++)
             {
