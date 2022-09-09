@@ -19,8 +19,9 @@ public class TestSceneNowPlayingOverlay : maisimTestScene
         {
             Anchor = Anchor.Centre,
             Origin = Anchor.Centre,
-            Size = new Vector2(400,400)
+            Size = new Vector2(420,200)
         });
-        nowPlayingOverlay.State.Value = Visibility.Visible;
+        AddStep("show overlay", () => nowPlayingOverlay.State.Value = Visibility.Visible);
+        AddStep("hide overlay", () => nowPlayingOverlay.State.Value = Visibility.Hidden);
     }
 }

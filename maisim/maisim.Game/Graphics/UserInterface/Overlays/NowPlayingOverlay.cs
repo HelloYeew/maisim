@@ -82,20 +82,28 @@ namespace maisim.Game.Graphics.UserInterface.Overlays
                                     Origin = Anchor.TopLeft,
                                     Size = new Vector2(100),
                                     Padding = new MarginPadding(10),
-                                    Child = new Sprite()
+                                    Child = new Container()
                                     {
                                         Anchor = Anchor.Centre,
                                         Origin = Anchor.Centre,
                                         RelativeSizeAxes = Axes.Both,
-                                        Texture = textureStore.Get(workingBeatmap.CurrentBeatmapSet.Value.TrackMetadata.CoverPath),
-                                        FillMode = FillMode.Fill,
+                                        Masking = true,
+                                        CornerRadius = 10,
+                                        Child = new Sprite()
+                                        {
+                                            Anchor = Anchor.Centre,
+                                            Origin = Anchor.Centre,
+                                            RelativeSizeAxes = Axes.Both,
+                                            Texture = textureStore.Get(workingBeatmap.CurrentBeatmapSet.Value.TrackMetadata.CoverPath),
+                                            FillMode = FillMode.Fill,
+                                        }
                                     }
                                 },
                                 new Container()
                                 {
                                     Anchor = Anchor.TopRight,
                                     Origin = Anchor.TopRight,
-                                    Size = new Vector2(300,100),
+                                    Size = new Vector2(320,100),
                                     Children = new Drawable[]
                                     {
                                         title = new MaisimSpriteText()
@@ -113,6 +121,22 @@ namespace maisim.Game.Graphics.UserInterface.Overlays
                                             Text = workingBeatmap.CurrentBeatmapSet.Value.TrackMetadata.Artist,
                                             Colour = MaisimColour.NowPlayingArtistColor
                                         },
+                                    }
+                                },
+                                new Container()
+                                {
+                                    Anchor = Anchor.BottomCentre,
+                                    Origin = Anchor.BottomCentre,
+                                    RelativeSizeAxes = Axes.X,
+                                    Size = new Vector2(1,50),
+                                    Position = new Vector2(0,-12),
+                                    Children = new Drawable[]
+                                    {
+                                        new IconButton()
+                                        {
+                                            Icon = FontAwesome.Solid.Play,
+                                            Action = () => musicPlayer.TogglePause()
+                                        }
                                     }
                                 }
                             }
