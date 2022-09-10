@@ -23,10 +23,5 @@ namespace maisim.Game.Beatmaps
         public TrackMetadata TrackMetadata { get; set; }
 
         public string NoteDesigner { get; set; }
-
-        public override string ToString()
-        {
-            return $"{BeatmapID} - {DifficultyRating} stars ({DifficultyLevel}) by {NoteDesigner}";
-        }
     }
 }

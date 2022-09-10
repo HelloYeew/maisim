@@ -21,6 +21,9 @@ namespace maisim.Game.Graphics.UserInterfaceV2
     {
         private readonly BeatmapSet beatmapSet;
 
+        public const float CARD_WIDTH = 645;
+        public const float CARD_HEIGHT = 127;
+
         public BeatmapSetCard(BeatmapSet beatmapSet)
         {
             this.beatmapSet = beatmapSet;
@@ -29,12 +32,12 @@ namespace maisim.Game.Graphics.UserInterfaceV2
         [BackgroundDependencyLoader]
         private void load(TextureStore textureStore)
         {
-            Size = new Vector2(645, 127);
+            Size = new Vector2(CARD_WIDTH, CARD_HEIGHT);
             InternalChild = new Container
             {
                 Anchor = Anchor.Centre,
                 Origin = Anchor.Centre,
-                Size = new Vector2(645, 127),
+                Size = new Vector2(CARD_WIDTH, CARD_HEIGHT),
                 Masking = true,
                 CornerRadius = 10,
                 Children = new Drawable[]
@@ -44,13 +47,13 @@ namespace maisim.Game.Graphics.UserInterfaceV2
                         Anchor = Anchor.Centre,
                         Origin = Anchor.Centre,
                         Colour = Color4Extensions.FromHex("#8FD7FF"),
-                        Size = new Vector2(645, 127)
+                        Size = new Vector2(CARD_WIDTH, CARD_HEIGHT)
                     },
                     new GridContainer()
                     {
                         Anchor = Anchor.Centre,
                         Origin = Anchor.Centre,
-                        Size = new Vector2(645, 127),
+                        Size = new Vector2(CARD_WIDTH, CARD_HEIGHT),
                         ColumnDimensions = new[]
                         {
                             new Dimension(GridSizeMode.Absolute, 127),
@@ -65,7 +68,7 @@ namespace maisim.Game.Graphics.UserInterfaceV2
                                 {
                                     Anchor = Anchor.Centre,
                                     Origin = Anchor.Centre,
-                                    Size = new Vector2(127, 127),
+                                    Size = new Vector2(CARD_HEIGHT, CARD_HEIGHT),
                                     Masking = true,
                                     CornerRadius = 30,
                                     Children = new Drawable[]
@@ -141,7 +144,7 @@ namespace maisim.Game.Graphics.UserInterfaceV2
                                 {
                                     Anchor = Anchor.Centre,
                                     Origin = Anchor.Centre,
-                                    Size = new Vector2(130, 127),
+                                    Size = new Vector2(130, CARD_HEIGHT),
                                     Children = new Drawable[]
                                     {
                                         new Container()

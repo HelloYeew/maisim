@@ -14,7 +14,7 @@ namespace maisim.Game.Tests.Visual.ComponentV2
             BeatmapSetTestFixture mockObject = new BeatmapSetTestFixture();
 
             string beatmapList = "Beatmap List :\n";
-            string beatmapSetInfo = $"Beatmap Set Info ({mockObject.BeatmapSet}) :\n";
+            string beatmapSetInfo = $"Beatmap Set Info (({mockObject.BeatmapSet.BeatmapSetID}) {mockObject.BeatmapSet.TrackMetadata.Title} - {mockObject.BeatmapSet.TrackMetadata.Artist}) :\n";
 
             // Include all beatmap set parameters in the beatmap set info.
             foreach (PropertyInfo property in typeof(BeatmapSet).GetProperties())
@@ -24,7 +24,8 @@ namespace maisim.Game.Tests.Visual.ComponentV2
 
             foreach (var beatmap in mockObject.BeatmapSet.Beatmaps)
             {
-                beatmapList += beatmap + "\n";
+                beatmapList +=
+                    $"{beatmap.BeatmapID} - {beatmap.DifficultyRating} stars ({beatmap.DifficultyLevel}) by {beatmap.NoteDesigner}\n";
             }
 
             Children = new Drawable[]
