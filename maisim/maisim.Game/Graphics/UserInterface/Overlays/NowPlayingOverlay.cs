@@ -1,6 +1,8 @@
 using System;
+using maisim.Game.Beatmaps;
 using maisim.Game.Graphics.Sprites;
 using osu.Framework.Allocation;
+using osu.Framework.Bindables;
 using osu.Framework.Extensions.Color4Extensions;
 using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
@@ -23,6 +25,9 @@ namespace maisim.Game.Graphics.UserInterface.Overlays
         [Resolved]
         private WorkingBeatmap workingBeatmap { get; set; }
 
+        [Resolved]
+        private TextureStore textureStore { get; set; }
+
         public const float PLAYER_HEIGHT = 200;
         public const float TRANSITION_LENGTH = 600;
         public const float PROGRESS_HEIGHT = 10;
@@ -41,6 +46,8 @@ namespace maisim.Game.Graphics.UserInterface.Overlays
         private Container playerContainer;
 
         protected Container MainContainer;
+
+        private void workingBeatmapChanged(ValueChangedEvent<BeatmapSet> beatmapSetEvent) => changeTrack(beatmapSetEvent.NewValue);
 
         public NowPlayingOverlay()
         {
@@ -89,7 +96,7 @@ namespace maisim.Game.Graphics.UserInterface.Overlays
                                         RelativeSizeAxes = Axes.Both,
                                         Masking = true,
                                         CornerRadius = 10,
-                                        Child = new Sprite()
+                                        Child = cover = new Sprite()
                                         {
                                             Anchor = Anchor.Centre,
                                             Origin = Anchor.Centre,
@@ -136,7 +143,19 @@ namespace maisim.Game.Graphics.UserInterface.Overlays
                                         {
                                             Icon = FontAwesome.Solid.Play,
                                             Action = () => musicPlayer.TogglePause()
-                                        }
+                                        },
+                                        new IconButton()
+                                        {
+                                            Icon = FontAwesome.Solid.FastBackward,
+                                            Action = () => musicPlayer.TogglePrevious(),
+                                            Position = new Vector2(-50,0)
+                                        },
+                                        new IconButton()
+                                        {
+                                            Icon = FontAwesome.Solid.FastForward,
+                                            Action = () => musicPlayer.ToggleNext(),
+                                            Position = new Vector2(50,0)
+                                        },
                                     }
                                 }
                             }
@@ -144,6 +163,8 @@ namespace maisim.Game.Graphics.UserInterface.Overlays
                     }
                 }
             };
+
+            workingBeatmap.CurrentBeatmapSet.BindValueChanged(workingBeatmapChanged);
         }
 
         protected override void PopIn()
@@ -165,6 +186,13 @@ namespace maisim.Game.Graphics.UserInterface.Overlays
             base.UpdateAfterChildren();
 
             Height = MainContainer.Height;
+        }
+
+        private void changeTrack(BeatmapSet beatmapSet)
+        {
+            title.Text = beatmapSet.TrackMetadata.Title;
+            artist.Text = beatmapSet.TrackMetadata.Artist;
+            cover.Texture = textureStore.Get(workingBeatmap.CurrentBeatmapSet.Value.TrackMetadata.CoverPath);
         }
     }
 }

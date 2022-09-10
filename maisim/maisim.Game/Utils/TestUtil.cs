@@ -160,8 +160,6 @@ namespace maisim.Game.Utils
         {
             string title = trackMetadata.Title;
 
-            Logger.Log("GetBeatmapSetAudioPath: " + title);
-
             switch (title)
             {
                 case "Diamond City Lights":
