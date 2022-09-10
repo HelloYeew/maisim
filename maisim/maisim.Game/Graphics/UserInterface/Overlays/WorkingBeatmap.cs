@@ -5,6 +5,7 @@ using maisim.Game.Utils;
 using osu.Framework.Allocation;
 using osu.Framework.Bindables;
 using osu.Framework.Graphics.Containers;
+using osu.Framework.Logging;
 
 namespace maisim.Game.Graphics.UserInterface.Overlays
 {
@@ -17,6 +18,12 @@ namespace maisim.Game.Graphics.UserInterface.Overlays
         public Bindable<DifficultyLevel> CurrentDifficultyLevel { get; } = new Bindable<DifficultyLevel>();
 
         private List<BeatmapSet> beatmapSetList = new List<BeatmapSet>();
+
+        private void beatmapSetChanged(ValueChangedEvent<BeatmapSet> beatmapSetEvent) =>
+            onBeatmapChanged(beatmapSetEvent.OldValue, beatmapSetEvent.NewValue);
+
+        private void difficultyLevelChanged(ValueChangedEvent<DifficultyLevel> difficultyLevelEvent) =>
+            onDifficultyLevelChanged(difficultyLevelEvent.OldValue, difficultyLevelEvent.NewValue);
 
         private readonly string[] beatmapSetTitleList =
         {
@@ -36,12 +43,17 @@ namespace maisim.Game.Graphics.UserInterface.Overlays
             {
                 BeatmapSet beatmapSet = new BeatmapSetTestFixture(beatmapSetTitleList[i]).BeatmapSet;
                 beatmapSet.DatabaseID = i + 1;
+                beatmapSet.BeatmapSetID = i + 1;
                 beatmapSetList.Add(beatmapSet);
             }
 
             // random the beatmapset from the list and set it to the current beatmapset
             CurrentBeatmapSet.Value = beatmapSetList[RandomExtensions.NextInRange(new Random(), 0, beatmapSetList.Count - 1)];
             CurrentDifficultyLevel.Value = DifficultyLevel.Basic;
+
+            // bind the event
+            CurrentBeatmapSet.BindValueChanged(beatmapSetChanged);
+            CurrentDifficultyLevel.BindValueChanged(difficultyLevelChanged);
         }
 
         /// <summary>
@@ -67,6 +79,26 @@ namespace maisim.Game.Graphics.UserInterface.Overlays
             if (previousBeatmapSetId < 1)
                 previousBeatmapSetId = beatmapSetList.Count;
             CurrentBeatmapSet.Value = beatmapSetList.Find(beatmapSet => beatmapSet.DatabaseID == previousBeatmapSetId);
+        }
+
+        /// <summary>
+        /// A method that will be called when the beatmapset has changed in <see cref="WorkingBeatmap"/>'s <see cref="Bindable{T}"/>
+        /// </summary>
+        /// <param name="oldBeatmapSet">Old beatmapset</param>
+        /// <param name="newBeatmapSet">New beatmapset</param>
+        private void onBeatmapChanged(BeatmapSet oldBeatmapSet, BeatmapSet newBeatmapSet)
+        {
+            Logger.Log("Current working beatmap set changed from " + oldBeatmapSet + " to " + newBeatmapSet);
+        }
+
+        /// <summary>
+        /// A method that will be called when the difficulty level has changed in <see cref="WorkingBeatmap"/>'s <see cref="Bindable{T}"/>
+        /// </summary>
+        /// <param name="oldDifficultyLevel">Old difficulty level</param>
+        /// <param name="newDifficultyLevel">New difficulty level</param>
+        private void onDifficultyLevelChanged(DifficultyLevel oldDifficultyLevel, DifficultyLevel newDifficultyLevel)
+        {
+            Logger.Log("Current working difficulty level changed from " + oldDifficultyLevel + " to " + newDifficultyLevel);
         }
     }
 }
