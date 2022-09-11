@@ -76,12 +76,11 @@ namespace maisim.Game
             Logger.Log("Game storage path : " + Host.Storage.GetFullPath(""), LoggingTarget.Database);
             Logger.Log("Environment application data : "+ Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), LoggingTarget.Database);
 
-            beatmapDatabase.InitializeDatabase(Host.Storage.GetFullPath(""));
-
             dependencies.Cache(textureStore = new MaisimTextureStore(Host.Renderer, Host.CreateTextureLoaderStore(new NamespacedResourceStore<byte[]>(Resources, "Textures"))));
             dependencies.CacheAs(this);
             dependencies.CacheAs(LocalConfig);
             dependencies.CacheAs(beatmapDatabase);
+            beatmapDatabase.InitializeDatabase();
         }
 
         protected override void LoadComplete()
@@ -96,7 +95,6 @@ namespace maisim.Game
         public override void SetHost(GameHost host)
         {
             base.SetHost(host);
-            Logger.Log(host.Storage.GetFullPath("logs"));
             Storage = host.Storage;
             LocalConfig ??= DebugUtils.IsDebugBuild
                 ? new DevelopmentMaisimConfigManager(Storage)
