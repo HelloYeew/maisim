@@ -80,7 +80,8 @@ namespace maisim.Game.Screen
                                     Anchor = Anchor.Centre,
                                     Origin = Anchor.Centre,
                                     Size = new Vector2(400, 60),
-                                    Scale = new Vector2(0)
+                                    Scale = new Vector2(0),
+                                    Action = () => Game.RequestExit()
                                 }
                             }
                         }
