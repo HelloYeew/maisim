@@ -32,6 +32,19 @@ namespace maisim.Game.Utils
         }
 
         /// <summary>
+        /// The list of the <see cref="TrackMetadata"/> that has the track inside game's resources.
+        /// </summary>
+        public static readonly AvailableTrackMetadata[] AvailableBeatmapSetTrack =
+        {
+            AvailableTrackMetadata.DiamondCityLights,
+            AvailableTrackMetadata.RaiseMySword,
+            AvailableTrackMetadata.OnlyMyRailgun,
+            AvailableTrackMetadata.SukinoSkill,
+            AvailableTrackMetadata.TenkaiENoKippu,
+            AvailableTrackMetadata.ReI
+        };
+
+        /// <summary>
         /// List of full <see cref="TrackMetadata"/> detail that has texture available and can be use for full testing.
         /// </summary>
         public static readonly TrackMetadata[] FULL_TRACK_METADATA_LIST = {

@@ -86,5 +86,13 @@ namespace maisim.Game.Graphics.UserInterface.Overlays
         {
             return track;
         }
+
+        protected override void UpdateAfterChildren()
+        {
+            base.UpdateAfterChildren();
+
+            if (track.HasCompleted)
+                workingBeatmap.GoToNextBeatmapSet();
+        }
     }
 }

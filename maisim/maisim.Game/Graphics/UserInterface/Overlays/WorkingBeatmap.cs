@@ -25,23 +25,13 @@ namespace maisim.Game.Graphics.UserInterface.Overlays
         private void difficultyLevelChanged(ValueChangedEvent<DifficultyLevel> difficultyLevelEvent) =>
             onDifficultyLevelChanged(difficultyLevelEvent.OldValue, difficultyLevelEvent.NewValue);
 
-        private readonly string[] beatmapSetTitleList =
-        {
-            "Diamond City Lights",
-            "only my railgun",
-            "RAISE MY SWORD",
-            "Sukino Skill",
-            "Tenkai e no Kippu",
-            "ReI"
-        };
-
         [BackgroundDependencyLoader]
         private void load()
         {
             // Load beatmap set list
-            for(int i = 0; i < beatmapSetTitleList.Length; i++)
+            for(int i = 0; i < TestUtil.AvailableBeatmapSetTrack.Length; i++)
             {
-                BeatmapSet beatmapSet = new BeatmapSetTestFixture(beatmapSetTitleList[i]).BeatmapSet;
+                BeatmapSet beatmapSet = new BeatmapSetTestFixture(TestUtil.AvailableBeatmapSetTrack[i]).BeatmapSet;
                 beatmapSet.DatabaseID = i + 1;
                 beatmapSet.BeatmapSetID = i + 1;
                 beatmapSetList.Add(beatmapSet);
@@ -61,6 +51,7 @@ namespace maisim.Game.Graphics.UserInterface.Overlays
         /// </summary>
         public void GoToNextBeatmapSet()
         {
+            Logger.Log("Go to next beatmapset");
             // We determine the next beatmapset by the current beatmapset's database id
             int nextBeatmapSetId = CurrentBeatmapSet.Value.DatabaseID + 1;
             if (nextBeatmapSetId > beatmapSetList.Count)
