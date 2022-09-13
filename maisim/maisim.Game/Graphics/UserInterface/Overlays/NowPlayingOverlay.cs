@@ -1,4 +1,3 @@
-using System;
 using maisim.Game.Beatmaps;
 using maisim.Game.Graphics.Sprites;
 using osu.Framework.Allocation;
@@ -11,7 +10,6 @@ using osu.Framework.Graphics.Shapes;
 using osu.Framework.Graphics.Sprites;
 using osu.Framework.Graphics.Textures;
 using osu.Framework.Graphics.UserInterface;
-using osu.Framework.Localisation;
 using osuTK;
 using osuTK.Graphics;
 
@@ -40,7 +38,7 @@ namespace maisim.Game.Graphics.UserInterface.Overlays
         private SpriteIcon playButton;
         private SpriteIcon nextButton;
 
-        private SpriteText title, artist;
+        private SpriteText title, artist, currentTime, totalTime;
         private Sprite cover;
 
         private Container playerContainer;
@@ -164,7 +162,7 @@ namespace maisim.Game.Graphics.UserInterface.Overlays
                                     Origin = Anchor.Centre,
                                     RelativeSizeAxes = Axes.X,
                                     Size = new Vector2(0.65f,20),
-                                    Position = new Vector2(0, 20),
+                                    Position = new Vector2(0, 15),
                                     Masking = true,
                                     CornerRadius = 10,
                                     Child = new Box()
@@ -172,7 +170,7 @@ namespace maisim.Game.Graphics.UserInterface.Overlays
                                         Anchor = Anchor.Centre,
                                         Origin = Anchor.Centre,
                                         RelativeSizeAxes = Axes.Both,
-                                        Colour = Colour4.Aqua
+                                        Colour = MaisimColour.NowPlayingProgressBarColor
                                     }
                                 },
                                 new Container()
@@ -186,14 +184,14 @@ namespace maisim.Game.Graphics.UserInterface.Overlays
                                     CornerRadius = 10,
                                     Children = new Drawable[]
                                     {
-                                        new MaisimSpriteText()
+                                        currentTime = new MaisimSpriteText()
                                         {
                                             Anchor = Anchor.CentreLeft,
                                             Origin = Anchor.CentreLeft,
                                             Position = new Vector2(10,0),
                                             Text = "00:00"
                                         },
-                                        new MaisimSpriteText()
+                                        totalTime = new MaisimSpriteText()
                                         {
                                             Anchor = Anchor.CentreRight,
                                             Origin = Anchor.CentreRight,
@@ -209,6 +207,13 @@ namespace maisim.Game.Graphics.UserInterface.Overlays
             };
 
             workingBeatmap.CurrentBeatmapSet.BindValueChanged(workingBeatmapChanged);
+            updateTotalTime();
+        }
+
+        protected override void Update()
+        {
+            base.Update();
+            updateCurrentTime();
         }
 
         protected override void PopIn()
@@ -232,8 +237,39 @@ namespace maisim.Game.Graphics.UserInterface.Overlays
             Height = MainContainer.Height;
         }
 
+        /// <summary>
+        /// Update the current time of the song in the player
+        /// </summary>
+        private void updateCurrentTime()
+        {
+            double time = musicPlayer.GetTrack().CurrentTime;
+
+            // Convert current time to minutes and seconds
+            int minutes = (int) time / 1000 / 60;
+            int seconds = (int) time / 1000 % 60;
+            currentTime.Text = minutes.ToString("00") + ":" + seconds.ToString("00");
+        }
+
+        /// <summary>
+        /// Update the total time of the song in the player
+        /// </summary>
+        private void updateTotalTime()
+        {
+            // Convert total time to minutes and seconds
+            double length = musicPlayer.GetTrack().Length;
+            int minutes = (int) length / 1000 / 60;
+            int seconds = (int) length / 1000 % 60;
+            totalTime.Text = minutes.ToString("00") + ":" + seconds.ToString("00");
+        }
+
+        /// <summary>
+        /// Change
+        /// </summary>
+        /// <param name="beatmapSet"></param>
         private void changeTrack(BeatmapSet beatmapSet)
         {
+            updateTotalTime();
+
             title.Text = beatmapSet.TrackMetadata.Title;
             artist.Text = beatmapSet.TrackMetadata.Artist;
             cover.Texture = textureStore.Get(workingBeatmap.CurrentBeatmapSet.Value.TrackMetadata.CoverPath);
