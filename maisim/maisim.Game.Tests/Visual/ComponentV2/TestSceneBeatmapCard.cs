@@ -11,11 +11,9 @@ namespace maisim.Game.Tests.Visual.ComponentV2;
 
 public class TestSceneBeatmapCard : maisimTestScene
 {
-    private static BeatmapSet mockBeatmapSet = new BeatmapSetTestFixture().BeatmapSet;
-
     private Bindable<DifficultyLevel> difficultyLevel = new Bindable<DifficultyLevel>();
 
-    private Bindable<BeatmapSet> beatmapSet =  new Bindable<BeatmapSet>(mockBeatmapSet);
+    private Bindable<BeatmapSet> beatmapSet =  new Bindable<BeatmapSet>(new BeatmapSetTestFixture().BeatmapSet);
 
     private void difficultyLevelChanged(ValueChangedEvent<DifficultyLevel> difficultyLevelEvent) => updateBeatmapInfo();
     private void beatmapSetChanged(ValueChangedEvent<BeatmapSet> beatmapSetEvent) => updateBeatmapInfo();
@@ -60,7 +58,7 @@ public class TestSceneBeatmapCard : maisimTestScene
     {
         beatmapList = "";
         beatmapList += "difficultyLevel : " + difficultyLevel.Value + "\n";
-        beatmapList += "beatmapSet : " + beatmapSet.Value + "\n";
+        beatmapList += $"beatmapSet : ({beatmapSet.Value.BeatmapSetID}) ) {beatmapSet.Value.TrackMetadata.Title} - {beatmapSet.Value.TrackMetadata.Artist}\n";
         beatmapList += "info : " + "\n";
         foreach (PropertyInfo property in beatmapSet.Value.GetType().GetProperties())
         {

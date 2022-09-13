@@ -4,12 +4,10 @@ using maisim.Game.Configuration;
 using maisim.Game.Store;
 using maisim.Resources;
 using osu.Framework.Allocation;
+using osu.Framework.Audio;
 using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
 using osu.Framework.IO.Stores;
-using osuTK;
-using maisim.Resources;
-using osu.Framework.Audio;
 using osu.Framework.Bindables;
 using osu.Framework.Development;
 using osu.Framework.Graphics.Performance;
@@ -83,14 +81,13 @@ namespace maisim.Game
             Logger.Log("Game storage path : " + Host.Storage.GetFullPath(""), LoggingTarget.Database);
             Logger.Log("Environment application data : "+ Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), LoggingTarget.Database);
 
-            beatmapDatabase.InitializeDatabase(Host.Storage.GetFullPath(""));
-            
             dependencies.Cache(Store = new MaisimStore(Host.Storage.GetStorageForDirectory("tracks")));
-            dependencies.Cache(AudioManager = new AudioManager(Host.AudioThread, new NamespacedResourceStore<byte[]>(new MaisimStore(Host.Storage), "tracks"), new NamespacedResourceStore<byte[]>(Resources, "Samples")));
             dependencies.Cache(textureStore = new MaisimTextureStore(Host.Renderer, Host.CreateTextureLoaderStore(new NamespacedResourceStore<byte[]>(Resources, "Textures"))));
+            dependencies.Cache(AudioManager = new AudioManager(Host.AudioThread, new NamespacedResourceStore<byte[]>(new MaisimStore(Host.Storage), "tracks"), new NamespacedResourceStore<byte[]>(Resources, "Samples")));
             dependencies.CacheAs(this);
             dependencies.CacheAs(LocalConfig);
             dependencies.CacheAs(beatmapDatabase);
+            beatmapDatabase.InitializeDatabase();
         }
 
         protected override void LoadComplete()
@@ -105,7 +102,6 @@ namespace maisim.Game
         public override void SetHost(GameHost host)
         {
             base.SetHost(host);
-            Logger.Log(host.Storage.GetFullPath("logs"));
             Storage = host.Storage;
             LocalConfig ??= DebugUtils.IsDebugBuild
                 ? new DevelopmentMaisimConfigManager(Storage)

@@ -15,8 +15,6 @@ using osu.Framework.Graphics.Shapes;
 using osu.Framework.Graphics.Sprites;
 using osu.Framework.Graphics.Textures;
 using osu.Framework.Graphics.UserInterface;
-using osu.Framework.Graphics.Visualisation.Audio;
-using osu.Framework.Logging;
 using osu.Framework.Screens;
 using osuTK;
 
@@ -34,10 +32,6 @@ namespace maisim.Game.Screen
         private MainMenuButton exitButton;
         private MaisimSpriteText versionText;
 
-        private BasicSliderBar<double> trackLengthSlider;
-        private BindableDouble trackLength = new BindableDouble();
-        private BindableDouble trackCurrentAmplitude = new BindableDouble();
-
         private Track track;
 
         private ITrackStore trackStore;
@@ -45,11 +39,6 @@ namespace maisim.Game.Screen
         [BackgroundDependencyLoader]
         private void load(TextureStore textureStore, AudioManager audioManager, ITrackStore tracks)
         {
-            trackLength.MinValue = 0;
-            trackLength.MaxValue = 1;
-            trackCurrentAmplitude.MinValue = 0;
-            trackCurrentAmplitude.MaxValue = 1;
-
             InternalChildren = new Drawable[]
             {
                 new Container
@@ -69,22 +58,6 @@ namespace maisim.Game.Screen
                             Spacing = new Vector2(0, 10),
                             Children = new Drawable[]
                             {
-                                new BasicSliderBar<double>
-                                {
-                                    Anchor = Anchor.Centre,
-                                    Origin = Anchor.Centre,
-                                    Current = trackCurrentAmplitude,
-                                    KeyboardStep = 0.01f,
-                                    Size = new Vector2(400, 30),
-                                },
-                                trackLengthSlider = new BasicSliderBar<double>
-                                {
-                                    Anchor = Anchor.Centre,
-                                    Origin = Anchor.Centre,
-                                    Current = trackLength,
-                                    KeyboardStep = 0.01f,
-                                    Size = new Vector2(400, 30),
-                                },
                                 playButton = new MainMenuButton("Play",FontAwesome.Solid.Play,Color4Extensions.FromHex("73E99B"))
                                 {
                                     Anchor = Anchor.Centre,
@@ -159,18 +132,6 @@ namespace maisim.Game.Screen
             browseButton.ScaleTo(1, 900, Easing.OutQuint);
             exitButton.ScaleTo(1, 1000, Easing.OutQuint);
             versionText.ScaleTo(1, 1000, Easing.OutQuint);
-
-            track.Start();
-        }
-
-        protected override void Update()
-        {
-            // Logger.LogPrint(track.CurrentAmplitudes.Maximum.ToString(CultureInfo.CurrentCulture));
-            // maisimLogo.ScaleTo(new Vector2(Math.Min(1.5f, 0.4f + track.CurrentAmplitudes.Maximum)), 10, Easing.OutQuint);
-            trackLength.Set(track.CurrentTime / track.Length);
-            trackCurrentAmplitude.Set(track.CurrentAmplitudes.Maximum);
-
-            base.Update();
         }
 
         public override void OnSuspending(ScreenTransitionEvent e)
@@ -179,8 +140,6 @@ namespace maisim.Game.Screen
             this.MoveToY(-DrawHeight, 1000, Easing.OutExpo);
             this.ScaleTo(0f, 750, Easing.OutQuint);
             this.MoveToX(-DrawWidth, 750, Easing.OutExpo);
-
-            track.Stop();
         }
 
         public override void OnResuming(ScreenTransitionEvent e)
@@ -189,8 +148,6 @@ namespace maisim.Game.Screen
             this.MoveToY(0, 1000, Easing.OutExpo);
             this.ScaleTo(1, 750, Easing.OutQuint);
             this.MoveToX(0, 750, Easing.OutExpo);
-
-            track.Start();
         }
 
         public override bool OnExiting(ScreenExitEvent screenExitEvent)

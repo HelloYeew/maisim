@@ -12,7 +12,37 @@ namespace maisim.Game.Utils
     /// </summary>
     public class TestUtil
     {
-        private static Random random = new Random();
+        internal static Random random = new Random();
+
+        /// <summary>
+        /// The enum of the song that can be used for full test.
+        /// The value of enum is the index of the <see cref="TrackMetadata"/> in <see cref="TestUtil.FULL_TRACK_METADATA_LIST"/>
+        /// </summary>
+        public enum AvailableTrackMetadata
+        {
+            None = -1,
+            DiamondCityLights = 0,
+            RayTuning = 1,
+            OnlyMyRailgun = 2,
+            RaiseMySword = 3,
+            Rough = 4,
+            SukinoSkill = 5,
+            TenkaiENoKippu = 6,
+            ReI = 7
+        }
+
+        /// <summary>
+        /// The list of the <see cref="TrackMetadata"/> that has the track inside game's resources.
+        /// </summary>
+        public static readonly AvailableTrackMetadata[] AvailableBeatmapSetTrack =
+        {
+            AvailableTrackMetadata.DiamondCityLights,
+            AvailableTrackMetadata.RaiseMySword,
+            AvailableTrackMetadata.OnlyMyRailgun,
+            AvailableTrackMetadata.SukinoSkill,
+            AvailableTrackMetadata.TenkaiENoKippu,
+            AvailableTrackMetadata.ReI
+        };
 
         /// <summary>
         /// List of full <see cref="TrackMetadata"/> detail that has texture available and can be use for full testing.
@@ -154,27 +184,23 @@ namespace maisim.Game.Utils
         /// Get the audio file path that's live in game's resources for testing.
         /// When using this please set <see cref="BeatmapSet"/>'s `UseLocalPath` to `true`.
         /// </summary>
-        /// <param name="trackMetadata">The target <see cref="TrackMetadata"/>.</param>
+        /// <param name="availableTrackMetadata">The target track metadata sample</param>
         /// <returns>Path using in game's resource</returns>
-        public static string GetBeatmapSetAudioPath(TrackMetadata trackMetadata)
+        public static string GetBeatmapSetAudioPath(AvailableTrackMetadata availableTrackMetadata)
         {
-            string title = trackMetadata.Title;
-
-            Logger.Log("GetBeatmapSetAudioPath: " + title);
-
-            switch (title)
+            switch (availableTrackMetadata)
             {
-                case "Diamond City Lights":
+                case AvailableTrackMetadata.DiamondCityLights:
                     return "Test/diamond-city-lights.mp3";
-                case "only my railgun":
+                case AvailableTrackMetadata.OnlyMyRailgun:
                     return "Test/only-my-railgun.m4a";
-                case "RAISE MY SWORD":
+                case AvailableTrackMetadata.RaiseMySword:
                     return "Test/raise-my-sword.mp3";
-                case "Sukino Skill":
+                case AvailableTrackMetadata.SukinoSkill:
                     return "Test/sukino-skill.mp3";
-                case "Tenkai e no Kippu":
+                case AvailableTrackMetadata.TenkaiENoKippu:
                     return "Test/tenkai-e-no-kippu.mp3";
-                case "ReI":
+                case AvailableTrackMetadata.ReI:
                     return "Test/rei.mp3";
                 default:
                     return "";
@@ -184,25 +210,23 @@ namespace maisim.Game.Utils
         /// <summary>
         /// Get the preview time of the audio file for target <see cref="TrackMetadata"/>.
         /// </summary>
-        /// <param name="trackMetadata">The target <see cref="TrackMetadata"/></param>
+        /// <param name="availableTrackMetadata">The target track metadata sample</param>
         /// <returns>Preview time</returns>
-        public static int GetBeatmapSetPreviewTime(TrackMetadata trackMetadata)
+        public static int GetBeatmapSetPreviewTime(AvailableTrackMetadata availableTrackMetadata)
         {
-            string title = trackMetadata.Title;
-
-            switch (title)
+            switch (availableTrackMetadata)
             {
-                case "Diamond City Lights":
+                case AvailableTrackMetadata.DiamondCityLights:
                     return 57500;
-                case "only my railgun":
+                case AvailableTrackMetadata.OnlyMyRailgun:
                     return 62000;
-                case "RAISE MY SWORD":
+                case AvailableTrackMetadata.RaiseMySword:
                     return 96500;
-                case "Sukino Skill":
+                case AvailableTrackMetadata.SukinoSkill:
                     return 55000;
-                case "Tenkai e no Kippu":
+                case AvailableTrackMetadata.TenkaiENoKippu:
                     return 88900;
-                case "ReI":
+                case AvailableTrackMetadata.ReI:
                     return 76000;
                 default:
                     return 0;
@@ -221,16 +245,16 @@ namespace maisim.Game.Utils
         ///
         /// If you want to use the <see cref="TrackMetadata"/> that is available for test in <see cref="TestUtil.FULL_TRACK_METADATA_LIST"/>, put the track title as a parameter.
         /// </summary>
-        public TrackTestFixture(string trackTitle = null)
+        public TrackTestFixture(TestUtil.AvailableTrackMetadata availableTrackMetadata = TestUtil.AvailableTrackMetadata.None)
         {
-            if (trackTitle == null)
+            if (availableTrackMetadata == TestUtil.AvailableTrackMetadata.None)
             {
                 TrackMetadata = TestUtil.GetRandomTrackMetadata();
             }
             else
             {
-                // Find the trackMetadata with the given title, if cannot find, use a random one.
-                TrackMetadata = TestUtil.FULL_TRACK_METADATA_LIST.FirstOrDefault(x => x.Title == trackTitle) ?? TestUtil.GetRandomTrackMetadata();
+                // Find the trackMetadata with the given title
+                TrackMetadata = TestUtil.FULL_TRACK_METADATA_LIST[(int)availableTrackMetadata];
             }
             Beatmap = TestUtil.CreateMockBeatmap(TrackMetadata);
             Score = TestUtil.CreateMockScore(Beatmap);
@@ -248,27 +272,25 @@ namespace maisim.Game.Utils
         ///
         /// Note that this method will only generate a <see cref="BeatmapSet"/> that contain the track resources.
         /// </summary>
-        public BeatmapSetTestFixture(string trackTitle = null)
+        public BeatmapSetTestFixture(TestUtil.AvailableTrackMetadata availableTrackMetadata = TestUtil.AvailableTrackMetadata.None)
         {
-            if (trackTitle == null)
+            if (availableTrackMetadata == TestUtil.AvailableTrackMetadata.None)
             {
-                // Shuffle and check that is the trackMetadata's audio file exist.
-                // Use guid to avoid duplicate on the same test.
-                trackMetadata = TestUtil.FULL_TRACK_METADATA_LIST.OrderBy(x => Guid.NewGuid()).FirstOrDefault(x => TestUtil.GetBeatmapSetAudioPath(x) != "");
+                // Collect the enum of available track metadata that has track resources
+                List<TestUtil.AvailableTrackMetadata> availableTrackMetadataList = Enum.GetValues(typeof(TestUtil.AvailableTrackMetadata)).Cast<TestUtil.AvailableTrackMetadata>().Where(x => TestUtil.GetBeatmapSetAudioPath(x) != "").ToList();
+                // Randomly pick one of them
+                availableTrackMetadata = availableTrackMetadataList[RandomExtensions.NextInRange(new Random(), 0, availableTrackMetadataList.Count)];
             }
-            else
-            {
-                // Find the trackMetadata with the given title, if cannot find, use a random one.
-                trackMetadata = TestUtil.FULL_TRACK_METADATA_LIST.FirstOrDefault(x => x.Title == trackTitle) ?? TestUtil.GetRandomTrackMetadata();
-            }
+            trackMetadata = TestUtil.FULL_TRACK_METADATA_LIST[(int)availableTrackMetadata];
             BeatmapSet = new BeatmapSet()
             {
                 TrackMetadata = trackMetadata,
                 Creator = TestUtil.GetRandomName(),
                 BeatmapSetID = 10,
                 Beatmaps = beatmaps,
-                AudioFileName = TestUtil.GetBeatmapSetAudioPath(trackMetadata),
-                PreviewTime = TestUtil.GetBeatmapSetPreviewTime(trackMetadata)
+                AudioFileName = TestUtil.GetBeatmapSetAudioPath(availableTrackMetadata),
+                PreviewTime = TestUtil.GetBeatmapSetPreviewTime(availableTrackMetadata),
+                UseLocalFile = true
             };
             for (int i = 0; i < 4; i++)
             {

@@ -67,6 +67,9 @@ namespace maisim.Game.Migrations
                     b.Property<int>("PreviewTime")
                         .HasColumnType("INTEGER");
 
+                    b.Property<bool>("UseLocalFile")
+                        .HasColumnType("INTEGER");
+
                     b.HasKey("DatabaseID");
 
                     b.ToTable("BeatmapSets");

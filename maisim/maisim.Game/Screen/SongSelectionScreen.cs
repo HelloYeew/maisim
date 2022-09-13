@@ -1,6 +1,7 @@
 using System;
 using maisim.Game.Beatmaps;
 using maisim.Game.Component;
+using maisim.Game.Graphics.UserInterface.Overlays;
 using maisim.Game.Graphics.UserInterfaceV2;
 using maisim.Game.Utils;
 using NUnit.Framework.Internal;
@@ -18,23 +19,18 @@ namespace maisim.Game.Screen
     /// </summary>
     public class SongSelectionScreen : MaisimScreen
     {
+        [Resolved]
+        private WorkingBeatmap workingBeatmap { get; set; }
+
         public override float BackgroundParallaxAmount => 0.2f;
 
-        // TODO: These two bindables need to pass via DI instead of assign a random one.
-        private Bindable<DifficultyLevel> bindableDifficultyLevel = new Bindable<DifficultyLevel>();
-
-        private Bindable<BeatmapSet> bindableBeatmapSet = new Bindable<BeatmapSet>(new BeatmapSetTestFixture().BeatmapSet);
-
-        // TODO: This is for testing purposes only. This must be remove with the upper bindable.
-        private Track currentTrack;
-
         [BackgroundDependencyLoader]
-        private void load(ITrackStore tracks)
+        private void load()
         {
             InternalChildren = new Drawable[]
             {
-                new BeatmapSetSelection(bindableBeatmapSet),
-                new BeatmapSetInfoBox(bindableDifficultyLevel,bindableBeatmapSet)
+                new BeatmapSetSelection(workingBeatmap.CurrentBeatmapSet),
+                new BeatmapSetInfoBox(workingBeatmap.CurrentDifficultyLevel,workingBeatmap.CurrentBeatmapSet)
                 {
                     Anchor = Anchor.TopRight,
                     Origin = Anchor.TopRight,
@@ -47,50 +43,6 @@ namespace maisim.Game.Screen
                     Action = () => this.Exit()
                 }
             };
-            currentTrack = tracks.Get(bindableBeatmapSet.Value.AudioFileName);
-            currentTrack.Looping = true;
-        }
-
-        public override void OnEntering(ScreenTransitionEvent e)
-        {
-            currentTrack.Seek(bindableBeatmapSet.Value.PreviewTime);
-            currentTrack.Start();
-
-            base.OnEntering(e);
-        }
-
-        public override void OnSuspending(ScreenTransitionEvent e)
-        {
-            currentTrack.Stop();
-
-            base.OnSuspending(e);
-        }
-
-        public override void OnResuming(ScreenTransitionEvent e)
-        {
-            currentTrack.Start();
-
-            base.OnResuming(e);
-        }
-
-        public override bool OnExiting(ScreenExitEvent e)
-        {
-            currentTrack.Stop();
-
-            return base.OnExiting(e);
-        }
-
-        protected override void Update()
-        {
-            // if track's end is reached, restart it with seeking to the preview time
-            // To make it precise, floor the double to int
-            if (currentTrack.HasCompleted)
-            {
-                currentTrack.Seek(bindableBeatmapSet.Value.PreviewTime);
-                currentTrack.Start();
-            }
-
-            base.Update();
         }
     }
 }

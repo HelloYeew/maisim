@@ -26,11 +26,19 @@ namespace maisim.Game
 
         private SettingsOverlay Settings;
 
+        private NowPlayingOverlay NowPlaying;
+
+        private MusicPlayer musicPlayer;
+
+        private WorkingBeatmap workingBeatmap;
+
         private Container overlayContent;
 
         private Container rightFloatingOverlayContent;
 
         private Container leftFloatingOverlayContent;
+
+        private Container nowPlayingOverlayContent;
 
         private float toolbarOffset => (toolbar?.Position.Y ?? 0) + (toolbar?.DrawHeight ?? 0);
 
@@ -70,13 +78,21 @@ namespace maisim.Game
                         overlayContent = new Container { RelativeSizeAxes = Axes.Both },
                         rightFloatingOverlayContent = new Container { RelativeSizeAxes = Axes.Both },
                         leftFloatingOverlayContent = new Container { RelativeSizeAxes = Axes.Both },
+                        rightFloatingOverlayContent = new Container { RelativeSizeAxes = Axes.Both },
                     }
                 },
                 topMostOverlayContent = new Container { RelativeSizeAxes = Axes.Both }
             });
 
+            loadComponentSingleFile(workingBeatmap = new WorkingBeatmap(), overlayContent.Add, true);
             loadComponentSingleFile(toolbar = new Toolbar(), topMostOverlayContent.Add);
             loadComponentSingleFile(Settings = new SettingsOverlay(), leftFloatingOverlayContent.Add, true);
+            loadComponentSingleFile(musicPlayer = new MusicPlayer(true), overlayContent.Add, true);
+            loadComponentSingleFile(new NowPlayingOverlay()
+            {
+                Anchor = Anchor.TopRight,
+                Origin = Anchor.TopRight,
+            }, rightFloatingOverlayContent.Add, true);
 
             screenStack.Push(new WarningScreen(new MainMenuScreen()));
         }

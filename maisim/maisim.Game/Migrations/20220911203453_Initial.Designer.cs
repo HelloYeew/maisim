@@ -9,8 +9,8 @@ using maisim.Game.Database;
 namespace maisim.Game.Migrations
 {
     [DbContext(typeof(BeatmapDatabaseContext))]
-    [Migration("20220827050641_UseLocal")]
-    partial class UseLocal
+    [Migration("20220911203453_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -67,6 +67,9 @@ namespace maisim.Game.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<int>("PreviewTime")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool>("UseLocalFile")
                         .HasColumnType("INTEGER");
 
                     b.HasKey("DatabaseID");
