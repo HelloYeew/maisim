@@ -32,11 +32,11 @@ namespace maisim.Game.Graphics.UserInterface.Overlays
         public const float BOTTOM_BLACK_AREA_HEIGHT = 55;
 
         private Drawable background;
-        private BasicSliderBar<double> progressBar;
 
-        private SpriteIcon prevButton;
-        private SpriteIcon playButton;
-        private SpriteIcon nextButton;
+        private IconButton prevButton;
+        private IconButton playButton;
+        private IconButton nextButton;
+        private ProgressBar progressBar;
 
         private SpriteText title, artist, currentTime, totalTime;
         private Sprite cover;
@@ -137,18 +137,18 @@ namespace maisim.Game.Graphics.UserInterface.Overlays
                                     Position = new Vector2(0,-12),
                                     Children = new Drawable[]
                                     {
-                                        new IconButton()
+                                        playButton = new IconButton()
                                         {
                                             Icon = FontAwesome.Solid.Play,
                                             Action = () => musicPlayer.TogglePause()
                                         },
-                                        new IconButton()
+                                        prevButton = new IconButton()
                                         {
                                             Icon = FontAwesome.Solid.FastBackward,
                                             Action = () => musicPlayer.TogglePrevious(),
                                             Position = new Vector2(-50,0)
                                         },
-                                        new IconButton()
+                                        nextButton = new IconButton()
                                         {
                                             Icon = FontAwesome.Solid.FastForward,
                                             Action = () => musicPlayer.ToggleNext(),
@@ -162,15 +162,18 @@ namespace maisim.Game.Graphics.UserInterface.Overlays
                                     Origin = Anchor.Centre,
                                     RelativeSizeAxes = Axes.X,
                                     Size = new Vector2(0.65f,20),
-                                    Position = new Vector2(0, 15),
+                                    Position = new Vector2(0, 20),
                                     Masking = true,
-                                    CornerRadius = 10,
-                                    Child = new Box()
+                                    CornerRadius = 12,
+                                    Child = progressBar = new ProgressBar(true)
                                     {
                                         Anchor = Anchor.Centre,
                                         Origin = Anchor.Centre,
-                                        RelativeSizeAxes = Axes.Both,
-                                        Colour = MaisimColour.NowPlayingProgressBarColor
+                                        RelativeSizeAxes = Axes.X,
+                                        Height = 18,
+                                        FillColour = MaisimColour.NowPlayingProgressBarFillColor,
+                                        BackgroundColour = MaisimColour.NowPlayingProgressBarBackgroundColor,
+                                        OnSeek = musicPlayer.SeekTo
                                     }
                                 },
                                 new Container()
@@ -214,6 +217,9 @@ namespace maisim.Game.Graphics.UserInterface.Overlays
         {
             base.Update();
             updateCurrentTime();
+            progressBar.EndTime = musicPlayer.Track.Length;
+            progressBar.CurrentTime = musicPlayer.Track.CurrentTime;
+            playButton.Icon = musicPlayer.Track.IsRunning ? FontAwesome.Solid.Pause : FontAwesome.Solid.Play;
         }
 
         protected override void PopIn()
@@ -242,7 +248,7 @@ namespace maisim.Game.Graphics.UserInterface.Overlays
         /// </summary>
         private void updateCurrentTime()
         {
-            double time = musicPlayer.GetTrack().CurrentTime;
+            double time = musicPlayer.Track.CurrentTime;
 
             // Convert current time to minutes and seconds
             int minutes = (int) time / 1000 / 60;
@@ -256,7 +262,7 @@ namespace maisim.Game.Graphics.UserInterface.Overlays
         private void updateTotalTime()
         {
             // Convert total time to minutes and seconds
-            double length = musicPlayer.GetTrack().Length;
+            double length = musicPlayer.Track.Length;
             int minutes = (int) length / 1000 / 60;
             int seconds = (int) length / 1000 % 60;
             totalTime.Text = minutes.ToString("00") + ":" + seconds.ToString("00");

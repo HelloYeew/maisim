@@ -11,11 +11,12 @@ using osuTK.Graphics;
 namespace maisim.Game.Graphics.UserInterface
 {
     /// <summary>
-    /// A button with
+    /// A custom button with a sprite icon.
     /// </summary>
     public class IconButton : Button
     {
         public IconUsage Icon { get; set; }
+        private SpriteIcon spriteIcon;
 
         private Box backgroundBox;
 
@@ -42,7 +43,7 @@ namespace maisim.Game.Graphics.UserInterface
                         Colour = MaisimColour.Gray(.2f),
                         Alpha = 0
                     },
-                    new SpriteIcon()
+                    spriteIcon = new SpriteIcon()
                     {
                         Anchor = Anchor.Centre,
                         Origin = Anchor.Centre,
@@ -71,6 +72,13 @@ namespace maisim.Game.Graphics.UserInterface
         {
             this.ScaleTo(0.8f, 100);
             return base.OnMouseDown(e);
+        }
+
+        protected override void Update()
+        {
+            spriteIcon.Icon = Icon;
+
+            base.Update();
         }
     }
 }

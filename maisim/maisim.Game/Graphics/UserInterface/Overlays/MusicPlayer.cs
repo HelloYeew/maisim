@@ -13,7 +13,7 @@ namespace maisim.Game.Graphics.UserInterface.Overlays
     /// </summary>
     public class MusicPlayer : CompositeDrawable
     {
-        private Track track;
+        public Track Track { get; private set; }
         private ITrackStore trackStore;
         private ITrackStore localTrackStore;
         public readonly bool startOnLoaded;
@@ -40,10 +40,10 @@ namespace maisim.Game.Graphics.UserInterface.Overlays
             trackStore = audioManager.Tracks;
             Logger.Log(workingBeatmap.CurrentBeatmapSet.Value.AudioFileName);
             Logger.Log(workingBeatmap.CurrentBeatmapSet.Value.UseLocalFile.ToString());
-            track = workingBeatmap.CurrentBeatmapSet.Value.UseLocalFile ? localTrackStore.Get(workingBeatmap.CurrentBeatmapSet.Value.AudioFileName) : trackStore.Get(workingBeatmap.CurrentBeatmapSet.Value.AudioFileName);
+            Track = workingBeatmap.CurrentBeatmapSet.Value.UseLocalFile ? localTrackStore.Get(workingBeatmap.CurrentBeatmapSet.Value.AudioFileName) : trackStore.Get(workingBeatmap.CurrentBeatmapSet.Value.AudioFileName);
             workingBeatmap.CurrentBeatmapSet.BindValueChanged(workingBeatmapChanged);
             if (startOnLoaded)
-                track.Start();
+                Track.Start();
         }
 
         /// <summary>
@@ -51,10 +51,10 @@ namespace maisim.Game.Graphics.UserInterface.Overlays
         /// </summary>
         public void TogglePause()
         {
-            if (track.IsRunning)
-                track.Stop();
+            if (Track.IsRunning)
+                Track.Stop();
             else
-                track.Start();
+                Track.Start();
         }
 
         public void ToggleNext()
@@ -64,35 +64,28 @@ namespace maisim.Game.Graphics.UserInterface.Overlays
 
         public void TogglePrevious()
         {
-            if (track.CurrentTime < RESTART_TIME)
-                track.Restart();
+            if (Track.CurrentTime < RESTART_TIME)
+                Track.Restart();
             else
                 workingBeatmap.GoToPreviousBeatmapSet();
         }
 
         public void ToggleLoop()
         {
-            track.Looping = !track.Looping;
+            Track.Looping = !Track.Looping;
         }
 
         private void changeTrack(BeatmapSet beatmapSet)
         {
-            track.Stop();
-            track = beatmapSet.UseLocalFile ? localTrackStore.Get(beatmapSet.AudioFileName) : trackStore.Get(beatmapSet.AudioFileName);
-            track.Start();
+            Track.Stop();
+            Track = beatmapSet.UseLocalFile ? localTrackStore.Get(beatmapSet.AudioFileName) : trackStore.Get(beatmapSet.AudioFileName);
+            Track.Start();
         }
 
-        public Track GetTrack()
+        public void SeekTo(double position)
         {
-            return track;
-        }
-
-        protected override void UpdateAfterChildren()
-        {
-            base.UpdateAfterChildren();
-
-            if (track.HasCompleted)
-                workingBeatmap.GoToNextBeatmapSet();
+            Track.Seek(position);
+            Logger.Log("Track seeked to " + position);
         }
     }
 }

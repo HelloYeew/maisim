@@ -49,6 +49,8 @@ namespace maisim.Game.Graphics
         public static Color4 SongSelectionContainerBorderColor => Color4Extensions.FromHex("eaea00");
 
         public static Color4 NowPlayingArtistColor => Color4Extensions.FromHex("b8b8b8");
-        public static Color4 NowPlayingProgressBarColor => Color4Extensions.FromHex("d9d9d9");
+
+        public static Color4 NowPlayingProgressBarFillColor => Color4Extensions.FromHex("878787");
+        public static Color4 NowPlayingProgressBarBackgroundColor => Color4Extensions.FromHex("d9d9d9");
     }
 }
