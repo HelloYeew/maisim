@@ -41,7 +41,7 @@ namespace maisim.Game.Tests.Visual
                 }
             };
 
-            TrackTestFixture japaneseMockFixture = new TrackTestFixture("光線チューニング");
+            TrackTestFixture japaneseMockFixture = new TrackTestFixture(TestUtil.AvailableTrackMetadata.RayTuning);
             japaneseMockFixture.Beatmap.DifficultyLevel = DifficultyLevel.Basic;
 
             Cell(0, 1).Children = new Drawable[]
@@ -60,7 +60,7 @@ namespace maisim.Game.Tests.Visual
                 }
             };
 
-            TrackTestFixture koreanMockFixture = new TrackTestFixture("시간을 달려서 (ROUGH)");
+            TrackTestFixture koreanMockFixture = new TrackTestFixture(TestUtil.AvailableTrackMetadata.Rough);
             koreanMockFixture.Beatmap.DifficultyLevel = DifficultyLevel.Master;
 
             Cell(0, 2).Children = new Drawable[]

@@ -1,5 +1,5 @@
-﻿using System.IO;
-using System.Linq;
+﻿using System;
+using System.IO;
 using maisim.Game.Beatmaps;
 using Microsoft.EntityFrameworkCore;
 using osu.Framework.Logging;
@@ -12,28 +12,23 @@ namespace maisim.Game.Database
     public class BeatmapDatabaseContext : DbContext
     {
         public DbSet<TrackMetadata> TrackMetadatas { get; set; }
+
+        public const string DATABASE_NAME = "beatmaps.db";
         public DbSet<Beatmap> Beatmaps { get; set; }
         public DbSet<BeatmapSet> BeatmapSets { get; set; }
-        public string DatabasePath { get; set; }
+
+        public string DatabasePath =>
+            Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "maisim", DATABASE_NAME);
 
         public BeatmapDatabaseContext()
         {
 
         }
 
-        public void InitializeDatabase(string databasePath)
+        public void InitializeDatabase()
         {
-            DatabasePath = Path.Combine(databasePath, "beatmaps.db");
-
-            // Find that is the database exists, if not, create it.
-            if (Database.EnsureCreated())
-            {
-                Logger.Log($"Beatmap database not found, creating new one at {DatabasePath}", LoggingTarget.Database);
-            } else
-            {
-                Logger.Log($"Beatmap database found at {DatabasePath}", LoggingTarget.Database);
-                // TODO: Auto migrate database when new version is released.
-            }
+            Database.Migrate();
+            Logger.Log($"Initialized database at {DatabasePath}", LoggingTarget.Database);
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

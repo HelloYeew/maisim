@@ -15,7 +15,8 @@ namespace maisim.Game.Migrations
                     Creator = table.Column<string>(type: "TEXT", nullable: true),
                     BeatmapSetID = table.Column<int>(type: "INTEGER", nullable: false),
                     AudioFileName = table.Column<string>(type: "TEXT", nullable: true),
-                    PreviewTime = table.Column<int>(type: "INTEGER", nullable: false)
+                    PreviewTime = table.Column<int>(type: "INTEGER", nullable: false),
+                    UseLocalFile = table.Column<bool>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {

@@ -13,7 +13,7 @@ namespace maisim.Game.Tests.Visual.Component
     {
         public TestSceneTrackCardManyStyle() : base(2, 3)
         {
-            TrackTestFixture basicMockFixture = new TrackTestFixture("Sukino Skill");
+            TrackTestFixture basicMockFixture = new TrackTestFixture(TestUtil.AvailableTrackMetadata.SukinoSkill);
             basicMockFixture.Beatmap.DifficultyLevel = DifficultyLevel.Basic;
 
             Cell(0, 0).Children = new Drawable[]
@@ -32,7 +32,7 @@ namespace maisim.Game.Tests.Visual.Component
                 }
             };
 
-            TrackTestFixture advanceMockFixture = new TrackTestFixture("Lemon");
+            TrackTestFixture advanceMockFixture = new TrackTestFixture(TestUtil.AvailableTrackMetadata.ReI);
             advanceMockFixture.Beatmap.DifficultyLevel = DifficultyLevel.Advanced;
 
             Cell(0, 1).Children = new Drawable[]
@@ -51,7 +51,7 @@ namespace maisim.Game.Tests.Visual.Component
                 }
             };
 
-            TrackTestFixture expertMockFixture = new TrackTestFixture("only my railgun");
+            TrackTestFixture expertMockFixture = new TrackTestFixture(TestUtil.AvailableTrackMetadata.OnlyMyRailgun);
             expertMockFixture.Beatmap.DifficultyLevel = DifficultyLevel.Expert;
 
             Cell(0, 2).Children = new Drawable[]
@@ -70,7 +70,7 @@ namespace maisim.Game.Tests.Visual.Component
                 }
             };
 
-            TrackTestFixture masterMockFixture = new TrackTestFixture("RAISE MY SWORD");
+            TrackTestFixture masterMockFixture = new TrackTestFixture(TestUtil.AvailableTrackMetadata.RaiseMySword);
             masterMockFixture.Beatmap.DifficultyLevel = DifficultyLevel.Master;
 
             Cell(1, 0).Children = new Drawable[]
