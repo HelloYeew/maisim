@@ -157,6 +157,50 @@ namespace maisim.Game.Graphics.UserInterface.Overlays
                                             Position = new Vector2(50,0)
                                         },
                                     }
+                                },
+                                new Container()
+                                {
+                                    Anchor = Anchor.Centre,
+                                    Origin = Anchor.Centre,
+                                    RelativeSizeAxes = Axes.X,
+                                    Size = new Vector2(0.65f,20),
+                                    Position = new Vector2(0, 20),
+                                    Masking = true,
+                                    CornerRadius = 10,
+                                    Child = new Box()
+                                    {
+                                        Anchor = Anchor.Centre,
+                                        Origin = Anchor.Centre,
+                                        RelativeSizeAxes = Axes.Both,
+                                        Colour = Colour4.Aqua
+                                    }
+                                },
+                                new Container()
+                                {
+                                    Anchor = Anchor.Centre,
+                                    Origin = Anchor.Centre,
+                                    RelativeSizeAxes = Axes.X,
+                                    Size = new Vector2(1,20),
+                                    Position = new Vector2(0, 20),
+                                    Masking = true,
+                                    CornerRadius = 10,
+                                    Children = new Drawable[]
+                                    {
+                                        new MaisimSpriteText()
+                                        {
+                                            Anchor = Anchor.CentreLeft,
+                                            Origin = Anchor.CentreLeft,
+                                            Position = new Vector2(10,0),
+                                            Text = "00:00"
+                                        },
+                                        new MaisimSpriteText()
+                                        {
+                                            Anchor = Anchor.CentreRight,
+                                            Origin = Anchor.CentreRight,
+                                            Position = new Vector2(-10,0),
+                                            Text = "00:00"
+                                        }
+                                    }
                                 }
                             }
                         },
