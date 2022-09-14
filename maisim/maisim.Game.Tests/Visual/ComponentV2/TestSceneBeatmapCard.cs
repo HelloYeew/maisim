@@ -15,9 +15,6 @@ public class TestSceneBeatmapCard : maisimTestScene
 
     private Bindable<BeatmapSet> beatmapSet =  new Bindable<BeatmapSet>(new BeatmapSetTestFixture().BeatmapSet);
 
-    private void difficultyLevelChanged(ValueChangedEvent<DifficultyLevel> difficultyLevelEvent) => updateBeatmapInfo();
-    private void beatmapSetChanged(ValueChangedEvent<BeatmapSet> beatmapSetEvent) => updateBeatmapInfo();
-
     private string beatmapList;
     private TextFlowContainer beatmapListContainer;
 
@@ -39,8 +36,8 @@ public class TestSceneBeatmapCard : maisimTestScene
                 Text = ""
             }
         };
-        difficultyLevel.BindValueChanged(difficultyLevelChanged, true);
-        beatmapSet.BindValueChanged(beatmapSetChanged, true);
+        difficultyLevel.BindValueChanged(_ => updateBeatmapInfo(), true);
+        beatmapSet.BindValueChanged(_ => updateBeatmapInfo(), true);
         updateBeatmapInfo();
     }
 
