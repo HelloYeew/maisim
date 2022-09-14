@@ -38,8 +38,8 @@ namespace maisim.Game.Graphics.UserInterface.Overlays
         {
             this.localTrackStore = localTrackStore;
             trackStore = audioManager.Tracks;
-            Logger.Log(workingBeatmap.CurrentBeatmapSet.Value.AudioFileName);
-            Logger.Log(workingBeatmap.CurrentBeatmapSet.Value.UseLocalFile.ToString());
+            Logger.Log("Initialized MusicPlayer with " + workingBeatmap.CurrentBeatmapSet.Value.AudioFileName);
+            Logger.Log("Using local track store: " + workingBeatmap.CurrentBeatmapSet.Value.UseLocalFile);
             Track = workingBeatmap.CurrentBeatmapSet.Value.UseLocalFile ? localTrackStore.Get(workingBeatmap.CurrentBeatmapSet.Value.AudioFileName) : trackStore.Get(workingBeatmap.CurrentBeatmapSet.Value.AudioFileName);
             workingBeatmap.CurrentBeatmapSet.BindValueChanged(workingBeatmapChanged);
             if (startOnLoaded)
@@ -52,9 +52,15 @@ namespace maisim.Game.Graphics.UserInterface.Overlays
         public void TogglePause()
         {
             if (Track.IsRunning)
+            {
                 Track.Stop();
+                Logger.Log("Track has been paused");
+            }
             else
+            {
                 Track.Start();
+                Logger.Log("Track has been played");
+            }
         }
 
         public void ToggleNext()
@@ -75,18 +81,31 @@ namespace maisim.Game.Graphics.UserInterface.Overlays
             Track.Looping = !Track.Looping;
         }
 
+        protected override void Update()
+        {
+            base.Update();
+            if (Track.HasCompleted && !Track.Looping)
+                workingBeatmap.GoToNextBeatmapSet();
+        }
+
+        /// <summary>
+        /// Change the track to the new <see cref="BeatmapSet"/> track.
+        /// </summary>
+        /// <param name="beatmapSet">The new <see cref="BeatmapSet"/> track</param>
         private void changeTrack(BeatmapSet beatmapSet)
         {
-            Track.Stop();
             Track = beatmapSet.UseLocalFile ? localTrackStore.Get(beatmapSet.AudioFileName) : trackStore.Get(beatmapSet.AudioFileName);
-            Logger.Log("Changed track to " + beatmapSet.AudioFileName, LoggingTarget.Runtime, LogLevel.Debug);
+            Logger.Log("Changed track to " + beatmapSet.AudioFileName);
             Track.Start();
         }
 
+        /// <summary>
+        /// Seek the track to the specified time.
+        /// </summary>
+        /// <param name="position">The specified time</param>
         public void SeekTo(double position)
         {
             Track.Seek(position);
-            Logger.Log("Track seeked to " + position, LoggingTarget.Runtime, LogLevel.Debug);
         }
     }
 }

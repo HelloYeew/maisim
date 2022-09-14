@@ -28,8 +28,6 @@ namespace maisim.Game.Graphics.UserInterface.Overlays
 
         public const float PLAYER_HEIGHT = 200;
         public const float TRANSITION_LENGTH = 600;
-        public const float PROGRESS_HEIGHT = 10;
-        public const float BOTTOM_BLACK_AREA_HEIGHT = 55;
 
         private Drawable background;
 
@@ -249,8 +247,6 @@ namespace maisim.Game.Graphics.UserInterface.Overlays
         private void updateCurrentTime()
         {
             double time = musicPlayer.Track.CurrentTime;
-
-            // Convert current time to minutes and seconds
             int minutes = (int) time / 1000 / 60;
             int seconds = (int) time / 1000 % 60;
             currentTime.Text = minutes.ToString("00") + ":" + seconds.ToString("00");
@@ -261,7 +257,6 @@ namespace maisim.Game.Graphics.UserInterface.Overlays
         /// </summary>
         private void updateTotalTime()
         {
-            // Convert total time to minutes and seconds
             double length = musicPlayer.Track.Length;
             int minutes = (int) length / 1000 / 60;
             int seconds = (int) length / 1000 % 60;
@@ -269,13 +264,12 @@ namespace maisim.Game.Graphics.UserInterface.Overlays
         }
 
         /// <summary>
-        /// Change
+        /// Update the track information when the <see cref="BeatmapSet"/> changes
         /// </summary>
-        /// <param name="beatmapSet"></param>
+        /// <param name="beatmapSet">The new <see cref="BeatmapSet"/></param>
         private void changeTrack(BeatmapSet beatmapSet)
         {
             updateTotalTime();
-
             title.Text = beatmapSet.TrackMetadata.Title;
             artist.Text = beatmapSet.TrackMetadata.Artist;
             cover.Texture = textureStore.Get(workingBeatmap.CurrentBeatmapSet.Value.TrackMetadata.CoverPath);
