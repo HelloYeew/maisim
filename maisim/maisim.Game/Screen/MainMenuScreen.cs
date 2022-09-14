@@ -1,6 +1,10 @@
-﻿using maisim.Game.Graphics.Sprites;
+﻿using maisim.Game.Beatmaps;
+using maisim.Game.Graphics;
+using maisim.Game.Graphics.Sprites;
 using maisim.Game.Graphics.UserInterface;
+using maisim.Game.Graphics.UserInterface.Overlays;
 using osu.Framework.Allocation;
+using osu.Framework.Bindables;
 using osu.Framework.Development;
 using osu.Framework.Extensions.Color4Extensions;
 using osu.Framework.Graphics;
@@ -22,6 +26,13 @@ namespace maisim.Game.Screen
         private MainMenuButton browseButton;
         private MainMenuButton exitButton;
         private MaisimSpriteText versionText;
+        private MaisimSpriteText trackTitleText;
+        private MaisimSpriteText trackArtistText;
+
+        [Resolved]
+        private WorkingBeatmap workingBeatmap { get; set; }
+
+        private void workingBeatmapChanged(ValueChangedEvent<BeatmapSet> beatmapSetEvent) => updateNewBeatmap(beatmapSetEvent.NewValue);
 
         [BackgroundDependencyLoader]
         private void load()
@@ -98,8 +109,52 @@ namespace maisim.Game.Screen
                     Origin = Anchor.BottomLeft,
                     Text = DebugUtils.IsDebugBuild ? "maisim development build" : $"maisim v{System.Reflection.Assembly.GetExecutingAssembly().GetName().Version}",
                     Scale = new Vector2(0)
+                },
+                new Container
+                {
+                    Anchor = Anchor.TopRight,
+                    Origin = Anchor.TopRight,
+                    Size = new Vector2(400, 100),
+                    Position = new Vector2(-30, 30),
+                    Children = new Drawable[]
+                    {
+                        trackTitleText = new MaisimSpriteText
+                        {
+                            Anchor = Anchor.TopRight,
+                            Origin = Anchor.TopRight,
+                            Font = MaisimFont.GetFont(size: 35f, weight: MaisimFont.FontWeight.Bold),
+                            Alpha = 0
+                        },
+                        trackArtistText = new MaisimSpriteText
+                        {
+                            Anchor = Anchor.TopRight,
+                            Origin = Anchor.TopRight,
+                            Position = new Vector2(0, 40),
+                            Font = MaisimFont.GetFont(weight: MaisimFont.FontWeight.Regular),
+                            Alpha = 0
+                        }
+                    }
                 }
             };
+            workingBeatmap.CurrentBeatmapSet.BindValueChanged(workingBeatmapChanged);
+        }
+
+        /// <summary>
+        /// Update and show the new track's information.
+        /// </summary>
+        /// <param name="beatmapSet">The new track's <see cref="BeatmapSet"/></param>
+        private void updateNewBeatmap(BeatmapSet beatmapSet)
+        {
+            trackTitleText.Text = beatmapSet.TrackMetadata.Title;
+            trackArtistText.Text = beatmapSet.TrackMetadata.Artist;
+            trackArtistText.FadeTo(1, 500, Easing.OutQuint);
+            trackTitleText.FadeTo(1, 500, Easing.OutQuint);
+            Scheduler.AddDelayed(
+            () =>
+            {
+                trackArtistText.FadeTo(0, 1500, Easing.OutQuint);
+                trackTitleText.FadeTo(0, 1500, Easing.OutQuint);
+            }, 5000);
         }
 
         public override void OnEntering(ScreenTransitionEvent e)
