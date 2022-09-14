@@ -79,13 +79,14 @@ namespace maisim.Game.Graphics.UserInterface.Overlays
         {
             Track.Stop();
             Track = beatmapSet.UseLocalFile ? localTrackStore.Get(beatmapSet.AudioFileName) : trackStore.Get(beatmapSet.AudioFileName);
+            Logger.Log("Changed track to " + beatmapSet.AudioFileName, LoggingTarget.Runtime, LogLevel.Debug);
             Track.Start();
         }
 
         public void SeekTo(double position)
         {
             Track.Seek(position);
-            Logger.Log("Track seeked to " + position);
+            Logger.Log("Track seeked to " + position, LoggingTarget.Runtime, LogLevel.Debug);
         }
     }
 }

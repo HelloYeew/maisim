@@ -51,14 +51,16 @@ namespace maisim.Game.Graphics.UserInterface.Overlays
         /// </summary>
         public void GoToNextBeatmapSet()
         {
-            Logger.Log("Go to next beatmapset");
+            Logger.Log("Go to next beatmapset", LoggingTarget.Runtime, LogLevel.Debug);
             // We determine the next beatmapset by the current beatmapset's database id
             int nextBeatmapSetId = CurrentBeatmapSet.Value.DatabaseID + 1;
             if (nextBeatmapSetId > beatmapSetList.Count)
                 nextBeatmapSetId = 1;
             // Set the next beatmapset to the current beatmapset
             // Get the beatmap set from the list by the database id
+            Logger.Log($"Next beatmapset id: {nextBeatmapSetId}", LoggingTarget.Runtime, LogLevel.Debug);
             CurrentBeatmapSet.Value = beatmapSetList.Find(beatmapSet => beatmapSet.DatabaseID == nextBeatmapSetId);
+            Logger.Log($"Current beatmapset id: {CurrentBeatmapSet.Value.DatabaseID}", LoggingTarget.Runtime, LogLevel.Debug);
         }
 
         /// <summary>
@@ -79,7 +81,8 @@ namespace maisim.Game.Graphics.UserInterface.Overlays
         /// <param name="newBeatmapSet">New beatmapset</param>
         private void onBeatmapChanged(BeatmapSet oldBeatmapSet, BeatmapSet newBeatmapSet)
         {
-            Logger.Log("Current working beatmap set changed from " + oldBeatmapSet + " to " + newBeatmapSet);
+            // Logger.Log("Current working beatmap set changed from " + oldBeatmapSet?.BeatmapSetID + " to " + newBeatmapSet?.BeatmapSetID);
+            Logger.Log($"Current working beatmap set changed from ({oldBeatmapSet?.BeatmapSetID}) {oldBeatmapSet?.TrackMetadata.Title} - {oldBeatmapSet?.TrackMetadata.Artist} to ({newBeatmapSet?.BeatmapSetID}) {newBeatmapSet?.TrackMetadata.Title} - {newBeatmapSet?.TrackMetadata.Artist}");
         }
 
         /// <summary>
