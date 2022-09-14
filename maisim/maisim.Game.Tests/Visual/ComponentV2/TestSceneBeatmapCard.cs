@@ -55,7 +55,7 @@ public class TestSceneBeatmapCard : maisimTestScene
     {
         beatmapList = "";
         beatmapList += "difficultyLevel : " + difficultyLevel.Value + "\n";
-        beatmapList += $"beatmapSet : ({beatmapSet.Value.BeatmapSetID}) {beatmapSet.Value.TrackMetadata.Title} - {beatmapSet.Value.TrackMetadata.Artist}\n";
+        beatmapList += $"beatmapSet : {BeatmapUtils.GetBeatmapSetString(beatmapSet.Value)}\n";
         beatmapList += "info : " + "\n";
         foreach (PropertyInfo property in beatmapSet.Value.GetType().GetProperties())
         {
@@ -64,7 +64,7 @@ public class TestSceneBeatmapCard : maisimTestScene
         beatmapList += "list : \n";
         foreach (var beatmap in beatmapSet.Value.Beatmaps)
         {
-            beatmapList += $"{beatmap.BeatmapID} - {beatmap.DifficultyRating} stars ({beatmap.DifficultyLevel}) by {beatmap.NoteDesigner}\n";
+            beatmapList += $"{BeatmapUtils.GetBeatmapString(beatmap)}\n";
         }
         beatmapListContainer.Text = beatmapList;
     }
