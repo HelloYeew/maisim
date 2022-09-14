@@ -28,7 +28,8 @@ namespace maisim.Game.Utils
             Rough = 4,
             SukinoSkill = 5,
             TenkaiENoKippu = 6,
-            ReI = 7
+            ReI = 7,
+            KyouranHeykids = 8,
         }
 
         /// <summary>
@@ -41,7 +42,8 @@ namespace maisim.Game.Utils
             AvailableTrackMetadata.OnlyMyRailgun,
             AvailableTrackMetadata.SukinoSkill,
             AvailableTrackMetadata.TenkaiENoKippu,
-            AvailableTrackMetadata.ReI
+            AvailableTrackMetadata.ReI,
+            AvailableTrackMetadata.KyouranHeykids
         };
 
         /// <summary>
@@ -99,19 +101,25 @@ namespace maisim.Game.Utils
                 Artist = "THE ORAL CIGARETTES",
                 Bpm = 200,
                 CoverPath = "Test/rei.jpeg"
+            },new TrackMetadata
+            {
+                Title = "Kyouran Hey Kids!!",
+                TitleUnicode = "狂乱 Hey Kids!!",
+                Artist = "THE ORAL CIGARETTES",
+                Bpm = 142,
+                CoverPath = "Test/fixion.jpg"
             }
         };
-
         /// <summary>
         /// List of random name that can be use for testing.
         /// </summary>
         public static readonly string[] RANDOM_NAME_LIST = {
             "GIGACHAD",
             "Pogpega",
-            "EduardoLinguino",
             "Tutel",
             "SUSSY",
-            "PogU"
+            "PogU",
+            "Amogus"
         };
 
         /// <summary>
@@ -202,6 +210,8 @@ namespace maisim.Game.Utils
                     return "Test/tenkai-e-no-kippu.mp3";
                 case AvailableTrackMetadata.ReI:
                     return "Test/rei.mp3";
+                case AvailableTrackMetadata.KyouranHeykids:
+                    return "Test/kyouran-hey-kids.mp3";
                 default:
                     return "";
             }
@@ -228,6 +238,8 @@ namespace maisim.Game.Utils
                     return 88900;
                 case AvailableTrackMetadata.ReI:
                     return 76000;
+                case AvailableTrackMetadata.KyouranHeykids:
+                    return 46000;
                 default:
                     return 0;
             }
