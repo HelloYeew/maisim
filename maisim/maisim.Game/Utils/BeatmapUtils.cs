@@ -43,5 +43,25 @@ namespace maisim.Game.Utils
             }
             return "unknown";
         }
+
+        /// <summary>
+        /// Get a string represent the target <see cref="Beatmap"/>.
+        /// </summary>
+        /// <param name="beatmap">The target <see cref="Beatmap"/></param>
+        /// <returns></returns>
+        public static string GetBeatmapString(Beatmap beatmap)
+        {
+            return $"{beatmap.BeatmapID} - {beatmap.DifficultyRating} stars ({beatmap.DifficultyLevel}) by {beatmap.NoteDesigner}";
+        }
+
+        /// <summary>
+        /// Get a string represent the target <see cref="BeatmapSet"/>.
+        /// </summary>
+        /// <param name="beatmapSet">The target <see cref="BeatmapSet"/></param>
+        /// <returns></returns>
+        public static string GetBeatmapSetString(BeatmapSet beatmapSet)
+        {
+            return $"({beatmapSet.BeatmapSetID}) {beatmapSet.TrackMetadata.Title} - {beatmapSet.TrackMetadata.Artist}";
+        }
     }
 }
