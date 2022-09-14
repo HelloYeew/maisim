@@ -95,15 +95,20 @@ namespace maisim.Game.Graphics.UserInterfaceV2
                                             Origin = Anchor.TopLeft,
                                             RelativeSizeAxes = Axes.Both,
                                             Padding = new MarginPadding(10),
-                                            Masking = true,
-                                            CornerRadius = 10,
-                                            Child = albumCover = new Sprite()
+                                            Child = new Container()
                                             {
                                                 Anchor = Anchor.Centre,
                                                 Origin = Anchor.Centre,
                                                 RelativeSizeAxes = Axes.Both,
-                                                FillMode = FillMode.Fill,
-                                                Texture = textureStore.Get(@"Test/sukino-skill")
+                                                CornerRadius = 10,
+                                                Masking = true,
+                                                Child = albumCover = new Sprite()
+                                                {
+                                                    Anchor = Anchor.Centre,
+                                                    Origin = Anchor.Centre,
+                                                    RelativeSizeAxes = Axes.Both,
+                                                    FillMode = FillMode.Fill,
+                                                }
                                             }
                                         },
                                         new Container()

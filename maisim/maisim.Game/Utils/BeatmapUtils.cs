@@ -61,7 +61,7 @@ namespace maisim.Game.Utils
         /// <returns></returns>
         public static string GetBeatmapSetString(BeatmapSet beatmapSet)
         {
-            return $"{beatmapSet.BeatmapSetID}) {beatmapSet.TrackMetadata.Title} - {beatmapSet.TrackMetadata.Artist}";
+            return $"({beatmapSet.BeatmapSetID}) {beatmapSet.TrackMetadata.Title} - {beatmapSet.TrackMetadata.Artist}";
         }
     }
 }
