@@ -35,7 +35,7 @@ namespace maisim.Game
 
         public MaisimStore Store;
 
-        public AudioManager AudioManager;
+        private AudioManager audioManager;
 
         private DependencyContainer dependencies;
 
@@ -81,9 +81,12 @@ namespace maisim.Game
             Logger.Log("Game storage path : " + Host.Storage.GetFullPath(""), LoggingTarget.Database);
             Logger.Log("Environment application data : "+ Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), LoggingTarget.Database);
 
-            dependencies.Cache(Store = new MaisimStore(Host.Storage.GetStorageForDirectory("tracks")));
+            ResourceStore<byte[]> trackResourceStore = new ResourceStore<byte[]>();
+            trackResourceStore.AddStore(new NamespacedResourceStore<byte[]>(new MaisimStore(Host.Storage), "beatmaps"));
+            trackResourceStore.AddStore(new NamespacedResourceStore<byte[]>(Resources, "Tracks"));
+
             dependencies.Cache(textureStore = new MaisimTextureStore(Host.Renderer, Host.CreateTextureLoaderStore(new NamespacedResourceStore<byte[]>(Resources, "Textures"))));
-            dependencies.Cache(AudioManager = new AudioManager(Host.AudioThread, new NamespacedResourceStore<byte[]>(new MaisimStore(Host.Storage), "tracks"), new NamespacedResourceStore<byte[]>(Resources, "Samples")));
+            dependencies.Cache(audioManager = new AudioManager(Host.AudioThread, trackResourceStore, new NamespacedResourceStore<byte[]>(Resources, "Samples")));
             dependencies.CacheAs(this);
             dependencies.CacheAs(LocalConfig);
             dependencies.CacheAs(beatmapDatabase);

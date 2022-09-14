@@ -15,13 +15,12 @@ namespace maisim.Game.Graphics.UserInterface.Overlays
     {
         public Track Track { get; private set; }
         private ITrackStore trackStore;
-        private ITrackStore localTrackStore;
         public readonly bool startOnLoaded;
 
         /// <summary>
         /// The time of the track that if the go previous button is pressed, the track will just restart.
         /// </summary>
-        public readonly double RESTART_TIME = 5000;
+        public const double RESTART_TIME = 5000;
 
         [Resolved]
         private WorkingBeatmap workingBeatmap { get; set; }
@@ -34,14 +33,12 @@ namespace maisim.Game.Graphics.UserInterface.Overlays
         }
 
         [BackgroundDependencyLoader]
-        private void load(AudioManager audioManager, ITrackStore localTrackStore)
+        private void load(AudioManager audioManager)
         {
-            this.localTrackStore = localTrackStore;
             trackStore = audioManager.Tracks;
-            Logger.Log("Initialized MusicPlayer with " + workingBeatmap.CurrentBeatmapSet.Value.AudioFileName);
-            Logger.Log("Using local track store: " + workingBeatmap.CurrentBeatmapSet.Value.UseLocalFile);
-            Track = workingBeatmap.CurrentBeatmapSet.Value.UseLocalFile ? localTrackStore.Get(workingBeatmap.CurrentBeatmapSet.Value.AudioFileName) : trackStore.Get(workingBeatmap.CurrentBeatmapSet.Value.AudioFileName);
+            Track = trackStore.Get(workingBeatmap.CurrentBeatmapSet.Value.AudioFileName);
             workingBeatmap.CurrentBeatmapSet.BindValueChanged(workingBeatmapChanged);
+            Logger.Log("Initialized MusicPlayer with " + workingBeatmap.CurrentBeatmapSet.Value.AudioFileName);
             if (startOnLoaded)
                 Track.Start();
         }
@@ -94,7 +91,8 @@ namespace maisim.Game.Graphics.UserInterface.Overlays
         /// <param name="beatmapSet">The new <see cref="BeatmapSet"/> track</param>
         private void changeTrack(BeatmapSet beatmapSet)
         {
-            Track = beatmapSet.UseLocalFile ? localTrackStore.Get(beatmapSet.AudioFileName) : trackStore.Get(beatmapSet.AudioFileName);
+            Track.Dispose();
+            Track = trackStore.Get(workingBeatmap.CurrentBeatmapSet.Value.AudioFileName);
             Logger.Log("Changed track to " + beatmapSet.AudioFileName);
             Track.Start();
         }
