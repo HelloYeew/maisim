@@ -32,6 +32,9 @@ namespace maisim.Game.Screen
         [Resolved]
         private WorkingBeatmap workingBeatmap { get; set; }
 
+        [Resolved]
+        private MusicPlayer musicPlayer { get; set; }
+
         private void workingBeatmapChanged(ValueChangedEvent<BeatmapSet> beatmapSetEvent) => updateNewBeatmap(beatmapSetEvent.NewValue);
 
         [BackgroundDependencyLoader]
@@ -139,6 +142,13 @@ namespace maisim.Game.Screen
             workingBeatmap.CurrentBeatmapSet.BindValueChanged(workingBeatmapChanged);
         }
 
+        protected override void LoadComplete()
+        {
+            base.LoadComplete();
+
+            maisimLogo.Visualizer.AddAmplitudeSource(musicPlayer.Track);
+        }
+
         /// <summary>
         /// Update and show the new track's information.
         /// </summary>
@@ -155,6 +165,8 @@ namespace maisim.Game.Screen
                 trackArtistText.FadeTo(0, 2000, Easing.OutQuint);
                 trackTitleText.FadeTo(0, 2000, Easing.OutQuint);
             }, 5000);
+            maisimLogo.Visualizer.ClearAmplitudeSources();
+            maisimLogo.Visualizer.AddAmplitudeSource(musicPlayer.Track);
         }
 
         public override void OnEntering(ScreenTransitionEvent e)

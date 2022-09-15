@@ -3,6 +3,7 @@ using maisim.Game.Screen;
 using maisim.Game.Utils;
 using NUnit.Framework;
 using osu.Framework.Allocation;
+using osu.Framework.Audio;
 using osu.Framework.Graphics;
 using osu.Framework.Screens;
 
@@ -12,6 +13,12 @@ namespace maisim.Game.Tests.Visual.Screen
     {
         [Cached]
         private WorkingBeatmap workingBeatmap = new WorkingBeatmap();
+
+        [Cached]
+        private MusicPlayer musicPlayer = new MusicPlayer();
+
+        [Resolved]
+        private AudioManager audioManager { get; set; }
 
         private BeatmapSetTestFixture beatmapSetTestFixture = new BeatmapSetTestFixture();
 
@@ -23,6 +30,8 @@ namespace maisim.Game.Tests.Visual.Screen
         {
             Dependencies.CacheAs(workingBeatmap);
             workingBeatmap.CurrentBeatmapSet.Value = beatmapSetTestFixture.BeatmapSet;
+            Dependencies.CacheAs(musicPlayer);
+            musicPlayer.Track = audioManager.Tracks.Get(workingBeatmap.CurrentBeatmapSet.Value.AudioFileName);
         }
 
         [SetUp]
@@ -32,16 +41,12 @@ namespace maisim.Game.Tests.Visual.Screen
             {
                 RelativeSizeAxes = Axes.Both
             });
-        }
-
-        [Test]
-        public void TestChangeTrack()
-        {
             AddStep("Change track", () =>
             {
                 beatmapSetTestFixture = new BeatmapSetTestFixture();
                 workingBeatmap.CurrentBeatmapSet.Value = beatmapSetTestFixture.BeatmapSet;
             });
+            AddStep("Toggle play button", () => musicPlayer.TogglePause());
         }
     }
 }
