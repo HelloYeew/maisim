@@ -152,8 +152,8 @@ namespace maisim.Game.Screen
             Scheduler.AddDelayed(
             () =>
             {
-                trackArtistText.FadeTo(0, 1500, Easing.OutQuint);
-                trackTitleText.FadeTo(0, 1500, Easing.OutQuint);
+                trackArtistText.FadeTo(0, 2000, Easing.OutQuint);
+                trackTitleText.FadeTo(0, 2000, Easing.OutQuint);
             }, 5000);
         }
 

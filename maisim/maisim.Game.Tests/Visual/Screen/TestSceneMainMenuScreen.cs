@@ -15,6 +15,9 @@ namespace maisim.Game.Tests.Visual.Screen
 
         private BeatmapSetTestFixture beatmapSetTestFixture = new BeatmapSetTestFixture();
 
+        private MainMenuScreen mainMenuScreen;
+        private ScreenStack screenStack;
+
         [BackgroundDependencyLoader]
         private void load()
         {
@@ -25,9 +28,19 @@ namespace maisim.Game.Tests.Visual.Screen
         [SetUp]
         public void SetUp()
         {
-            Add(new ScreenStack(new MainMenuScreen())
+            Add(screenStack = new ScreenStack(mainMenuScreen = new MainMenuScreen())
             {
                 RelativeSizeAxes = Axes.Both
+            });
+        }
+
+        [Test]
+        public void TestChangeTrack()
+        {
+            AddStep("Change track", () =>
+            {
+                beatmapSetTestFixture = new BeatmapSetTestFixture();
+                workingBeatmap.CurrentBeatmapSet.Value = beatmapSetTestFixture.BeatmapSet;
             });
         }
     }
