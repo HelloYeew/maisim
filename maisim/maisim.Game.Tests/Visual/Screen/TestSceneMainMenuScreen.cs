@@ -41,12 +41,14 @@ namespace maisim.Game.Tests.Visual.Screen
             {
                 RelativeSizeAxes = Axes.Both
             });
+            AddStep("Toggle play button", () => musicPlayer.TogglePause());
             AddStep("Change track", () =>
             {
                 beatmapSetTestFixture = new BeatmapSetTestFixture();
                 workingBeatmap.CurrentBeatmapSet.Value = beatmapSetTestFixture.BeatmapSet;
+                musicPlayer.Track.Dispose();
+                musicPlayer.Track = audioManager.Tracks.Get(workingBeatmap.CurrentBeatmapSet.Value.AudioFileName);
             });
-            AddStep("Toggle play button", () => musicPlayer.TogglePause());
         }
     }
 }
