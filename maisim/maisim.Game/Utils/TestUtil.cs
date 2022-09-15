@@ -30,6 +30,7 @@ namespace maisim.Game.Utils
             TenkaiENoKippu = 6,
             ReI = 7,
             KyouranHeykids = 8,
+            NewGenesis = 9
         }
 
         /// <summary>
@@ -43,7 +44,8 @@ namespace maisim.Game.Utils
             AvailableTrackMetadata.SukinoSkill,
             AvailableTrackMetadata.TenkaiENoKippu,
             AvailableTrackMetadata.ReI,
-            AvailableTrackMetadata.KyouranHeykids
+            AvailableTrackMetadata.KyouranHeykids,
+            AvailableTrackMetadata.NewGenesis
         };
 
         /// <summary>
@@ -55,59 +57,76 @@ namespace maisim.Game.Utils
                 Title = "Diamond City Lights",
                 Artist = "LazuLight",
                 Bpm = 185,
-                CoverPath = "Test/diamond-city-lights.jpg"
+                CoverPath = "Test/diamond-city-lights.jpg",
+                Source = "Nijisanji"
             },
             new TrackMetadata
             {
                 Title = "光線チューニング",
                 Artist = "ナユタン星人 feat. 000",
                 Bpm = 100,
-                CoverPath = "Test/nayutalien.jpg"
+                CoverPath = "Test/nayutalien.jpg",
+                Source = "ナユタン星からの物体Z"
             },
             new TrackMetadata
             {
                 Title = "only my railgun",
                 Artist = "fripSide",
                 Bpm = 143,
-                CoverPath = "Test/only-my-railgun.jpg"
+                CoverPath = "Test/only-my-railgun.jpg",
+                Source = "A Certain Scientific Railgun"
             },
             new TrackMetadata
             {
                 Title = "RAISE MY SWORD",
                 Artist = "GALNERYUS",
                 Bpm = 220,
-                CoverPath = "Test/raise-my-sword.jpg"
+                CoverPath = "Test/raise-my-sword.jpg",
+                Source = "UNDER THE FORCE OF COURAGE"
             },new TrackMetadata
             {
                 Title = "시간을 달려서 (ROUGH)",
                 Artist = "GFRIEND",
                 Bpm = 112,
-                CoverPath = "Test/snowflake.jpg"
+                CoverPath = "Test/snowflake.jpg",
+                Source = "Snowflake"
             },new TrackMetadata
             {
                 Title = "Sukino Skill",
                 Artist = "Wake Up, Girls!",
                 Bpm = 120,
-                CoverPath = "Test/sukino-skill.jpg"
+                CoverPath = "Test/sukino-skill.jpg",
+                Source = "Death March to the Parallel World Rhapsody"
             },new TrackMetadata
             {
                 Title = "Tenkai e no Kippu",
                 Artist = "Dragon Guardian",
                 Bpm = 190,
-                CoverPath = "Test/tenkai-e-no-kippu.jpg"
+                CoverPath = "Test/tenkai-e-no-kippu.jpg",
+                Source = "Dragon Guardian"
             },new TrackMetadata
             {
                 Title = "ReI",
                 Artist = "THE ORAL CIGARETTES",
                 Bpm = 200,
-                CoverPath = "Test/rei.jpeg"
+                CoverPath = "Test/rei.jpeg",
+                Source = "ReI"
             },new TrackMetadata
             {
                 Title = "Kyouran Hey Kids!!",
                 TitleUnicode = "狂乱 Hey Kids!!",
                 Artist = "THE ORAL CIGARETTES",
                 Bpm = 142,
-                CoverPath = "Test/fixion.jpg"
+                CoverPath = "Test/fixion.jpg",
+                Source = "Fixion"
+            },new TrackMetadata
+            {
+                Title = "New Genesis",
+                TitleUnicode = "新時代",
+                Artist = "Ado",
+                Bpm = 140,
+                CoverPath = "Test/ado-one-piece-film-red.jpg",
+                Source = "ONE PIECE FILM RED"
             }
         };
         /// <summary>
@@ -212,6 +231,8 @@ namespace maisim.Game.Utils
                     return "Test/rei.mp3";
                 case AvailableTrackMetadata.KyouranHeykids:
                     return "Test/kyouran-hey-kids.mp3";
+                case AvailableTrackMetadata.NewGenesis:
+                    return "Test/new-genesis.mp3";
                 default:
                     return "";
             }
@@ -240,6 +261,8 @@ namespace maisim.Game.Utils
                     return 76000;
                 case AvailableTrackMetadata.KyouranHeykids:
                     return 46000;
+                case AvailableTrackMetadata.NewGenesis:
+                    return 87500;
                 default:
                     return 0;
             }
