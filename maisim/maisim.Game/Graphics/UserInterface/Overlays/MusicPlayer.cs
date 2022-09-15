@@ -13,7 +13,7 @@ namespace maisim.Game.Graphics.UserInterface.Overlays
     /// </summary>
     public class MusicPlayer : CompositeDrawable
     {
-        public Track Track { get; private set; }
+        public Track Track { get; set; }
         private ITrackStore trackStore;
         public readonly bool startOnLoaded;
 

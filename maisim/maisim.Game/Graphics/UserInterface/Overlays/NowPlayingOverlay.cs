@@ -52,7 +52,7 @@ namespace maisim.Game.Graphics.UserInterface.Overlays
         }
 
         [BackgroundDependencyLoader]
-        private void load(TextureStore textureStore)
+        private void load(TextureStore localTextureStore)
         {
             Children = new Drawable[]
             {
@@ -97,7 +97,7 @@ namespace maisim.Game.Graphics.UserInterface.Overlays
                                             Anchor = Anchor.Centre,
                                             Origin = Anchor.Centre,
                                             RelativeSizeAxes = Axes.Both,
-                                            Texture = textureStore.Get(workingBeatmap.CurrentBeatmapSet.Value.TrackMetadata.CoverPath),
+                                            Texture = localTextureStore.Get(workingBeatmap.CurrentBeatmapSet.Value.TrackMetadata.CoverPath),
                                             FillMode = FillMode.Fill,
                                         }
                                     }

@@ -1,5 +1,8 @@
+using maisim.Game.Graphics.UserInterface.Overlays;
 using maisim.Game.Screen;
+using maisim.Game.Utils;
 using NUnit.Framework;
+using osu.Framework.Allocation;
 using osu.Framework.Graphics;
 using osu.Framework.Screens;
 using osuTK;
@@ -8,8 +11,20 @@ namespace maisim.Game.Tests.Visual.Screen
 {
     public class TestSceneSongSelectionScreen : maisimTestScene
     {
+        [Cached]
+        private WorkingBeatmap workingBeatmap = new WorkingBeatmap();
+
+        private BeatmapSetTestFixture beatmapSetTestFixture = new BeatmapSetTestFixture();
+
         private ScreenStack mainScreenStack;
         private SongSelectionScreen songSelectionScreen;
+
+        [BackgroundDependencyLoader]
+        private void load()
+        {
+            Dependencies.CacheAs(workingBeatmap);
+            workingBeatmap.CurrentBeatmapSet.Value = beatmapSetTestFixture.BeatmapSet;
+        }
 
         [SetUp]
         public void SetUp()
