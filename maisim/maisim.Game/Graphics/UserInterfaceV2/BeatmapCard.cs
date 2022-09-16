@@ -40,6 +40,7 @@ namespace maisim.Game.Graphics.UserInterfaceV2
         private Sprite albumCover;
         private MaisimSpriteText titleText;
         private MaisimSpriteText artistText;
+        private MaisimSpriteText sourceText;
         private MaisimSpriteText creatorText;
 
         public BeatmapCard(Bindable<DifficultyLevel> bindableDifficultyLevel, Bindable<BeatmapSet> bindableBeatmapSet)
@@ -134,10 +135,19 @@ namespace maisim.Game.Graphics.UserInterfaceV2
                                                     },
                                                     artistText = new MaisimSpriteText()
                                                     {
-                                                        Anchor = Anchor.CentreLeft,
-                                                        Origin = Anchor.CentreLeft,
+                                                        Anchor = Anchor.TopLeft,
+                                                        Origin = Anchor.TopLeft,
                                                         Text = "Wake Up, Girls!",
-                                                        Font = MaisimFont.GetFont(size:30, weight:MaisimFont.FontWeight.Medium)
+                                                        Font = MaisimFont.GetFont(size:30, weight:MaisimFont.FontWeight.Medium),
+                                                        Position = new Vector2(0, 46)
+                                                    },
+                                                    sourceText = new MaisimSpriteText()
+                                                    {
+                                                        Anchor = Anchor.BottomLeft,
+                                                        Origin = Anchor.BottomLeft,
+                                                        Text = $"From {bindableBeatmapSet.Value.TrackMetadata.Source}",
+                                                        Font = MaisimFont.GetFont(size:20, weight:MaisimFont.FontWeight.Medium),
+                                                        Position = new Vector2(0, -30)
                                                     },
                                                     creatorText = new MaisimSpriteText()
                                                     {
@@ -145,7 +155,7 @@ namespace maisim.Game.Graphics.UserInterfaceV2
                                                         Origin = Anchor.BottomLeft,
                                                         Text = $"beatmap by {BeatmapUtils.GetNoteDesignerFromBeatmapSet(bindableBeatmapSet.Value, bindableDifficultyLevel.Value)}",
                                                         Font = MaisimFont.GetFont(size:20, weight:MaisimFont.FontWeight.Medium),
-                                                        Position = new Vector2(0, -15)
+                                                        Position = new Vector2(0, -5)
                                                     },
                                                 }
                                             }
@@ -180,6 +190,7 @@ namespace maisim.Game.Graphics.UserInterfaceV2
             albumCover.Texture = textures.Get(newBeatmapSet.TrackMetadata.CoverPath);
             titleText.Text = newBeatmapSet.TrackMetadata.Title;
             artistText.Text = newBeatmapSet.TrackMetadata.Artist;
+            sourceText.Text = $"From {newBeatmapSet.TrackMetadata.Source}";
             creatorText.Text = $"beatmap by {BeatmapUtils.GetNoteDesignerFromBeatmapSet(newBeatmapSet, bindableDifficultyLevel.Value)}";
         }
     }
