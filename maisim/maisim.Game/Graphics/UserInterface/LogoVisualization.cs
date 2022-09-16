@@ -25,7 +25,7 @@ namespace maisim.Game.Graphics.UserInterface
         private const int index_change = 5;
 
         /// <summary>
-        /// The maximum length of each bar in the visualiser. Will be reduced when kiai is not activated.
+        /// The maximum length of each bar in the visualiser.
         /// </summary>
         private const float bar_length = 600;
 
