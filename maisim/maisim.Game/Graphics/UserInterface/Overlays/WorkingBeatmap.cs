@@ -81,7 +81,6 @@ namespace maisim.Game.Graphics.UserInterface.Overlays
         /// <param name="newBeatmapSet">New beatmapset</param>
         private void onBeatmapChanged(BeatmapSet oldBeatmapSet, BeatmapSet newBeatmapSet)
         {
-            // Logger.Log("Current working beatmap set changed from " + oldBeatmapSet?.BeatmapSetID + " to " + newBeatmapSet?.BeatmapSetID);
             Logger.Log($"Current working beatmap set changed from ({oldBeatmapSet?.BeatmapSetID}) {oldBeatmapSet?.TrackMetadata.Title} - {oldBeatmapSet?.TrackMetadata.Artist} to ({newBeatmapSet?.BeatmapSetID}) {newBeatmapSet?.TrackMetadata.Title} - {newBeatmapSet?.TrackMetadata.Artist}");
         }
 

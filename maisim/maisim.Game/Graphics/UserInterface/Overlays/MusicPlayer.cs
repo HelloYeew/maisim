@@ -82,7 +82,11 @@ namespace maisim.Game.Graphics.UserInterface.Overlays
         {
             base.Update();
             if (Track.HasCompleted && !Track.Looping)
+            {
+                // Dispose the track to ensure that the track's state has been reset.
+                Track.Dispose();
                 workingBeatmap.GoToNextBeatmapSet();
+            }
         }
 
         /// <summary>
