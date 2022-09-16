@@ -55,7 +55,7 @@ namespace maisim.Game.Graphics.UserInterface
                                     Origin = Anchor.Centre,
                                     RelativeSizeAxes = Axes.Both,
                                     Alpha = 0.5f,
-                                    Size = new Vector2(0.96f)
+                                    Size = new Vector2(1)
                                 }
                             }
                         }
