@@ -87,16 +87,19 @@ namespace maisim.Game.Graphics.UserInterface.Overlays
         /// </summary>
         public void TogglePrevious()
         {
-            if (Track.CurrentTime < force_previous_track_time || (Track.CurrentTime >= force_previous_track_time &&
-                                                                  Clock.TimeInfo.Current - lastPreviousClicked <= restart_time))
+            Scheduler.Add(() =>
             {
-                workingBeatmap.GoToPreviousBeatmapSet();
-            }
-            else
-            {
-                Track.Restart();
-            }
-
+                if (Track.CurrentTime < force_previous_track_time || (Track.CurrentTime >= force_previous_track_time &&
+                                                                      Clock.TimeInfo.Current - lastPreviousClicked <=
+                                                                      restart_time))
+                {
+                    workingBeatmap.GoToPreviousBeatmapSet();
+                }
+                else
+                {
+                    Track.Restart();
+                }
+            });
             lastPreviousClicked = Clock.TimeInfo.Current;
         }
 
@@ -111,12 +114,16 @@ namespace maisim.Game.Graphics.UserInterface.Overlays
         protected override void Update()
         {
             base.Update();
-            if (Track.HasCompleted && !Track.Looping)
+
+            Scheduler.AddOnce(() =>
             {
-                // Dispose the track to ensure that the track's state has been reset.
-                Track.Dispose();
-                workingBeatmap.GoToNextBeatmapSet();
-            }
+                if (Track.HasCompleted && !Track.Looping)
+                {
+                    // Dispose the track to ensure that the track's state has been reset.
+                    Track.Dispose();
+                    workingBeatmap.GoToNextBeatmapSet();
+                }
+            });
         }
 
         /// <summary>
@@ -125,10 +132,13 @@ namespace maisim.Game.Graphics.UserInterface.Overlays
         /// <param name="beatmapSet">The new <see cref="BeatmapSet"/> track</param>
         private void changeTrack(BeatmapSet beatmapSet)
         {
-            Track.Dispose();
-            Track = trackStore.Get(workingBeatmap.CurrentBeatmapSet.Value.AudioFileName);
-            Logger.Log("Changed track to " + beatmapSet.AudioFileName);
-            Track.Start();
+            Scheduler.Add(() =>
+            {
+                Track.Dispose();
+                Track = trackStore.Get(workingBeatmap.CurrentBeatmapSet.Value.AudioFileName);
+                Logger.Log("Changed track to " + beatmapSet.AudioFileName);
+                Track.Start();
+            });
         }
 
         /// <summary>
@@ -137,7 +147,7 @@ namespace maisim.Game.Graphics.UserInterface.Overlays
         /// <param name="position">The specified time</param>
         public void SeekTo(double position)
         {
-            Track.Seek(position);
+            Scheduler.Add(() => Track.Seek(position));
         }
     }
 }
