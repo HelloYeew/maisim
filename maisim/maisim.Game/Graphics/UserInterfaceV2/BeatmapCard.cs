@@ -23,10 +23,6 @@ namespace maisim.Game.Graphics.UserInterfaceV2
 
         private Bindable<BeatmapSet> bindableBeatmapSet;
 
-        private DifficultyLevel difficultyLevel;
-
-        private BeatmapSet beatmapSet;
-
         private void difficultyLevelChanged(ValueChangedEvent<DifficultyLevel> difficultyLevelEvent) =>
             updateDifficultyLevel(difficultyLevelEvent.NewValue);
 

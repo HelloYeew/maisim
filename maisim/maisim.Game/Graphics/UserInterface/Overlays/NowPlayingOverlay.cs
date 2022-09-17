@@ -29,8 +29,6 @@ namespace maisim.Game.Graphics.UserInterface.Overlays
         public const float PLAYER_HEIGHT = 200;
         public const float TRANSITION_LENGTH = 600;
 
-        private Drawable background;
-
         private IconButton prevButton;
         private IconButton playButton;
         private IconButton nextButton;
