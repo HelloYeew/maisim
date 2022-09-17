@@ -70,16 +70,23 @@ namespace maisim.Game.Graphics.UserInterface.Overlays
             }
         }
 
+        /// <summary>
+        /// Go to next track.
+        /// </summary>
         public void ToggleNext()
         {
             workingBeatmap.GoToNextBeatmapSet();
         }
 
+        /// <summary>
+        /// <para>Go to previous track.</para>
+        ///
+        /// <para>There are three factor to go previous track</para>
+        /// <para>1. The track's time is not reach the FORCE_PREVIOUS_TRACK_TIME</para>
+        /// <para>2. The track's time is reach the FORCE_PREVIOUS_TRACK_TIME and the current time - last button click time has not reach the RESTART_TIME</para>
+        /// </summary>
         public void TogglePrevious()
         {
-            // There are three factor to go previous track
-            // 1. The track's time is not reach the FORCE_PREVIOUS_TRACK_TIME
-            // 2. The track's time is reach the FORCE_PREVIOUS_TRACK_TIME and the current time - last button click time has not reach the RESTART_TIME
             if (Track.CurrentTime < FORCE_PREVIOUS_TRACK_TIME || (Track.CurrentTime >= FORCE_PREVIOUS_TRACK_TIME &&
                                                                   Clock.TimeInfo.Current - lastPreviousClicked <= RESTART_TIME))
             {
@@ -93,6 +100,9 @@ namespace maisim.Game.Graphics.UserInterface.Overlays
             lastPreviousClicked = Clock.TimeInfo.Current;
         }
 
+        /// <summary>
+        /// Toggle the <see cref="Track"/> looping.
+        /// </summary>
         public void ToggleLoop()
         {
             Track.Looping = !Track.Looping;
