@@ -51,16 +51,18 @@ namespace maisim.Game.Graphics.UserInterface.Overlays
         /// </summary>
         public void GoToNextBeatmapSet()
         {
-            Logger.Log("Go to next beatmapset", LoggingTarget.Runtime, LogLevel.Debug);
-            // We determine the next beatmapset by the current beatmapset's database id
-            int nextBeatmapSetId = CurrentBeatmapSet.Value.DatabaseID + 1;
-            if (nextBeatmapSetId > beatmapSetList.Count)
-                nextBeatmapSetId = 1;
-            // Set the next beatmapset to the current beatmapset
-            // Get the beatmap set from the list by the database id
-            Logger.Log($"Next beatmapset id: {nextBeatmapSetId}", LoggingTarget.Runtime, LogLevel.Debug);
-            CurrentBeatmapSet.Value = beatmapSetList.Find(beatmapSet => beatmapSet.DatabaseID == nextBeatmapSetId);
-            Logger.Log($"Current beatmapset id: {CurrentBeatmapSet.Value.DatabaseID}", LoggingTarget.Runtime, LogLevel.Debug);
+            Scheduler.Add(() =>
+            {
+                Logger.Log("Go to next beatmapset", LoggingTarget.Runtime, LogLevel.Debug);
+                // We determine the next beatmapset by the current beatmapset's database id
+                int nextBeatmapSetId = CurrentBeatmapSet.Value.DatabaseID + 1;
+                if (nextBeatmapSetId > beatmapSetList.Count)
+                    nextBeatmapSetId = 1;
+                // Set the next beatmapset to the current beatmapset
+                // Get the beatmap set from the list by the database id
+                CurrentBeatmapSet.Value = beatmapSetList.Find(beatmapSet => beatmapSet.DatabaseID == nextBeatmapSetId);
+                Logger.Log($"Current beatmapset id: {CurrentBeatmapSet.Value.DatabaseID}");
+            });
         }
 
         /// <summary>
@@ -68,10 +70,14 @@ namespace maisim.Game.Graphics.UserInterface.Overlays
         /// </summary>
         public void GoToPreviousBeatmapSet()
         {
-            int previousBeatmapSetId = CurrentBeatmapSet.Value.DatabaseID - 1;
-            if (previousBeatmapSetId < 1)
-                previousBeatmapSetId = beatmapSetList.Count;
-            CurrentBeatmapSet.Value = beatmapSetList.Find(beatmapSet => beatmapSet.DatabaseID == previousBeatmapSetId);
+            Scheduler.Add(() =>
+            {
+                int previousBeatmapSetId = CurrentBeatmapSet.Value.DatabaseID - 1;
+                if (previousBeatmapSetId < 1)
+                    previousBeatmapSetId = beatmapSetList.Count;
+                CurrentBeatmapSet.Value =
+                    beatmapSetList.Find(beatmapSet => beatmapSet.DatabaseID == previousBeatmapSetId);
+            });
         }
 
         /// <summary>

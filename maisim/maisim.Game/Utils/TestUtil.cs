@@ -21,16 +21,15 @@ namespace maisim.Game.Utils
         public enum AvailableTrackMetadata
         {
             None = -1,
-            DiamondCityLights = 0,
+            Canon = 0,
             RayTuning = 1,
             OnlyMyRailgun = 2,
-            RaiseMySword = 3,
-            Rough = 4,
-            SukinoSkill = 5,
-            TenkaiENoKippu = 6,
-            ReI = 7,
-            KyouranHeykids = 8,
-            NewGenesis = 9
+            Rough = 3,
+            SukinoSkill = 4,
+            TenkaiENoKippu = 5,
+            ReI = 6,
+            NewGenesis = 7,
+            EndlessTewiMaPark = 8
         }
 
         /// <summary>
@@ -38,14 +37,13 @@ namespace maisim.Game.Utils
         /// </summary>
         public static readonly AvailableTrackMetadata[] AvailableBeatmapSetTrack =
         {
-            AvailableTrackMetadata.DiamondCityLights,
-            AvailableTrackMetadata.RaiseMySword,
+            AvailableTrackMetadata.Canon,
             AvailableTrackMetadata.OnlyMyRailgun,
             AvailableTrackMetadata.SukinoSkill,
             AvailableTrackMetadata.TenkaiENoKippu,
             AvailableTrackMetadata.ReI,
-            AvailableTrackMetadata.KyouranHeykids,
-            AvailableTrackMetadata.NewGenesis
+            AvailableTrackMetadata.NewGenesis,
+            AvailableTrackMetadata.EndlessTewiMaPark
         };
 
         /// <summary>
@@ -54,11 +52,12 @@ namespace maisim.Game.Utils
         public static readonly TrackMetadata[] FULL_TRACK_METADATA_LIST = {
             new TrackMetadata
             {
-                Title = "Diamond City Lights",
-                Artist = "LazuLight",
-                Bpm = 185,
-                CoverPath = "Test/diamond-city-lights.jpg",
-                Source = "Nijisanji"
+                Title = "Canon",
+                TitleUnicode = "カノン",
+                Artist = "DJ Okawari",
+                Bpm = 98,
+                CoverPath = "Test/cohana2nd.jpg",
+                Source = "心花 ～cohana 2nd～ Healing Break Beats oriental classics"
             },
             new TrackMetadata
             {
@@ -75,14 +74,6 @@ namespace maisim.Game.Utils
                 Bpm = 143,
                 CoverPath = "Test/only-my-railgun.jpg",
                 Source = "A Certain Scientific Railgun"
-            },
-            new TrackMetadata
-            {
-                Title = "RAISE MY SWORD",
-                Artist = "GALNERYUS",
-                Bpm = 220,
-                CoverPath = "Test/raise-my-sword.jpg",
-                Source = "UNDER THE FORCE OF COURAGE"
             },new TrackMetadata
             {
                 Title = "시간을 달려서 (ROUGH)",
@@ -113,20 +104,20 @@ namespace maisim.Game.Utils
                 Source = "ReI"
             },new TrackMetadata
             {
-                Title = "Kyouran Hey Kids!!",
-                TitleUnicode = "狂乱 Hey Kids!!",
-                Artist = "THE ORAL CIGARETTES",
-                Bpm = 142,
-                CoverPath = "Test/fixion.jpg",
-                Source = "Fixion"
-            },new TrackMetadata
-            {
                 Title = "New Genesis",
                 TitleUnicode = "新時代",
                 Artist = "Ado",
                 Bpm = 140,
                 CoverPath = "Test/ado-one-piece-film-red.jpg",
                 Source = "ONE PIECE FILM RED"
+            },new TrackMetadata
+            {
+                Title = "Endless Tewi-me Park",
+                TitleUnicode = "エンドレス・てゐまパーク",
+                Artist = "Toromi",
+                Bpm = 140,
+                CoverPath = "Test/touhou-merenge-shoujo-yakou.jpg",
+                Source = "東方花映塚　～ Phantasmagoria of Flower View"
             }
         };
         /// <summary>
@@ -217,22 +208,20 @@ namespace maisim.Game.Utils
         {
             switch (availableTrackMetadata)
             {
-                case AvailableTrackMetadata.DiamondCityLights:
-                    return "Test/diamond-city-lights.mp3";
+                case AvailableTrackMetadata.Canon:
+                    return "Test/canon.m4a";
                 case AvailableTrackMetadata.OnlyMyRailgun:
                     return "Test/only-my-railgun.m4a";
-                case AvailableTrackMetadata.RaiseMySword:
-                    return "Test/raise-my-sword.mp3";
                 case AvailableTrackMetadata.SukinoSkill:
                     return "Test/sukino-skill.mp3";
                 case AvailableTrackMetadata.TenkaiENoKippu:
                     return "Test/tenkai-e-no-kippu.mp3";
                 case AvailableTrackMetadata.ReI:
                     return "Test/rei.mp3";
-                case AvailableTrackMetadata.KyouranHeykids:
-                    return "Test/kyouran-hey-kids.mp3";
                 case AvailableTrackMetadata.NewGenesis:
                     return "Test/new-genesis.mp3";
+                case AvailableTrackMetadata.EndlessTewiMaPark:
+                    return "Test/endless-tewi-ma-park.mp3";
                 default:
                     return "";
             }
@@ -247,22 +236,20 @@ namespace maisim.Game.Utils
         {
             switch (availableTrackMetadata)
             {
-                case AvailableTrackMetadata.DiamondCityLights:
-                    return 57500;
+                case AvailableTrackMetadata.Canon:
+                    return 97900;
                 case AvailableTrackMetadata.OnlyMyRailgun:
                     return 62000;
-                case AvailableTrackMetadata.RaiseMySword:
-                    return 96500;
                 case AvailableTrackMetadata.SukinoSkill:
                     return 55000;
                 case AvailableTrackMetadata.TenkaiENoKippu:
                     return 88900;
                 case AvailableTrackMetadata.ReI:
                     return 76000;
-                case AvailableTrackMetadata.KyouranHeykids:
-                    return 46000;
                 case AvailableTrackMetadata.NewGenesis:
-                    return 87500;
+                    return 88200;
+                case AvailableTrackMetadata.EndlessTewiMaPark:
+                    return 38000;
                 default:
                     return 0;
             }

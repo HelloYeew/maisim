@@ -8,7 +8,6 @@ using osuTK;
 
 namespace maisim.Game.Tests.Visual.Component
 {
-
     public class TestSceneTrackCardFocusedManyStyle : GridTestScene
     {
         public TestSceneTrackCardFocusedManyStyle() : base(2, 3)
@@ -70,7 +69,7 @@ namespace maisim.Game.Tests.Visual.Component
                 }
             };
 
-            TrackTestFixture masterMockFixture = new TrackTestFixture(TestUtil.AvailableTrackMetadata.RaiseMySword);
+            TrackTestFixture masterMockFixture = new TrackTestFixture(TestUtil.AvailableTrackMetadata.NewGenesis);
             masterMockFixture.Beatmap.DifficultyLevel = DifficultyLevel.Master;
 
             Cell(1, 0).Children = new Drawable[]
