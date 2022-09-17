@@ -3,6 +3,7 @@ using osu.Framework.Allocation;
 using osu.Framework.Audio;
 using osu.Framework.Audio.Track;
 using osu.Framework.Bindables;
+using osu.Framework.Extensions;
 using osu.Framework.Graphics.Containers;
 using osu.Framework.Logging;
 
@@ -115,15 +116,10 @@ namespace maisim.Game.Graphics.UserInterface.Overlays
         {
             base.Update();
 
-            Scheduler.AddOnce(() =>
+            if (Track.HasCompleted && !Track.Looping)
             {
-                if (Track.HasCompleted && !Track.Looping)
-                {
-                    // Dispose the track to ensure that the track's state has been reset.
-                    Track.Dispose();
-                    workingBeatmap.GoToNextBeatmapSet();
-                }
-            });
+                workingBeatmap.GoToNextBeatmapSet();
+            }
         }
 
         /// <summary>
@@ -132,9 +128,10 @@ namespace maisim.Game.Graphics.UserInterface.Overlays
         /// <param name="beatmapSet">The new <see cref="BeatmapSet"/> track</param>
         private void changeTrack(BeatmapSet beatmapSet)
         {
+            Track.StopAsync().WaitSafely();
+            Track.Dispose();
             Scheduler.Add(() =>
             {
-                Track.Dispose();
                 Track = trackStore.Get(workingBeatmap.CurrentBeatmapSet.Value.AudioFileName);
                 Logger.Log("Changed track to " + beatmapSet.AudioFileName);
                 Track.Start();
