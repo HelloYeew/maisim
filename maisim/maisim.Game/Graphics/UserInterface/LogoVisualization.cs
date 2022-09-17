@@ -17,6 +17,9 @@ using osuTK.Graphics;
 
 namespace maisim.Game.Graphics.UserInterface
 {
+    /// <summary>
+    /// The logo visualised as a waveform around the <see cref="MaisimLogo"/>
+    /// </summary>
     public class LogoVisualization : Drawable
     {
         /// <summary>
@@ -73,11 +76,18 @@ namespace maisim.Game.Graphics.UserInterface
 
         private readonly List<IHasAmplitudes> amplitudeSources = new List<IHasAmplitudes>();
 
+        /// <summary>
+        /// Add a new amplitude source to this visualiser.
+        /// </summary>
+        /// <param name="amplitudeSource">The amplitude source (i.e. a <see cref="Track"/>).</param>
         public void AddAmplitudeSource(IHasAmplitudes amplitudeSource)
         {
             amplitudeSources.Add(amplitudeSource);
         }
 
+        /// <summary>
+        /// Clear the source of amplitude data.
+        /// </summary>
         public void ClearAmplitudeSources()
         {
             amplitudeSources.Clear();
