@@ -32,11 +32,6 @@ namespace maisim.Game.Tests.Visual.Screen
             {
                 RelativeSizeAxes = Axes.Both
             });
-        }
-
-        [Test]
-        public void TestChangeTrack()
-        {
             AddStep("Change track", () =>
             {
                 beatmapSetTestFixture = new BeatmapSetTestFixture();
