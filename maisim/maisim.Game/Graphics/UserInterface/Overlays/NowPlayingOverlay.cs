@@ -213,6 +213,7 @@ namespace maisim.Game.Graphics.UserInterface.Overlays
         {
             base.Update();
             updateCurrentTime();
+            updateTotalTime();
             progressBar.EndTime = musicPlayer.Track.Length;
             progressBar.CurrentTime = musicPlayer.Track.CurrentTime;
             playButton.Icon = musicPlayer.Track.IsRunning ? FontAwesome.Solid.Pause : FontAwesome.Solid.Play;
