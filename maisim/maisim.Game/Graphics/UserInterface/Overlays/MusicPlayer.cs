@@ -15,12 +15,22 @@ namespace maisim.Game.Graphics.UserInterface.Overlays
     {
         public Track Track { get; set; }
         private ITrackStore trackStore;
-        public readonly bool startOnLoaded;
+        private readonly bool startOnLoaded;
 
         /// <summary>
         /// The time of the track that if the go previous button is pressed, the track will just restart.
         /// </summary>
-        public const double RESTART_TIME = 5000;
+        private const double restart_time = 5000;
+
+        /// <summary>
+        /// The last time that the previous button has clicked
+        /// </summary>
+        private double lastPreviousClicked = 0;
+
+        /// <summary>
+        /// If the track's time is not reach this time, if the go previous button toggled the track will force reversed to previous track.
+        /// </summary>
+        private const double force_previous_track_time = 5000;
 
         [Resolved]
         private WorkingBeatmap workingBeatmap { get; set; }
@@ -60,19 +70,39 @@ namespace maisim.Game.Graphics.UserInterface.Overlays
             }
         }
 
+        /// <summary>
+        /// Go to next track.
+        /// </summary>
         public void ToggleNext()
         {
             workingBeatmap.GoToNextBeatmapSet();
         }
 
+        /// <summary>
+        /// <para>Go to previous track.</para>
+        ///
+        /// <para>There are three factor to go previous track</para>
+        /// <para>1. The track's time is not reach the FORCE_PREVIOUS_TRACK_TIME</para>
+        /// <para>2. The track's time is reach the FORCE_PREVIOUS_TRACK_TIME and the current time - last button click time has not reach the RESTART_TIME</para>
+        /// </summary>
         public void TogglePrevious()
         {
-            if (Track.CurrentTime < RESTART_TIME)
-                Track.Restart();
-            else
+            if (Track.CurrentTime < force_previous_track_time || (Track.CurrentTime >= force_previous_track_time &&
+                                                                  Clock.TimeInfo.Current - lastPreviousClicked <= restart_time))
+            {
                 workingBeatmap.GoToPreviousBeatmapSet();
+            }
+            else
+            {
+                Track.Restart();
+            }
+
+            lastPreviousClicked = Clock.TimeInfo.Current;
         }
 
+        /// <summary>
+        /// Toggle the <see cref="Track"/> looping.
+        /// </summary>
         public void ToggleLoop()
         {
             Track.Looping = !Track.Looping;

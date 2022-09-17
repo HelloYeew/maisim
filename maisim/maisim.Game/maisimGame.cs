@@ -26,8 +26,6 @@ namespace maisim.Game
 
         private SettingsOverlay Settings;
 
-        private NowPlayingOverlay NowPlaying;
-
         private MusicPlayer musicPlayer;
 
         private WorkingBeatmap workingBeatmap;
@@ -37,8 +35,6 @@ namespace maisim.Game
         private Container rightFloatingOverlayContent;
 
         private Container leftFloatingOverlayContent;
-
-        private Container nowPlayingOverlayContent;
 
         private float toolbarOffset => (toolbar?.Position.Y ?? 0) + (toolbar?.DrawHeight ?? 0);
 
