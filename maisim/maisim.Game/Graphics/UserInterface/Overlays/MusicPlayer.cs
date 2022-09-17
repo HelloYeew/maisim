@@ -22,6 +22,16 @@ namespace maisim.Game.Graphics.UserInterface.Overlays
         /// </summary>
         public const double RESTART_TIME = 5000;
 
+        /// <summary>
+        /// The last time that the previous button has clicked
+        /// </summary>
+        private double lastPreviousClicked = 0;
+
+        /// <summary>
+        /// If the track's time is not reach this time, if the go previous button toggled the track will force reversed to previous track.
+        /// </summary>
+        private const double FORCE_PREVIOUS_TRACK_TIME = 5000;
+
         [Resolved]
         private WorkingBeatmap workingBeatmap { get; set; }
 
@@ -67,10 +77,20 @@ namespace maisim.Game.Graphics.UserInterface.Overlays
 
         public void TogglePrevious()
         {
-            if (Track.CurrentTime < RESTART_TIME)
-                Track.Restart();
-            else
+            // There are three factor to go previous track
+            // 1. The track's time is not reach the FORCE_PREVIOUS_TRACK_TIME
+            // 2. The track's time is reach the FORCE_PREVIOUS_TRACK_TIME and the current time - last button click time has not reach the RESTART_TIME
+            if (Track.CurrentTime < FORCE_PREVIOUS_TRACK_TIME || (Track.CurrentTime >= FORCE_PREVIOUS_TRACK_TIME &&
+                                                                  Clock.TimeInfo.Current - lastPreviousClicked <= RESTART_TIME))
+            {
                 workingBeatmap.GoToPreviousBeatmapSet();
+            }
+            else
+            {
+                Track.Restart();
+            }
+
+            lastPreviousClicked = Clock.TimeInfo.Current;
         }
 
         public void ToggleLoop()
