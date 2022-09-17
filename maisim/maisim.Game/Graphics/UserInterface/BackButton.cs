@@ -1,5 +1,6 @@
 using maisim.Game.Graphics;
 using osu.Framework.Allocation;
+using osu.Framework.Audio;
 using osu.Framework.Audio.Sample;
 using osu.Framework.Extensions.Color4Extensions;
 using osu.Framework.Graphics;
@@ -23,7 +24,7 @@ namespace maisim.Game.Component
         private Container scaleContainer;
 
         [BackgroundDependencyLoader]
-        private void load(ISampleStore sampleStore)
+        private void load(AudioManager audioManager)
         {
             Anchor = Anchor.BottomLeft;
             Origin = Anchor.BottomLeft;
@@ -64,8 +65,8 @@ namespace maisim.Game.Component
                 }
             };
 
-            drawableHoverSample = new DrawableSample(sampleStore.Get("hover.wav"));
-            drawableClickSample = new DrawableSample(sampleStore.Get("click2.wav"));
+            drawableHoverSample = new DrawableSample(audioManager.Samples.Get("hover.wav"));
+            drawableClickSample = new DrawableSample(audioManager.Samples.Get("click2.wav"));
         }
 
         protected override bool OnHover(HoverEvent e)

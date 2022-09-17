@@ -1,4 +1,5 @@
 ﻿using osu.Framework.Allocation;
+using osu.Framework.Audio;
 using osu.Framework.Audio.Sample;
 using osu.Framework.Graphics;
 using osu.Framework.Input.Events;
@@ -17,10 +18,10 @@ namespace maisim.Game.Graphics.UserInterface
         }
 
         [BackgroundDependencyLoader]
-        private void load(ISampleStore sampleStore)
+        private void load(AudioManager audioManager)
         {
-            hoverSample = sampleStore.Get("hover.wav");
-            clickSample = sampleStore.Get("click.wav");
+            hoverSample = audioManager.Samples.Get("hover.wav");
+            clickSample = audioManager.Samples.Get("click.wav");
         }
 
         protected override bool OnHover(HoverEvent e)
