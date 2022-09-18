@@ -1,4 +1,6 @@
+using System.Collections.Generic;
 using maisim.Game.Beatmaps;
+using maisim.Game.Utils;
 using osu.Framework.Allocation;
 using osu.Framework.Bindables;
 using osu.Framework.Graphics;
@@ -54,12 +56,7 @@ namespace maisim.Game.Graphics.UserInterfaceV2
                         Alpha = 0.5f,
                     }
                 },
-                new BeatmapSetCard(bindableBeatmapSet.Value)
-                {
-                    Anchor = Anchor.Centre,
-                    Origin = Anchor.Centre,
-                    Scale = new Vector2(0.6f, 0.6f),
-                }
+                new BeatmapScrollSelection(bindableBeatmapSet)
             };
         }
     }

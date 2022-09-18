@@ -90,6 +90,19 @@ namespace maisim.Game.Utils
         };
 
         /// <summary>
+        /// The list of the <see cref="TrackMetadata"/> that has the track inside game's resources.
+        /// </summary>
+        public static readonly AvailableTrackMetadata[] AVAILABLE_BEATMAP_SET_TRACK =
+        {
+            AvailableTrackMetadata.DiamondCityLights,
+            AvailableTrackMetadata.OnlyMyRailgun,
+            AvailableTrackMetadata.RaiseMySword,
+            AvailableTrackMetadata.SukinoSkill,
+            AvailableTrackMetadata.TenkaiENoKippu,
+            AvailableTrackMetadata.ReI,
+        };
+
+        /// <summary>
         /// List of random name that can be use for testing.
         /// </summary>
         public static readonly string[] RANDOM_NAME_LIST = {

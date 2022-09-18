@@ -19,14 +19,14 @@ namespace maisim.Game.Graphics.UserInterfaceV2
     /// </summary>
     public class BeatmapSetCard : CompositeDrawable
     {
-        private readonly BeatmapSet beatmapSet;
+        public readonly BeatmapSet BeatmapSet;
 
         public const float CARD_WIDTH = 645;
         public const float CARD_HEIGHT = 127;
 
         public BeatmapSetCard(BeatmapSet beatmapSet)
         {
-            this.beatmapSet = beatmapSet;
+            this.BeatmapSet = beatmapSet;
         }
 
         [BackgroundDependencyLoader]
@@ -79,7 +79,7 @@ namespace maisim.Game.Graphics.UserInterfaceV2
                                             Origin = Anchor.Centre,
                                             Size = new Vector2(98, 98),
                                             FillMode = FillMode.Fill,
-                                            Texture = textureStore.Get(beatmapSet.TrackMetadata.CoverPath)
+                                            Texture = textureStore.Get(BeatmapSet.TrackMetadata.CoverPath)
                                         }
                                     }
                                 },
@@ -119,7 +119,7 @@ namespace maisim.Game.Graphics.UserInterfaceV2
                                             {
                                                 Anchor = Anchor.Centre,
                                                 Origin = Anchor.Centre,
-                                                Text = beatmapSet.TrackMetadata.Title,
+                                                Text = BeatmapSet.TrackMetadata.Title,
                                                 Colour = Color4.White
                                             }
                                         },
@@ -134,7 +134,7 @@ namespace maisim.Game.Graphics.UserInterfaceV2
                                             {
                                                 Anchor = Anchor.Centre,
                                                 Origin = Anchor.Centre,
-                                                Text = beatmapSet.TrackMetadata.Artist,
+                                                Text = BeatmapSet.TrackMetadata.Artist,
                                                 Colour = Color4Extensions.FromHex("#b8b8b8")
                                             }
                                         }
@@ -173,7 +173,7 @@ namespace maisim.Game.Graphics.UserInterfaceV2
                                                     {
                                                         Anchor = Anchor.Centre,
                                                         Origin = Anchor.Centre,
-                                                        Text = BeatmapUtils.GetDifficultyRatingRange(beatmapSet).Item1.ToString(CultureInfo.CurrentCulture) + " - " + BeatmapUtils.GetDifficultyRatingRange(beatmapSet).Item2.ToString(CultureInfo.CurrentCulture),
+                                                        Text = BeatmapUtils.GetDifficultyRatingRange(BeatmapSet).Item1.ToString(CultureInfo.CurrentCulture) + " - " + BeatmapUtils.GetDifficultyRatingRange(BeatmapSet).Item2.ToString(CultureInfo.CurrentCulture),
                                                         Colour = Color4.Black,
                                                     }
                                                 }
