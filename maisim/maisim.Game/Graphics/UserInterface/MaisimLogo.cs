@@ -5,8 +5,6 @@ using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
 using osu.Framework.Graphics.Shapes;
 using maisim.Game.Graphics.Gameplay;
-using maisim.Game.Graphics.UserInterface.Overlays;
-using osu.Framework.Audio;
 using osu.Framework.Graphics.Sprites;
 using osu.Framework.Graphics.Textures;
 using osuTK;
@@ -23,9 +21,6 @@ namespace maisim.Game.Graphics.UserInterface
         private Container amplitudeContainer;
         private Container logoBeatContainer;
         public LogoVisualization Visualizer;
-
-        [Resolved]
-        private MusicPlayer musicPlayer { get; set; }
 
         [BackgroundDependencyLoader]
         private void load(TextureStore textureStore)
