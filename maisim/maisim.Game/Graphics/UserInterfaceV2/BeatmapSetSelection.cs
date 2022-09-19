@@ -1,11 +1,14 @@
 using System.Collections.Generic;
+using System.Globalization;
 using maisim.Game.Beatmaps;
 using maisim.Game.Utils;
+using Microsoft.Extensions.Logging;
 using osu.Framework.Allocation;
 using osu.Framework.Bindables;
 using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
 using osu.Framework.Graphics.Shapes;
+using osu.Framework.Logging;
 using osuTK;
 
 namespace maisim.Game.Graphics.UserInterfaceV2
@@ -38,23 +41,6 @@ namespace maisim.Game.Graphics.UserInterfaceV2
                     RelativeSizeAxes = Axes.Both,
                     Colour = MaisimColour.SongSelectionContainerColor,
                     Alpha = 0.5f
-                },
-                new Container()
-                {
-                    Anchor = Anchor.Centre,
-                    Origin = Anchor.Centre,
-                    RelativeSizeAxes = Axes.X,
-                    Size = new Vector2(1, 90),
-                    CornerRadius = 10,
-                    Masking = true,
-                    BorderColour = MaisimColour.SongSelectionContainerBorderColor,
-                    BorderThickness = 3,
-                    Child = new Box()
-                    {
-                        RelativeSizeAxes = Axes.Both,
-                        Colour = MaisimColour.SongSelectionContainerBorderColor,
-                        Alpha = 0.5f,
-                    }
                 },
                 new BeatmapScrollSelection(bindableBeatmapSet)
             };
