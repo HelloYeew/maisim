@@ -1,6 +1,7 @@
 using maisim.Game.Beatmaps;
 using maisim.Game.Graphics.Sprites;
 using osu.Framework.Allocation;
+using osu.Framework.Audio.Track;
 using osu.Framework.Bindables;
 using osu.Framework.Extensions.Color4Extensions;
 using osu.Framework.Graphics;
@@ -42,6 +43,7 @@ namespace maisim.Game.Graphics.UserInterface.Overlays
         protected Container MainContainer;
 
         private void workingBeatmapChanged(ValueChangedEvent<BeatmapSet> beatmapSetEvent) => changeTrack(beatmapSetEvent.NewValue);
+        private void trackChanged(ValueChangedEvent<Track> trackEvent) => changeTrack(workingBeatmap.CurrentBeatmapSet.Value);
 
         public NowPlayingOverlay()
         {
@@ -206,6 +208,7 @@ namespace maisim.Game.Graphics.UserInterface.Overlays
             };
 
             workingBeatmap.CurrentBeatmapSet.BindValueChanged(workingBeatmapChanged);
+            musicPlayer.Track.BindValueChanged(trackChanged);
             updateTotalTime();
         }
 
@@ -214,9 +217,9 @@ namespace maisim.Game.Graphics.UserInterface.Overlays
             base.Update();
             updateCurrentTime();
             updateTotalTime();
-            progressBar.EndTime = musicPlayer.Track.Length;
-            progressBar.CurrentTime = musicPlayer.Track.CurrentTime;
-            playButton.Icon = musicPlayer.Track.IsRunning ? FontAwesome.Solid.Pause : FontAwesome.Solid.Play;
+            progressBar.EndTime = musicPlayer.Track.Value.Length;
+            progressBar.CurrentTime = musicPlayer.Track.Value.CurrentTime;
+            playButton.Icon = musicPlayer.Track.Value.IsRunning ? FontAwesome.Solid.Pause : FontAwesome.Solid.Play;
         }
 
         protected override void PopIn()
@@ -245,7 +248,7 @@ namespace maisim.Game.Graphics.UserInterface.Overlays
         /// </summary>
         private void updateCurrentTime()
         {
-            double time = musicPlayer.Track.CurrentTime;
+            double time = musicPlayer.Track.Value.CurrentTime;
             int minutes = (int) time / 1000 / 60;
             int seconds = (int) time / 1000 % 60;
             currentTime.Text = minutes.ToString("00") + ":" + seconds.ToString("00");
@@ -256,7 +259,7 @@ namespace maisim.Game.Graphics.UserInterface.Overlays
         /// </summary>
         private void updateTotalTime()
         {
-            double length = musicPlayer.Track.Length;
+            double length = musicPlayer.Track.Value.Length;
             int minutes = (int) length / 1000 / 60;
             int seconds = (int) length / 1000 % 60;
             totalTime.Text = minutes.ToString("00") + ":" + seconds.ToString("00");

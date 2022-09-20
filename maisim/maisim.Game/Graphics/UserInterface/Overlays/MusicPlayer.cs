@@ -1,3 +1,4 @@
+using System;
 using maisim.Game.Beatmaps;
 using osu.Framework.Allocation;
 using osu.Framework.Audio;
@@ -14,7 +15,8 @@ namespace maisim.Game.Graphics.UserInterface.Overlays
     /// </summary>
     public class MusicPlayer : CompositeDrawable
     {
-        public Track Track { get; set; }
+        public Bindable<Track> Track;
+        private string trackName;
         private ITrackStore trackStore;
         private readonly bool startOnLoaded;
 
@@ -36,6 +38,9 @@ namespace maisim.Game.Graphics.UserInterface.Overlays
         [Resolved]
         private WorkingBeatmap workingBeatmap { get; set; }
 
+        [Resolved]
+        private AudioManager audioManager { get; set; }
+
         private void workingBeatmapChanged(ValueChangedEvent<BeatmapSet> beatmapSetEvent) => changeTrack(beatmapSetEvent.NewValue);
 
         public MusicPlayer(bool startOnLoaded = false)
@@ -47,11 +52,12 @@ namespace maisim.Game.Graphics.UserInterface.Overlays
         private void load(AudioManager audioManager)
         {
             trackStore = audioManager.Tracks;
-            Track = trackStore.Get(workingBeatmap.CurrentBeatmapSet.Value.AudioFileName);
+            Track = new Bindable<Track>(trackStore.Get(workingBeatmap.CurrentBeatmapSet.Value.AudioFileName));
+            trackName = workingBeatmap.CurrentBeatmapSet.Value.AudioFileName;
             workingBeatmap.CurrentBeatmapSet.BindValueChanged(workingBeatmapChanged);
             Logger.Log("Initialized MusicPlayer with " + workingBeatmap.CurrentBeatmapSet.Value.AudioFileName);
             if (startOnLoaded)
-                Track.Start();
+                Track.Value.Start();
         }
 
         /// <summary>
@@ -59,14 +65,14 @@ namespace maisim.Game.Graphics.UserInterface.Overlays
         /// </summary>
         public void TogglePause()
         {
-            if (Track.IsRunning)
+            if (Track.Value.IsRunning)
             {
-                Track.Stop();
+                Track.Value.Stop();
                 Logger.Log("Track has been paused");
             }
             else
             {
-                Track.Start();
+                Track.Value.Start();
                 Logger.Log("Track has been played");
             }
         }
@@ -90,15 +96,15 @@ namespace maisim.Game.Graphics.UserInterface.Overlays
         {
             Scheduler.Add(() =>
             {
-                if (Track.CurrentTime < force_previous_track_time || (Track.CurrentTime >= force_previous_track_time &&
-                                                                      Clock.TimeInfo.Current - lastPreviousClicked <=
-                                                                      restart_time))
+                if (Track.Value.CurrentTime < force_previous_track_time || (Track.Value.CurrentTime >= force_previous_track_time &&
+                                                                            Clock.TimeInfo.Current - lastPreviousClicked <=
+                                                                            restart_time))
                 {
                     workingBeatmap.GoToPreviousBeatmapSet();
                 }
                 else
                 {
-                    Track.Restart();
+                    Track.Value.Restart();
                 }
             });
             lastPreviousClicked = Clock.TimeInfo.Current;
@@ -109,16 +115,22 @@ namespace maisim.Game.Graphics.UserInterface.Overlays
         /// </summary>
         public void ToggleLoop()
         {
-            Track.Looping = !Track.Looping;
+            Track.Value.Looping = !Track.Value.Looping;
         }
 
         protected override void Update()
         {
             base.Update();
 
-            if (Track.HasCompleted && !Track.Looping)
+            if (Track.Value.HasCompleted && !Track.Value.Looping)
             {
                 workingBeatmap.GoToNextBeatmapSet();
+            }
+
+            // Check that the track has sync with CurrentBeatmapSet or not
+            if (Track.Value.HasCompleted && !Track.Value.Looping && trackName != workingBeatmap.CurrentBeatmapSet.Value.AudioFileName)
+            {
+                changeTrack(workingBeatmap.CurrentBeatmapSet.Value);
             }
         }
 
@@ -128,13 +140,16 @@ namespace maisim.Game.Graphics.UserInterface.Overlays
         /// <param name="beatmapSet">The new <see cref="BeatmapSet"/> track</param>
         private void changeTrack(BeatmapSet beatmapSet)
         {
-            Track.StopAsync().WaitSafely();
-            Track.Dispose();
+            // Make sure that the track has completely clear before change to new track
+            Track.Value.StopAsync().WaitSafely();
+            audioManager.TrackMixer.Remove(Track.Value);
+            Track.Value.Dispose();
             Scheduler.Add(() =>
             {
-                Track = trackStore.Get(workingBeatmap.CurrentBeatmapSet.Value.AudioFileName);
+                Track.Value = trackStore.Get(workingBeatmap.CurrentBeatmapSet.Value.AudioFileName);
+                trackName = workingBeatmap.CurrentBeatmapSet.Value.AudioFileName;
                 Logger.Log("Changed track to " + beatmapSet.AudioFileName);
-                Track.Start();
+                Track.Value.StartAsync().WaitSafely();
             });
         }
 
@@ -144,7 +159,7 @@ namespace maisim.Game.Graphics.UserInterface.Overlays
         /// <param name="position">The specified time</param>
         public void SeekTo(double position)
         {
-            Scheduler.Add(() => Track.Seek(position));
+            Scheduler.Add(() => Track.Value.Seek(position));
         }
     }
 }
