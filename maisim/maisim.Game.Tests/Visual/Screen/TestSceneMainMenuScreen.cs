@@ -31,7 +31,7 @@ namespace maisim.Game.Tests.Visual.Screen
             Dependencies.CacheAs(workingBeatmap);
             workingBeatmap.CurrentBeatmapSet.Value = beatmapSetTestFixture.BeatmapSet;
             Dependencies.CacheAs(musicPlayer);
-            musicPlayer.Track = audioManager.Tracks.Get(workingBeatmap.CurrentBeatmapSet.Value.AudioFileName);
+            musicPlayer.Track.Value = audioManager.Tracks.Get(workingBeatmap.CurrentBeatmapSet.Value.AudioFileName);
         }
 
         [SetUp]
