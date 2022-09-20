@@ -46,8 +46,8 @@ namespace maisim.Game.Tests.Visual.Screen
             {
                 beatmapSetTestFixture = new BeatmapSetTestFixture();
                 workingBeatmap.CurrentBeatmapSet.Value = beatmapSetTestFixture.BeatmapSet;
-                musicPlayer.Track.Dispose();
-                musicPlayer.Track = audioManager.Tracks.Get(workingBeatmap.CurrentBeatmapSet.Value.AudioFileName);
+                musicPlayer.Track.Value.Dispose();
+                musicPlayer.Track.Value = audioManager.Tracks.Get(workingBeatmap.CurrentBeatmapSet.Value.AudioFileName);
             });
         }
     }
