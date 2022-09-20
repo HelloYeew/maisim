@@ -4,6 +4,8 @@ using maisim.Game.Utils;
 using NUnit.Framework;
 using osu.Framework.Allocation;
 using osu.Framework.Audio;
+using osu.Framework.Audio.Track;
+using osu.Framework.Bindables;
 using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
 using osuTK;
@@ -32,7 +34,7 @@ public class TestSceneNowPlayingOverlay : maisimTestScene
         Dependencies.CacheAs(workingBeatmap);
         workingBeatmap.CurrentBeatmapSet.Value = beatmapSetTestFixture.BeatmapSet;
         Dependencies.CacheAs(musicPlayer);
-        musicPlayer.Track = audioManager.Tracks.Get(workingBeatmap.CurrentBeatmapSet.Value.AudioFileName);
+        musicPlayer.Track = new Bindable<Track>(audioManager.Tracks.Get(workingBeatmap.CurrentBeatmapSet.Value.AudioFileName));
         Dependencies.CacheAs(nowPlayingOverlay);
     }
 
