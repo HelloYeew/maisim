@@ -146,7 +146,7 @@ namespace maisim.Game.Screen
         {
             base.LoadComplete();
 
-            maisimLogo.Visualizer.AddAmplitudeSource(musicPlayer.Track);
+            maisimLogo.Visualizer.AddAmplitudeSource(musicPlayer.Track.Value);
         }
 
         /// <summary>
@@ -167,7 +167,7 @@ namespace maisim.Game.Screen
             }, 5000);
             maisimLogo.Visualizer.ClearAmplitudeSources();
             // The scheduler need for this operation to make the visualizer completely clear.
-            Scheduler.Add(() => maisimLogo.Visualizer.AddAmplitudeSource(musicPlayer.Track));
+            Scheduler.Add(() => maisimLogo.Visualizer.AddAmplitudeSource(musicPlayer.Track.Value));
         }
 
         public override void OnEntering(ScreenTransitionEvent e)
