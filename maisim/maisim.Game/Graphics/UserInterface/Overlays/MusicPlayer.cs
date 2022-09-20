@@ -1,3 +1,4 @@
+using System;
 using maisim.Game.Beatmaps;
 using osu.Framework.Allocation;
 using osu.Framework.Audio;
@@ -15,6 +16,7 @@ namespace maisim.Game.Graphics.UserInterface.Overlays
     public class MusicPlayer : CompositeDrawable
     {
         public Bindable<Track> Track;
+        private string trackName;
         private ITrackStore trackStore;
         private readonly bool startOnLoaded;
 
@@ -36,6 +38,9 @@ namespace maisim.Game.Graphics.UserInterface.Overlays
         [Resolved]
         private WorkingBeatmap workingBeatmap { get; set; }
 
+        [Resolved]
+        private AudioManager audioManager { get; set; }
+
         private void workingBeatmapChanged(ValueChangedEvent<BeatmapSet> beatmapSetEvent) => changeTrack(beatmapSetEvent.NewValue);
 
         public MusicPlayer(bool startOnLoaded = false)
@@ -48,6 +53,7 @@ namespace maisim.Game.Graphics.UserInterface.Overlays
         {
             trackStore = audioManager.Tracks;
             Track = new Bindable<Track>(trackStore.Get(workingBeatmap.CurrentBeatmapSet.Value.AudioFileName));
+            trackName = workingBeatmap.CurrentBeatmapSet.Value.AudioFileName;
             workingBeatmap.CurrentBeatmapSet.BindValueChanged(workingBeatmapChanged);
             Logger.Log("Initialized MusicPlayer with " + workingBeatmap.CurrentBeatmapSet.Value.AudioFileName);
             if (startOnLoaded)
@@ -120,20 +126,28 @@ namespace maisim.Game.Graphics.UserInterface.Overlays
             {
                 workingBeatmap.GoToNextBeatmapSet();
             }
+
+            // Check that the track has sync with CurrentBeatmapSet or not
+            if (Track.Value.HasCompleted && !Track.Value.Looping && trackName != workingBeatmap.CurrentBeatmapSet.Value.AudioFileName)
+            {
+                changeTrack(workingBeatmap.CurrentBeatmapSet.Value);
+            }
         }
 
         /// <summary>
         /// Change the track to the new <see cref="BeatmapSet"/> track.
         /// </summary>
         /// <param name="beatmapSet">The new <see cref="BeatmapSet"/> track</param>
-        internal void changeTrack(BeatmapSet beatmapSet)
+        private void changeTrack(BeatmapSet beatmapSet)
         {
-            Logger.Log("Changed");
+            // Make sure that the track has completely clear before change to new track
             Track.Value.StopAsync().WaitSafely();
+            audioManager.TrackMixer.Remove(Track.Value);
             Track.Value.Dispose();
             Scheduler.Add(() =>
             {
                 Track.Value = trackStore.Get(workingBeatmap.CurrentBeatmapSet.Value.AudioFileName);
+                trackName = workingBeatmap.CurrentBeatmapSet.Value.AudioFileName;
                 Logger.Log("Changed track to " + beatmapSet.AudioFileName);
                 Track.Value.StartAsync().WaitSafely();
             });

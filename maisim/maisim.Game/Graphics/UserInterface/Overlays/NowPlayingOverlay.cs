@@ -1,6 +1,7 @@
 using maisim.Game.Beatmaps;
 using maisim.Game.Graphics.Sprites;
 using osu.Framework.Allocation;
+using osu.Framework.Audio.Track;
 using osu.Framework.Bindables;
 using osu.Framework.Extensions.Color4Extensions;
 using osu.Framework.Graphics;
@@ -42,6 +43,7 @@ namespace maisim.Game.Graphics.UserInterface.Overlays
         protected Container MainContainer;
 
         private void workingBeatmapChanged(ValueChangedEvent<BeatmapSet> beatmapSetEvent) => changeTrack(beatmapSetEvent.NewValue);
+        private void trackChanged(ValueChangedEvent<Track> trackEvent) => changeTrack(workingBeatmap.CurrentBeatmapSet.Value);
 
         public NowPlayingOverlay()
         {
@@ -206,6 +208,7 @@ namespace maisim.Game.Graphics.UserInterface.Overlays
             };
 
             workingBeatmap.CurrentBeatmapSet.BindValueChanged(workingBeatmapChanged);
+            musicPlayer.Track.BindValueChanged(trackChanged);
             updateTotalTime();
         }
 
