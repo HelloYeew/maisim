@@ -82,7 +82,7 @@ namespace maisim.Game.Graphics.UserInterface.Overlays
         /// </summary>
         public void ToggleNext()
         {
-            workingBeatmap.GoToNextBeatmapSet();
+            Scheduler.Add(() => workingBeatmap.GoToNextBeatmapSet());
         }
 
         /// <summary>
@@ -100,11 +100,11 @@ namespace maisim.Game.Graphics.UserInterface.Overlays
                                                                             Clock.TimeInfo.Current - lastPreviousClicked <=
                                                                             restart_time))
                 {
-                    workingBeatmap.GoToPreviousBeatmapSet();
+                    Scheduler.Add(() => workingBeatmap.GoToPreviousBeatmapSet());
                 }
                 else
                 {
-                    Track.Value.Restart();
+                    Scheduler.Add(() => Track.Value.Seek(0));
                 }
             });
             lastPreviousClicked = Clock.TimeInfo.Current;
@@ -142,7 +142,6 @@ namespace maisim.Game.Graphics.UserInterface.Overlays
         {
             // Make sure that the track has completely clear before change to new track
             Track.Value.StopAsync().WaitSafely();
-            audioManager.TrackMixer.Remove(Track.Value);
             Track.Value.Dispose();
             Scheduler.Add(() =>
             {
