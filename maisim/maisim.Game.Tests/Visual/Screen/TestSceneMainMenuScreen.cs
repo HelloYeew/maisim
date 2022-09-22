@@ -4,6 +4,8 @@ using maisim.Game.Utils;
 using NUnit.Framework;
 using osu.Framework.Allocation;
 using osu.Framework.Audio;
+using osu.Framework.Audio.Track;
+using osu.Framework.Bindables;
 using osu.Framework.Graphics;
 using osu.Framework.Screens;
 
@@ -31,7 +33,7 @@ namespace maisim.Game.Tests.Visual.Screen
             Dependencies.CacheAs(workingBeatmap);
             workingBeatmap.CurrentBeatmapSet.Value = beatmapSetTestFixture.BeatmapSet;
             Dependencies.CacheAs(musicPlayer);
-            musicPlayer.Track.Value = audioManager.Tracks.Get(workingBeatmap.CurrentBeatmapSet.Value.AudioFileName);
+            musicPlayer.Track = new Bindable<Track>(audioManager.Tracks.Get(workingBeatmap.CurrentBeatmapSet.Value.AudioFileName));
         }
 
         [SetUp]
@@ -48,6 +50,7 @@ namespace maisim.Game.Tests.Visual.Screen
                 workingBeatmap.CurrentBeatmapSet.Value = beatmapSetTestFixture.BeatmapSet;
                 musicPlayer.Track.Value.Dispose();
                 musicPlayer.Track.Value = audioManager.Tracks.Get(workingBeatmap.CurrentBeatmapSet.Value.AudioFileName);
+                musicPlayer.Track.Value.Start();
             });
         }
     }
