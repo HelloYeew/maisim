@@ -1,4 +1,4 @@
-<img width="500" alt="maisim logo" src="maisim/maisim.Resources/Textures/logo.png">
+<img width="250" alt="maisim logo" src="maisim/maisim.Resources/Textures/logo.png">
 
 # maisim
 
