@@ -8,7 +8,7 @@ Note : project name isn't final (yet?).
 
 ## Project Status
 
-The UI and design of the game are starting get in pieces now. The gameplay style are still not much finalized, but it's getting there.
+The UI and design pieces of the game are slowly getting done. Gameplay design isn't finalized yet, but we're getting there.
 
 There are plans to develop along this a website so the game can be a whole experience by itself.
 
