@@ -80,10 +80,7 @@ namespace maisim.Game.Graphics.UserInterface.Overlays
         /// <summary>
         /// Go to next track.
         /// </summary>
-        public void ToggleNext()
-        {
-            Scheduler.Add(() => workingBeatmap.GoToNextBeatmapSet());
-        }
+        public void ToggleNext() => Scheduler.Add(() => workingBeatmap.GoToNextBeatmapSet());
 
         /// <summary>
         /// <para>Go to previous track.</para>
@@ -113,10 +110,7 @@ namespace maisim.Game.Graphics.UserInterface.Overlays
         /// <summary>
         /// Toggle the <see cref="Track"/> looping.
         /// </summary>
-        public void ToggleLoop()
-        {
-            Track.Value.Looping = !Track.Value.Looping;
-        }
+        public void ToggleLoop() => Track.Value.Looping = !Track.Value.Looping;
 
         protected override void Update()
         {
@@ -156,9 +150,6 @@ namespace maisim.Game.Graphics.UserInterface.Overlays
         /// Seek the track to the specified time.
         /// </summary>
         /// <param name="position">The specified time</param>
-        public void SeekTo(double position)
-        {
-            Scheduler.Add(() => Track.Value.Seek(position));
-        }
+        public void SeekTo(double position) => Scheduler.Add(() => Track.Value.Seek(position));
     }
 }
