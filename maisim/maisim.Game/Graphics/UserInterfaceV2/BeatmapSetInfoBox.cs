@@ -1,6 +1,7 @@
 using maisim.Game.Beatmaps;
 using maisim.Game.Graphics.Sprites;
 using maisim.Game.Graphics.UserInterface;
+using maisim.Game.Graphics.UserInterface.Overlays;
 using osu.Framework.Allocation;
 using osu.Framework.Bindables;
 using osu.Framework.Graphics;
@@ -17,16 +18,8 @@ namespace maisim.Game.Graphics.UserInterfaceV2
     /// </summary>
     public class BeatmapSetInfoBox : CompositeDrawable
     {
-        // TODO: Consider to move to DI's working beatmap bindable when implemented.
-        private Bindable<DifficultyLevel> bindableDifficultyLevel;
-
-        private Bindable<BeatmapSet> bindableBeatmapSet;
-
-        public BeatmapSetInfoBox(Bindable<DifficultyLevel> bindableDifficultyLevel, Bindable<BeatmapSet> bindableBeatmapSet)
-        {
-            this.bindableDifficultyLevel = bindableDifficultyLevel;
-            this.bindableBeatmapSet = bindableBeatmapSet;
-        }
+        [Resolved]
+        private CurrentWorkingBeatmap currentWorkingBeatmap { get; set; }
 
         [BackgroundDependencyLoader]
         private void load()
@@ -46,12 +39,12 @@ namespace maisim.Game.Graphics.UserInterfaceV2
                     Alpha = 0.5f,
                     RelativeSizeAxes = Axes.Both
                 },
-                new BeatmapCard(bindableDifficultyLevel, bindableBeatmapSet)
+                new BeatmapCard
                 {
                     Anchor = Anchor.TopRight,
                     Origin = Anchor.TopRight,
                 },
-                new GridContainer()
+                new GridContainer
                 {
                     Anchor = Anchor.TopRight,
                     Origin = Anchor.TopRight,
@@ -64,19 +57,19 @@ namespace maisim.Game.Graphics.UserInterfaceV2
                         {
                             new DifficultySelectionButton(DifficultyLevel.Basic)
                             {
-                                Action = () => bindableDifficultyLevel.Value = DifficultyLevel.Basic
+                                Action = () => currentWorkingBeatmap.SetCurrentDifficultyLevel(DifficultyLevel.Basic)
                             },
                             new DifficultySelectionButton(DifficultyLevel.Advanced)
                             {
-                                Action = () => bindableDifficultyLevel.Value = DifficultyLevel.Advanced
+                                Action = () => currentWorkingBeatmap.SetCurrentDifficultyLevel(DifficultyLevel.Advanced)
                             },
                             new DifficultySelectionButton(DifficultyLevel.Expert)
                             {
-                                Action = () => bindableDifficultyLevel.Value = DifficultyLevel.Expert
+                                Action = () => currentWorkingBeatmap.SetCurrentDifficultyLevel(DifficultyLevel.Expert)
                             },
                             new DifficultySelectionButton(DifficultyLevel.Master)
                             {
-                                Action = () => bindableDifficultyLevel.Value = DifficultyLevel.Master
+                                Action = () => currentWorkingBeatmap.SetCurrentDifficultyLevel(DifficultyLevel.Master)
                             },
                         }
                     }

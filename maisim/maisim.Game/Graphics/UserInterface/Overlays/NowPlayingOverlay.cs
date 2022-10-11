@@ -22,7 +22,10 @@ namespace maisim.Game.Graphics.UserInterface.Overlays
         private MusicPlayer musicPlayer { get; set; }
 
         [Resolved]
-        private WorkingBeatmap workingBeatmap { get; set; }
+        private WorkingBeatmapManager workingBeatmapManager { get; set; }
+
+        [Resolved]
+        private CurrentWorkingBeatmap currentWorkingBeatmap { get; set; }
 
         [Resolved]
         private TextureStore textureStore { get; set; }
@@ -43,7 +46,7 @@ namespace maisim.Game.Graphics.UserInterface.Overlays
         protected Container MainContainer;
 
         private void workingBeatmapChanged(ValueChangedEvent<BeatmapSet> beatmapSetEvent) => changeTrack(beatmapSetEvent.NewValue);
-        private void trackChanged(ValueChangedEvent<Track> trackEvent) => changeTrack(workingBeatmap.CurrentBeatmapSet.Value);
+        private void trackChanged(ValueChangedEvent<Track> trackEvent) => changeTrack(currentWorkingBeatmap.BeatmapSet);
 
         public NowPlayingOverlay()
         {
@@ -97,7 +100,7 @@ namespace maisim.Game.Graphics.UserInterface.Overlays
                                             Anchor = Anchor.Centre,
                                             Origin = Anchor.Centre,
                                             RelativeSizeAxes = Axes.Both,
-                                            Texture = localTextureStore.Get(workingBeatmap.CurrentBeatmapSet.Value.TrackMetadata.CoverPath),
+                                            Texture = localTextureStore.Get(currentWorkingBeatmap.BeatmapSet.TrackMetadata.CoverPath),
                                             FillMode = FillMode.Fill,
                                         }
                                     }
@@ -114,14 +117,14 @@ namespace maisim.Game.Graphics.UserInterface.Overlays
                                             Anchor = Anchor.TopLeft,
                                             Origin = Anchor.TopLeft,
                                             Position = new Vector2(0,23),
-                                            Text = workingBeatmap.CurrentBeatmapSet.Value.TrackMetadata.Title
+                                            Text = currentWorkingBeatmap.BeatmapSet.TrackMetadata.Title
                                         },
                                         artist = new MaisimSpriteText()
                                         {
                                             Anchor = Anchor.BottomLeft,
                                             Origin = Anchor.BottomLeft,
                                             Position = new Vector2(0,-23),
-                                            Text = workingBeatmap.CurrentBeatmapSet.Value.TrackMetadata.Artist,
+                                            Text = currentWorkingBeatmap.BeatmapSet.TrackMetadata.Artist,
                                             Colour = MaisimColour.NowPlayingArtistColor
                                         },
                                     }
@@ -207,7 +210,7 @@ namespace maisim.Game.Graphics.UserInterface.Overlays
                 }
             };
 
-            workingBeatmap.CurrentBeatmapSet.BindValueChanged(workingBeatmapChanged);
+            currentWorkingBeatmap.BindBeatmapSetChanged(workingBeatmapChanged);
             musicPlayer.Track.BindValueChanged(trackChanged);
             updateTotalTime();
         }
@@ -274,7 +277,7 @@ namespace maisim.Game.Graphics.UserInterface.Overlays
             updateTotalTime();
             title.Text = beatmapSet.TrackMetadata.Title;
             artist.Text = beatmapSet.TrackMetadata.Artist;
-            cover.Texture = textureStore.Get(workingBeatmap.CurrentBeatmapSet.Value.TrackMetadata.CoverPath);
+            cover.Texture = textureStore.Get(currentWorkingBeatmap.BeatmapSet.TrackMetadata.CoverPath);
         }
     }
 }

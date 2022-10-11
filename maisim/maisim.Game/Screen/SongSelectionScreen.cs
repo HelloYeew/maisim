@@ -20,7 +20,7 @@ namespace maisim.Game.Screen
     public class SongSelectionScreen : MaisimScreen
     {
         [Resolved]
-        private WorkingBeatmap workingBeatmap { get; set; }
+        private CurrentWorkingBeatmap currentWorkingBeatmap { get; set; }
 
         public override float BackgroundParallaxAmount => 0.2f;
 
@@ -29,8 +29,8 @@ namespace maisim.Game.Screen
         {
             InternalChildren = new Drawable[]
             {
-                new BeatmapSetSelection(workingBeatmap.CurrentBeatmapSet),
-                new BeatmapSetInfoBox(workingBeatmap.CurrentDifficultyLevel,workingBeatmap.CurrentBeatmapSet)
+                new BeatmapSetSelection(),
+                new BeatmapSetInfoBox()
                 {
                     Anchor = Anchor.TopRight,
                     Origin = Anchor.TopRight,

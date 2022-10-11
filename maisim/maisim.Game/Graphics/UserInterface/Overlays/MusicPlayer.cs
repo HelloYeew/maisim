@@ -36,7 +36,10 @@ namespace maisim.Game.Graphics.UserInterface.Overlays
         private const double force_previous_track_time = 5000;
 
         [Resolved]
-        private WorkingBeatmap workingBeatmap { get; set; }
+        private CurrentWorkingBeatmap currentWorkingBeatmap { get; set; }
+
+        [Resolved]
+        private WorkingBeatmapManager workingBeatmapManager { get; set; }
 
         [Resolved]
         private AudioManager audioManager { get; set; }
@@ -52,10 +55,10 @@ namespace maisim.Game.Graphics.UserInterface.Overlays
         private void load(AudioManager audioManager)
         {
             trackStore = audioManager.Tracks;
-            Track = new Bindable<Track>(trackStore.Get(workingBeatmap.CurrentBeatmapSet.Value.AudioFileName));
-            trackName = workingBeatmap.CurrentBeatmapSet.Value.AudioFileName;
-            workingBeatmap.CurrentBeatmapSet.BindValueChanged(workingBeatmapChanged);
-            Logger.Log("Initialized MusicPlayer with " + workingBeatmap.CurrentBeatmapSet.Value.AudioFileName);
+            Track = new Bindable<Track>(trackStore.Get(currentWorkingBeatmap.BeatmapSet.AudioFileName));
+            trackName = currentWorkingBeatmap.BeatmapSet.AudioFileName;
+            currentWorkingBeatmap.BindBeatmapSetChanged(workingBeatmapChanged);
+            Logger.Log("Initialized MusicPlayer with " + currentWorkingBeatmap.BeatmapSet.AudioFileName);
             if (startOnLoaded)
                 Track.Value.Start();
         }
@@ -80,7 +83,7 @@ namespace maisim.Game.Graphics.UserInterface.Overlays
         /// <summary>
         /// Go to next track.
         /// </summary>
-        public void ToggleNext() => Scheduler.Add(() => workingBeatmap.GoToNextBeatmapSet());
+        public void ToggleNext() => Scheduler.Add(() => workingBeatmapManager.GoToNextBeatmapSet());
 
         /// <summary>
         /// <para>Go to previous track.</para>
@@ -97,7 +100,7 @@ namespace maisim.Game.Graphics.UserInterface.Overlays
                                                                             Clock.TimeInfo.Current - lastPreviousClicked <=
                                                                             restart_time))
                 {
-                    Scheduler.Add(() => workingBeatmap.GoToPreviousBeatmapSet());
+                    Scheduler.Add(() => workingBeatmapManager.GoToPreviousBeatmapSet());
                 }
                 else
                 {
@@ -118,13 +121,13 @@ namespace maisim.Game.Graphics.UserInterface.Overlays
 
             if (Track.Value.HasCompleted && !Track.Value.Looping)
             {
-                workingBeatmap.GoToNextBeatmapSet();
+                workingBeatmapManager.GoToNextBeatmapSet();
             }
 
             // Check that the track has sync with CurrentBeatmapSet or not
-            if (Track.Value.HasCompleted && !Track.Value.Looping && trackName != workingBeatmap.CurrentBeatmapSet.Value.AudioFileName)
+            if (Track.Value.HasCompleted && !Track.Value.Looping && trackName != currentWorkingBeatmap.BeatmapSet.AudioFileName)
             {
-                changeTrack(workingBeatmap.CurrentBeatmapSet.Value);
+                changeTrack(currentWorkingBeatmap.BeatmapSet);
             }
         }
 
@@ -139,8 +142,8 @@ namespace maisim.Game.Graphics.UserInterface.Overlays
             Track.Value.Dispose();
             Scheduler.Add(() =>
             {
-                Track.Value = trackStore.Get(workingBeatmap.CurrentBeatmapSet.Value.AudioFileName);
-                trackName = workingBeatmap.CurrentBeatmapSet.Value.AudioFileName;
+                Track.Value = trackStore.Get(currentWorkingBeatmap.BeatmapSet.AudioFileName);
+                trackName = currentWorkingBeatmap.BeatmapSet.AudioFileName;
                 Logger.Log("Changed track to " + beatmapSet.AudioFileName);
                 Track.Value.StartAsync().WaitSafely();
             });

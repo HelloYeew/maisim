@@ -18,7 +18,10 @@ public class TestSceneNowPlayingOverlay : maisimTestScene
     private MusicPlayer musicPlayer = new MusicPlayer();
 
     [Cached]
-    private WorkingBeatmap workingBeatmap = new WorkingBeatmap();
+    private WorkingBeatmapManager workingBeatmapManager = new WorkingBeatmapManager();
+
+    [Cached]
+    private CurrentWorkingBeatmap currentWorkingBeatmap = new CurrentWorkingBeatmap();
 
     [Resolved]
     private AudioManager audioManager { get; set; }
@@ -31,10 +34,11 @@ public class TestSceneNowPlayingOverlay : maisimTestScene
     [BackgroundDependencyLoader]
     private void load(AudioManager audioManager)
     {
-        Dependencies.CacheAs(workingBeatmap);
-        workingBeatmap.CurrentBeatmapSet.Value = beatmapSetTestFixture.BeatmapSet;
+        Dependencies.CacheAs(workingBeatmapManager);
+        Dependencies.CacheAs(currentWorkingBeatmap);
+        currentWorkingBeatmap.SetCurrentBeatmapSet(beatmapSetTestFixture.BeatmapSet);
         Dependencies.CacheAs(musicPlayer);
-        musicPlayer.Track = new Bindable<Track>(audioManager.Tracks.Get(workingBeatmap.CurrentBeatmapSet.Value.AudioFileName));
+        musicPlayer.Track = new Bindable<Track>(audioManager.Tracks.Get(currentWorkingBeatmap.BeatmapSet.AudioFileName));
         Dependencies.CacheAs(nowPlayingOverlay);
     }
 

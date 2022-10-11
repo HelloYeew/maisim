@@ -1,5 +1,6 @@
 using maisim.Game.Beatmaps;
 using maisim.Game.Graphics.Sprites;
+using maisim.Game.Graphics.UserInterface.Overlays;
 using maisim.Game.Utils;
 using osu.Framework.Allocation;
 using osu.Framework.Bindables;
@@ -19,9 +20,8 @@ namespace maisim.Game.Graphics.UserInterfaceV2
     {
         public static readonly float FADE_COLOR_DURATION = 500;
 
-        private Bindable<DifficultyLevel> bindableDifficultyLevel;
-
-        private Bindable<BeatmapSet> bindableBeatmapSet;
+        [Resolved]
+        private CurrentWorkingBeatmap currentWorkingBeatmap { get; set; }
 
         private void difficultyLevelChanged(ValueChangedEvent<DifficultyLevel> difficultyLevelEvent) =>
             updateDifficultyLevel(difficultyLevelEvent.NewValue);
@@ -38,12 +38,6 @@ namespace maisim.Game.Graphics.UserInterfaceV2
         private MaisimSpriteText artistText;
         private MaisimSpriteText sourceText;
         private MaisimSpriteText creatorText;
-
-        public BeatmapCard(Bindable<DifficultyLevel> bindableDifficultyLevel, Bindable<BeatmapSet> bindableBeatmapSet)
-        {
-            this.bindableDifficultyLevel = bindableDifficultyLevel;
-            this.bindableBeatmapSet = bindableBeatmapSet;
-        }
 
         [BackgroundDependencyLoader]
         private void load(TextureStore textureStore)
@@ -70,7 +64,7 @@ namespace maisim.Game.Graphics.UserInterfaceV2
                                 Anchor = Anchor.TopRight,
                                 Origin = Anchor.TopRight,
                                 RelativeSizeAxes = Axes.Both,
-                                Colour = MaisimColour.GetDifficultyColor(bindableDifficultyLevel.Value)
+                                Colour = MaisimColour.GetDifficultyColor(currentWorkingBeatmap.DifficultyLevel)
                             },
                             new GridContainer()
                             {
@@ -141,7 +135,7 @@ namespace maisim.Game.Graphics.UserInterfaceV2
                                                     {
                                                         Anchor = Anchor.BottomLeft,
                                                         Origin = Anchor.BottomLeft,
-                                                        Text = $"From {bindableBeatmapSet.Value.TrackMetadata.Source}",
+                                                        Text = $"From {currentWorkingBeatmap.BeatmapSet.TrackMetadata.Source}",
                                                         Font = MaisimFont.GetFont(size:20, weight:MaisimFont.FontWeight.Medium),
                                                         Position = new Vector2(0, -30)
                                                     },
@@ -149,7 +143,7 @@ namespace maisim.Game.Graphics.UserInterfaceV2
                                                     {
                                                         Anchor = Anchor.BottomLeft,
                                                         Origin = Anchor.BottomLeft,
-                                                        Text = $"beatmap by {BeatmapUtils.GetNoteDesignerFromBeatmapSet(bindableBeatmapSet.Value, bindableDifficultyLevel.Value)}",
+                                                        Text = $"beatmap by {BeatmapUtils.GetNoteDesignerFromBeatmapSet(currentWorkingBeatmap.BeatmapSet, currentWorkingBeatmap.DifficultyLevel)}",
                                                         Font = MaisimFont.GetFont(size:20, weight:MaisimFont.FontWeight.Medium),
                                                         Position = new Vector2(0, -5)
                                                     },
@@ -164,8 +158,8 @@ namespace maisim.Game.Graphics.UserInterfaceV2
                 }
             };
 
-            bindableDifficultyLevel.BindValueChanged(difficultyLevelChanged, true);
-            bindableBeatmapSet.BindValueChanged(beatmapSetChanged, true);
+            currentWorkingBeatmap.BindDifficultyLevelChanged(difficultyLevelChanged, true);
+            currentWorkingBeatmap.BindBeatmapSetChanged(beatmapSetChanged, true);
         }
 
         /// <summary>
@@ -187,7 +181,7 @@ namespace maisim.Game.Graphics.UserInterfaceV2
             titleText.Text = newBeatmapSet.TrackMetadata.Title;
             artistText.Text = newBeatmapSet.TrackMetadata.Artist;
             sourceText.Text = $"From {newBeatmapSet.TrackMetadata.Source}";
-            creatorText.Text = $"beatmap by {BeatmapUtils.GetNoteDesignerFromBeatmapSet(newBeatmapSet, bindableDifficultyLevel.Value)}";
+            creatorText.Text = $"beatmap by {BeatmapUtils.GetNoteDesignerFromBeatmapSet(newBeatmapSet, currentWorkingBeatmap.DifficultyLevel)}";
         }
     }
 }
