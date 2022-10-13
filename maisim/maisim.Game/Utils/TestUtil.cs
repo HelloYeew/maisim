@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using maisim.Game.Beatmaps;
 using maisim.Game.Scores;
-using osu.Framework.Logging;
 
 namespace maisim.Game.Utils
 {

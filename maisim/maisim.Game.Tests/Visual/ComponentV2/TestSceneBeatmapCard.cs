@@ -5,7 +5,6 @@ using maisim.Game.Graphics.UserInterfaceV2;
 using maisim.Game.Utils;
 using NUnit.Framework;
 using osu.Framework.Allocation;
-using osu.Framework.Bindables;
 using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
 

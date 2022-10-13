@@ -1,15 +1,10 @@
 using maisim.Game.Beatmaps;
-using maisim.Game.Graphics.Sprites;
-using maisim.Game.Graphics.UserInterface;
 using maisim.Game.Graphics.UserInterface.Overlays;
 using osu.Framework.Allocation;
-using osu.Framework.Bindables;
 using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
 using osu.Framework.Graphics.Shapes;
-using osu.Framework.Graphics.UserInterface;
 using osuTK;
-using osuTK.Graphics;
 
 namespace maisim.Game.Graphics.UserInterfaceV2
 {
