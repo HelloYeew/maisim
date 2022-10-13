@@ -44,7 +44,23 @@ namespace maisim.Game.Graphics.UserInterface.Overlays
         [Resolved]
         private AudioManager audioManager { get; set; }
 
-        private void workingBeatmapChanged(ValueChangedEvent<BeatmapSet> beatmapSetEvent) => changeTrack(beatmapSetEvent.NewValue);
+        /// <summary>
+        /// A <see cref="ValueChangedEvent{T}"/> that is fired when the <see cref="Beatmap"/> in <see cref="currentWorkingBeatmap"/> is changed.
+        /// </summary>
+        /// <param name="beatmapSetEvent">The <see cref="BeatmapSet"/> change event.</param>
+        private void workingBeatmapChanged(ValueChangedEvent<BeatmapSet> beatmapSetEvent)
+        {
+            // Make sure that the track has completely clear before change to new track
+            Track.Value.StopAsync().WaitSafely();
+            Track.Value.Dispose();
+            Scheduler.Add(() =>
+            {
+                Track.Value = trackStore.Get(currentWorkingBeatmap.BeatmapSet.AudioFileName);
+                trackName = currentWorkingBeatmap.BeatmapSet.AudioFileName;
+                Logger.Log("Changed track to " + beatmapSetEvent.NewValue.AudioFileName);
+                Track.Value.StartAsync().WaitSafely();
+            });
+        }
 
         public MusicPlayer(bool startOnLoaded = false)
         {
@@ -123,30 +139,6 @@ namespace maisim.Game.Graphics.UserInterface.Overlays
             {
                 workingBeatmapManager.GoToNextBeatmapSet();
             }
-
-            // Check that the track has sync with CurrentBeatmapSet or not
-            if (Track.Value.HasCompleted && !Track.Value.Looping && trackName != currentWorkingBeatmap.BeatmapSet.AudioFileName)
-            {
-                changeTrack(currentWorkingBeatmap.BeatmapSet);
-            }
-        }
-
-        /// <summary>
-        /// Change the track to the new <see cref="BeatmapSet"/> track.
-        /// </summary>
-        /// <param name="beatmapSet">The new <see cref="BeatmapSet"/> track</param>
-        private void changeTrack(BeatmapSet beatmapSet)
-        {
-            // Make sure that the track has completely clear before change to new track
-            Track.Value.StopAsync().WaitSafely();
-            Track.Value.Dispose();
-            Scheduler.Add(() =>
-            {
-                Track.Value = trackStore.Get(currentWorkingBeatmap.BeatmapSet.AudioFileName);
-                trackName = currentWorkingBeatmap.BeatmapSet.AudioFileName;
-                Logger.Log("Changed track to " + beatmapSet.AudioFileName);
-                Track.Value.StartAsync().WaitSafely();
-            });
         }
 
         /// <summary>

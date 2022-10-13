@@ -45,8 +45,17 @@ namespace maisim.Game.Graphics.UserInterface.Overlays
 
         protected Container MainContainer;
 
-        private void workingBeatmapChanged(ValueChangedEvent<BeatmapSet> beatmapSetEvent) => changeTrack(beatmapSetEvent.NewValue);
-        private void trackChanged(ValueChangedEvent<Track> trackEvent) => changeTrack(currentWorkingBeatmap.BeatmapSet);
+        /// <summary>
+        /// A <see cref="ValueChangedEvent{T}"/> that is fired when the <see cref="Beatmap"/> in <see cref="currentWorkingBeatmap"/> is changed.
+        /// </summary>
+        /// <param name="beatmapSetEvent">The <see cref="BeatmapSet"/> change event.</param>
+        private void workingBeatmapChanged(ValueChangedEvent<BeatmapSet> beatmapSetEvent)
+        {
+            updateTotalTime();
+            title.Text = beatmapSetEvent.NewValue.TrackMetadata.Title;
+            artist.Text = beatmapSetEvent.NewValue.TrackMetadata.Artist;
+            cover.Texture = textureStore.Get(currentWorkingBeatmap.BeatmapSet.TrackMetadata.CoverPath);
+        }
 
         public NowPlayingOverlay()
         {
@@ -211,7 +220,6 @@ namespace maisim.Game.Graphics.UserInterface.Overlays
             };
 
             currentWorkingBeatmap.BindBeatmapSetChanged(workingBeatmapChanged);
-            musicPlayer.Track.BindValueChanged(trackChanged);
             updateTotalTime();
         }
 
@@ -266,18 +274,6 @@ namespace maisim.Game.Graphics.UserInterface.Overlays
             int minutes = (int) length / 1000 / 60;
             int seconds = (int) length / 1000 % 60;
             totalTime.Text = minutes.ToString("00") + ":" + seconds.ToString("00");
-        }
-
-        /// <summary>
-        /// Update the track information when the <see cref="BeatmapSet"/> changes
-        /// </summary>
-        /// <param name="beatmapSet">The new <see cref="BeatmapSet"/></param>
-        private void changeTrack(BeatmapSet beatmapSet)
-        {
-            updateTotalTime();
-            title.Text = beatmapSet.TrackMetadata.Title;
-            artist.Text = beatmapSet.TrackMetadata.Artist;
-            cover.Texture = textureStore.Get(currentWorkingBeatmap.BeatmapSet.TrackMetadata.CoverPath);
         }
     }
 }
