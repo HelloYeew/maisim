@@ -8,6 +8,7 @@ using osu.Framework.Graphics.Containers;
 using osu.Framework.Graphics.Shapes;
 using osu.Framework.Graphics.UserInterface;
 using osu.Framework.Input.Events;
+using osuTK.Input;
 
 namespace maisim.Game.Graphics.UserInterfaceV2
 {
@@ -74,15 +75,22 @@ namespace maisim.Game.Graphics.UserInterfaceV2
 
         protected override bool OnMouseDown(MouseDownEvent e)
         {
-            backgroundBox.FadeColour(MaisimColour.GetDifficultyColor(difficultyLevel).Darken(0.5f), 100);
-            mainContainer.ScaleTo(0.9f, 100, Easing.OutQuint);
+            if (e.Button == MouseButton.Left)
+            {
+                backgroundBox.FadeColour(MaisimColour.GetDifficultyColor(difficultyLevel).Darken(0.5f), 100);
+                mainContainer.ScaleTo(0.9f, 100, Easing.OutQuint);
+            }
             return base.OnMouseDown(e);
         }
 
         protected override void OnMouseUp(MouseUpEvent e)
         {
-            backgroundBox.FadeColour(MaisimColour.GetDifficultyColor(difficultyLevel), 100);
-            mainContainer.ScaleTo(1, 500, Easing.OutElastic);
+            if (e.Button == MouseButton.Left)
+            {
+                backgroundBox.FadeColour(MaisimColour.GetDifficultyColor(difficultyLevel), 100);
+                mainContainer.ScaleTo(1, 500, Easing.OutElastic);
+            }
+
             base.OnMouseUp(e);
         }
     }

@@ -1,15 +1,12 @@
-using System;
 using maisim.Game.Beatmaps;
-using maisim.Game.Component;
+using maisim.Game.Graphics.UserInterface;
 using maisim.Game.Graphics.UserInterfaceV2;
 using maisim.Game.Utils;
-using NUnit.Framework.Internal;
 using osu.Framework.Allocation;
 using osu.Framework.Audio.Track;
 using osu.Framework.Bindables;
 using osu.Framework.Graphics;
 using osu.Framework.Screens;
-using Logger = osu.Framework.Logging.Logger;
 
 namespace maisim.Game.Screen
 {
