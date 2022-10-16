@@ -1,4 +1,3 @@
-using maisim.Game.Component;
 using maisim.Game.Graphics.UserInterface;
 using osu.Framework.Extensions.Color4Extensions;
 using osu.Framework.Graphics;
