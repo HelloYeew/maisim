@@ -1,4 +1,4 @@
-using maisim.Game.Component;
+using maisim.Game.Graphics.UserInterface;
 using maisim.Game.Graphics.UserInterface.Overlays;
 using maisim.Game.Graphics.UserInterfaceV2;
 using osu.Framework.Allocation;
