@@ -36,6 +36,8 @@ namespace maisim.Game.Tests.Visual.Screen
             Dependencies.CacheAs(workingBeatmapManager);
             Dependencies.CacheAs(currentWorkingBeatmap);
             currentWorkingBeatmap.SetCurrentBeatmapSet(beatmapSetTestFixture.BeatmapSet);
+            Dependencies.CacheAs(musicPlayer);
+            musicPlayer.Track = new Bindable<Track>(audioManager.Tracks.Get(currentWorkingBeatmap.BeatmapSet.AudioFileName));
         }
 
         [SetUp]
@@ -50,6 +52,9 @@ namespace maisim.Game.Tests.Visual.Screen
             {
                 beatmapSetTestFixture = new BeatmapSetTestFixture();
                 currentWorkingBeatmap.SetCurrentBeatmapSet(beatmapSetTestFixture.BeatmapSet);
+                musicPlayer.Track.Value.Dispose();
+                musicPlayer.Track.Value = audioManager.Tracks.Get(currentWorkingBeatmap.BeatmapSet.AudioFileName);
+                musicPlayer.Track.Value.Start();
             });
         }
     }
