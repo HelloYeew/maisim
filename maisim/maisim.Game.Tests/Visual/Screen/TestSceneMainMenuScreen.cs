@@ -14,7 +14,10 @@ namespace maisim.Game.Tests.Visual.Screen
     public class TestSceneMainMenuScreen : maisimTestScene
     {
         [Cached]
-        private WorkingBeatmap workingBeatmap = new WorkingBeatmap();
+        private WorkingBeatmapManager workingBeatmapManager = new WorkingBeatmapManager();
+
+        [Cached]
+        private CurrentWorkingBeatmap currentWorkingBeatmap = new CurrentWorkingBeatmap();
 
         [Cached]
         private MusicPlayer musicPlayer = new MusicPlayer();
@@ -30,10 +33,9 @@ namespace maisim.Game.Tests.Visual.Screen
         [BackgroundDependencyLoader]
         private void load()
         {
-            Dependencies.CacheAs(workingBeatmap);
-            workingBeatmap.CurrentBeatmapSet.Value = beatmapSetTestFixture.BeatmapSet;
-            Dependencies.CacheAs(musicPlayer);
-            musicPlayer.Track = new Bindable<Track>(audioManager.Tracks.Get(workingBeatmap.CurrentBeatmapSet.Value.AudioFileName));
+            Dependencies.CacheAs(workingBeatmapManager);
+            Dependencies.CacheAs(currentWorkingBeatmap);
+            currentWorkingBeatmap.SetCurrentBeatmapSet(beatmapSetTestFixture.BeatmapSet);
         }
 
         [SetUp]
@@ -47,10 +49,7 @@ namespace maisim.Game.Tests.Visual.Screen
             AddStep("Change track", () =>
             {
                 beatmapSetTestFixture = new BeatmapSetTestFixture();
-                workingBeatmap.CurrentBeatmapSet.Value = beatmapSetTestFixture.BeatmapSet;
-                musicPlayer.Track.Value.Dispose();
-                musicPlayer.Track.Value = audioManager.Tracks.Get(workingBeatmap.CurrentBeatmapSet.Value.AudioFileName);
-                musicPlayer.Track.Value.Start();
+                currentWorkingBeatmap.SetCurrentBeatmapSet(beatmapSetTestFixture.BeatmapSet);
             });
         }
     }

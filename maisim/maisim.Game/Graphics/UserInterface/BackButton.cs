@@ -1,6 +1,4 @@
-using maisim.Game.Graphics;
 using osu.Framework.Allocation;
-using osu.Framework.Audio;
 using osu.Framework.Audio.Sample;
 using osu.Framework.Extensions.Color4Extensions;
 using osu.Framework.Graphics;
@@ -12,8 +10,9 @@ using osu.Framework.Graphics.UserInterface;
 using osu.Framework.Input.Events;
 using osuTK;
 using osuTK.Graphics;
+using osuTK.Input;
 
-namespace maisim.Game.Component
+namespace maisim.Game.Graphics.UserInterface
 {
     public class BackButton : Button
     {
@@ -24,7 +23,7 @@ namespace maisim.Game.Component
         private Container scaleContainer;
 
         [BackgroundDependencyLoader]
-        private void load(AudioManager audioManager)
+        private void load(ISampleStore sampleStore)
         {
             Anchor = Anchor.BottomLeft;
             Origin = Anchor.BottomLeft;
@@ -65,8 +64,8 @@ namespace maisim.Game.Component
                 }
             };
 
-            drawableHoverSample = new DrawableSample(audioManager.Samples.Get("hover.wav"));
-            drawableClickSample = new DrawableSample(audioManager.Samples.Get("click2.wav"));
+            drawableHoverSample = new DrawableSample(sampleStore.Get("hover.wav"));
+            drawableClickSample = new DrawableSample(sampleStore.Get("click2.wav"));
         }
 
         protected override bool OnHover(HoverEvent e)
@@ -90,15 +89,21 @@ namespace maisim.Game.Component
 
         protected override bool OnMouseDown(MouseDownEvent e)
         {
-            button.FadeColour(MaisimColour.BackButtonColor.Darken(0.5f), 100);
-            scaleContainer.ScaleTo(0.9f, 100, Easing.OutQuint);
+            if (e.Button == MouseButton.Left)
+            {
+                button.FadeColour(MaisimColour.BackButtonColor.Darken(0.5f), 100);
+                scaleContainer.ScaleTo(0.9f, 100, Easing.OutQuint);
+            }
             return base.OnMouseDown(e);
         }
 
         protected override void OnMouseUp(MouseUpEvent e)
         {
-            button.FadeColour(MaisimColour.BackButtonColor, 100);
-            scaleContainer.ScaleTo(1, 100, Easing.OutBack);
+            if (e.Button == MouseButton.Left)
+            {
+                button.FadeColour(MaisimColour.BackButtonColor, 100);
+                scaleContainer.ScaleTo(1, 100, Easing.OutBack);
+            }
             base.OnMouseUp(e);
         }
     }

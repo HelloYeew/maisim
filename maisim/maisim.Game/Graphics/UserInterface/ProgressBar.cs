@@ -66,10 +66,7 @@ namespace maisim.Game.Graphics.UserInterface
             };
         }
 
-        protected override void UpdateValue(float value)
-        {
-            fill.Width = value * UsableWidth;
-        }
+        protected override void UpdateValue(float value) => fill.Width = value * UsableWidth;
 
         protected override void OnUserChange(double value)
         {

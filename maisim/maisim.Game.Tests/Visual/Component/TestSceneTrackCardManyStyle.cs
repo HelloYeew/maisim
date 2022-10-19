@@ -1,5 +1,5 @@
 ﻿using maisim.Game.Beatmaps;
-using maisim.Game.Component;
+using maisim.Game.Graphics.UserInterface;
 using maisim.Game.Utils;
 using osu.Framework.Graphics;
 using osu.Framework.Graphics.Sprites;

@@ -12,7 +12,10 @@ namespace maisim.Game.Tests.Visual.Screen
     public class TestSceneSongSelectionScreen : maisimTestScene
     {
         [Cached]
-        private WorkingBeatmap workingBeatmap = new WorkingBeatmap();
+        private WorkingBeatmapManager workingBeatmapManager = new WorkingBeatmapManager();
+
+        [Cached]
+        private CurrentWorkingBeatmap currentWorkingBeatmap = new CurrentWorkingBeatmap();
 
         private BeatmapSetTestFixture beatmapSetTestFixture = new BeatmapSetTestFixture();
 
@@ -22,8 +25,9 @@ namespace maisim.Game.Tests.Visual.Screen
         [BackgroundDependencyLoader]
         private void load()
         {
-            Dependencies.CacheAs(workingBeatmap);
-            workingBeatmap.CurrentBeatmapSet.Value = beatmapSetTestFixture.BeatmapSet;
+            Dependencies.CacheAs(workingBeatmapManager);
+            Dependencies.CacheAs(currentWorkingBeatmap);
+            currentWorkingBeatmap.SetCurrentBeatmapSet(beatmapSetTestFixture.BeatmapSet);
         }
 
         [SetUp]

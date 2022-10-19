@@ -22,7 +22,10 @@ namespace maisim.Game.Graphics.UserInterface.Overlays
         private MusicPlayer musicPlayer { get; set; }
 
         [Resolved]
-        private WorkingBeatmap workingBeatmap { get; set; }
+        private WorkingBeatmapManager workingBeatmapManager { get; set; }
+
+        [Resolved]
+        private CurrentWorkingBeatmap currentWorkingBeatmap { get; set; }
 
         [Resolved]
         private TextureStore textureStore { get; set; }
@@ -42,8 +45,17 @@ namespace maisim.Game.Graphics.UserInterface.Overlays
 
         protected Container MainContainer;
 
-        private void workingBeatmapChanged(ValueChangedEvent<BeatmapSet> beatmapSetEvent) => changeTrack(beatmapSetEvent.NewValue);
-        private void trackChanged(ValueChangedEvent<Track> trackEvent) => changeTrack(workingBeatmap.CurrentBeatmapSet.Value);
+        /// <summary>
+        /// A <see cref="ValueChangedEvent{T}"/> that is fired when the <see cref="Beatmap"/> in <see cref="currentWorkingBeatmap"/> is changed.
+        /// </summary>
+        /// <param name="beatmapSetEvent">The <see cref="BeatmapSet"/> change event.</param>
+        private void workingBeatmapChanged(ValueChangedEvent<BeatmapSet> beatmapSetEvent)
+        {
+            updateTotalTime();
+            title.Text = beatmapSetEvent.NewValue.TrackMetadata.Title;
+            artist.Text = beatmapSetEvent.NewValue.TrackMetadata.Artist;
+            cover.Texture = textureStore.Get(currentWorkingBeatmap.BeatmapSet.TrackMetadata.CoverPath);
+        }
 
         public NowPlayingOverlay()
         {
@@ -97,7 +109,7 @@ namespace maisim.Game.Graphics.UserInterface.Overlays
                                             Anchor = Anchor.Centre,
                                             Origin = Anchor.Centre,
                                             RelativeSizeAxes = Axes.Both,
-                                            Texture = localTextureStore.Get(workingBeatmap.CurrentBeatmapSet.Value.TrackMetadata.CoverPath),
+                                            Texture = localTextureStore.Get(currentWorkingBeatmap.BeatmapSet.TrackMetadata.CoverPath),
                                             FillMode = FillMode.Fill,
                                         }
                                     }
@@ -114,14 +126,14 @@ namespace maisim.Game.Graphics.UserInterface.Overlays
                                             Anchor = Anchor.TopLeft,
                                             Origin = Anchor.TopLeft,
                                             Position = new Vector2(0,23),
-                                            Text = workingBeatmap.CurrentBeatmapSet.Value.TrackMetadata.Title
+                                            Text = currentWorkingBeatmap.BeatmapSet.TrackMetadata.Title
                                         },
                                         artist = new MaisimSpriteText()
                                         {
                                             Anchor = Anchor.BottomLeft,
                                             Origin = Anchor.BottomLeft,
                                             Position = new Vector2(0,-23),
-                                            Text = workingBeatmap.CurrentBeatmapSet.Value.TrackMetadata.Artist,
+                                            Text = currentWorkingBeatmap.BeatmapSet.TrackMetadata.Artist,
                                             Colour = MaisimColour.NowPlayingArtistColor
                                         },
                                     }
@@ -207,8 +219,7 @@ namespace maisim.Game.Graphics.UserInterface.Overlays
                 }
             };
 
-            workingBeatmap.CurrentBeatmapSet.BindValueChanged(workingBeatmapChanged);
-            musicPlayer.Track.BindValueChanged(trackChanged);
+            currentWorkingBeatmap.BindBeatmapSetChanged(workingBeatmapChanged);
             updateTotalTime();
         }
 
@@ -263,18 +274,6 @@ namespace maisim.Game.Graphics.UserInterface.Overlays
             int minutes = (int) length / 1000 / 60;
             int seconds = (int) length / 1000 % 60;
             totalTime.Text = minutes.ToString("00") + ":" + seconds.ToString("00");
-        }
-
-        /// <summary>
-        /// Update the track information when the <see cref="BeatmapSet"/> changes
-        /// </summary>
-        /// <param name="beatmapSet">The new <see cref="BeatmapSet"/></param>
-        private void changeTrack(BeatmapSet beatmapSet)
-        {
-            updateTotalTime();
-            title.Text = beatmapSet.TrackMetadata.Title;
-            artist.Text = beatmapSet.TrackMetadata.Artist;
-            cover.Texture = textureStore.Get(workingBeatmap.CurrentBeatmapSet.Value.TrackMetadata.CoverPath);
         }
     }
 }

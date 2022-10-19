@@ -30,7 +30,10 @@ namespace maisim.Game.Screen
         private MaisimSpriteText trackArtistText;
 
         [Resolved]
-        private WorkingBeatmap workingBeatmap { get; set; }
+        private WorkingBeatmapManager workingBeatmapManager { get; set; }
+
+        [Resolved]
+        private CurrentWorkingBeatmap currentWorkingBeatmap { get; set; }
 
         [Resolved]
         private MusicPlayer musicPlayer { get; set; }
@@ -139,7 +142,7 @@ namespace maisim.Game.Screen
                     }
                 }
             };
-            workingBeatmap.CurrentBeatmapSet.BindValueChanged(workingBeatmapChanged);
+            currentWorkingBeatmap.BindBeatmapSetChanged(workingBeatmapChanged);
         }
 
         protected override void LoadComplete()

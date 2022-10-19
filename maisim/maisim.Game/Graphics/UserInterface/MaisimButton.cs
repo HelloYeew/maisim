@@ -8,6 +8,7 @@ using osu.Framework.Graphics.UserInterface;
 using osu.Framework.Input.Events;
 using osuTK;
 using osuTK.Graphics;
+using osuTK.Input;
 
 namespace maisim.Game.Graphics.UserInterface
 {
@@ -64,13 +65,19 @@ namespace maisim.Game.Graphics.UserInterface
 
         protected override bool OnMouseDown(MouseDownEvent e)
         {
-            mainContainer.ScaleTo(0.9f, 100, Easing.OutQuint);
+            if (e.Button == MouseButton.Left) {
+                mainContainer.ScaleTo(0.9f, 100, Easing.OutQuint);
+                buttonBox.Colour = buttonColor.Darken(0.5f);
+            }
             return base.OnMouseDown(e);
         }
 
         protected override void OnMouseUp(MouseUpEvent e)
         {
-            mainContainer.ScaleTo(1, 100, Easing.OutElastic);
+            if (e.Button == MouseButton.Left) {
+                mainContainer.ScaleTo(1, 100, Easing.OutElastic);
+                buttonBox.Colour = buttonColor;
+            }
             base.OnMouseUp(e);
         }
     }
