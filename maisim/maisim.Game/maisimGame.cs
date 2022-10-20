@@ -26,6 +26,12 @@ namespace maisim.Game
 
         private SettingsOverlay Settings;
 
+        private MusicPlayer musicPlayer;
+
+        private WorkingBeatmapManager workingBeatmapManager;
+
+        private CurrentWorkingBeatmap currentWorkingBeatmap;
+
         private Container overlayContent;
 
         private Container rightFloatingOverlayContent;
@@ -70,13 +76,22 @@ namespace maisim.Game
                         overlayContent = new Container { RelativeSizeAxes = Axes.Both },
                         rightFloatingOverlayContent = new Container { RelativeSizeAxes = Axes.Both },
                         leftFloatingOverlayContent = new Container { RelativeSizeAxes = Axes.Both },
+                        rightFloatingOverlayContent = new Container { RelativeSizeAxes = Axes.Both },
                     }
                 },
                 topMostOverlayContent = new Container { RelativeSizeAxes = Axes.Both }
             });
 
+            dependencies.CacheAs(currentWorkingBeatmap = new CurrentWorkingBeatmap());
+            loadComponentSingleFile(workingBeatmapManager = new WorkingBeatmapManager(), overlayContent.Add, true);
             loadComponentSingleFile(toolbar = new Toolbar(), topMostOverlayContent.Add);
             loadComponentSingleFile(Settings = new SettingsOverlay(), leftFloatingOverlayContent.Add, true);
+            loadComponentSingleFile(musicPlayer = new MusicPlayer(true), overlayContent.Add, true);
+            loadComponentSingleFile(new NowPlayingOverlay()
+            {
+                Anchor = Anchor.TopRight,
+                Origin = Anchor.TopRight,
+            }, rightFloatingOverlayContent.Add, true);
 
             screenStack.Push(new WarningScreen(new MainMenuScreen()));
         }

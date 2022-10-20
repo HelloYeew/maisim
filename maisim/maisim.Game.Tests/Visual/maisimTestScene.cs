@@ -1,3 +1,4 @@
+using osu.Framework.Allocation;
 using osu.Framework.Testing;
 
 namespace maisim.Game.Tests.Visual
@@ -5,6 +6,14 @@ namespace maisim.Game.Tests.Visual
     public class maisimTestScene : TestScene
     {
         protected override ITestSceneTestRunner CreateRunner() => new maisimTestSceneTestRunner();
+
+        public new DependencyContainer Dependencies { get; set; }
+
+        protected override IReadOnlyDependencyContainer CreateChildDependencies(IReadOnlyDependencyContainer parent)
+        {
+            Dependencies = new DependencyContainer(base.CreateChildDependencies(parent));
+            return Dependencies;
+        }
 
         private class maisimTestSceneTestRunner : maisimGameBase, ITestSceneTestRunner
         {

@@ -1,30 +1,28 @@
 using System.Collections.Generic;
 using maisim.Game.Beatmaps;
+using maisim.Game.Graphics.UserInterface.Overlays;
 using maisim.Game.Utils;
 using osu.Framework.Allocation;
-using osu.Framework.Bindables;
 using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
 using osu.Framework.Graphics.Shapes;
-using osu.Framework.Logging;
 using osuTK;
 
 namespace maisim.Game.Graphics.UserInterfaceV2
 {
     public class BeatmapSetSelection : CompositeDrawable
     {
-        // TODO: Move to DI this when we can read a beatmap from database and has a global beatmap set
-        private Bindable<BeatmapSet> bindableBeatmapSet;
+        [Resolved]
+        private CurrentWorkingBeatmap currentWorkingBeatmap { get; set; }
+
+        [Resolved]
+        private MusicPlayer musicPlayer { get; set; }
+
         private List<Drawable> beatmapSetDrawables;
         private Box topBox;
         private Box bottomBox;
         private Container dummyBox;
         private Box backgroundBox;
-
-        public BeatmapSetSelection(Bindable<BeatmapSet> bindableBeatmapSet)
-        {
-            this.bindableBeatmapSet = bindableBeatmapSet;
-        }
 
         [BackgroundDependencyLoader]
         private void load()
@@ -32,7 +30,7 @@ namespace maisim.Game.Graphics.UserInterfaceV2
             beatmapSetDrawables = new List<Drawable>();
 
             // Add BeatmapSetCard to the container
-            foreach (TestUtil.AvailableTrackMetadata availableTrackMetadata in TestUtil.AVAILABLE_BEATMAP_SET_TRACK)
+            foreach (TestUtil.AvailableTrackMetadata availableTrackMetadata in TestUtil.AvailableBeatmapSetTrack)
             {
                 if (availableTrackMetadata != TestUtil.AvailableTrackMetadata.None)
                 {
@@ -157,7 +155,7 @@ namespace maisim.Game.Graphics.UserInterfaceV2
                 // Check that what beatmapSetCard is inside the dummyBox by using ScreenSpaceDrawQuad
                 if (drawable.ScreenSpaceDrawQuad.TopLeft.Y >= dummyBox.ScreenSpaceDrawQuad.TopLeft.Y && drawable.ScreenSpaceDrawQuad.BottomRight.Y <= dummyBox.ScreenSpaceDrawQuad.BottomRight.Y)
                 {
-                    bindableBeatmapSet.Value = ((BeatmapSetCard) drawable).BeatmapSet;
+                    currentWorkingBeatmap.SetCurrentBeatmapSet(((BeatmapSetCard) drawable).BeatmapSet);
                 }
             }
         }

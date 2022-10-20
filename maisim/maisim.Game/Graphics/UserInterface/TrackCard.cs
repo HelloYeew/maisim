@@ -1,5 +1,5 @@
 ﻿using maisim.Game.Beatmaps;
-using maisim.Game.Graphics;
+using maisim.Game.Component;
 using maisim.Game.Graphics.Sprites;
 using maisim.Game.Scores;
 using osu.Framework.Allocation;
@@ -13,7 +13,7 @@ using osu.Framework.Graphics.Textures;
 using osuTK;
 using osuTK.Graphics;
 
-namespace maisim.Game.Component
+namespace maisim.Game.Graphics.UserInterface
 {
     /// <summary>
     /// A track card that displays information about a track that is not focused / selected.

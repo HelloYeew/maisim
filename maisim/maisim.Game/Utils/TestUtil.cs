@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using maisim.Game.Beatmaps;
 using maisim.Game.Scores;
-using osu.Framework.Logging;
 
 namespace maisim.Game.Utils
 {
@@ -21,15 +20,30 @@ namespace maisim.Game.Utils
         public enum AvailableTrackMetadata
         {
             None = -1,
-            DiamondCityLights = 0,
+            Canon = 0,
             RayTuning = 1,
             OnlyMyRailgun = 2,
-            RaiseMySword = 3,
-            Rough = 4,
-            SukinoSkill = 5,
-            TenkaiENoKippu = 6,
-            ReI = 7
+            Rough = 3,
+            SukinoSkill = 4,
+            TenkaiENoKippu = 5,
+            ReI = 6,
+            NewGenesis = 7,
+            EndlessTewiMaPark = 8
         }
+
+        /// <summary>
+        /// The list of the <see cref="TrackMetadata"/> that has the track inside game's resources.
+        /// </summary>
+        public static readonly AvailableTrackMetadata[] AvailableBeatmapSetTrack =
+        {
+            AvailableTrackMetadata.Canon,
+            AvailableTrackMetadata.OnlyMyRailgun,
+            AvailableTrackMetadata.SukinoSkill,
+            AvailableTrackMetadata.TenkaiENoKippu,
+            AvailableTrackMetadata.ReI,
+            AvailableTrackMetadata.NewGenesis,
+            AvailableTrackMetadata.EndlessTewiMaPark
+        };
 
         /// <summary>
         /// List of full <see cref="TrackMetadata"/> detail that has texture available and can be use for full testing.
@@ -37,69 +51,73 @@ namespace maisim.Game.Utils
         public static readonly TrackMetadata[] FULL_TRACK_METADATA_LIST = {
             new TrackMetadata
             {
-                Title = "Diamond City Lights",
-                Artist = "LazuLight",
-                Bpm = 185,
-                CoverPath = "Test/diamond-city-lights.jpg"
+                Title = "Canon",
+                TitleUnicode = "カノン",
+                Artist = "DJ Okawari",
+                Bpm = 98,
+                CoverPath = "Test/cohana2nd.jpg",
+                Source = "心花 ～cohana 2nd～ Healing Break Beats oriental classics"
             },
             new TrackMetadata
             {
                 Title = "光線チューニング",
                 Artist = "ナユタン星人 feat. 000",
                 Bpm = 100,
-                CoverPath = "Test/nayutalien.jpg"
+                CoverPath = "Test/nayutalien.jpg",
+                Source = "ナユタン星からの物体Z"
             },
             new TrackMetadata
             {
                 Title = "only my railgun",
                 Artist = "fripSide",
                 Bpm = 143,
-                CoverPath = "Test/only-my-railgun.jpg"
-            },
-            new TrackMetadata
-            {
-                Title = "RAISE MY SWORD",
-                Artist = "GALNERYUS",
-                Bpm = 220,
-                CoverPath = "Test/raise-my-sword.jpg"
+                CoverPath = "Test/only-my-railgun.jpg",
+                Source = "A Certain Scientific Railgun"
             },new TrackMetadata
             {
                 Title = "시간을 달려서 (ROUGH)",
                 Artist = "GFRIEND",
                 Bpm = 112,
-                CoverPath = "Test/snowflake.jpg"
+                CoverPath = "Test/snowflake.jpg",
+                Source = "Snowflake"
             },new TrackMetadata
             {
                 Title = "Sukino Skill",
                 Artist = "Wake Up, Girls!",
                 Bpm = 120,
-                CoverPath = "Test/sukino-skill.jpg"
+                CoverPath = "Test/sukino-skill.jpg",
+                Source = "Death March to the Parallel World Rhapsody"
             },new TrackMetadata
             {
                 Title = "Tenkai e no Kippu",
                 Artist = "Dragon Guardian",
                 Bpm = 190,
-                CoverPath = "Test/tenkai-e-no-kippu.jpg"
+                CoverPath = "Test/tenkai-e-no-kippu.jpg",
+                Source = "Dragon Guardian"
             },new TrackMetadata
             {
                 Title = "ReI",
                 Artist = "THE ORAL CIGARETTES",
                 Bpm = 200,
-                CoverPath = "Test/rei.jpeg"
+                CoverPath = "Test/rei.jpeg",
+                Source = "ReI"
+            },new TrackMetadata
+            {
+                Title = "New Genesis",
+                TitleUnicode = "新時代",
+                Artist = "Ado",
+                Bpm = 140,
+                CoverPath = "Test/ado-one-piece-film-red.jpg",
+                Source = "ONE PIECE FILM RED"
+            },new TrackMetadata
+            {
+                Title = "Endless Tewi-me Park",
+                TitleUnicode = "エンドレス・てゐまパーク",
+                Artist = "Toromi",
+                Bpm = 140,
+                CoverPath = "Test/touhou-merenge-shoujo-yakou.jpg",
+                Source = "東方花映塚　～ Phantasmagoria of Flower View"
             }
-        };
-
-        /// <summary>
-        /// The list of the <see cref="TrackMetadata"/> that has the track inside game's resources.
-        /// </summary>
-        public static readonly AvailableTrackMetadata[] AVAILABLE_BEATMAP_SET_TRACK =
-        {
-            AvailableTrackMetadata.DiamondCityLights,
-            AvailableTrackMetadata.OnlyMyRailgun,
-            AvailableTrackMetadata.RaiseMySword,
-            AvailableTrackMetadata.SukinoSkill,
-            AvailableTrackMetadata.TenkaiENoKippu,
-            AvailableTrackMetadata.ReI,
         };
 
         /// <summary>
@@ -108,10 +126,10 @@ namespace maisim.Game.Utils
         public static readonly string[] RANDOM_NAME_LIST = {
             "GIGACHAD",
             "Pogpega",
-            "EduardoLinguino",
             "Tutel",
             "SUSSY",
-            "PogU"
+            "PogU",
+            "Amogus"
         };
 
         /// <summary>
@@ -190,18 +208,20 @@ namespace maisim.Game.Utils
         {
             switch (availableTrackMetadata)
             {
-                case AvailableTrackMetadata.DiamondCityLights:
-                    return "Test/diamond-city-lights.mp3";
+                case AvailableTrackMetadata.Canon:
+                    return "Test/canon.m4a";
                 case AvailableTrackMetadata.OnlyMyRailgun:
                     return "Test/only-my-railgun.m4a";
-                case AvailableTrackMetadata.RaiseMySword:
-                    return "Test/raise-my-sword.mp3";
                 case AvailableTrackMetadata.SukinoSkill:
                     return "Test/sukino-skill.mp3";
                 case AvailableTrackMetadata.TenkaiENoKippu:
                     return "Test/tenkai-e-no-kippu.mp3";
                 case AvailableTrackMetadata.ReI:
                     return "Test/rei.mp3";
+                case AvailableTrackMetadata.NewGenesis:
+                    return "Test/new-genesis.mp3";
+                case AvailableTrackMetadata.EndlessTewiMaPark:
+                    return "Test/endless-tewi-ma-park.mp3";
                 default:
                     return "";
             }
@@ -216,18 +236,20 @@ namespace maisim.Game.Utils
         {
             switch (availableTrackMetadata)
             {
-                case AvailableTrackMetadata.DiamondCityLights:
-                    return 57500;
+                case AvailableTrackMetadata.Canon:
+                    return 97900;
                 case AvailableTrackMetadata.OnlyMyRailgun:
                     return 62000;
-                case AvailableTrackMetadata.RaiseMySword:
-                    return 96500;
                 case AvailableTrackMetadata.SukinoSkill:
                     return 55000;
                 case AvailableTrackMetadata.TenkaiENoKippu:
                     return 88900;
                 case AvailableTrackMetadata.ReI:
                     return 76000;
+                case AvailableTrackMetadata.NewGenesis:
+                    return 88200;
+                case AvailableTrackMetadata.EndlessTewiMaPark:
+                    return 38000;
                 default:
                     return 0;
             }
@@ -290,6 +312,7 @@ namespace maisim.Game.Utils
                 Beatmaps = beatmaps,
                 AudioFileName = TestUtil.GetBeatmapSetAudioPath(availableTrackMetadata),
                 PreviewTime = TestUtil.GetBeatmapSetPreviewTime(availableTrackMetadata),
+                UseLocalFile = true
             };
             for (int i = 0; i < 4; i++)
             {

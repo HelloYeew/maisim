@@ -1,3 +1,5 @@
+<img width="250" alt="maisim logo" src="maisim/maisim.Resources/Textures/logo.png">
+
 # maisim
 
 A free and open-source, community-powered based on circular-lane-style gameplay powered by the [osu!framework](https://github.com/ppy/osu-framework).
@@ -6,7 +8,7 @@ Note : project name isn't final (yet?).
 
 ## Project Status
 
-The project is still in an infancy stage. Current priorities are creating UI pieces from the figma designs and getting basic gameplay working. Stuff like UI adjustment and etc. might come later.
+The UI and design pieces of the game are slowly getting done. Gameplay design isn't finalized yet, but we're getting there.
 
 There are plans to develop along this a website so the game can be a whole experience by itself.
 
@@ -39,6 +41,7 @@ Getting started with developing maisim is as follows:
 
 
 ### Grabbing the code from the repository
+
 ```sh
 git clone https://github.com/HelloYeew/maisim
 cd maisim/maisim
