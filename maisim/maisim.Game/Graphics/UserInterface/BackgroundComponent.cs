@@ -4,7 +4,7 @@ using osu.Framework.Graphics.Containers;
 using osu.Framework.Graphics.Sprites;
 using osu.Framework.Graphics.Textures;
 
-namespace maisim.Game.Component
+namespace maisim.Game.Graphics.UserInterface
 {
     /// <summary>
     /// A drawable background component that's always staying at the bottom of the screen.
