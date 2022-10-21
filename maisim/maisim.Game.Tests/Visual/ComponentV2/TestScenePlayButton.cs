@@ -1,10 +1,12 @@
-using maisim.Game.Graphics.UserInterface;
+using maisim.Game.Beatmaps;
+using maisim.Game.Graphics;
+using maisim.Game.Graphics.UserInterface.Overlays;
 using maisim.Game.Graphics.UserInterfaceV2;
+using osu.Framework.Allocation;
 using osu.Framework.Extensions.Color4Extensions;
 using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
 using osu.Framework.Graphics.Shapes;
-using osu.Framework.Graphics.Sprites;
 using osuTK;
 using osuTK.Graphics;
 
@@ -12,6 +14,11 @@ namespace maisim.Game.Tests.Visual.ComponentV2
 {
     public class TestScenePlayButton : maisimTestScene
     {
+        [Cached]
+        private CurrentWorkingBeatmap currentWorkingBeatmap = new CurrentWorkingBeatmap();
+
+        private PlayButton playButton;
+
         public TestScenePlayButton()
         {
             Child = new Container
@@ -27,7 +34,7 @@ namespace maisim.Game.Tests.Visual.ComponentV2
                         RelativeSizeAxes = Axes.Both,
                         Colour = Color4.DimGray
                     },
-                    new PlayButton()
+                    playButton = new PlayButton()
                     {
                         Anchor = Anchor.Centre,
                         Origin = Anchor.Centre,
@@ -35,6 +42,20 @@ namespace maisim.Game.Tests.Visual.ComponentV2
                     }
                 }
             };
+            AddStep("change difficulty level to basic",
+                () => currentWorkingBeatmap.SetCurrentDifficultyLevel(DifficultyLevel.Basic));
+            AddStep("change difficulty level to basic",
+                () => currentWorkingBeatmap.SetCurrentDifficultyLevel(DifficultyLevel.Advanced));
+            AddStep("change difficulty level to basic",
+                () => currentWorkingBeatmap.SetCurrentDifficultyLevel(DifficultyLevel.Expert));
+            AddStep("change difficulty level to basic",
+                () => currentWorkingBeatmap.SetCurrentDifficultyLevel(DifficultyLevel.Master));
+        }
+
+        [BackgroundDependencyLoader]
+        private void load()
+        {
+            Dependencies.CacheAs(currentWorkingBeatmap);
         }
     }
 }
