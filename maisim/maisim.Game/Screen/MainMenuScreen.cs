@@ -145,13 +145,6 @@ namespace maisim.Game.Screen
             currentWorkingBeatmap.BindBeatmapSetChanged(workingBeatmapChanged);
         }
 
-        protected override void LoadComplete()
-        {
-            base.LoadComplete();
-
-            maisimLogo.Visualizer.AddAmplitudeSource(musicPlayer.Track.Value);
-        }
-
         /// <summary>
         /// Update and show the new track's information.
         /// </summary>
@@ -168,9 +161,6 @@ namespace maisim.Game.Screen
                 trackArtistText.FadeTo(0, 2000, Easing.OutQuint);
                 trackTitleText.FadeTo(0, 2000, Easing.OutQuint);
             }, 5000);
-            maisimLogo.Visualizer.ClearAmplitudeSources();
-            // The scheduler need for this operation to make the visualizer completely clear.
-            Scheduler.Add(() => maisimLogo.Visualizer.AddAmplitudeSource(musicPlayer.Track.Value));
         }
 
         public override void OnEntering(ScreenTransitionEvent e)
