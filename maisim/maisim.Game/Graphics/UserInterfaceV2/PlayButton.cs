@@ -1,5 +1,9 @@
+using maisim.Game.Beatmaps;
 using maisim.Game.Graphics.Sprites;
 using maisim.Game.Graphics.UserInterface;
+using maisim.Game.Graphics.UserInterface.Overlays;
+using osu.Framework.Allocation;
+using osu.Framework.Bindables;
 using osu.Framework.Extensions.Color4Extensions;
 using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
@@ -7,9 +11,7 @@ using osu.Framework.Graphics.Shapes;
 using osu.Framework.Graphics.Sprites;
 using osu.Framework.Graphics.UserInterface;
 using osu.Framework.Input.Events;
-using osu.Framework.Logging;
 using osuTK;
-using osuTK.Graphics;
 using osuTK.Input;
 
 namespace maisim.Game.Graphics.UserInterfaceV2
@@ -19,9 +21,14 @@ namespace maisim.Game.Graphics.UserInterfaceV2
     /// </summary>
     public class PlayButton : Button
     {
-        // TODO: Bind color with diff color
-        private readonly Color4 buttonColor = Color4.Aqua;
+        [Resolved]
+        private CurrentWorkingBeatmap currentWorkingBeatmap { get; set; }
+
         private readonly Box buttonBox;
+        private Colour4 difficultyColour => MaisimColour.GetDifficultyColor(currentWorkingBeatmap.DifficultyLevel);
+
+        private void onDifficultyLevelChange(ValueChangedEvent<DifficultyLevel> difficultyChangedEvent) =>
+            buttonBox.FadeColour(MaisimColour.GetDifficultyColor(difficultyChangedEvent.NewValue), BeatmapCard.FADE_COLOR_DURATION);
 
         public PlayButton()
         {
@@ -39,7 +46,6 @@ namespace maisim.Game.Graphics.UserInterfaceV2
                         RelativeSizeAxes = Axes.Both,
                         Anchor = Anchor.CentreRight,
                         Origin = Anchor.CentreRight,
-                        Colour = buttonColor
                     },
                     new GridContainer
                     {
@@ -91,15 +97,22 @@ namespace maisim.Game.Graphics.UserInterfaceV2
             };
         }
 
+        [BackgroundDependencyLoader]
+        private void load()
+        {
+            buttonBox.Colour = difficultyColour;
+            currentWorkingBeatmap.BindDifficultyLevelChanged(onDifficultyLevelChange);
+        }
+
         protected override bool OnHover(HoverEvent e)
         {
-            buttonBox.Colour = buttonColor.Darken(0.25f);
+            buttonBox.Colour = difficultyColour.Darken(0.25f);
             return base.OnHover(e);
         }
 
         protected override void OnHoverLost(HoverLostEvent e)
         {
-            buttonBox.Colour = buttonColor;
+            buttonBox.Colour = difficultyColour;
             base.OnHoverLost(e);
         }
 
@@ -107,8 +120,8 @@ namespace maisim.Game.Graphics.UserInterfaceV2
         {
             if (e.Button == MouseButton.Left)
             {
-                buttonBox.FadeColour(Color4.Cyan.Darken(0.5f), 100);
-                this.ScaleTo(0.9f, 500, Easing.OutElastic);
+                buttonBox.FadeColour(difficultyColour.Darken(0.5f), 100);
+                this.ScaleTo(0.92f, 500, Easing.OutElastic);
             }
             return base.OnMouseDown(e);
         }
@@ -117,7 +130,7 @@ namespace maisim.Game.Graphics.UserInterfaceV2
         {
             if (e.Button == MouseButton.Left)
             {
-                buttonBox.FadeColour(Color4.Cyan, 100);
+                buttonBox.FadeColour(difficultyColour, 100);
                 this.ScaleTo(1, 500, Easing.OutElastic);
             }
             base.OnMouseUp(e);
