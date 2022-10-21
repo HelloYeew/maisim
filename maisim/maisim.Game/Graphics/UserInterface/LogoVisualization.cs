@@ -30,7 +30,7 @@ namespace maisim.Game.Graphics.UserInterface
         /// <summary>
         /// The maximum length of each bar in the visualiser.
         /// </summary>
-        private const float bar_length = 600;
+        private const float bar_length = 500;
 
         /// <summary>
         /// The number of bars in one rotation of the visualiser.
