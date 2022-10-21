@@ -1,10 +1,13 @@
 using System;
+using maisim.Game.Beatmaps;
 using osu.Framework.Allocation;
 using osu.Framework.Extensions.Color4Extensions;
 using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
 using osu.Framework.Graphics.Shapes;
 using maisim.Game.Graphics.Gameplay;
+using maisim.Game.Graphics.UserInterface.Overlays;
+using osu.Framework.Bindables;
 using osu.Framework.Graphics.Sprites;
 using osu.Framework.Graphics.Textures;
 using osuTK;
@@ -21,6 +24,18 @@ namespace maisim.Game.Graphics.UserInterface
         private Container amplitudeContainer;
         private Container logoBeatContainer;
         public LogoVisualization Visualizer;
+
+        [Resolved]
+        private CurrentWorkingBeatmap currentWorkingBeatmap { get; set; }
+
+        [Resolved]
+        private MusicPlayer musicPlayer { get; set; }
+
+        private void workingBeatmapChanged(ValueChangedEvent<BeatmapSet> beatmapSetEvent)
+        {
+            Visualizer.ClearAmplitudeSources();
+            Scheduler.Add(() => Visualizer.AddAmplitudeSource(musicPlayer.Track.Value));
+        }
 
         [BackgroundDependencyLoader]
         private void load(TextureStore textureStore)
@@ -103,6 +118,13 @@ namespace maisim.Game.Graphics.UserInterface
                     Size = new Vector2(10)
                 });
             }
+            currentWorkingBeatmap.BindBeatmapSetChanged(workingBeatmapChanged);
+        }
+
+        protected override void LoadComplete()
+        {
+            base.LoadComplete();
+            Visualizer.AddAmplitudeSource(musicPlayer.Track.Value);
         }
     }
 }
