@@ -30,6 +30,7 @@ namespace maisim.Game.Screen
                     Anchor = Anchor.TopRight,
                     Origin = Anchor.TopRight,
                     RelativeSizeAxes = Axes.Y,
+                    Depth = -10
                 },
                 new BackButton
                 {
@@ -40,6 +41,7 @@ namespace maisim.Game.Screen
                 new Container
                 {
                     Anchor = Anchor.BottomRight,
+
                     Origin = Anchor.BottomRight,
                     Size = new Vector2(300, 80),
                     Position = new Vector2(-20,-20),
@@ -48,6 +50,22 @@ namespace maisim.Game.Screen
                         Size = new Vector2(300, 80),
                         Anchor = Anchor.Centre,
                         Origin = Anchor.Centre,
+                    }
+                },
+                new Container
+                {
+                    Origin = Anchor.Centre,
+                    Size = new Vector2(100),
+                    Position = new Vector2(-5,-5),
+                    Depth = 10,
+                    Child = new MaisimLogo
+                    {
+                        Anchor = Anchor.Centre,
+                        Origin = Anchor.Centre,
+                        Size = new Vector2(20),
+                        Scale = new Vector2(0.8f),
+                        Depth = 10,
+
                     }
                 },
             };
