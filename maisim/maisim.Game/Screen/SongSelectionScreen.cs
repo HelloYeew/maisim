@@ -41,7 +41,6 @@ namespace maisim.Game.Screen
                 new Container
                 {
                     Anchor = Anchor.BottomRight,
-
                     Origin = Anchor.BottomRight,
                     Size = new Vector2(300, 80),
                     Position = new Vector2(-20,-20),
@@ -54,9 +53,10 @@ namespace maisim.Game.Screen
                 },
                 new Container
                 {
+                    Anchor = Anchor.BottomRight,
                     Origin = Anchor.Centre,
                     Size = new Vector2(100),
-                    Position = new Vector2(-5,-5),
+                    Position = new Vector2(-10,-10),
                     Depth = 10,
                     Child = new MaisimLogo
                     {
@@ -65,7 +65,6 @@ namespace maisim.Game.Screen
                         Size = new Vector2(20),
                         Scale = new Vector2(0.8f),
                         Depth = 10,
-
                     }
                 },
             };
