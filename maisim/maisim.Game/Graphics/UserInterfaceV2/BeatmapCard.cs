@@ -1,4 +1,5 @@
 using maisim.Game.Beatmaps;
+using maisim.Game.Configuration;
 using maisim.Game.Graphics.Sprites;
 using maisim.Game.Graphics.UserInterface.Overlays;
 using maisim.Game.Utils;
@@ -23,11 +24,19 @@ namespace maisim.Game.Graphics.UserInterfaceV2
         [Resolved]
         private CurrentWorkingBeatmap currentWorkingBeatmap { get; set; }
 
+        [Resolved]
+        private MaisimConfigManager gameConfig { get; set; }
+
+        private bool useUnicodeInfo => gameConfig.Get<bool>(MaisimSetting.UseUnicodeInfo);
+
         private void difficultyLevelChanged(ValueChangedEvent<DifficultyLevel> difficultyLevelEvent) =>
             updateDifficultyLevel(difficultyLevelEvent.NewValue);
 
         private void beatmapSetChanged(ValueChangedEvent<BeatmapSet> beatmapSet) =>
             updateBeatmapSet(beatmapSet.NewValue);
+
+        private void useUnicodeInfoSettingChanged(ValueChangedEvent<bool> useUnicodeInfo) =>
+            updateBeatmapSet(currentWorkingBeatmap.BeatmapSet);
 
         [Resolved]
         private TextureStore textures { get; set; }
@@ -119,7 +128,7 @@ namespace maisim.Game.Graphics.UserInterfaceV2
                                                     {
                                                         Anchor = Anchor.TopLeft,
                                                         Origin = Anchor.TopLeft,
-                                                        Text = "Sukino Skill",
+                                                        Text = useUnicodeInfo ? currentWorkingBeatmap.BeatmapSet.TrackMetadata.TitleUnicode : currentWorkingBeatmap.BeatmapSet.TrackMetadata.Title,
                                                         Font = MaisimFont.GetFont(size:40, weight:MaisimFont.FontWeight.Black),
                                                         Position = new Vector2(0, 5)
                                                     },
@@ -127,7 +136,7 @@ namespace maisim.Game.Graphics.UserInterfaceV2
                                                     {
                                                         Anchor = Anchor.TopLeft,
                                                         Origin = Anchor.TopLeft,
-                                                        Text = "Wake Up, Girls!",
+                                                        Text = useUnicodeInfo ? currentWorkingBeatmap.BeatmapSet.TrackMetadata.ArtistUnicode : currentWorkingBeatmap.BeatmapSet.TrackMetadata.Artist,
                                                         Font = MaisimFont.GetFont(size:30, weight:MaisimFont.FontWeight.Medium),
                                                         Position = new Vector2(0, 46)
                                                     },
@@ -160,6 +169,7 @@ namespace maisim.Game.Graphics.UserInterfaceV2
 
             currentWorkingBeatmap.BindDifficultyLevelChanged(difficultyLevelChanged, true);
             currentWorkingBeatmap.BindBeatmapSetChanged(beatmapSetChanged, true);
+            gameConfig.GetBindable<bool>(MaisimSetting.UseUnicodeInfo).BindValueChanged(useUnicodeInfoSettingChanged, true);
         }
 
         /// <summary>
@@ -178,8 +188,8 @@ namespace maisim.Game.Graphics.UserInterfaceV2
         private void updateBeatmapSet(BeatmapSet newBeatmapSet)
         {
             albumCover.Texture = textures.Get(newBeatmapSet.TrackMetadata.CoverPath);
-            titleText.Text = newBeatmapSet.TrackMetadata.Title;
-            artistText.Text = newBeatmapSet.TrackMetadata.Artist;
+            titleText.Text = useUnicodeInfo ? newBeatmapSet.TrackMetadata.TitleUnicode : newBeatmapSet.TrackMetadata.Title;
+            artistText.Text = useUnicodeInfo ? newBeatmapSet.TrackMetadata.ArtistUnicode : newBeatmapSet.TrackMetadata.Artist;
             sourceText.Text = $"From {newBeatmapSet.TrackMetadata.Source}";
             creatorText.Text = $"beatmap by {BeatmapUtils.GetNoteDesignerFromBeatmapSet(newBeatmapSet, currentWorkingBeatmap.DifficultyLevel)}";
         }
