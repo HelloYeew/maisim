@@ -18,7 +18,7 @@ namespace maisim.Game.Graphics.UserInterface.Overlays.Settings.UserInterface
             {
                 new MaisimSpriteText
                 {
-                    Text = "Menu Parallax",
+                    Text = "Menu parallax",
                     Font = MaisimFont.Comfortaa.With(size: 22)
                 },
                 new BasicCheckbox

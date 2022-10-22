@@ -27,7 +27,8 @@ namespace maisim.Game.Graphics.UserInterfaceV2
         [Resolved]
         private MaisimConfigManager gameConfig { get; set; }
 
-        private bool useUnicodeInfo => gameConfig.Get<bool>(MaisimSetting.UseUnicodeInfo);
+        [Resolved]
+        private TextureStore textures { get; set; }
 
         private void difficultyLevelChanged(ValueChangedEvent<DifficultyLevel> difficultyLevelEvent) =>
             updateDifficultyLevel(difficultyLevelEvent.NewValue);
@@ -35,11 +36,8 @@ namespace maisim.Game.Graphics.UserInterfaceV2
         private void beatmapSetChanged(ValueChangedEvent<BeatmapSet> beatmapSet) =>
             updateBeatmapSet(beatmapSet.NewValue);
 
-        private void useUnicodeInfoSettingChanged(ValueChangedEvent<bool> useUnicodeInfo) =>
+        private void useUnicodeInfoSettingChanged(ValueChangedEvent<bool> useUnicodeInfoChangedEvent) =>
             updateBeatmapSet(currentWorkingBeatmap.BeatmapSet);
-
-        [Resolved]
-        private TextureStore textures { get; set; }
 
         private Box backgroundBox;
         private Sprite albumCover;
@@ -49,7 +47,7 @@ namespace maisim.Game.Graphics.UserInterfaceV2
         private MaisimSpriteText creatorText;
 
         [BackgroundDependencyLoader]
-        private void load(TextureStore textureStore)
+        private void load()
         {
             RelativeSizeAxes = Axes.X;
             Size = new Vector2(1, 170);
@@ -80,7 +78,7 @@ namespace maisim.Game.Graphics.UserInterfaceV2
                                 Anchor = Anchor.Centre,
                                 Origin = Anchor.Centre,
                                 RelativeSizeAxes = Axes.Both,
-                                ColumnDimensions = new []
+                                ColumnDimensions = new[]
                                 {
                                     new Dimension(GridSizeMode.Relative, 0.2f),
                                     new Dimension(GridSizeMode.Relative, 0.8f)
@@ -128,32 +126,44 @@ namespace maisim.Game.Graphics.UserInterfaceV2
                                                     {
                                                         Anchor = Anchor.TopLeft,
                                                         Origin = Anchor.TopLeft,
-                                                        Text = useUnicodeInfo ? currentWorkingBeatmap.BeatmapSet.TrackMetadata.TitleUnicode : currentWorkingBeatmap.BeatmapSet.TrackMetadata.Title,
-                                                        Font = MaisimFont.GetFont(size:40, weight:MaisimFont.FontWeight.Black),
+                                                        Text = gameConfig.Get<bool>(MaisimSetting.UseUnicodeInfo)
+                                                            ? currentWorkingBeatmap.BeatmapSet.TrackMetadata
+                                                                .TitleUnicode
+                                                            : currentWorkingBeatmap.BeatmapSet.TrackMetadata.Title,
+                                                        Font = MaisimFont.GetFont(size: 40,
+                                                            weight: MaisimFont.FontWeight.Black),
                                                         Position = new Vector2(0, 5)
                                                     },
                                                     artistText = new MaisimSpriteText()
                                                     {
                                                         Anchor = Anchor.TopLeft,
                                                         Origin = Anchor.TopLeft,
-                                                        Text = useUnicodeInfo ? currentWorkingBeatmap.BeatmapSet.TrackMetadata.ArtistUnicode : currentWorkingBeatmap.BeatmapSet.TrackMetadata.Artist,
-                                                        Font = MaisimFont.GetFont(size:30, weight:MaisimFont.FontWeight.Medium),
+                                                        Text = gameConfig.Get<bool>(MaisimSetting.UseUnicodeInfo)
+                                                            ? currentWorkingBeatmap.BeatmapSet.TrackMetadata
+                                                                .ArtistUnicode
+                                                            : currentWorkingBeatmap.BeatmapSet.TrackMetadata.Artist,
+                                                        Font = MaisimFont.GetFont(size: 30,
+                                                            weight: MaisimFont.FontWeight.Medium),
                                                         Position = new Vector2(0, 46)
                                                     },
                                                     sourceText = new MaisimSpriteText()
                                                     {
                                                         Anchor = Anchor.BottomLeft,
                                                         Origin = Anchor.BottomLeft,
-                                                        Text = $"From {currentWorkingBeatmap.BeatmapSet.TrackMetadata.Source}",
-                                                        Font = MaisimFont.GetFont(size:20, weight:MaisimFont.FontWeight.Medium),
+                                                        Text =
+                                                            $"From {currentWorkingBeatmap.BeatmapSet.TrackMetadata.Source}",
+                                                        Font = MaisimFont.GetFont(size: 20,
+                                                            weight: MaisimFont.FontWeight.Medium),
                                                         Position = new Vector2(0, -30)
                                                     },
                                                     creatorText = new MaisimSpriteText()
                                                     {
                                                         Anchor = Anchor.BottomLeft,
                                                         Origin = Anchor.BottomLeft,
-                                                        Text = $"beatmap by {BeatmapUtils.GetNoteDesignerFromBeatmapSet(currentWorkingBeatmap.BeatmapSet, currentWorkingBeatmap.DifficultyLevel)}",
-                                                        Font = MaisimFont.GetFont(size:20, weight:MaisimFont.FontWeight.Medium),
+                                                        Text =
+                                                            $"beatmap by {BeatmapUtils.GetNoteDesignerFromBeatmapSet(currentWorkingBeatmap.BeatmapSet, currentWorkingBeatmap.DifficultyLevel)}",
+                                                        Font = MaisimFont.GetFont(size: 20,
+                                                            weight: MaisimFont.FontWeight.Medium),
                                                         Position = new Vector2(0, -5)
                                                     },
                                                 }
@@ -169,7 +179,8 @@ namespace maisim.Game.Graphics.UserInterfaceV2
 
             currentWorkingBeatmap.BindDifficultyLevelChanged(difficultyLevelChanged, true);
             currentWorkingBeatmap.BindBeatmapSetChanged(beatmapSetChanged, true);
-            gameConfig.GetBindable<bool>(MaisimSetting.UseUnicodeInfo).BindValueChanged(useUnicodeInfoSettingChanged, true);
+            gameConfig.GetBindable<bool>(MaisimSetting.UseUnicodeInfo)
+                .BindValueChanged(useUnicodeInfoSettingChanged);
         }
 
         /// <summary>
@@ -178,7 +189,8 @@ namespace maisim.Game.Graphics.UserInterfaceV2
         /// <param name="newDifficultyLevel">New <see cref="DifficultyLevel"/> value</param>
         private void updateDifficultyLevel(DifficultyLevel newDifficultyLevel)
         {
-            backgroundBox.FadeColour(MaisimColour.GetDifficultyColor(newDifficultyLevel), FADE_COLOR_DURATION, Easing.OutQuint);
+            backgroundBox.FadeColour(MaisimColour.GetDifficultyColor(newDifficultyLevel), FADE_COLOR_DURATION,
+                Easing.OutQuint);
         }
 
         /// <summary>
@@ -188,10 +200,15 @@ namespace maisim.Game.Graphics.UserInterfaceV2
         private void updateBeatmapSet(BeatmapSet newBeatmapSet)
         {
             albumCover.Texture = textures.Get(newBeatmapSet.TrackMetadata.CoverPath);
-            titleText.Text = useUnicodeInfo ? newBeatmapSet.TrackMetadata.TitleUnicode : newBeatmapSet.TrackMetadata.Title;
-            artistText.Text = useUnicodeInfo ? newBeatmapSet.TrackMetadata.ArtistUnicode : newBeatmapSet.TrackMetadata.Artist;
+            titleText.Text = gameConfig.Get<bool>(MaisimSetting.UseUnicodeInfo)
+                ? newBeatmapSet.TrackMetadata.TitleUnicode
+                : newBeatmapSet.TrackMetadata.Title;
+            artistText.Text = gameConfig.Get<bool>(MaisimSetting.UseUnicodeInfo)
+                ? newBeatmapSet.TrackMetadata.ArtistUnicode
+                : newBeatmapSet.TrackMetadata.Artist;
             sourceText.Text = $"From {newBeatmapSet.TrackMetadata.Source}";
-            creatorText.Text = $"beatmap by {BeatmapUtils.GetNoteDesignerFromBeatmapSet(newBeatmapSet, currentWorkingBeatmap.DifficultyLevel)}";
+            creatorText.Text =
+                $"beatmap by {BeatmapUtils.GetNoteDesignerFromBeatmapSet(newBeatmapSet, currentWorkingBeatmap.DifficultyLevel)}";
         }
     }
 }
