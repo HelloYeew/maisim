@@ -1,8 +1,9 @@
 using maisim.Game.Beatmaps;
 using maisim.Game.Graphics.Sprites;
-using maisim.Game.Graphics.UserInterface;
 using maisim.Game.Graphics.UserInterface.Overlays;
 using osu.Framework.Allocation;
+using osu.Framework.Audio;
+using osu.Framework.Audio.Sample;
 using osu.Framework.Bindables;
 using osu.Framework.Extensions.Color4Extensions;
 using osu.Framework.Graphics;
@@ -26,6 +27,8 @@ namespace maisim.Game.Graphics.UserInterfaceV2
 
         private readonly Box buttonBox;
         private Colour4 difficultyColour => MaisimColour.GetDifficultyColor(currentWorkingBeatmap.DifficultyLevel);
+        private Sample hoverSample;
+        private Sample clickSample;
 
         private void onDifficultyLevelChange(ValueChangedEvent<DifficultyLevel> difficultyChangedEvent) =>
             buttonBox.FadeColour(MaisimColour.GetDifficultyColor(difficultyChangedEvent.NewValue), BeatmapCard.FADE_COLOR_DURATION);
@@ -91,22 +94,24 @@ namespace maisim.Game.Graphics.UserInterfaceV2
                                 }
                             }
                         }
-                    },
-                    new ClickHoverSounds()
+                    }
                 }
             };
         }
 
         [BackgroundDependencyLoader]
-        private void load()
+        private void load(AudioManager audioManager)
         {
             buttonBox.Colour = difficultyColour;
             currentWorkingBeatmap.BindDifficultyLevelChanged(onDifficultyLevelChange);
+            hoverSample = audioManager.Samples.Get("hover.wav");
+            clickSample = audioManager.Samples.Get("play.wav");
         }
 
         protected override bool OnHover(HoverEvent e)
         {
             buttonBox.Colour = difficultyColour.Darken(0.25f);
+            hoverSample?.Play();
             return base.OnHover(e);
         }
 
@@ -114,6 +119,13 @@ namespace maisim.Game.Graphics.UserInterfaceV2
         {
             buttonBox.Colour = difficultyColour;
             base.OnHoverLost(e);
+        }
+
+        protected override bool OnClick(ClickEvent e)
+        {
+            if (e.Button == MouseButton.Left)
+                clickSample?.Play();
+            return base.OnClick(e);
         }
 
         protected override bool OnMouseDown(MouseDownEvent e)
