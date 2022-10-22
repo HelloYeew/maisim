@@ -179,8 +179,12 @@ namespace maisim.Game.Graphics.UserInterfaceV2
 
             currentWorkingBeatmap.BindDifficultyLevelChanged(difficultyLevelChanged, true);
             currentWorkingBeatmap.BindBeatmapSetChanged(beatmapSetChanged, true);
-            gameConfig.GetBindable<bool>(MaisimSetting.UseUnicodeInfo)
-                .BindValueChanged(useUnicodeInfoSettingChanged);
+        }
+
+        protected override void Update()
+        {
+            base.Update();
+            updateCurrentTrackTitle();
         }
 
         /// <summary>
@@ -191,6 +195,19 @@ namespace maisim.Game.Graphics.UserInterfaceV2
         {
             backgroundBox.FadeColour(MaisimColour.GetDifficultyColor(newDifficultyLevel), FADE_COLOR_DURATION,
                 Easing.OutQuint);
+        }
+
+        /// <summary>
+        /// Update current track metadata using current <see cref="BeatmapSet"/> in <see cref="currentWorkingBeatmap"/>.
+        /// </summary>
+        private void updateCurrentTrackTitle()
+        {
+            titleText.Text = gameConfig.Get<bool>(MaisimSetting.UseUnicodeInfo)
+                ? currentWorkingBeatmap.BeatmapSet.TrackMetadata.TitleUnicode
+                : currentWorkingBeatmap.BeatmapSet.TrackMetadata.Title;
+            artistText.Text = gameConfig.Get<bool>(MaisimSetting.UseUnicodeInfo)
+                ? currentWorkingBeatmap.BeatmapSet.TrackMetadata.ArtistUnicode
+                : currentWorkingBeatmap.BeatmapSet.TrackMetadata.Artist;
         }
 
         /// <summary>
