@@ -3,6 +3,7 @@ using maisim.Game.Beatmaps;
 using maisim.Game.Graphics.UserInterface.Overlays;
 using maisim.Game.Utils;
 using osu.Framework.Allocation;
+using osu.Framework.Bindables;
 using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
 using osu.Framework.Graphics.Shapes;
@@ -23,6 +24,9 @@ namespace maisim.Game.Graphics.UserInterfaceV2
         private Box bottomBox;
         private Container dummyBox;
         private Box backgroundBox;
+
+        private void workingBeatmapChange(ValueChangedEvent<BeatmapSet> beatmapSetEvent) =>
+            musicPlayer.SeekTo(beatmapSetEvent.NewValue.PreviewTime);
 
         [BackgroundDependencyLoader]
         private void load()
@@ -137,6 +141,8 @@ namespace maisim.Game.Graphics.UserInterfaceV2
                     }
                 }
             };
+
+            currentWorkingBeatmap.BindBeatmapSetChanged(workingBeatmapChange);
         }
 
         protected override void LoadComplete()
