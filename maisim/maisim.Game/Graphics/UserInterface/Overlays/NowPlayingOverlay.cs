@@ -1,16 +1,14 @@
 using maisim.Game.Beatmaps;
+using maisim.Game.Configuration;
 using maisim.Game.Graphics.Sprites;
 using osu.Framework.Allocation;
-using osu.Framework.Audio.Track;
 using osu.Framework.Bindables;
 using osu.Framework.Extensions.Color4Extensions;
 using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
 using osu.Framework.Graphics.Effects;
-using osu.Framework.Graphics.Shapes;
 using osu.Framework.Graphics.Sprites;
 using osu.Framework.Graphics.Textures;
-using osu.Framework.Graphics.UserInterface;
 using osuTK;
 using osuTK.Graphics;
 
@@ -26,6 +24,9 @@ namespace maisim.Game.Graphics.UserInterface.Overlays
 
         [Resolved]
         private CurrentWorkingBeatmap currentWorkingBeatmap { get; set; }
+
+        [Resolved]
+        private MaisimConfigManager gameConfig { get; set; }
 
         [Resolved]
         private TextureStore textureStore { get; set; }
@@ -52,8 +53,7 @@ namespace maisim.Game.Graphics.UserInterface.Overlays
         private void workingBeatmapChanged(ValueChangedEvent<BeatmapSet> beatmapSetEvent)
         {
             updateTotalTime();
-            title.Text = beatmapSetEvent.NewValue.TrackMetadata.Title;
-            artist.Text = beatmapSetEvent.NewValue.TrackMetadata.Artist;
+            updateTrackTitle();
             cover.Texture = textureStore.Get(currentWorkingBeatmap.BeatmapSet.TrackMetadata.CoverPath);
         }
 
@@ -228,6 +228,7 @@ namespace maisim.Game.Graphics.UserInterface.Overlays
             base.Update();
             updateCurrentTime();
             updateTotalTime();
+            updateTrackTitle();
             progressBar.EndTime = musicPlayer.Track.Value.Length;
             progressBar.CurrentTime = musicPlayer.Track.Value.CurrentTime;
             playButton.Icon = musicPlayer.Track.Value.IsRunning ? FontAwesome.Solid.Pause : FontAwesome.Solid.Play;
@@ -271,9 +272,18 @@ namespace maisim.Game.Graphics.UserInterface.Overlays
         private void updateTotalTime()
         {
             double length = musicPlayer.Track.Value.Length;
-            int minutes = (int) length / 1000 / 60;
-            int seconds = (int) length / 1000 % 60;
+            int minutes = (int)length / 1000 / 60;
+            int seconds = (int)length / 1000 % 60;
             totalTime.Text = minutes.ToString("00") + ":" + seconds.ToString("00");
+        }
+
+        /// <summary>
+        /// Update track title and artist
+        /// </summary>
+        private void updateTrackTitle()
+        {
+            title.Text = gameConfig.Get<bool>(MaisimSetting.UseUnicodeInfo) ? currentWorkingBeatmap.BeatmapSet.TrackMetadata.TitleUnicode : currentWorkingBeatmap.BeatmapSet.TrackMetadata.Title;
+            artist.Text = gameConfig.Get<bool>(MaisimSetting.UseUnicodeInfo) ? currentWorkingBeatmap.BeatmapSet.TrackMetadata.ArtistUnicode : currentWorkingBeatmap.BeatmapSet.TrackMetadata.Artist;
         }
     }
 }
