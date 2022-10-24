@@ -16,6 +16,8 @@ namespace maisim.Game.Graphics.UserInterfaceV2
         [Resolved]
         private CurrentWorkingBeatmap currentWorkingBeatmap { get; set; }
 
+        public BeatmapCard BeatmapCard;
+
         [BackgroundDependencyLoader]
         private void load()
         {
@@ -34,7 +36,7 @@ namespace maisim.Game.Graphics.UserInterfaceV2
                     Alpha = 0.5f,
                     RelativeSizeAxes = Axes.Both
                 },
-                new BeatmapCard
+                BeatmapCard = new BeatmapCard
                 {
                     Anchor = Anchor.TopRight,
                     Origin = Anchor.TopRight,

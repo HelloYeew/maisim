@@ -10,6 +10,7 @@ using osu.Framework.Graphics.Containers;
 using osu.Framework.Graphics.Shapes;
 using osu.Framework.Graphics.Sprites;
 using osu.Framework.Graphics.Textures;
+using osu.Framework.Localisation;
 using osuTK;
 
 namespace maisim.Game.Graphics.UserInterfaceV2
@@ -226,6 +227,24 @@ namespace maisim.Game.Graphics.UserInterfaceV2
             sourceText.Text = $"From {newBeatmapSet.TrackMetadata.Source}";
             creatorText.Text =
                 $"beatmap by {BeatmapUtils.GetNoteDesignerFromBeatmapSet(newBeatmapSet, currentWorkingBeatmap.DifficultyLevel)}";
+        }
+
+        /// <summary>
+        /// Return the current value of <see cref="titleText"/> used in the card.
+        /// </summary>
+        /// <returns>The <see cref="titleText"/> used in the card</returns>
+        public LocalisableString GetTitleText()
+        {
+            return titleText.Text;
+        }
+
+        /// <summary>
+        /// Return the current value of <see cref="artistText"/> used in the card.
+        /// </summary>
+        /// <returns>The <see cref="artistText"/> used in the card</returns>
+        public LocalisableString GetArtistText()
+        {
+            return artistText.Text;
         }
     }
 }
