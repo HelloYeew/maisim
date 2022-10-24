@@ -70,10 +70,10 @@ public class TestSceneBeatmapCard : maisimTestScene
     public void UseUnicodeInfoSettingTest()
     {
         AddStep("Set use unicode info to true", () => configManager.SetValue(MaisimSetting.UseUnicodeInfo, true));
-        AddAssert("TitleUnicode is used",
+        AddAssert("Title is in unicode",
             () => beatmapSetInfoBox.BeatmapCard.GetTitleText() ==
                   currentWorkingBeatmap.BeatmapSet.TrackMetadata.TitleUnicode);
-        AddAssert("ArtistUnicode is used",
+        AddAssert("Artist is in unicode",
             () => beatmapSetInfoBox.BeatmapCard.GetArtistText() ==
                   currentWorkingBeatmap.BeatmapSet.TrackMetadata.ArtistUnicode);
         AddStep("Set use unicode info to false", () => configManager.SetValue(MaisimSetting.UseUnicodeInfo, false));
