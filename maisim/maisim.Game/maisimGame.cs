@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using maisim.Game.Graphics.UserInterface.Overlays;
 using maisim.Game.Graphics.UserInterface.Toolbar;
 using maisim.Game.Screen;
+using maisim.Game.Users;
 using osu.Framework.Allocation;
 using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
@@ -38,6 +39,8 @@ namespace maisim.Game
 
         private Container leftFloatingOverlayContent;
 
+        private User user;
+
         private float toolbarOffset => (toolbar?.Position.Y ?? 0) + (toolbar?.DrawHeight ?? 0);
 
         protected override IReadOnlyDependencyContainer CreateChildDependencies(IReadOnlyDependencyContainer parent) =>
@@ -47,6 +50,7 @@ namespace maisim.Game
         private void load()
         {
             dependencies.CacheAs(this);
+            dependencies.CacheAs(user = new User());
 
             Add(screenStack = new MaisimScreenStack());
         }
