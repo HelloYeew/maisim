@@ -1,9 +1,10 @@
 using System.Reflection;
 using maisim.Game.Beatmaps;
+using maisim.Game.Graphics.UserInterface.Overlays;
 using maisim.Game.Graphics.UserInterfaceV2;
 using maisim.Game.Utils;
 using NUnit.Framework;
-using osu.Framework.Bindables;
+using osu.Framework.Allocation;
 using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
 
@@ -11,18 +12,27 @@ namespace maisim.Game.Tests.Visual.ComponentV2;
 
 public class TestSceneBeatmapCard : maisimTestScene
 {
-    private Bindable<DifficultyLevel> difficultyLevel = new Bindable<DifficultyLevel>();
+    [Cached]
+    private WorkingBeatmapManager workingBeatmapManager = new WorkingBeatmapManager();
 
-    private Bindable<BeatmapSet> beatmapSet =  new Bindable<BeatmapSet>(new BeatmapSetTestFixture().BeatmapSet);
+    [Cached]
+    private CurrentWorkingBeatmap currentWorkingBeatmap = new CurrentWorkingBeatmap();
 
     private string beatmapList;
     private TextFlowContainer beatmapListContainer;
+
+    [BackgroundDependencyLoader]
+    private void load()
+    {
+        Dependencies.CacheAs(workingBeatmapManager);
+        Dependencies.CacheAs(currentWorkingBeatmap);
+    }
 
     public TestSceneBeatmapCard()
     {
         Children = new Drawable[]
         {
-            new BeatmapSetInfoBox(difficultyLevel, beatmapSet)
+            new BeatmapSetInfoBox()
             {
                 Anchor = Anchor.TopRight,
                 Origin = Anchor.TopRight,
@@ -36,33 +46,33 @@ public class TestSceneBeatmapCard : maisimTestScene
                 Text = ""
             }
         };
-        difficultyLevel.BindValueChanged(_ => updateBeatmapInfo(), true);
-        beatmapSet.BindValueChanged(_ => updateBeatmapInfo(), true);
+        currentWorkingBeatmap.SetCurrentBeatmapSet(new BeatmapSetTestFixture().BeatmapSet);
+        currentWorkingBeatmap.BindBeatmapSetChanged(_ => updateBeatmapInfo(), true);
         updateBeatmapInfo();
     }
 
     [SetUp]
     public void SetUp()
     {
-        AddStep("Set difficulty level to basic", () => difficultyLevel.Value = DifficultyLevel.Basic);
-        AddStep("Set difficulty level to advanced", () => difficultyLevel.Value = DifficultyLevel.Advanced);
-        AddStep("Set difficulty level to expert", () => difficultyLevel.Value = DifficultyLevel.Expert);
-        AddStep("Set difficulty level to master", () => difficultyLevel.Value = DifficultyLevel.Master);
-        AddStep("Get a new beatmap set", () => beatmapSet.Value = new BeatmapSetTestFixture().BeatmapSet);
+        AddStep("Set difficulty level to basic", () => currentWorkingBeatmap.SetCurrentDifficultyLevel(DifficultyLevel.Basic));
+        AddStep("Set difficulty level to advanced", () => currentWorkingBeatmap.SetCurrentDifficultyLevel(DifficultyLevel.Advanced));
+        AddStep("Set difficulty level to expert", () => currentWorkingBeatmap.SetCurrentDifficultyLevel(DifficultyLevel.Expert));
+        AddStep("Set difficulty level to master", () => currentWorkingBeatmap.SetCurrentDifficultyLevel(DifficultyLevel.Master));
+        AddStep("Get a new beatmap set", () => currentWorkingBeatmap.SetCurrentBeatmapSet(new BeatmapSetTestFixture().BeatmapSet));
     }
 
     private void updateBeatmapInfo()
     {
         beatmapList = "";
-        beatmapList += "difficultyLevel : " + difficultyLevel.Value + "\n";
-        beatmapList += $"beatmapSet : {BeatmapUtils.GetBeatmapSetString(beatmapSet.Value)}\n";
+        beatmapList += "difficultyLevel : " + currentWorkingBeatmap.DifficultyLevel + "\n";
+        beatmapList += $"beatmapSet : {BeatmapUtils.GetBeatmapSetString(currentWorkingBeatmap.BeatmapSet)}\n";
         beatmapList += "info : " + "\n";
-        foreach (PropertyInfo property in beatmapSet.Value.GetType().GetProperties())
+        foreach (PropertyInfo property in currentWorkingBeatmap.BeatmapSet.GetType().GetProperties())
         {
-            beatmapList += property.Name + " - " + property.GetValue(beatmapSet.Value) + "\n";
+            beatmapList += property.Name + " - " + property.GetValue(currentWorkingBeatmap.BeatmapSet) + "\n";
         }
         beatmapList += "list : \n";
-        foreach (var beatmap in beatmapSet.Value.Beatmaps)
+        foreach (var beatmap in currentWorkingBeatmap.BeatmapSet.Beatmaps)
         {
             beatmapList += $"{BeatmapUtils.GetBeatmapString(beatmap)}\n";
         }

@@ -16,12 +16,12 @@ namespace maisim.Game.Graphics.UserInterface
     {
         private readonly Color4 buttonColor;
         private readonly Box buttonBox;
+        private Container mainContainer;
 
         public MaisimButton(string text, Color4 buttonColor, Color4 buttonOutlineColor)
         {
             this.buttonColor = buttonColor;
-            CornerRadius = 30;
-            InternalChild = new Container
+            InternalChild = mainContainer = new Container
             {
                 Anchor = Anchor.Centre,
                 Origin = Anchor.Centre,
@@ -65,15 +65,19 @@ namespace maisim.Game.Graphics.UserInterface
 
         protected override bool OnMouseDown(MouseDownEvent e)
         {
-            if (e.Button == MouseButton.Left)
+            if (e.Button == MouseButton.Left) {
+                mainContainer.ScaleTo(0.9f, 100, Easing.OutQuint);
                 buttonBox.Colour = buttonColor.Darken(0.5f);
+            }
             return base.OnMouseDown(e);
         }
 
         protected override void OnMouseUp(MouseUpEvent e)
         {
-            if (e.Button == MouseButton.Left)
+            if (e.Button == MouseButton.Left) {
+                mainContainer.ScaleTo(1, 100, Easing.OutElastic);
                 buttonBox.Colour = buttonColor;
+            }
             base.OnMouseUp(e);
         }
     }

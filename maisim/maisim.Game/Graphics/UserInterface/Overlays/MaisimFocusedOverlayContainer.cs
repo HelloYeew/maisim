@@ -1,4 +1,5 @@
 using osu.Framework.Allocation;
+using osu.Framework.Audio;
 using osu.Framework.Audio.Sample;
 using osu.Framework.Bindables;
 using osu.Framework.Graphics.Containers;
@@ -17,10 +18,10 @@ namespace maisim.Game.Graphics.UserInterface.Overlays
         protected override bool BlockNonPositionalInput => false;
 
         [BackgroundDependencyLoader(true)]
-        private void load(ISampleStore sampleStore)
+        private void load(AudioManager audioManager)
         {
-            popInSample = sampleStore.Get(PopInSampleName);
-            popOutSample = sampleStore.Get(PopOutSampleName);
+            popInSample = audioManager.Samples.Get(PopInSampleName);
+            popOutSample = audioManager.Samples.Get(PopOutSampleName);
         }
 
         private bool closeOnMouseUp;

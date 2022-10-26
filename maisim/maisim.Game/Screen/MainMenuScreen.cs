@@ -1,13 +1,15 @@
-﻿using maisim.Game.Graphics.Sprites;
+﻿using maisim.Game.Beatmaps;
+using maisim.Game.Graphics;
+using maisim.Game.Graphics.Sprites;
 using maisim.Game.Graphics.UserInterface;
+using maisim.Game.Graphics.UserInterface.Overlays;
 using osu.Framework.Allocation;
-using osu.Framework.Audio.Track;
+using osu.Framework.Bindables;
 using osu.Framework.Development;
 using osu.Framework.Extensions.Color4Extensions;
 using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
 using osu.Framework.Graphics.Sprites;
-using osu.Framework.Graphics.Textures;
 using osu.Framework.Screens;
 using osuTK;
 
@@ -24,16 +26,20 @@ namespace maisim.Game.Screen
         private MainMenuButton browseButton;
         private MainMenuButton exitButton;
         private MaisimSpriteText versionText;
+        private MaisimSpriteText trackTitleText;
+        private MaisimSpriteText trackArtistText;
 
-        // TODO: This is the test track only for test the settings menu. This must be remove later.
-        private Track track;
+        [Resolved]
+        private WorkingBeatmapManager workingBeatmapManager { get; set; }
+
+        [Resolved]
+        private CurrentWorkingBeatmap currentWorkingBeatmap { get; set; }
+
+        private void workingBeatmapChanged(ValueChangedEvent<BeatmapSet> beatmapSetEvent) => updateNewBeatmap(beatmapSetEvent.NewValue);
 
         [BackgroundDependencyLoader]
-        private void load(TextureStore textureStore, ITrackStore tracks)
+        private void load()
         {
-            track = tracks.Get(@"testtrack.mp3");
-            track.Looping = true;
-
             InternalChildren = new Drawable[]
             {
                 new Container
@@ -106,8 +112,52 @@ namespace maisim.Game.Screen
                     Origin = Anchor.BottomLeft,
                     Text = DebugUtils.IsDebugBuild ? "maisim development build" : $"maisim v{System.Reflection.Assembly.GetExecutingAssembly().GetName().Version}",
                     Scale = new Vector2(0)
+                },
+                new Container
+                {
+                    Anchor = Anchor.TopRight,
+                    Origin = Anchor.TopRight,
+                    Size = new Vector2(400, 100),
+                    Position = new Vector2(-30, 30),
+                    Children = new Drawable[]
+                    {
+                        trackTitleText = new MaisimSpriteText
+                        {
+                            Anchor = Anchor.TopRight,
+                            Origin = Anchor.TopRight,
+                            Font = MaisimFont.GetFont(size: 35f, weight: MaisimFont.FontWeight.Bold),
+                            Alpha = 0
+                        },
+                        trackArtistText = new MaisimSpriteText
+                        {
+                            Anchor = Anchor.TopRight,
+                            Origin = Anchor.TopRight,
+                            Position = new Vector2(0, 40),
+                            Font = MaisimFont.GetFont(weight: MaisimFont.FontWeight.Regular),
+                            Alpha = 0
+                        }
+                    }
                 }
             };
+            currentWorkingBeatmap.BindBeatmapSetChanged(workingBeatmapChanged);
+        }
+
+        /// <summary>
+        /// Update and show the new track's information.
+        /// </summary>
+        /// <param name="beatmapSet">The new track's <see cref="BeatmapSet"/></param>
+        private void updateNewBeatmap(BeatmapSet beatmapSet)
+        {
+            trackTitleText.Text = beatmapSet.TrackMetadata.Title;
+            trackArtistText.Text = beatmapSet.TrackMetadata.Artist;
+            trackArtistText.FadeTo(1, 500, Easing.OutQuint);
+            trackTitleText.FadeTo(1, 500, Easing.OutQuint);
+            Scheduler.AddDelayed(
+            () =>
+            {
+                trackArtistText.FadeTo(0, 2000, Easing.OutQuint);
+                trackTitleText.FadeTo(0, 2000, Easing.OutQuint);
+            }, 5000);
         }
 
         public override void OnEntering(ScreenTransitionEvent e)
@@ -118,24 +168,18 @@ namespace maisim.Game.Screen
             browseButton.ScaleTo(1, 900, Easing.OutQuint);
             exitButton.ScaleTo(1, 1000, Easing.OutQuint);
             versionText.ScaleTo(1, 1000, Easing.OutQuint);
-
-            track.Start();
         }
 
         public override void OnSuspending(ScreenTransitionEvent e)
         {
             this.ScaleTo(0f, 750, Easing.OutQuint);
             this.MoveToX(-DrawWidth, 750, Easing.OutExpo);
-
-            track.Stop();
         }
 
         public override void OnResuming(ScreenTransitionEvent e)
         {
             this.ScaleTo(1, 750, Easing.OutQuint);
             this.MoveToX(0, 750, Easing.OutExpo);
-
-            track.Start();
         }
 
         public override float BackgroundParallaxAmount => 0.5f;
