@@ -1,6 +1,8 @@
-﻿using DiscordRPC;
+﻿using System;
+using DiscordRPC;
 using DiscordRPC.Message;
 using maisim.Game.Graphics.UserInterface.Overlays;
+using maisim.Game.Users.Activity;
 using osu.Framework.Allocation;
 using osu.Framework.Graphics;
 using osu.Framework.Logging;
@@ -45,7 +47,13 @@ namespace maisim.Desktop
             gameUser.Activity.BindValueChanged(_ =>
             {
                 updateStatus();
-                Logger.Log("Changed from " + _.OldValue + " to " + _.NewValue);
+                Logger.Log("Discord status activity changed from " + _.OldValue + " to " + _.NewValue, LoggingTarget.Runtime, LogLevel.Debug);
+            });
+
+            currentWorkingBeatmap.BindBeatmapSetChanged(_ =>
+            {
+                updateStatus();
+                Logger.Log("Discord status beatmap changed from " + _.OldValue + " to " + _.NewValue, LoggingTarget.Runtime, LogLevel.Debug);
             });
 
             client.Initialize();
@@ -61,7 +69,6 @@ namespace maisim.Desktop
             if (!client.IsInitialized)
                 return;
 
-            // Let's put some random stuff in here to test if it works
             presence.State = gameUser.Activity.Value.Status;
             presence.Details = null;
 
