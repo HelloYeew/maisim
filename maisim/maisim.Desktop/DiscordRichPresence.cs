@@ -1,7 +1,9 @@
 ﻿using DiscordRPC;
 using DiscordRPC.Message;
+using maisim.Game.Graphics.UserInterface.Overlays;
 using osu.Framework.Allocation;
 using osu.Framework.Graphics;
+using osu.Framework.Logging;
 
 namespace maisim.Desktop
 {
@@ -10,6 +12,12 @@ namespace maisim.Desktop
         private const string client_id = "938878612969508894";
 
         private DiscordRpcClient client;
+
+        [Resolved]
+        private CurrentWorkingBeatmap currentWorkingBeatmap { get; set; }
+
+        [Resolved]
+        private maisim.Game.Users.User gameUser { get; set; }
 
         private readonly RichPresence presence = new RichPresence
         {
@@ -34,6 +42,12 @@ namespace maisim.Desktop
 
             client.OnConnectionFailed += (_, __) => client.Deinitialize();
 
+            gameUser.Activity.BindValueChanged(_ =>
+            {
+                updateStatus();
+                Logger.Log("Changed from " + _.OldValue + " to " + _.NewValue);
+            });
+
             client.Initialize();
         }
 
@@ -48,7 +62,7 @@ namespace maisim.Desktop
                 return;
 
             // Let's put some random stuff in here to test if it works
-            presence.State = "Nothing here. Just passing by...";
+            presence.State = gameUser.Activity.Value.Status;
             presence.Details = null;
 
             client.SetPresence(presence);

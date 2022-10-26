@@ -1,3 +1,4 @@
+using maisim.Game.Users;
 using osu.Framework.Screens;
 
 namespace maisim.Game.Screen
@@ -8,5 +9,7 @@ namespace maisim.Game.Screen
     public interface IMaisimScreen : IScreen
     {
         float BackgroundParallaxAmount { get; }
+
+        IUserActivity InitialUserActivity { get; }
     }
 }

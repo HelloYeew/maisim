@@ -1,6 +1,8 @@
 using maisim.Game.Graphics.UserInterface;
 using maisim.Game.Graphics.UserInterface.Overlays;
 using maisim.Game.Graphics.UserInterfaceV2;
+using maisim.Game.Users;
+using maisim.Game.Users.Activity;
 using osu.Framework.Allocation;
 using osu.Framework.Graphics;
 using osu.Framework.Screens;
@@ -15,7 +17,12 @@ namespace maisim.Game.Screen
         [Resolved]
         private CurrentWorkingBeatmap currentWorkingBeatmap { get; set; }
 
+        [Resolved]
+        private User user { get; set; }
+
         public override float BackgroundParallaxAmount => 0.2f;
+
+        public override IUserActivity InitialUserActivity => new ChoosingBeatmap();
 
         [BackgroundDependencyLoader]
         private void load()
@@ -36,6 +43,11 @@ namespace maisim.Game.Screen
                     Action = () => this.Exit()
                 }
             };
+        }
+
+        protected override void LoadComplete()
+        {
+            base.LoadComplete();
         }
     }
 }

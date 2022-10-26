@@ -3,6 +3,8 @@ using maisim.Game.Graphics;
 using maisim.Game.Graphics.Sprites;
 using maisim.Game.Graphics.UserInterface;
 using maisim.Game.Graphics.UserInterface.Overlays;
+using maisim.Game.Users;
+using maisim.Game.Users.Activity;
 using osu.Framework.Allocation;
 using osu.Framework.Bindables;
 using osu.Framework.Development;
@@ -34,6 +36,8 @@ namespace maisim.Game.Screen
 
         [Resolved]
         private CurrentWorkingBeatmap currentWorkingBeatmap { get; set; }
+
+        public override IUserActivity InitialUserActivity => new InMainMenu();
 
         private void workingBeatmapChanged(ValueChangedEvent<BeatmapSet> beatmapSetEvent) => updateNewBeatmap(beatmapSetEvent.NewValue);
 
@@ -162,6 +166,7 @@ namespace maisim.Game.Screen
 
         public override void OnEntering(ScreenTransitionEvent e)
         {
+            base.OnEntering(e);
             maisimLogo.ScaleTo(1, 1000, Easing.OutQuint);
             playButton.ScaleTo(1, 700, Easing.OutQuint);
             editButton.ScaleTo(1, 800, Easing.OutQuint);
@@ -178,6 +183,7 @@ namespace maisim.Game.Screen
 
         public override void OnResuming(ScreenTransitionEvent e)
         {
+            base.OnResuming(e);
             this.ScaleTo(1, 750, Easing.OutQuint);
             this.MoveToX(0, 750, Easing.OutExpo);
         }
