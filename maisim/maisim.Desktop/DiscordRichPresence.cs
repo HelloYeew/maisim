@@ -25,6 +25,7 @@ namespace maisim.Desktop
         {
             Assets = new Assets
             {
+                // TODO: Change this to icon of the game
                 LargeImageKey = "tempicon",
                 LargeImageText = "maisim",
                 SmallImageKey = "tempicon3",
