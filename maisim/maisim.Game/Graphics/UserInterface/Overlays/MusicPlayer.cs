@@ -73,7 +73,7 @@ namespace maisim.Game.Graphics.UserInterface.Overlays
             trackStore = audioManager.Tracks;
             Track = new Bindable<Track>(trackStore.Get(currentWorkingBeatmap.BeatmapSet.AudioFileName));
             trackName = currentWorkingBeatmap.BeatmapSet.AudioFileName;
-            currentWorkingBeatmap.BindBeatmapSetChanged(workingBeatmapChanged);
+            currentWorkingBeatmap.BindValueChanged(workingBeatmapChanged);
             Logger.Log("Initialized MusicPlayer with " + currentWorkingBeatmap.BeatmapSet.AudioFileName);
             if (startOnLoaded)
                 Track.Value.Start();

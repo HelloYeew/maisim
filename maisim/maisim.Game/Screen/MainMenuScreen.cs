@@ -139,7 +139,7 @@ namespace maisim.Game.Screen
                     }
                 }
             };
-            currentWorkingBeatmap.BindBeatmapSetChanged(workingBeatmapChanged);
+            currentWorkingBeatmap.BindValueChanged(workingBeatmapChanged);
         }
 
         /// <summary>

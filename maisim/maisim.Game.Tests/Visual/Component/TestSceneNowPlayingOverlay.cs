@@ -36,7 +36,7 @@ public class TestSceneNowPlayingOverlay : maisimTestScene
     {
         Dependencies.CacheAs(workingBeatmapManager);
         Dependencies.CacheAs(currentWorkingBeatmap);
-        currentWorkingBeatmap.SetCurrentBeatmapSet(beatmapSetTestFixture.BeatmapSet);
+        currentWorkingBeatmap.BeatmapSet = beatmapSetTestFixture.BeatmapSet;
         Dependencies.CacheAs(musicPlayer);
         musicPlayer.Track = new Bindable<Track>(audioManager.Tracks.Get(currentWorkingBeatmap.BeatmapSet.AudioFileName));
         Dependencies.CacheAs(nowPlayingOverlay);

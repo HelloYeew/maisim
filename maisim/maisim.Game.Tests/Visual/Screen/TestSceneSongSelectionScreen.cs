@@ -27,7 +27,7 @@ namespace maisim.Game.Tests.Visual.Screen
         {
             Dependencies.CacheAs(workingBeatmapManager);
             Dependencies.CacheAs(currentWorkingBeatmap);
-            currentWorkingBeatmap.SetCurrentBeatmapSet(beatmapSetTestFixture.BeatmapSet);
+            currentWorkingBeatmap.BeatmapSet = beatmapSetTestFixture.BeatmapSet;
         }
 
         [SetUp]

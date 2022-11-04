@@ -46,19 +46,19 @@ public class TestSceneBeatmapCard : maisimTestScene
                 Text = ""
             }
         };
-        currentWorkingBeatmap.SetCurrentBeatmapSet(new BeatmapSetTestFixture().BeatmapSet);
-        currentWorkingBeatmap.BindBeatmapSetChanged(_ => updateBeatmapInfo(), true);
+        currentWorkingBeatmap.BeatmapSet = new BeatmapSetTestFixture().BeatmapSet;
+        currentWorkingBeatmap.BindValueChanged(_ => updateBeatmapInfo(), true);
         updateBeatmapInfo();
     }
 
     [SetUp]
     public void SetUp()
     {
-        AddStep("Set difficulty level to basic", () => currentWorkingBeatmap.SetCurrentDifficultyLevel(DifficultyLevel.Basic));
-        AddStep("Set difficulty level to advanced", () => currentWorkingBeatmap.SetCurrentDifficultyLevel(DifficultyLevel.Advanced));
-        AddStep("Set difficulty level to expert", () => currentWorkingBeatmap.SetCurrentDifficultyLevel(DifficultyLevel.Expert));
-        AddStep("Set difficulty level to master", () => currentWorkingBeatmap.SetCurrentDifficultyLevel(DifficultyLevel.Master));
-        AddStep("Get a new beatmap set", () => currentWorkingBeatmap.SetCurrentBeatmapSet(new BeatmapSetTestFixture().BeatmapSet));
+        AddStep("Set difficulty level to basic", () => currentWorkingBeatmap.DifficultyLevel = DifficultyLevel.Basic);
+        AddStep("Set difficulty level to advanced", () => currentWorkingBeatmap.DifficultyLevel = DifficultyLevel.Advanced);
+        AddStep("Set difficulty level to expert", () => currentWorkingBeatmap.DifficultyLevel = DifficultyLevel.Expert);
+        AddStep("Set difficulty level to master", () => currentWorkingBeatmap.DifficultyLevel = DifficultyLevel.Master);
+        AddStep("Get a new beatmap set", () => currentWorkingBeatmap.BeatmapSet = new BeatmapSetTestFixture().BeatmapSet);
     }
 
     private void updateBeatmapInfo()

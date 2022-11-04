@@ -52,19 +52,19 @@ namespace maisim.Game.Graphics.UserInterfaceV2
                         {
                             new DifficultySelectionButton(DifficultyLevel.Basic)
                             {
-                                Action = () => currentWorkingBeatmap.SetCurrentDifficultyLevel(DifficultyLevel.Basic)
+                                Action = () => currentWorkingBeatmap.DifficultyLevel = DifficultyLevel.Basic
                             },
                             new DifficultySelectionButton(DifficultyLevel.Advanced)
                             {
-                                Action = () => currentWorkingBeatmap.SetCurrentDifficultyLevel(DifficultyLevel.Advanced)
+                                Action = () => currentWorkingBeatmap.DifficultyLevel = DifficultyLevel.Advanced
                             },
                             new DifficultySelectionButton(DifficultyLevel.Expert)
                             {
-                                Action = () => currentWorkingBeatmap.SetCurrentDifficultyLevel(DifficultyLevel.Expert)
+                                Action = () => currentWorkingBeatmap.DifficultyLevel = DifficultyLevel.Expert
                             },
                             new DifficultySelectionButton(DifficultyLevel.Master)
                             {
-                                Action = () => currentWorkingBeatmap.SetCurrentDifficultyLevel(DifficultyLevel.Master)
+                                Action = () => currentWorkingBeatmap.DifficultyLevel = DifficultyLevel.Master
                             },
                         }
                     }
