@@ -35,11 +35,11 @@ namespace maisim.Game.Graphics.UserInterface.Overlays
             }
 
             // random the beatmapset from the list and set it to the current beatmapset
-            currentWorkingBeatmap.BeatmapSet = beatmapSetList[RandomExtensions.NextInRange(new Random(), 0, beatmapSetList.Count - 1)];
-            currentWorkingBeatmap.DifficultyLevel = DifficultyLevel.Basic;
+            currentWorkingBeatmap.SetCurrentBeatmapSet(beatmapSetList[RandomExtensions.NextInRange(new Random(), 0, beatmapSetList.Count - 1)]);
+            currentWorkingBeatmap.SetCurrentDifficultyLevel(DifficultyLevel.Basic);
 
             // bind the event
-            currentWorkingBeatmap.BindValueChanged(beatmapSetChanged);
+            currentWorkingBeatmap.BindBeatmapSetChanged(beatmapSetChanged);
         }
 
         /// <summary>
@@ -56,7 +56,7 @@ namespace maisim.Game.Graphics.UserInterface.Overlays
                     nextBeatmapSetId = 1;
                 // Set the next beatmapset to the current beatmapset
                 // Get the beatmap set from the list by the database id
-                currentWorkingBeatmap.BeatmapSet = beatmapSetList.Find(beatmapSet => beatmapSet.DatabaseID == nextBeatmapSetId);
+                currentWorkingBeatmap.SetCurrentBeatmapSet(beatmapSetList.Find(beatmapSet => beatmapSet.DatabaseID == nextBeatmapSetId));
                 Logger.Log($"Current beatmapset id: {currentWorkingBeatmap.BeatmapSet.DatabaseID.ToString()}");
             });
         }
@@ -71,7 +71,7 @@ namespace maisim.Game.Graphics.UserInterface.Overlays
                 int previousBeatmapSetId = currentWorkingBeatmap.BeatmapSet.DatabaseID - 1;
                 if (previousBeatmapSetId < 1)
                     previousBeatmapSetId = beatmapSetList.Count;
-                currentWorkingBeatmap.BeatmapSet = beatmapSetList.Find(beatmapSet => beatmapSet.DatabaseID == previousBeatmapSetId);
+                currentWorkingBeatmap.SetCurrentBeatmapSet(beatmapSetList.Find(beatmapSet => beatmapSet.DatabaseID == previousBeatmapSetId));
             });
         }
 

@@ -23,11 +23,11 @@ namespace maisim.Game.Graphics.UserInterfaceV2
         [Resolved]
         private CurrentWorkingBeatmap currentWorkingBeatmap { get; set; }
 
-        private void beatmapSetChanged(ValueChangedEvent<BeatmapSet> beatmapSet)
-        {
+        private void difficultyLevelChanged(ValueChangedEvent<DifficultyLevel> difficultyLevelEvent) =>
+            updateDifficultyLevel(difficultyLevelEvent.NewValue);
+
+        private void beatmapSetChanged(ValueChangedEvent<BeatmapSet> beatmapSet) =>
             updateBeatmapSet(beatmapSet.NewValue);
-            updateDifficultyLevel(currentWorkingBeatmap.DifficultyLevel);
-        }
 
         [Resolved]
         private TextureStore textures { get; set; }
@@ -158,7 +158,8 @@ namespace maisim.Game.Graphics.UserInterfaceV2
                 }
             };
 
-            currentWorkingBeatmap.BindValueChanged(beatmapSetChanged, true);
+            currentWorkingBeatmap.BindDifficultyLevelChanged(difficultyLevelChanged, true);
+            currentWorkingBeatmap.BindBeatmapSetChanged(beatmapSetChanged, true);
         }
 
         /// <summary>

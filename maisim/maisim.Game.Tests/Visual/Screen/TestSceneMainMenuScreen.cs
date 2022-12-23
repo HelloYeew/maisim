@@ -26,7 +26,7 @@ namespace maisim.Game.Tests.Visual.Screen
         {
             Dependencies.CacheAs(workingBeatmapManager);
             Dependencies.CacheAs(currentWorkingBeatmap);
-            currentWorkingBeatmap.BeatmapSet = beatmapSetTestFixture.BeatmapSet;
+            currentWorkingBeatmap.SetCurrentBeatmapSet(beatmapSetTestFixture.BeatmapSet);
         }
 
         [SetUp]
@@ -39,7 +39,7 @@ namespace maisim.Game.Tests.Visual.Screen
             AddStep("Change track", () =>
             {
                 beatmapSetTestFixture = new BeatmapSetTestFixture();
-                currentWorkingBeatmap.BeatmapSet = beatmapSetTestFixture.BeatmapSet;
+                currentWorkingBeatmap.SetCurrentBeatmapSet(beatmapSetTestFixture.BeatmapSet);
             });
         }
     }

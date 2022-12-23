@@ -219,7 +219,7 @@ namespace maisim.Game.Graphics.UserInterface.Overlays
                 }
             };
 
-            currentWorkingBeatmap.BindValueChanged(workingBeatmapChanged);
+            currentWorkingBeatmap.BindBeatmapSetChanged(workingBeatmapChanged);
             updateTotalTime();
         }
 
