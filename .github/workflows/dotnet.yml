@@ -21,7 +21,14 @@ jobs:
     - name: Install .NET 6.0.x
       uses: actions/setup-dotnet@v1
       with:
-        dotnet-version: "6.0.x" 
+        dotnet-version: "6.0.x"
+    
+    # https://github.com/ppy/osu-framework/issues/4349
+    - name: Install libavformat-dev
+      if: ${{matrix.os.fullname == 'ubuntu-latest'}}
+      run: |
+       sudo apt-get update && \
+       sudo apt-get -y install libavformat-dev
     
     - name: Restore dependencies
       run: dotnet restore
@@ -30,7 +37,7 @@ jobs:
     - name: Build
       run: |
         cd maisim
-        dotnet build -c Debug -warnaserror maisim.Desktop.slnf
+        dotnet build -c Debug maisim.Desktop.slnf
     
     - name: Test
       run: |
