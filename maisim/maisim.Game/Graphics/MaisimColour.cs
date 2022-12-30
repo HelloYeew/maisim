@@ -2,6 +2,7 @@
 using maisim.Game.Beatmaps;
 using maisim.Game.Component;
 using osu.Framework.Extensions.Color4Extensions;
+using osu.Framework.Graphics;
 using osuTK.Graphics;
 
 namespace maisim.Game.Graphics
@@ -46,5 +47,10 @@ namespace maisim.Game.Graphics
         public static Color4 SongSelectionContainerColor => Color4Extensions.FromHex("d9d9d9");
 
         public static Color4 SongSelectionContainerBorderColor => Color4Extensions.FromHex("eaea00");
+
+        public static Color4 NowPlayingArtistColor => Color4Extensions.FromHex("b8b8b8");
+
+        public static Color4 NowPlayingProgressBarFillColor => Color4Extensions.FromHex("878787");
+        public static Color4 NowPlayingProgressBarBackgroundColor => Color4Extensions.FromHex("d9d9d9");
     }
 }

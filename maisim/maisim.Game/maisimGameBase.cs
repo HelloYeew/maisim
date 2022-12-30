@@ -4,6 +4,7 @@ using maisim.Game.Configuration;
 using maisim.Game.Store;
 using maisim.Resources;
 using osu.Framework.Allocation;
+using osu.Framework.Audio;
 using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
 using osu.Framework.IO.Stores;
@@ -31,6 +32,10 @@ namespace maisim.Game
         protected MaisimConfigManager LocalConfig { get; private set; }
 
         protected Storage Storage { get; set; }
+
+        public MaisimStore Store;
+
+        private AudioManager audioManager;
 
         private DependencyContainer dependencies;
 
@@ -76,7 +81,12 @@ namespace maisim.Game
             Logger.Log("Game storage path : " + Host.Storage.GetFullPath(""), LoggingTarget.Database);
             Logger.Log("Environment application data : "+ Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), LoggingTarget.Database);
 
+            ResourceStore<byte[]> trackResourceStore = new ResourceStore<byte[]>();
+            trackResourceStore.AddStore(new NamespacedResourceStore<byte[]>(new MaisimStore(Host.Storage), "beatmaps"));
+            trackResourceStore.AddStore(new NamespacedResourceStore<byte[]>(Resources, "Tracks"));
+
             dependencies.Cache(textureStore = new MaisimTextureStore(Host.Renderer, Host.CreateTextureLoaderStore(new NamespacedResourceStore<byte[]>(Resources, "Textures"))));
+            dependencies.Cache(audioManager = new AudioManager(Host.AudioThread, trackResourceStore, new NamespacedResourceStore<byte[]>(Resources, "Samples")));
             dependencies.CacheAs(this);
             dependencies.CacheAs(LocalConfig);
             dependencies.CacheAs(beatmapDatabase);
