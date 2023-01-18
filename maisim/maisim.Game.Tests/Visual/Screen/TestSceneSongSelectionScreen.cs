@@ -9,7 +9,7 @@ using osuTK;
 
 namespace maisim.Game.Tests.Visual.Screen
 {
-    public class TestSceneSongSelectionScreen : maisimTestScene
+    public partial class TestSceneSongSelectionScreen : maisimTestScene
     {
         [Cached]
         private WorkingBeatmapManager workingBeatmapManager = new WorkingBeatmapManager();

@@ -1,5 +1,4 @@
 ﻿using maisim.Game.Beatmaps;
-using maisim.Game.Component;
 using maisim.Game.Graphics.Sprites;
 using maisim.Game.Scores;
 using osu.Framework.Allocation;
@@ -18,7 +17,7 @@ namespace maisim.Game.Graphics.UserInterface
     /// <summary>
     /// A track card that displays information about a track that is not focused / selected.
     /// </summary>
-    public class TrackCard : MaisimTrackCard
+    public partial class TrackCard : MaisimTrackCard
     {
         public TrackCard(Beatmap beatmap, Score score) : base(beatmap, score)
         {

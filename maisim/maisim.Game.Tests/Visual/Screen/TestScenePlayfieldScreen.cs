@@ -7,7 +7,7 @@ using osu.Framework.Graphics;
 
 namespace maisim.Game.Tests.Visual.Screen
 {
-    public class TestScenePlayfieldScreen : maisimTestScene
+    public partial class TestScenePlayfieldScreen : maisimTestScene
     {
         private PlayfieldScreen playfieldScreen;
 

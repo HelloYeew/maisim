@@ -6,7 +6,7 @@ using osu.Framework.Input.Events;
 
 namespace maisim.Game.Graphics.UserInterface
 {
-    public class ClickHoverSounds : Drawable
+    public partial class ClickHoverSounds : Drawable
     {
         private Sample hoverSample;
 

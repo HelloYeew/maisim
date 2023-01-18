@@ -7,7 +7,7 @@ using osu.Framework.Localisation;
 
 namespace maisim.Game.Graphics.UserInterface.Overlays.Settings.UserInterface
 {
-    public class GeneralSection : SettingsSubsection
+    public partial class GeneralSection : SettingsSubsection
     {
         protected override LocalisableString Header => "general";
 
@@ -18,12 +18,21 @@ namespace maisim.Game.Graphics.UserInterface.Overlays.Settings.UserInterface
             {
                 new MaisimSpriteText
                 {
-                    Text = "Menu Parallax",
+                    Text = "Menu parallax",
                     Font = MaisimFont.Comfortaa.With(size: 22)
                 },
                 new BasicCheckbox
                 {
                     Current = gameConfig.GetBindable<bool>(MaisimSetting.MenuParallax)
+                },
+                new MaisimSpriteText
+                {
+                    Text = "Use metadata in original language",
+                    Font = MaisimFont.Comfortaa.With(size: 22)
+                },
+                new BasicCheckbox
+                {
+                    Current = gameConfig.GetBindable<bool>(MaisimSetting.UseUnicodeInfo)
                 }
             };
         }

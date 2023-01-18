@@ -5,12 +5,12 @@ using osu.Framework.Graphics.Shapes;
 using osuTK;
 using osuTK.Graphics;
 
-namespace maisim.Game.Component
+namespace maisim.Game.Graphics.UserInterface
 {
     /// <summary>
     /// The background for the song select screen
     /// </summary>
-    public class SongSelectionBackground : CompositeDrawable
+    public partial class SongSelectionBackground : CompositeDrawable
     {
         private readonly Color4 backgroundColor;
 

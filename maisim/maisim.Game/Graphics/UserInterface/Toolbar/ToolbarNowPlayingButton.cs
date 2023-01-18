@@ -6,7 +6,7 @@ using osuTK.Graphics;
 
 namespace maisim.Game.Graphics.UserInterface.Toolbar
 {
-    public class ToolbarNowPlayingButton : ToolbarOverlayToggleButton
+    public partial class ToolbarNowPlayingButton : ToolbarOverlayToggleButton
     {
         protected override Anchor TooltipAnchor => Anchor.TopRight;
 

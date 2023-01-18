@@ -54,14 +54,17 @@ namespace maisim.Game.Utils
                 Title = "Canon",
                 TitleUnicode = "カノン",
                 Artist = "DJ Okawari",
+                ArtistUnicode = "DJ Okawari",
                 Bpm = 98,
                 CoverPath = "Test/cohana2nd.jpg",
                 Source = "心花 ～cohana 2nd～ Healing Break Beats oriental classics"
             },
             new TrackMetadata
             {
-                Title = "光線チューニング",
-                Artist = "ナユタン星人 feat. 000",
+                Title = "Ray Tuning",
+                TitleUnicode = "光線チューニング",
+                Artist = "Nayutalien feat. 000",
+                ArtistUnicode = "ナユタン星人 feat. 000",
                 Bpm = 100,
                 CoverPath = "Test/nayutalien.jpg",
                 Source = "ナユタン星からの物体Z"
@@ -69,35 +72,45 @@ namespace maisim.Game.Utils
             new TrackMetadata
             {
                 Title = "only my railgun",
+                TitleUnicode = "only my railgun",
                 Artist = "fripSide",
+                ArtistUnicode = "fripSide",
                 Bpm = 143,
                 CoverPath = "Test/only-my-railgun.jpg",
                 Source = "A Certain Scientific Railgun"
             },new TrackMetadata
             {
-                Title = "시간을 달려서 (ROUGH)",
+                Title = "Rough",
+                TitleUnicode = "시간을 달려서 (ROUGH)",
                 Artist = "GFRIEND",
+                ArtistUnicode = "여자친구",
                 Bpm = 112,
                 CoverPath = "Test/snowflake.jpg",
                 Source = "Snowflake"
             },new TrackMetadata
             {
                 Title = "Sukino Skill",
+                TitleUnicode = "スキノスキル",
                 Artist = "Wake Up, Girls!",
+                ArtistUnicode = "Wake Up, Girls!",
                 Bpm = 120,
                 CoverPath = "Test/sukino-skill.jpg",
                 Source = "Death March to the Parallel World Rhapsody"
             },new TrackMetadata
             {
                 Title = "Tenkai e no Kippu",
+                TitleUnicode = "天界への切符",
                 Artist = "Dragon Guardian",
+                ArtistUnicode = "Dragon Guardian",
                 Bpm = 190,
                 CoverPath = "Test/tenkai-e-no-kippu.jpg",
                 Source = "Dragon Guardian"
             },new TrackMetadata
             {
                 Title = "ReI",
+                TitleUnicode = "ReI",
                 Artist = "THE ORAL CIGARETTES",
+                ArtistUnicode = "THE ORAL CIGARETTES",
                 Bpm = 200,
                 CoverPath = "Test/rei.jpeg",
                 Source = "ReI"
@@ -106,14 +119,16 @@ namespace maisim.Game.Utils
                 Title = "New Genesis",
                 TitleUnicode = "新時代",
                 Artist = "Ado",
+                ArtistUnicode = "Ado",
                 Bpm = 140,
                 CoverPath = "Test/ado-one-piece-film-red.jpg",
                 Source = "ONE PIECE FILM RED"
             },new TrackMetadata
             {
                 Title = "Endless Tewi-me Park",
-                TitleUnicode = "エンドレス・てゐまパーク",
+                TitleUnicode = "エンドレス・てゐマパーク (Endless Tewi-me-park)",
                 Artist = "Toromi",
+                ArtistUnicode = "とろ美",
                 Bpm = 140,
                 CoverPath = "Test/touhou-merenge-shoujo-yakou.jpg",
                 Source = "東方花映塚　～ Phantasmagoria of Flower View"

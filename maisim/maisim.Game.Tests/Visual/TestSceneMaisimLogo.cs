@@ -3,7 +3,7 @@ using maisim.Game.Graphics.UserInterface;
 
 namespace maisim.Game.Tests.Visual;
 
-public class TestSceneMaisimLogo : maisimTestScene
+public partial class TestSceneMaisimLogo : maisimTestScene
 {
     public TestSceneMaisimLogo()
     {

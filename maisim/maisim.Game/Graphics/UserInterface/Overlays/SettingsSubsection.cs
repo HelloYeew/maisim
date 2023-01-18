@@ -9,7 +9,7 @@ using osuTK;
 
 namespace maisim.Game.Graphics.UserInterface.Overlays
 {
-    public abstract class SettingsSubsection : FillFlowContainer, IHasFilterableChildren
+    public abstract partial class SettingsSubsection : FillFlowContainer, IFilterable
     {
         protected override Container<Drawable> Content => FlowContent;
 
@@ -18,7 +18,6 @@ namespace maisim.Game.Graphics.UserInterface.Overlays
         protected abstract LocalisableString Header { get; }
 
         public IEnumerable<IFilterable> FilterableChildren => Children.OfType<IFilterable>();
-
 
         public virtual IEnumerable<LocalisableString> FilterTerms => new[] { Header };
 

@@ -14,7 +14,7 @@ namespace maisim.Game.Graphics.Gameplay.Notes
     /// <summary>
     /// A base abstract class for notes in the gameplay.
     /// </summary>
-    public abstract class DrawableNote : CompositeDrawable
+    public abstract partial class DrawableNote : CompositeDrawable
     {
         public readonly double FADE_IN_TIME = 75f;
 

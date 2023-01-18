@@ -8,7 +8,7 @@ namespace maisim.Game.Graphics.Gameplay.Notes
     /// <summary>
     /// Class represent the TOUCH note.
     /// </summary>
-    public class DrawableTouchNote : DrawableNote
+    public partial class DrawableTouchNote : DrawableNote
     {
         protected override Drawable[] AddNoteParts(TextureStore textureStore)
         {

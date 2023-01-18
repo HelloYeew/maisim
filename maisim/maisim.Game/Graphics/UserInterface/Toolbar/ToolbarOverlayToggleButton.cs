@@ -7,7 +7,7 @@ using osu.Framework.Graphics.Shapes;
 
 namespace maisim.Game.Graphics.UserInterface.Toolbar
 {
-    public class ToolbarOverlayToggleButton : ToolbarButton
+    public partial class ToolbarOverlayToggleButton : ToolbarButton
     {
         private readonly Box stateBackground;
 

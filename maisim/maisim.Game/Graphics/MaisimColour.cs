@@ -1,8 +1,6 @@
 ﻿using System;
 using maisim.Game.Beatmaps;
-using maisim.Game.Component;
 using osu.Framework.Extensions.Color4Extensions;
-using osu.Framework.Graphics;
 using osuTK.Graphics;
 
 namespace maisim.Game.Graphics

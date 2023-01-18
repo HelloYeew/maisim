@@ -10,7 +10,7 @@ using osuTK.Graphics;
 
 namespace maisim.Game.Graphics.UserInterface.Overlays
 {
-    public abstract class SettingsSection : Container
+    public abstract partial class SettingsSection : Container
     {
         protected FillFlowContainer FlowContent;
         protected override Container<Drawable> Content => FlowContent;

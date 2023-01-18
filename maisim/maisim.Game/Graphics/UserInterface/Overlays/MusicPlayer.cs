@@ -1,4 +1,3 @@
-using System;
 using maisim.Game.Beatmaps;
 using osu.Framework.Allocation;
 using osu.Framework.Audio;
@@ -13,7 +12,7 @@ namespace maisim.Game.Graphics.UserInterface.Overlays
     /// <summary>
     /// The global track player.
     /// </summary>
-    public class MusicPlayer : CompositeDrawable
+    public partial class MusicPlayer : CompositeDrawable
     {
         public Bindable<Track> Track;
         private string trackName;
@@ -104,7 +103,7 @@ namespace maisim.Game.Graphics.UserInterface.Overlays
         /// <summary>
         /// <para>Go to previous track.</para>
         ///
-        /// <para>There are three factor to go previous track</para>
+        /// <para>There are two factor to go previous track</para>
         /// <para>1. The track's time is not reach the FORCE_PREVIOUS_TRACK_TIME</para>
         /// <para>2. The track's time is reach the FORCE_PREVIOUS_TRACK_TIME and the current time - last button click time has not reach the RESTART_TIME</para>
         /// </summary>

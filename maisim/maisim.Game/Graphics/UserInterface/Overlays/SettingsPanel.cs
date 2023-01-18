@@ -9,7 +9,7 @@ using osuTK;
 
 namespace maisim.Game.Graphics.UserInterface.Overlays
 {
-    public class SettingsPanel : MaisimFocusedOverlayContainer
+    public partial class SettingsPanel : MaisimFocusedOverlayContainer
     {
         public const float CONTENT_MARGINS = 20;
 
@@ -94,7 +94,7 @@ namespace maisim.Game.Graphics.UserInterface.Overlays
             this.FadeTo(0, TRANSITION_LENGTH, Easing.OutQuint);
         }
 
-        private class NonMaskedContent : Container<Drawable>
+        private partial class NonMaskedContent : Container<Drawable>
         {
             // masking breaks the pan-out transform with nested sub-settings panels.
             protected override bool ComputeIsMaskedAway(RectangleF maskingBounds) => false;
