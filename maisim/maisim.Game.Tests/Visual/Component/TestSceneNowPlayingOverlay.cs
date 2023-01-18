@@ -12,7 +12,7 @@ using osuTK;
 
 namespace maisim.Game.Tests.Visual.Component;
 
-public class TestSceneNowPlayingOverlay : maisimTestScene
+public partial class TestSceneNowPlayingOverlay : maisimTestScene
 {
     [Cached]
     private MusicPlayer musicPlayer = new MusicPlayer();

@@ -11,7 +11,7 @@ using osu.Framework.Graphics.Containers;
 
 namespace maisim.Game.Tests.Visual.ComponentV2;
 
-public class TestSceneBeatmapCard : maisimTestScene
+public partial class TestSceneBeatmapCard : maisimTestScene
 {
     [Cached]
     private WorkingBeatmapManager workingBeatmapManager = new WorkingBeatmapManager();

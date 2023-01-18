@@ -10,7 +10,7 @@ using osu.Framework.Graphics.Containers;
 
 namespace maisim.Game.Tests.Visual.ComponentV2
 {
-    public class TestSceneBeatmapSetCard : maisimTestScene
+    public partial class TestSceneBeatmapSetCard : maisimTestScene
     {
         [Resolved]
         private MaisimConfigManager configManager { get; set; }

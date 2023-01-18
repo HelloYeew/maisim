@@ -8,7 +8,7 @@ using osu.Framework.Screens;
 
 namespace maisim.Game.Tests.Visual.Screen
 {
-    public class TestSceneMainMenuScreen : maisimTestScene
+    public partial class TestSceneMainMenuScreen : maisimTestScene
     {
         [Cached]
         private WorkingBeatmapManager workingBeatmapManager = new WorkingBeatmapManager();

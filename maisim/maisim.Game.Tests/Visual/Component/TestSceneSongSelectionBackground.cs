@@ -1,5 +1,4 @@
-﻿using maisim.Game.Component;
-using maisim.Game.Graphics.UserInterface;
+﻿using maisim.Game.Graphics.UserInterface;
 using osu.Framework.Extensions.Color4Extensions;
 using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
@@ -7,7 +6,7 @@ using osuTK;
 
 namespace maisim.Game.Tests.Visual.Component
 {
-    public class TestSceneSongSelectionBackground : maisimTestScene
+    public partial class TestSceneSongSelectionBackground : maisimTestScene
     {
         public TestSceneSongSelectionBackground()
         {

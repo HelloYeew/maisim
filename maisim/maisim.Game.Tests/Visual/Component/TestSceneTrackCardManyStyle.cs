@@ -9,7 +9,7 @@ using osuTK;
 namespace maisim.Game.Tests.Visual.Component
 {
 
-    public class TestSceneTrackCardManyStyle : GridTestScene
+    public partial class TestSceneTrackCardManyStyle : GridTestScene
     {
         public TestSceneTrackCardManyStyle() : base(2, 3)
         {
