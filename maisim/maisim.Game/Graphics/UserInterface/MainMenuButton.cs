@@ -15,7 +15,7 @@ namespace maisim.Game.Graphics.UserInterface
     /// <summary>
     /// A button used on the main menu screen.
     /// </summary>
-    public class MainMenuButton : Button
+    public partial class MainMenuButton : Button
     {
         private readonly Color4 buttonColor;
         private readonly Box buttonBox;

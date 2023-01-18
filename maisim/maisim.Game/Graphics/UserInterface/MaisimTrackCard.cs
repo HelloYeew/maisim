@@ -2,12 +2,12 @@
 using maisim.Game.Scores;
 using osu.Framework.Graphics.Containers;
 
-namespace maisim.Game.Component
+namespace maisim.Game.Graphics.UserInterface
 {
     /// <summary>
     /// A base abstract class for track cards types that show track information.
     /// </summary>
-    public abstract class MaisimTrackCard : CompositeDrawable
+    public abstract partial class MaisimTrackCard : CompositeDrawable
     {
         protected readonly Beatmap beatmap;
         protected readonly Score score;

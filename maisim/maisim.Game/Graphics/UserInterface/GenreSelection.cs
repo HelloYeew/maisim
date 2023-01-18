@@ -1,8 +1,8 @@
 ﻿using osu.Framework.Graphics.Containers;
 
-namespace maisim.Game.Component
+namespace maisim.Game.Graphics.UserInterface
 {
-    public class GenreSelection : CompositeDrawable
+    public partial class GenreSelection : CompositeDrawable
     {
 
     }

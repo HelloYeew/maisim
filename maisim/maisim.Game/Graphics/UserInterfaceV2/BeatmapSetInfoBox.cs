@@ -11,7 +11,7 @@ namespace maisim.Game.Graphics.UserInterfaceV2
     /// <summary>
     /// A container that used to show the current beatmap's info.
     /// </summary>
-    public class BeatmapSetInfoBox : CompositeDrawable
+    public partial class BeatmapSetInfoBox : CompositeDrawable
     {
         [Resolved]
         private CurrentWorkingBeatmap currentWorkingBeatmap { get; set; }

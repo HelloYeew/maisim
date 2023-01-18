@@ -7,7 +7,7 @@ namespace maisim.Game.Graphics.Gameplay.Notes
     /// <summary>
     /// Class represent the TAP note when it will appear at the same time.
     /// </summary>
-    public class DrawableTapBothNote : DrawableNote
+    public partial class DrawableTapBothNote : DrawableNote
     {
         protected override Drawable[] AddNoteParts(TextureStore textureStore)
         {

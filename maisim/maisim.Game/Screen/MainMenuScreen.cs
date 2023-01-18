@@ -19,7 +19,7 @@ namespace maisim.Game.Screen
     /// <summary>
     /// The main menu screen that includes all the main menu components.
     /// </summary>
-    public class MainMenuScreen : MaisimScreen
+    public partial class MainMenuScreen : MaisimScreen
     {
         [Resolved]
         private MaisimConfigManager gameConfig { get; set; }

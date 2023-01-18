@@ -17,7 +17,8 @@ using osuTK;
 
 namespace maisim.Game
 {
-    public class maisimGameBase : osu.Framework.Game
+    // ReSharper disable once InconsistentNaming
+    public partial class maisimGameBase : osu.Framework.Game
     {
         // Anything in this class is shared between the test browser and the game implementation.
         // It allows for caching global dependencies that should be accessible to tests, or changing

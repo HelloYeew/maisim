@@ -7,7 +7,7 @@ using osuTK.Graphics;
 
 namespace maisim.Game.Graphics.UserInterface.Overlays.Settings.Debugs
 {
-    public class FolderSettings : SettingsSubsection
+    public partial class FolderSettings : SettingsSubsection
     {
         protected override LocalisableString Header => "folder";
 

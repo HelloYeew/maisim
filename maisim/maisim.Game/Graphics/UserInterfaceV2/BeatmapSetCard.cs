@@ -19,7 +19,7 @@ namespace maisim.Game.Graphics.UserInterfaceV2
     /// <summary>
     /// The beatmap set card that is displayed in the beatmap selection screen.
     /// </summary>
-    public class BeatmapSetCard : CompositeDrawable
+    public partial class BeatmapSetCard : CompositeDrawable
     {
         [Resolved]
         private MaisimConfigManager gameConfig { get; set; }

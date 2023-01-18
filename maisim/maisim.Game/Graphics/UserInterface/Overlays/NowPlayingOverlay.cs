@@ -14,7 +14,7 @@ using osuTK.Graphics;
 
 namespace maisim.Game.Graphics.UserInterface.Overlays
 {
-    public class NowPlayingOverlay : MaisimFocusedOverlayContainer
+    public partial class NowPlayingOverlay : MaisimFocusedOverlayContainer
     {
         [Resolved]
         private MusicPlayer musicPlayer { get; set; }

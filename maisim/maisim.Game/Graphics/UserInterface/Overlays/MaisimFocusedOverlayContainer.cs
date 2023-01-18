@@ -7,7 +7,7 @@ using osu.Framework.Input.Events;
 
 namespace maisim.Game.Graphics.UserInterface.Overlays
 {
-    public class MaisimFocusedOverlayContainer : FocusedOverlayContainer
+    public partial class MaisimFocusedOverlayContainer : FocusedOverlayContainer
     {
         private Sample popInSample;
         private Sample popOutSample;

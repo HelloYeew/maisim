@@ -13,7 +13,7 @@ namespace maisim.Game.Graphics.UserInterface.Overlays
     /// <summary>
     /// The global track player.
     /// </summary>
-    public class MusicPlayer : CompositeDrawable
+    public partial class MusicPlayer : CompositeDrawable
     {
         public Bindable<Track> Track;
         private string trackName;

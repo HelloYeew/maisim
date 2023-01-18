@@ -13,7 +13,7 @@ namespace maisim.Game.Graphics.Gameplay.Notes
     /// <summary>
     /// Class represent drawable of the normal TAP note.
     /// </summary>
-    public class DrawableTapNote : DrawableNote
+    public partial class DrawableTapNote : DrawableNote
     {
 
         [BackgroundDependencyLoader]

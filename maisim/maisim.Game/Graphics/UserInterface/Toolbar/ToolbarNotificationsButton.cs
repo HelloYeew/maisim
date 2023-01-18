@@ -4,7 +4,7 @@ using osuTK.Graphics;
 
 namespace maisim.Game.Graphics.UserInterface.Toolbar
 {
-    public class ToolbarNotificationsButton : ToolbarButton
+    public partial class ToolbarNotificationsButton : ToolbarButton
     {
         protected override Anchor TooltipAnchor => Anchor.TopRight;
 

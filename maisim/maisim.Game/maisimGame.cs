@@ -12,7 +12,8 @@ using osu.Framework.Threading;
 
 namespace maisim.Game
 {
-    public class maisimGame : maisimGameBase
+    // ReSharper disable once InconsistentNaming
+    public partial class maisimGame : maisimGameBase
     {
         private MaisimScreenStack screenStack;
 

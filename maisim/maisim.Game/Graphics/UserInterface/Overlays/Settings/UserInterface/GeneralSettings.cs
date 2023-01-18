@@ -7,7 +7,7 @@ using osu.Framework.Localisation;
 
 namespace maisim.Game.Graphics.UserInterface.Overlays.Settings.UserInterface
 {
-    public class GeneralSection : SettingsSubsection
+    public partial class GeneralSection : SettingsSubsection
     {
         protected override LocalisableString Header => "general";
 

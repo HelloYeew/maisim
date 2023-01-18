@@ -10,7 +10,7 @@ using osuTK.Graphics;
 
 namespace maisim.Game.Graphics.UserInterface.Toolbar
 {
-    public class Toolbar : OverlayContainer
+    public partial class Toolbar : OverlayContainer
     {
         private const double transition_time = 500;
         public static float HEIGHT = 60;
@@ -83,7 +83,7 @@ namespace maisim.Game.Graphics.UserInterface.Toolbar
             this.FadeOut(transition_time, Easing.InQuint);
         }
 
-        public class ToolbarBackground : Container
+        public partial class ToolbarBackground : Container
         {
             private readonly Box gradientBackground;
 

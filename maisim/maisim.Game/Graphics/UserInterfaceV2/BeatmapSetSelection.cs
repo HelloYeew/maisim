@@ -7,7 +7,7 @@ using osuTK;
 
 namespace maisim.Game.Graphics.UserInterfaceV2
 {
-    public class BeatmapSetSelection : CompositeDrawable
+    public partial class BeatmapSetSelection : CompositeDrawable
     {
         [Resolved]
         private CurrentWorkingBeatmap currentWorkingBeatmap { get; set; }

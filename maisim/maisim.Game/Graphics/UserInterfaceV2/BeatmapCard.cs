@@ -18,7 +18,7 @@ namespace maisim.Game.Graphics.UserInterfaceV2
     /// <summary>
     /// A box that's show the info of current binding <see cref="Beatmap"/> inside <see cref="BeatmapSetInfoBox"/>.
     /// </summary>
-    public class BeatmapCard : CompositeDrawable
+    public partial class BeatmapCard : CompositeDrawable
     {
         public static readonly float FADE_COLOR_DURATION = 500;
 
