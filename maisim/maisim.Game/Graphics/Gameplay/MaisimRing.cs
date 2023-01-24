@@ -8,7 +8,7 @@ using osuTK.Graphics;
 
 namespace maisim.Game.Graphics.Gameplay
 {
-    public class MaisimRing : CircularContainer
+    public partial class MaisimRing : CircularContainer
     {
         public static readonly float[] LANE_ANGLES =
         {

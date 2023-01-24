@@ -3,7 +3,8 @@ using osu.Framework.Testing;
 
 namespace maisim.Game.Tests.Visual
 {
-    public class maisimTestScene : TestScene
+    // ReSharper disable once InconsistentNaming
+    public partial class maisimTestScene : TestScene
     {
         protected override ITestSceneTestRunner CreateRunner() => new maisimTestSceneTestRunner();
 
@@ -15,6 +16,7 @@ namespace maisim.Game.Tests.Visual
             return Dependencies;
         }
 
+        // ReSharper disable once InconsistentNaming
         private class maisimTestSceneTestRunner : maisimGameBase, ITestSceneTestRunner
         {
             private TestSceneTestRunner.TestRunner runner;

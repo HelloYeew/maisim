@@ -10,7 +10,7 @@ using osuTK;
 
 namespace maisim.Game.Graphics.Containers
 {
-    public class ParallaxContainer : Container, IRequireHighFrequencyMousePosition
+    public partial class ParallaxContainer : Container, IRequireHighFrequencyMousePosition
     {
         public const float DEFAULT_PARALLAX_AMOUNT = 0.02f;
 

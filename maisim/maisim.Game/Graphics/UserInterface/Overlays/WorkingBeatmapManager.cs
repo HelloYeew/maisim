@@ -12,7 +12,7 @@ namespace maisim.Game.Graphics.UserInterface.Overlays
     /// <summary>
     /// The object that use to get the information of the current beatmap that is being played.
     /// </summary>
-    public class WorkingBeatmapManager : CompositeDrawable
+    public partial class WorkingBeatmapManager : CompositeDrawable
     {
         [Resolved]
         private CurrentWorkingBeatmap currentWorkingBeatmap { get; set; }

@@ -9,7 +9,7 @@ namespace maisim.Game.Graphics.UserInterface
     /// <summary>
     /// A drawable background component that's always staying at the bottom of the screen.
     /// </summary>
-    public class BackgroundComponent : CompositeDrawable
+    public partial class BackgroundComponent : CompositeDrawable
     {
         private string backgroundName;
 

@@ -5,7 +5,7 @@ using osu.Framework.Graphics.Textures;
 
 namespace maisim.Game.Graphics.UserInterface.Toolbar
 {
-    public class ToolbarUserButton : ToolbarButton
+    public partial class ToolbarUserButton : ToolbarButton
     {
         public ToolbarUserButton()
         {

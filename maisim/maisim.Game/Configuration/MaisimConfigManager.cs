@@ -16,6 +16,7 @@ namespace maisim.Game.Configuration
         {
             // UI
             SetDefault(MaisimSetting.MenuParallax, true);
+            SetDefault(MaisimSetting.UseUnicodeInfo, false);
 
             // Graphics
             SetDefault(MaisimSetting.ShowFpsDisplay, false);
@@ -25,6 +26,7 @@ namespace maisim.Game.Configuration
     public enum MaisimSetting
     {
         MenuParallax,
+        UseUnicodeInfo,
 
         ShowFpsDisplay
     }

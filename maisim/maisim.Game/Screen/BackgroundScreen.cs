@@ -1,5 +1,4 @@
-﻿using maisim.Game.Component;
-using maisim.Game.Graphics.UserInterface;
+﻿using maisim.Game.Graphics.UserInterface;
 using osu.Framework.Allocation;
 using osu.Framework.Graphics;
 
@@ -8,7 +7,7 @@ namespace maisim.Game.Screen
     /// <summary>
     /// A screen that holds a stack of backgrounds for the other screens.
     /// </summary>
-    public class BackgroundScreen : MaisimScreen
+    public partial class BackgroundScreen : MaisimScreen
     {
         [BackgroundDependencyLoader]
         private void load()

@@ -6,7 +6,7 @@ using osu.Framework.Screens;
 
 namespace maisim.Game.Screen
 {
-    public class MaisimScreenStack : ScreenStack
+    public partial class MaisimScreenStack : ScreenStack
     {
         [Cached]
         private BackgroundScreenStack backgroundScreenStack;

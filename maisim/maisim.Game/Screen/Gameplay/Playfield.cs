@@ -12,7 +12,7 @@ namespace maisim.Game.Screen.Gameplay
     /// <summary>
     /// A main playfield that contains all the notes and manages their rendering.
     /// </summary>
-    public class Playfield : Container
+    public partial class Playfield : Container
     {
         public const float SPAWNER_MULTIPLIER = 75f;
 

@@ -9,7 +9,7 @@ namespace maisim.Game.Screen.Gameplay
     /// <summary>
     /// A screenstack that contain all gameplay element and handle the <see cref="Playfield"/> screen.
     /// </summary>
-    public class PlayfieldScreen : ScreenStack
+    public partial class PlayfieldScreen : ScreenStack
     {
         /// <summary>
         /// A <see cref="Playfield"/> screen instance inside this screenstack.

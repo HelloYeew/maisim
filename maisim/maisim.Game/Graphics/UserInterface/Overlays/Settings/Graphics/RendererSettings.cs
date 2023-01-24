@@ -8,7 +8,7 @@ using osu.Framework.Localisation;
 
 namespace maisim.Game.Graphics.UserInterface.Overlays.Settings.Graphics
 {
-    public class RendererSettings : SettingsSubsection
+    public partial class RendererSettings : SettingsSubsection
     {
         protected override LocalisableString Header => "renderer";
 

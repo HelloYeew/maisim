@@ -7,7 +7,7 @@ using osu.Framework.Graphics;
 
 namespace maisim.Game.Tests.Visual.Screen;
 
-public class TestSceneNoteSpawnTimer : maisimTestScene
+public partial class TestSceneNoteSpawnTimer : maisimTestScene
 {
     private PlayfieldScreen playfieldScreen;
 

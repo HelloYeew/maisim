@@ -7,7 +7,7 @@ namespace maisim.Game.Graphics.Gameplay.Notes
     /// <summary>
     /// Class represent the BREAK note.
     /// </summary>
-    public class DrawableBreakNote : DrawableNote
+    public partial class DrawableBreakNote : DrawableNote
     {
         protected override Drawable[] AddNoteParts(TextureStore textureStore)
         {

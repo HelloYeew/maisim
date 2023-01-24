@@ -14,7 +14,7 @@ using osuTK.Graphics;
 
 namespace maisim.Game.Graphics.UserInterface.Toolbar
 {
-    public class ToolbarButton : ClickableContainer
+    public partial class ToolbarButton : ClickableContainer
     {
         [Resolved]
         private TextureStore textures { get; set; }

@@ -5,7 +5,7 @@ using osu.Framework.Graphics;
 
 namespace maisim.Desktop
 {
-    public class DiscordRichPresence : Component
+    public partial class DiscordRichPresence : Component
     {
         private const string client_id = "938878612969508894";
 

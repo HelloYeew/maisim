@@ -2,9 +2,9 @@ using maisim.Game.Graphics.UserInterface.Overlays.Settings.UserInterface;
 using osu.Framework.Graphics;
 using osu.Framework.Localisation;
 
-namespace maisim.Game.Graphics.UserInterface.Overlays
+namespace maisim.Game.Graphics.UserInterface.Overlays.Settings
 {
-    public class UserInterfaceSection : SettingsSection
+    public partial class UserInterfaceSection : SettingsSection
     {
         public override bool EnableSeperator => true;
         public override LocalisableString Header => "user interface";

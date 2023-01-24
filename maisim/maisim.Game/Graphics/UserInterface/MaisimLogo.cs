@@ -17,7 +17,7 @@ namespace maisim.Game.Graphics.UserInterface
     /// <summary>
     /// The game's logo
     /// </summary>
-    public class MaisimLogo : CompositeDrawable
+    public partial class MaisimLogo : CompositeDrawable
     {
         private const float button_multiplier = 119f;
 
