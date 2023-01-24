@@ -20,7 +20,7 @@ namespace maisim.Game.Graphics.UserInterface
     /// <summary>
     /// The logo visualised as a waveform around the <see cref="MaisimLogo"/>
     /// </summary>
-    public class LogoVisualization : Drawable
+    public partial class LogoVisualization : Drawable
     {
         /// <summary>
         /// The number of bars to jump each update iteration.
@@ -97,7 +97,7 @@ namespace maisim.Game.Graphics.UserInterface
         private void load(IRenderer renderer, ShaderManager shaders)
         {
             texture = renderer.WhitePixel;
-            shader = shaders.Load(VertexShaderDescriptor.TEXTURE_2, FragmentShaderDescriptor.TEXTURE_ROUNDED);
+            shader = shaders.Load(VertexShaderDescriptor.TEXTURE_2, FragmentShaderDescriptor.TEXTURE);
         }
 
         private readonly float[] temporalAmplitudes = new float[ChannelAmplitudes.AMPLITUDES_SIZE];
