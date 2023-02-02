@@ -23,7 +23,6 @@ namespace maisim.Game.Graphics.UserInterfaceV2
         {
             RelativeSizeAxes = Axes.Y;
             Size = new Vector2(750, 0.825f);
-            Position = new Vector2(-20, 20);
             Masking = true;
             CornerRadius = 10;
             InternalChildren = new Drawable[]
