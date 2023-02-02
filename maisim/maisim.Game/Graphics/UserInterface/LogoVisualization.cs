@@ -25,7 +25,7 @@ namespace maisim.Game.Graphics.UserInterface
         /// <summary>
         /// The number of bars to jump each update iteration.
         /// </summary>
-        private const int index_change = 5;
+        private const int index_offset = 5;
 
         /// <summary>
         /// The maximum length of each bar in the visualiser.
@@ -117,7 +117,7 @@ namespace maisim.Game.Graphics.UserInterface
                     frequencyAmplitudes[i] = targetAmplitude;
             }
 
-            indexOffset = (indexOffset + index_change) % bars_per_visualiser;
+            indexOffset = (indexOffset + index_offset) % bars_per_visualiser;
         }
 
         protected override void LoadComplete()
