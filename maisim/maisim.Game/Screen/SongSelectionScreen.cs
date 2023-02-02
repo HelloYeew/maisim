@@ -51,7 +51,7 @@ namespace maisim.Game.Screen
         public override void OnEntering(ScreenTransitionEvent e)
         {
             beatmapSetSelection.MoveToY(0, 500, Easing.OutQuint);
-            beatmapSetInfoBox.MoveToX(-20, 750, Easing.OutQuint);
+            beatmapSetInfoBox.MoveToX(-20, 600, Easing.OutQuint);
             backButton.ScaleTo(1, 1000, Easing.OutQuint);
         }
 
