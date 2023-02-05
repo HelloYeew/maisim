@@ -6,7 +6,7 @@ using osu.Framework.Testing;
 namespace maisim.Game.Tests
 {
     // ReSharper disable once InconsistentNaming
-    public class maisimTestBrowser : maisimGameBase
+    public partial class maisimTestBrowser : maisimGameBase
     {
         protected override void LoadComplete()
         {

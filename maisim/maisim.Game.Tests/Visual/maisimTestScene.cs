@@ -17,7 +17,7 @@ namespace maisim.Game.Tests.Visual
         }
 
         // ReSharper disable once InconsistentNaming
-        private class maisimTestSceneTestRunner : maisimGameBase, ITestSceneTestRunner
+        private partial class maisimTestSceneTestRunner : maisimGameBase, ITestSceneTestRunner
         {
             private TestSceneTestRunner.TestRunner runner;
 
