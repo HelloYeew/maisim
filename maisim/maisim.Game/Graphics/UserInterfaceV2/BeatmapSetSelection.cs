@@ -19,7 +19,6 @@ namespace maisim.Game.Graphics.UserInterfaceV2
             Anchor = Anchor.TopLeft;
             Origin = Anchor.TopLeft;
             RelativeSizeAxes = Axes.Y;
-            Position = new Vector2(120, 0);
             Size = new Vector2(400, 1);
             InternalChildren = new Drawable[]
             {
