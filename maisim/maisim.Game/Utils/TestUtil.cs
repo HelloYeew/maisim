@@ -11,7 +11,7 @@ namespace maisim.Game.Utils
     /// </summary>
     public class TestUtil
     {
-        internal static Random random = new Random();
+        internal static Random Random = new Random();
 
         /// <summary>
         /// The enum of the song that can be used for full test.
@@ -27,22 +27,20 @@ namespace maisim.Game.Utils
             SukinoSkill = 4,
             TenkaiENoKippu = 5,
             ReI = 6,
-            NewGenesis = 7,
-            EndlessTewiMaPark = 8,
-            DenebAndSpica = 9
+            EndlessTewiMaPark = 7,
+            DenebAndSpica = 8
         }
 
         /// <summary>
         /// The list of the <see cref="TrackMetadata"/> that has the track inside game's resources.
         /// </summary>
-        public static readonly AvailableTrackMetadata[] AvailableBeatmapSetTrack =
+        public static readonly AvailableTrackMetadata[] AVAILABLE_BEATMAP_SET_TRACK =
         {
             AvailableTrackMetadata.Canon,
             AvailableTrackMetadata.OnlyMyRailgun,
             AvailableTrackMetadata.SukinoSkill,
             AvailableTrackMetadata.TenkaiENoKippu,
             AvailableTrackMetadata.ReI,
-            AvailableTrackMetadata.NewGenesis,
             AvailableTrackMetadata.EndlessTewiMaPark,
             AvailableTrackMetadata.DenebAndSpica
         };
@@ -118,15 +116,6 @@ namespace maisim.Game.Utils
                 Source = "ReI"
             },new TrackMetadata
             {
-                Title = "New Genesis",
-                TitleUnicode = "新時代",
-                Artist = "Ado",
-                ArtistUnicode = "Ado",
-                Bpm = 140,
-                CoverPath = "Test/ado-one-piece-film-red.jpg",
-                Source = "ONE PIECE FILM RED"
-            },new TrackMetadata
-            {
                 Title = "Endless Tewi-me Park",
                 TitleUnicode = "エンドレス・てゐマパーク (Endless Tewi-me-park)",
                 Artist = "Toromi",
@@ -191,7 +180,7 @@ namespace maisim.Game.Utils
             {
                 TrackMetadata = trackMetadata ?? GetRandomTrackMetadata(),
                 DifficultyLevel = GetRandomDifficultyLevel(),
-                DifficultyRating = random.Next(1, 10),
+                DifficultyRating = Random.Next(1, 10),
                 NoteDesigner = GetRandomName()
             };
         }
@@ -208,18 +197,18 @@ namespace maisim.Game.Utils
                 beatmap = CreateMockBeatmap();
             }
 
-            float accuracy = random.NextFloatInRange(1, 100);
+            float accuracy = Random.NextFloatInRange(1, 100);
 
             return new Score()
             {
                 Beatmap = beatmap,
-                Tap = random.NextInRange(1, 200),
-                Hold = random.NextInRange(1, 200),
-                Slide = random.NextInRange(1, 200),
-                Touch = random.NextInRange(1, 200),
+                Tap = Random.NextInRange(1, 200),
+                Hold = Random.NextInRange(1, 200),
+                Slide = Random.NextInRange(1, 200),
+                Touch = Random.NextInRange(1, 200),
                 Accuracy = accuracy,
                 Rank = ScoreProcessor.CalculateRank(accuracy),
-                Combo = random.NextInRange(1, 500),
+                Combo = Random.NextInRange(1, 500),
             };
         }
 
@@ -243,8 +232,6 @@ namespace maisim.Game.Utils
                     return "Test/tenkai-e-no-kippu.mp3";
                 case AvailableTrackMetadata.ReI:
                     return "Test/rei.mp3";
-                case AvailableTrackMetadata.NewGenesis:
-                    return "Test/new-genesis.mp3";
                 case AvailableTrackMetadata.EndlessTewiMaPark:
                     return "Test/endless-tewi-ma-park.mp3";
                 case AvailableTrackMetadata.DenebAndSpica:
@@ -273,8 +260,6 @@ namespace maisim.Game.Utils
                     return 88900;
                 case AvailableTrackMetadata.ReI:
                     return 76000;
-                case AvailableTrackMetadata.NewGenesis:
-                    return 88200;
                 case AvailableTrackMetadata.EndlessTewiMaPark:
                     return 38000;
                 case AvailableTrackMetadata.DenebAndSpica:

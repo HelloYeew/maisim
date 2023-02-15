@@ -26,9 +26,9 @@ namespace maisim.Game.Graphics.UserInterface.Overlays
         private void load()
         {
             // Load beatmap set list
-            for(int i = 0; i < TestUtil.AvailableBeatmapSetTrack.Length; i++)
+            for(int i = 0; i < TestUtil.AVAILABLE_BEATMAP_SET_TRACK.Length; i++)
             {
-                BeatmapSet beatmapSet = new BeatmapSetTestFixture(TestUtil.AvailableBeatmapSetTrack[i]).BeatmapSet;
+                BeatmapSet beatmapSet = new BeatmapSetTestFixture(TestUtil.AVAILABLE_BEATMAP_SET_TRACK[i]).BeatmapSet;
                 beatmapSet.DatabaseID = i + 1;
                 beatmapSet.BeatmapSetID = i + 1;
                 beatmapSetList.Add(beatmapSet);
