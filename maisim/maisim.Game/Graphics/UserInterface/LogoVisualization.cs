@@ -173,7 +173,7 @@ namespace maisim.Game.Graphics.UserInterface
 
             private readonly float[] audioData = new float[256];
 
-            private IVertexBatch<TexturedVertex2D>? vertexBatch;
+            private IVertexBatch<TexturedVertex2D> vertexBatch;
 
             public VisualizationDrawNode(LogoVisualization source) : base(source)
             {
