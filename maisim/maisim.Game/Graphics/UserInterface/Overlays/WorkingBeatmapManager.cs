@@ -26,9 +26,9 @@ namespace maisim.Game.Graphics.UserInterface.Overlays
         private void load()
         {
             // Load beatmap set list
-            for(int i = 0; i < TestUtil.AvailableBeatmapSetTrack.Length; i++)
+            for(int i = 0; i < TestUtil.AVAILABLE_BEATMAP_SET_TRACK.Length; i++)
             {
-                BeatmapSet beatmapSet = new BeatmapSetTestFixture(TestUtil.AvailableBeatmapSetTrack[i]).BeatmapSet;
+                BeatmapSet beatmapSet = new BeatmapSetTestFixture(TestUtil.AVAILABLE_BEATMAP_SET_TRACK[i]).BeatmapSet;
                 beatmapSet.DatabaseID = i + 1;
                 beatmapSet.BeatmapSetID = i + 1;
                 beatmapSetList.Add(beatmapSet);
@@ -57,7 +57,6 @@ namespace maisim.Game.Graphics.UserInterface.Overlays
                 // Set the next beatmapset to the current beatmapset
                 // Get the beatmap set from the list by the database id
                 currentWorkingBeatmap.SetCurrentBeatmapSet(beatmapSetList.Find(beatmapSet => beatmapSet.DatabaseID == nextBeatmapSetId));
-                Logger.Log($"Current beatmapset id: {currentWorkingBeatmap.BeatmapSet.DatabaseID.ToString()}");
             });
         }
 
@@ -82,7 +81,7 @@ namespace maisim.Game.Graphics.UserInterface.Overlays
         /// <param name="newBeatmapSet">New beatmapset</param>
         private void onBeatmapChanged(BeatmapSet oldBeatmapSet, BeatmapSet newBeatmapSet)
         {
-            Logger.Log($"Current working beatmap set changed from ({oldBeatmapSet?.BeatmapSetID}) {oldBeatmapSet?.TrackMetadata.Title} - {oldBeatmapSet?.TrackMetadata.Artist} to ({newBeatmapSet?.BeatmapSetID}) {newBeatmapSet?.TrackMetadata.Title} - {newBeatmapSet?.TrackMetadata.Artist}");
+            Logger.Log($"Current working beatmap set changed from ({oldBeatmapSet?.BeatmapSetID}) {oldBeatmapSet?.TrackMetadata.Artist} - {oldBeatmapSet?.TrackMetadata.Title} to ({newBeatmapSet?.BeatmapSetID}) {newBeatmapSet?.TrackMetadata.Artist} - {newBeatmapSet?.TrackMetadata.Title}");
         }
     }
 }

@@ -70,7 +70,7 @@ namespace maisim.Game.Tests.Visual.Component
                 }
             };
 
-            TrackTestFixture masterMockFixture = new TrackTestFixture(TestUtil.AvailableTrackMetadata.NewGenesis);
+            TrackTestFixture masterMockFixture = new TrackTestFixture(TestUtil.AvailableTrackMetadata.DenebAndSpica);
             masterMockFixture.Beatmap.DifficultyLevel = DifficultyLevel.Master;
 
             Cell(1, 0).Children = new Drawable[]

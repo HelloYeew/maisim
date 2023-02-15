@@ -39,6 +39,9 @@ namespace maisim.Game.Screen
         [Resolved]
         private CurrentWorkingBeatmap currentWorkingBeatmap { get; set; }
 
+        [Resolved]
+        private MusicPlayer musicPlayer { get; set; }
+
         private void workingBeatmapChanged(ValueChangedEvent<BeatmapSet> beatmapSetEvent) => updateNewBeatmap(beatmapSetEvent.NewValue);
 
         [BackgroundDependencyLoader]

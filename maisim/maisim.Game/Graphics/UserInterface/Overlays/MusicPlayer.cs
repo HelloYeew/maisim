@@ -67,9 +67,9 @@ namespace maisim.Game.Graphics.UserInterface.Overlays
         }
 
         [BackgroundDependencyLoader]
-        private void load(AudioManager audioManager)
+        private void load(AudioManager audioManagerSource)
         {
-            trackStore = audioManager.Tracks;
+            trackStore = audioManagerSource.Tracks;
             Track = new Bindable<Track>(trackStore.Get(currentWorkingBeatmap.BeatmapSet.AudioFileName));
             trackName = currentWorkingBeatmap.BeatmapSet.AudioFileName;
             currentWorkingBeatmap.BindBeatmapSetChanged(workingBeatmapChanged);

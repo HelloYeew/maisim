@@ -3,6 +3,7 @@ using maisim.Game.Graphics.UserInterface.Overlays;
 using maisim.Game.Graphics.UserInterfaceV2;
 using osu.Framework.Allocation;
 using osu.Framework.Graphics;
+using osu.Framework.Graphics.Containers;
 using osu.Framework.Screens;
 using osuTK;
 
@@ -35,8 +36,9 @@ namespace maisim.Game.Screen
                 {
                     Anchor = Anchor.TopRight,
                     Origin = Anchor.TopRight,
-                    Position = new Vector2(2000, 20),
-                    RelativeSizeAxes = Axes.Y
+                    RelativeSizeAxes = Axes.Y,
+                    Depth = -10,
+                    Position = new Vector2(2000, 20)
                 },
                 backButton = new BackButton
                 {
@@ -44,7 +46,23 @@ namespace maisim.Game.Screen
                     Origin = Anchor.BottomLeft,
                     Scale = new Vector2(0),
                     Action = () => this.Exit()
-                }
+                },
+                new Container
+                {
+                    Anchor = Anchor.BottomRight,
+                    Origin = Anchor.Centre,
+                    Size = new Vector2(100),
+                    Position = new Vector2(-5,-5),
+                    Depth = 10,
+                    Child = new MaisimLogo
+                    {
+                        Anchor = Anchor.Centre,
+                        Origin = Anchor.Centre,
+                        Size = new Vector2(20),
+                        Scale = new Vector2(0.8f),
+                        Depth = 10,
+                    }
+                },
             };
         }
 
