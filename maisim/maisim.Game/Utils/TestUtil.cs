@@ -28,7 +28,8 @@ namespace maisim.Game.Utils
             TenkaiENoKippu = 5,
             ReI = 6,
             NewGenesis = 7,
-            EndlessTewiMaPark = 8
+            EndlessTewiMaPark = 8,
+            DenebAndSpica = 9
         }
 
         /// <summary>
@@ -42,7 +43,8 @@ namespace maisim.Game.Utils
             AvailableTrackMetadata.TenkaiENoKippu,
             AvailableTrackMetadata.ReI,
             AvailableTrackMetadata.NewGenesis,
-            AvailableTrackMetadata.EndlessTewiMaPark
+            AvailableTrackMetadata.EndlessTewiMaPark,
+            AvailableTrackMetadata.DenebAndSpica
         };
 
         /// <summary>
@@ -132,6 +134,15 @@ namespace maisim.Game.Utils
                 Bpm = 140,
                 CoverPath = "Test/touhou-merenge-shoujo-yakou.jpg",
                 Source = "東方花映塚　～ Phantasmagoria of Flower View"
+            },new TrackMetadata()
+            {
+                Title = "Deneb and Spica",
+                TitleUnicode = "デネブとスピカ (Deneb and Spica)",
+                Artist = "DIALOGUE+",
+                ArtistUnicode = "DIALOGUE+",
+                Bpm = 140,
+                CoverPath = "Test/deneb-and-spica.jpg",
+                Source = "継母の連れ子が元カノだった"
             }
         };
         /// <summary>
@@ -236,6 +247,8 @@ namespace maisim.Game.Utils
                     return "Test/new-genesis.mp3";
                 case AvailableTrackMetadata.EndlessTewiMaPark:
                     return "Test/endless-tewi-ma-park.mp3";
+                case AvailableTrackMetadata.DenebAndSpica:
+                    return "Test/deneb-and-spica.mp3";
                 default:
                     return "";
             }
@@ -264,6 +277,8 @@ namespace maisim.Game.Utils
                     return 88200;
                 case AvailableTrackMetadata.EndlessTewiMaPark:
                     return 38000;
+                case AvailableTrackMetadata.DenebAndSpica:
+                    return 54000;
                 default:
                     return 0;
             }
