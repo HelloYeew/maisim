@@ -19,23 +19,32 @@ namespace maisim.Game.Screen
 
         public override float BackgroundParallaxAmount => 0.2f;
 
+        private BackButton backButton;
+        private BeatmapSetSelection beatmapSetSelection;
+        private BeatmapSetInfoBox beatmapSetInfoBox;
+
         [BackgroundDependencyLoader]
         private void load()
         {
             InternalChildren = new Drawable[]
             {
-                new BeatmapSetSelection(),
-                new BeatmapSetInfoBox()
+                beatmapSetSelection = new BeatmapSetSelection()
+                {
+                    Position = new Vector2(120, 1000)
+                },
+                beatmapSetInfoBox = new BeatmapSetInfoBox()
                 {
                     Anchor = Anchor.TopRight,
                     Origin = Anchor.TopRight,
                     RelativeSizeAxes = Axes.Y,
-                    Depth = -10
+                    Depth = -10,
+                    Position = new Vector2(2000, 20)
                 },
-                new BackButton
+                backButton = new BackButton
                 {
                     Anchor = Anchor.BottomLeft,
                     Origin = Anchor.BottomLeft,
+                    Scale = new Vector2(0),
                     Action = () => this.Exit()
                 },
                 new Container
@@ -55,6 +64,25 @@ namespace maisim.Game.Screen
                     }
                 },
             };
+        }
+
+        public override void OnEntering(ScreenTransitionEvent e)
+        {
+            beatmapSetSelection.MoveToY(0, 500, Easing.OutQuint);
+            beatmapSetInfoBox.MoveToX(-20, 600, Easing.OutQuint);
+            backButton.ScaleTo(1, 1000, Easing.OutQuint);
+        }
+
+        public override void OnSuspending(ScreenTransitionEvent e)
+        {
+            this.ScaleTo(0f, 750, Easing.OutQuint);
+            this.MoveToX(-DrawWidth, 750, Easing.OutExpo);
+        }
+
+        public override void OnResuming(ScreenTransitionEvent e)
+        {
+            this.ScaleTo(1, 750, Easing.OutQuint);
+            this.MoveToX(0, 750, Easing.OutExpo);
         }
     }
 }
