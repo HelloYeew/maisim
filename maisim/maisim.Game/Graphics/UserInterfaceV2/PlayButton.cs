@@ -20,7 +20,7 @@ namespace maisim.Game.Graphics.UserInterfaceV2
     /// <summary>
     /// A button used on the main menu screen.
     /// </summary>
-    public class PlayButton : Button
+    public partial class PlayButton : Button
     {
         [Resolved]
         private CurrentWorkingBeatmap currentWorkingBeatmap { get; set; }
