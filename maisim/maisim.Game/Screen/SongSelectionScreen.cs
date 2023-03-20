@@ -62,12 +62,12 @@ namespace maisim.Game.Screen
                         Origin = Anchor.Centre,
                     }
                 },
-                logoContainer = new Container
+                playButtonContainer = new Container
                 {
                     Anchor = Anchor.BottomRight,
                     Origin = Anchor.BottomRight,
                     Size = new Vector2(300, 80),
-                    Position = new Vector2(-20,-20),
+                    Position = new Vector2(1980,-20),
                     Child = new PlayButton()
                     {
                         Size = new Vector2(300, 80),
@@ -75,12 +75,13 @@ namespace maisim.Game.Screen
                         Origin = Anchor.Centre,
                     }
                 },
-                new Container
+                logoContainer = new Container
                 {
                     Anchor = Anchor.BottomRight,
                     Origin = Anchor.Centre,
                     Size = new Vector2(100),
                     Position = new Vector2(-5,-5),
+                    Scale = new Vector2(0),
                     Depth = 10,
                     Child = new MaisimLogo
                     {
@@ -99,7 +100,6 @@ namespace maisim.Game.Screen
             beatmapSetSelection.MoveToY(0, 500, Easing.OutQuint);
             beatmapSetInfoBox.MoveToX(-20, 600, Easing.OutQuint);
             playButtonContainer.MoveToX(-20, 700, Easing.OutQuint);
-            backButton.ScaleTo(1, 1000, Easing.OutQuint);
             logoContainer.ScaleTo(1, 1000, Easing.OutQuint);
         }
 
