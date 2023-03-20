@@ -1,5 +1,4 @@
 using maisim.Game.Graphics.Sprites;
-using osu.Framework.Allocation;
 using osu.Framework.Extensions.Color4Extensions;
 using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
@@ -12,7 +11,7 @@ using osuTK.Input;
 
 namespace maisim.Game.Graphics.UserInterface
 {
-    public class MaisimButton : Button
+    public partial class MaisimButton : Button
     {
         private readonly Color4 buttonColor;
         private readonly Box buttonBox;

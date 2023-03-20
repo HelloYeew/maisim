@@ -6,7 +6,7 @@ using osuTK;
 
 namespace maisim.Game.Tests.Visual.Component
 {
-    public class TestSceneBackButton : maisimTestScene
+    public partial class TestSceneBackButton : maisimTestScene
     {
         public TestSceneBackButton()
         {

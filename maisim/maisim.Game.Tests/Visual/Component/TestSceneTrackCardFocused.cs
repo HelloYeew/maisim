@@ -1,4 +1,4 @@
-﻿using maisim.Game.Component;
+﻿using maisim.Game.Graphics.UserInterface;
 using maisim.Game.Utils;
 using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
@@ -8,7 +8,7 @@ using osuTK.Graphics;
 
 namespace maisim.Game.Tests.Visual.Component
 {
-    public class TestSceneTrackCardFocused : maisimTestScene
+    public partial class TestSceneTrackCardFocused : maisimTestScene
     {
         public TestSceneTrackCardFocused()
         {

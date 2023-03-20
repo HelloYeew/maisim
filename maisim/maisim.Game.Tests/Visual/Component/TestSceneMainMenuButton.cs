@@ -9,7 +9,7 @@ using osuTK.Graphics;
 
 namespace maisim.Game.Tests.Visual.Component
 {
-    public class TestSceneMainMenuButton : maisimTestScene
+    public partial class TestSceneMainMenuButton : maisimTestScene
     {
         public TestSceneMainMenuButton()
         {

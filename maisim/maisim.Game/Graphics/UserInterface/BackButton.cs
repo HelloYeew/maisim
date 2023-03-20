@@ -14,7 +14,7 @@ using osuTK.Input;
 
 namespace maisim.Game.Graphics.UserInterface
 {
-    public class BackButton : Button
+    public partial class BackButton : Button
     {
 
         private DrawableSample drawableHoverSample;

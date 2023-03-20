@@ -4,7 +4,8 @@ using osu.Framework.Platform;
 
 namespace maisim.Desktop
 {
-    public class maisimGameDesktop : maisimGame
+    // ReSharper disable once InconsistentNaming
+    public partial class maisimGameDesktop : maisimGame
     {
         public override void SetHost(GameHost host)
         {
@@ -14,7 +15,7 @@ namespace maisim.Desktop
             desktopWindow.Title = "maisim";
             if (DebugUtils.IsDebugBuild)
                 desktopWindow.Title += " development";
-                
+
         }
 
         protected override void LoadComplete()

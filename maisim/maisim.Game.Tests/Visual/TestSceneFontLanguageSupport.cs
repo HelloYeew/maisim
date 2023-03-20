@@ -1,6 +1,6 @@
 ﻿using maisim.Game.Beatmaps;
-using maisim.Game.Component;
 using maisim.Game.Graphics.Sprites;
+using maisim.Game.Graphics.UserInterface;
 using maisim.Game.Utils;
 using osu.Framework.Graphics;
 using osu.Framework.Testing;
@@ -8,7 +8,7 @@ using osuTK;
 
 namespace maisim.Game.Tests.Visual
 {
-    public class TestSceneFontLanguageSupport : GridTestScene
+    public partial class TestSceneFontLanguageSupport : GridTestScene
     {
         public TestSceneFontLanguageSupport() : base(2, 3)
         {

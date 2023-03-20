@@ -8,7 +8,7 @@ using osuTK;
 
 namespace maisim.Game.Graphics.UserInterface.Overlays.Settings.Audio
 {
-    public class VolumeSettings : SettingsSubsection
+    public partial class VolumeSettings : SettingsSubsection
     {
         protected override LocalisableString Header => "volume";
 

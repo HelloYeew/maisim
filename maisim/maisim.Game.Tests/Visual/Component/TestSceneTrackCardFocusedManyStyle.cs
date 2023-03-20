@@ -1,5 +1,5 @@
 ﻿using maisim.Game.Beatmaps;
-using maisim.Game.Component;
+using maisim.Game.Graphics.UserInterface;
 using maisim.Game.Utils;
 using osu.Framework.Graphics;
 using osu.Framework.Graphics.Sprites;
@@ -8,7 +8,7 @@ using osuTK;
 
 namespace maisim.Game.Tests.Visual.Component
 {
-    public class TestSceneTrackCardFocusedManyStyle : GridTestScene
+    public partial class TestSceneTrackCardFocusedManyStyle : GridTestScene
     {
         public TestSceneTrackCardFocusedManyStyle() : base(2, 3)
         {
@@ -69,7 +69,7 @@ namespace maisim.Game.Tests.Visual.Component
                 }
             };
 
-            TrackTestFixture masterMockFixture = new TrackTestFixture(TestUtil.AvailableTrackMetadata.NewGenesis);
+            TrackTestFixture masterMockFixture = new TrackTestFixture(TestUtil.AvailableTrackMetadata.DenebAndSpica);
             masterMockFixture.Beatmap.DifficultyLevel = DifficultyLevel.Master;
 
             Cell(1, 0).Children = new Drawable[]

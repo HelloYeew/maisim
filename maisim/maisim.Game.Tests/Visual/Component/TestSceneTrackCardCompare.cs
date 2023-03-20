@@ -1,5 +1,4 @@
-﻿using maisim.Game.Component;
-using maisim.Game.Graphics.UserInterface;
+﻿using maisim.Game.Graphics.UserInterface;
 using maisim.Game.Utils;
 using osu.Framework.Testing;
 using osu.Framework.Graphics;
@@ -7,7 +6,7 @@ using osuTK;
 
 namespace maisim.Game.Tests.Visual.Component
 {
-    public class TestSceneTrackCardCompare : GridTestScene
+    public partial class TestSceneTrackCardCompare : GridTestScene
     {
         public TestSceneTrackCardCompare() : base(1,2)
         {

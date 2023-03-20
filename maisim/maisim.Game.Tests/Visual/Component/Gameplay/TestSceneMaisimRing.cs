@@ -5,7 +5,7 @@ using osuTK;
 
 namespace maisim.Game.Tests.Visual.Component.Gameplay
 {
-    public class TestSceneMaisimRing : maisimTestScene
+    public partial class TestSceneMaisimRing : maisimTestScene
     {
         public TestSceneMaisimRing()
         {

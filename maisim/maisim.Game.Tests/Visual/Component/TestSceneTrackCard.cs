@@ -8,7 +8,7 @@ using osuTK.Graphics;
 
 namespace maisim.Game.Tests.Visual.Component
 {
-    public class TestSceneTrackCard : maisimTestScene
+    public partial class TestSceneTrackCard : maisimTestScene
     {
         public TestSceneTrackCard()
         {

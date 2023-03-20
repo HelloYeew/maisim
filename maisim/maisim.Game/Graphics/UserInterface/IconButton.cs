@@ -13,7 +13,7 @@ namespace maisim.Game.Graphics.UserInterface
     /// <summary>
     /// A custom button with a sprite icon.
     /// </summary>
-    public class IconButton : Button
+    public partial class IconButton : Button
     {
         public IconUsage Icon { get; set; }
         private SpriteIcon spriteIcon;

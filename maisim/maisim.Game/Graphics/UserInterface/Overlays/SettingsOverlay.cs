@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using maisim.Game.Graphics.UserInterface.Overlays.Settings;
 using osu.Framework.Allocation;
 using osu.Framework.Graphics;
 using osu.Framework.Graphics.Sprites;
@@ -7,7 +8,7 @@ using osuTK.Graphics;
 
 namespace maisim.Game.Graphics.UserInterface.Overlays
 {
-    public class SettingsOverlay : SettingsPanel, INamedOverlayComponent
+    public partial class SettingsOverlay : SettingsPanel, INamedOverlayComponent
     {
         public Drawable Icon => new SpriteIcon()
         {
@@ -23,9 +24,9 @@ namespace maisim.Game.Graphics.UserInterface.Overlays
         protected override IEnumerable<SettingsSection> CreateSections() => new SettingsSection[]
         {
             new AudioSection(),
-            new UserInterfaceSection(),
+            new Settings.UserInterfaceSection(),
             new GraphicsSection(),
-            new DebugSection()
+            new Settings.DebugSection()
         };
 
         [BackgroundDependencyLoader]

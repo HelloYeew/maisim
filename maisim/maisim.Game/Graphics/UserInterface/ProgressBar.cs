@@ -9,7 +9,7 @@ namespace maisim.Game.Graphics.UserInterface
     /// <summary>
     /// A customizable <see cref="SliderBar{T}"/> that can be used for seeking.
     /// </summary>
-    public class ProgressBar : SliderBar<double>
+    public partial class ProgressBar : SliderBar<double>
     {
         public Action<double> OnSeek;
 

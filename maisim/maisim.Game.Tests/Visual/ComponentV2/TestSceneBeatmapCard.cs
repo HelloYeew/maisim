@@ -1,5 +1,6 @@
 using System.Reflection;
 using maisim.Game.Beatmaps;
+using maisim.Game.Configuration;
 using maisim.Game.Graphics.UserInterface.Overlays;
 using maisim.Game.Graphics.UserInterfaceV2;
 using maisim.Game.Utils;
@@ -10,7 +11,7 @@ using osu.Framework.Graphics.Containers;
 
 namespace maisim.Game.Tests.Visual.ComponentV2;
 
-public class TestSceneBeatmapCard : maisimTestScene
+public partial class TestSceneBeatmapCard : maisimTestScene
 {
     [Cached]
     private WorkingBeatmapManager workingBeatmapManager = new WorkingBeatmapManager();
@@ -18,8 +19,12 @@ public class TestSceneBeatmapCard : maisimTestScene
     [Cached]
     private CurrentWorkingBeatmap currentWorkingBeatmap = new CurrentWorkingBeatmap();
 
+    [Resolved]
+    private MaisimConfigManager configManager { get; set; }
+
     private string beatmapList;
     private TextFlowContainer beatmapListContainer;
+    private BeatmapSetInfoBox beatmapSetInfoBox;
 
     [BackgroundDependencyLoader]
     private void load()
@@ -32,7 +37,7 @@ public class TestSceneBeatmapCard : maisimTestScene
     {
         Children = new Drawable[]
         {
-            new BeatmapSetInfoBox()
+            beatmapSetInfoBox = new BeatmapSetInfoBox()
             {
                 Anchor = Anchor.TopRight,
                 Origin = Anchor.TopRight,
@@ -51,14 +56,33 @@ public class TestSceneBeatmapCard : maisimTestScene
         updateBeatmapInfo();
     }
 
-    [SetUp]
-    public void SetUp()
+    [Test]
+    public void DfficultyChangeTest()
     {
         AddStep("Set difficulty level to basic", () => currentWorkingBeatmap.SetCurrentDifficultyLevel(DifficultyLevel.Basic));
         AddStep("Set difficulty level to advanced", () => currentWorkingBeatmap.SetCurrentDifficultyLevel(DifficultyLevel.Advanced));
         AddStep("Set difficulty level to expert", () => currentWorkingBeatmap.SetCurrentDifficultyLevel(DifficultyLevel.Expert));
         AddStep("Set difficulty level to master", () => currentWorkingBeatmap.SetCurrentDifficultyLevel(DifficultyLevel.Master));
         AddStep("Get a new beatmap set", () => currentWorkingBeatmap.SetCurrentBeatmapSet(new BeatmapSetTestFixture().BeatmapSet));
+    }
+
+    [Test]
+    public void UseUnicodeInfoSettingTest()
+    {
+        AddStep("Set use unicode info to true", () => configManager.SetValue(MaisimSetting.UseUnicodeInfo, true));
+        AddAssert("Title is in unicode",
+            () => beatmapSetInfoBox.BeatmapCard.GetTitleText() ==
+                  currentWorkingBeatmap.BeatmapSet.TrackMetadata.TitleUnicode);
+        AddAssert("Artist is in unicode",
+            () => beatmapSetInfoBox.BeatmapCard.GetArtistText() ==
+                  currentWorkingBeatmap.BeatmapSet.TrackMetadata.ArtistUnicode);
+        AddStep("Set use unicode info to false", () => configManager.SetValue(MaisimSetting.UseUnicodeInfo, false));
+        AddAssert("Title use original one",
+            () => beatmapSetInfoBox.BeatmapCard.GetTitleText() ==
+                  currentWorkingBeatmap.BeatmapSet.TrackMetadata.Title);
+        AddAssert("Artist use original one",
+            () => beatmapSetInfoBox.BeatmapCard.GetArtistText() ==
+                  currentWorkingBeatmap.BeatmapSet.TrackMetadata.Artist);
     }
 
     private void updateBeatmapInfo()

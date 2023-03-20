@@ -3,13 +3,16 @@ using maisim.Game.Screen;
 using maisim.Game.Utils;
 using NUnit.Framework;
 using osu.Framework.Allocation;
+using osu.Framework.Audio;
+using osu.Framework.Audio.Track;
+using osu.Framework.Bindables;
 using osu.Framework.Graphics;
 using osu.Framework.Screens;
 using osuTK;
 
 namespace maisim.Game.Tests.Visual.Screen
 {
-    public class TestSceneSongSelectionScreen : maisimTestScene
+    public partial class TestSceneSongSelectionScreen : maisimTestScene
     {
         [Cached]
         private WorkingBeatmapManager workingBeatmapManager = new WorkingBeatmapManager();
@@ -17,17 +20,22 @@ namespace maisim.Game.Tests.Visual.Screen
         [Cached]
         private CurrentWorkingBeatmap currentWorkingBeatmap = new CurrentWorkingBeatmap();
 
+        [Cached]
+        private MusicPlayer musicPlayer = new MusicPlayer();
+
         private BeatmapSetTestFixture beatmapSetTestFixture = new BeatmapSetTestFixture();
 
         private ScreenStack mainScreenStack;
         private SongSelectionScreen songSelectionScreen;
 
         [BackgroundDependencyLoader]
-        private void load()
+        private void load(AudioManager audioManager)
         {
             Dependencies.CacheAs(workingBeatmapManager);
             Dependencies.CacheAs(currentWorkingBeatmap);
+            Dependencies.CacheAs(musicPlayer);
             currentWorkingBeatmap.SetCurrentBeatmapSet(beatmapSetTestFixture.BeatmapSet);
+            musicPlayer.Track = new Bindable<Track>(audioManager.Tracks.Get(currentWorkingBeatmap.BeatmapSet.AudioFileName));
         }
 
         [SetUp]

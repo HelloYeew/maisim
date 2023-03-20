@@ -1,7 +1,5 @@
-using maisim.Game.Beatmaps;
 using maisim.Game.Graphics.UserInterface.Overlays;
 using osu.Framework.Allocation;
-using osu.Framework.Bindables;
 using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
 using osu.Framework.Graphics.Shapes;
@@ -9,7 +7,7 @@ using osuTK;
 
 namespace maisim.Game.Graphics.UserInterfaceV2
 {
-    public class BeatmapSetSelection : CompositeDrawable
+    public partial class BeatmapSetSelection : CompositeDrawable
     {
         [Resolved]
         private CurrentWorkingBeatmap currentWorkingBeatmap { get; set; }
@@ -21,7 +19,6 @@ namespace maisim.Game.Graphics.UserInterfaceV2
             Anchor = Anchor.TopLeft;
             Origin = Anchor.TopLeft;
             RelativeSizeAxes = Axes.Y;
-            Position = new Vector2(120, 0);
             Size = new Vector2(400, 1);
             InternalChildren = new Drawable[]
             {
