@@ -50,6 +50,19 @@ namespace maisim.Game.Screen
                 new Container
                 {
                     Anchor = Anchor.BottomRight,
+                    Origin = Anchor.BottomRight,
+                    Size = new Vector2(300, 80),
+                    Position = new Vector2(-20,-20),
+                    Child = new PlayButton()
+                    {
+                        Size = new Vector2(300, 80),
+                        Anchor = Anchor.Centre,
+                        Origin = Anchor.Centre,
+                    }
+                },
+                new Container
+                {
+                    Anchor = Anchor.BottomRight,
                     Origin = Anchor.Centre,
                     Size = new Vector2(100),
                     Position = new Vector2(-5,-5),
@@ -62,7 +75,7 @@ namespace maisim.Game.Screen
                         Scale = new Vector2(0.8f),
                         Depth = 10,
                     }
-                },
+                }
             };
         }
 
