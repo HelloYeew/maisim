@@ -22,6 +22,8 @@ namespace maisim.Game.Screen
         private BackButton backButton;
         private BeatmapSetSelection beatmapSetSelection;
         private BeatmapSetInfoBox beatmapSetInfoBox;
+        private Container playButtonContainer;
+        private Container logoContainer;
 
         [BackgroundDependencyLoader]
         private void load()
@@ -47,7 +49,20 @@ namespace maisim.Game.Screen
                     Scale = new Vector2(0),
                     Action = () => this.Exit()
                 },
-                new Container
+                playButtonContainer = new Container
+                {
+                    Anchor = Anchor.BottomRight,
+                    Origin = Anchor.BottomRight,
+                    Size = new Vector2(300, 80),
+                    Position = new Vector2(1980,-20),
+                    Child = new PlayButton()
+                    {
+                        Size = new Vector2(300, 80),
+                        Anchor = Anchor.Centre,
+                        Origin = Anchor.Centre,
+                    }
+                },
+                logoContainer = new Container
                 {
                     Anchor = Anchor.BottomRight,
                     Origin = Anchor.BottomRight,
@@ -83,7 +98,9 @@ namespace maisim.Game.Screen
         {
             beatmapSetSelection.MoveToY(0, 500, Easing.OutQuint);
             beatmapSetInfoBox.MoveToX(-20, 600, Easing.OutQuint);
+            playButtonContainer.MoveToX(-20, 700, Easing.OutQuint);
             backButton.ScaleTo(1, 1000, Easing.OutQuint);
+            logoContainer.ScaleTo(1, 1000, Easing.OutQuint);
         }
 
         public override void OnSuspending(ScreenTransitionEvent e)
