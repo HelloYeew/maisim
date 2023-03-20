@@ -60,7 +60,9 @@ namespace maisim.Game.Screen
                         Origin = Anchor.Centre,
                     }
                 },
-                new Container() {
+                new Container
+                {
+                    Anchor = Anchor.BottomRight,
                     Origin = Anchor.Centre,
                     Size = new Vector2(100),
                     Position = new Vector2(-5,-5),
@@ -73,7 +75,7 @@ namespace maisim.Game.Screen
                         Scale = new Vector2(0.8f),
                         Depth = 10,
                     }
-                },
+                }
             };
         }
 
