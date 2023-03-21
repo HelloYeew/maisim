@@ -9,5 +9,10 @@ updates:
     directory: "maisim/" # Location of package manifests
     schedule:
       interval: "daily"
+    ignore:
+      # Ignore all EFCore update since these packaged need to be updated together
+      - dependency-name: "Microsoft.EntityFrameworkCore.Sqlite"
+      - dependency-name: "Microsoft.EntityFrameworkCore.Design"
+      - dependency-name: "Microsoft.EntityFrameworkCore"
     reviewers:
       - "HelloYeew"
