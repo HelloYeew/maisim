@@ -3,7 +3,7 @@ using osu.Framework.Screens;
 
 namespace maisim.Game.Screen
 {
-    public class BackgroundScreenStack : ScreenStack
+    public partial class BackgroundScreenStack : ScreenStack
     {
         public BackgroundScreenStack() : base(false)
         {

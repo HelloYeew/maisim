@@ -8,7 +8,7 @@ namespace maisim.Game.Graphics.Gameplay.Notes
     /// <summary>
     /// Class represent the arrow path in the slider of SLIDE note.
     /// </summary>
-    public class DrawableSlidePathNote : DrawableNote
+    public partial class DrawableSlidePathNote : DrawableNote
     {
         protected override Drawable[] AddNoteParts(TextureStore textureStore)
         {

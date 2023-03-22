@@ -20,12 +20,12 @@ namespace maisim.Game.Graphics.UserInterface
     /// <summary>
     /// The logo visualised as a waveform around the <see cref="MaisimLogo"/>
     /// </summary>
-    public class LogoVisualization : Drawable
+    public partial class LogoVisualization : Drawable
     {
         /// <summary>
         /// The number of bars to jump each update iteration.
         /// </summary>
-        private const int index_change = 5;
+        private const int index_offset = 5;
 
         /// <summary>
         /// The maximum length of each bar in the visualiser.
@@ -97,7 +97,7 @@ namespace maisim.Game.Graphics.UserInterface
         private void load(IRenderer renderer, ShaderManager shaders)
         {
             texture = renderer.WhitePixel;
-            shader = shaders.Load(VertexShaderDescriptor.TEXTURE_2, FragmentShaderDescriptor.TEXTURE_ROUNDED);
+            shader = shaders.Load(VertexShaderDescriptor.TEXTURE_2, FragmentShaderDescriptor.TEXTURE);
         }
 
         private readonly float[] temporalAmplitudes = new float[ChannelAmplitudes.AMPLITUDES_SIZE];
@@ -117,7 +117,7 @@ namespace maisim.Game.Graphics.UserInterface
                     frequencyAmplitudes[i] = targetAmplitude;
             }
 
-            indexOffset = (indexOffset + index_change) % bars_per_visualiser;
+            indexOffset = (indexOffset + index_offset) % bars_per_visualiser;
         }
 
         protected override void LoadComplete()
@@ -173,7 +173,7 @@ namespace maisim.Game.Graphics.UserInterface
 
             private readonly float[] audioData = new float[256];
 
-            private IVertexBatch<TexturedVertex2D>? vertexBatch;
+            private IVertexBatch<TexturedVertex2D> vertexBatch;
 
             public VisualizationDrawNode(LogoVisualization source) : base(source)
             {

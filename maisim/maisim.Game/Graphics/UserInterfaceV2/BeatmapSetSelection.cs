@@ -11,7 +11,7 @@ using osuTK;
 
 namespace maisim.Game.Graphics.UserInterfaceV2
 {
-    public class BeatmapSetSelection : CompositeDrawable
+    public partial class BeatmapSetSelection : CompositeDrawable
     {
         [Resolved]
         private CurrentWorkingBeatmap currentWorkingBeatmap { get; set; }
@@ -34,7 +34,7 @@ namespace maisim.Game.Graphics.UserInterfaceV2
             beatmapSetDrawables = new List<Drawable>();
 
             // Add BeatmapSetCard to the container
-            foreach (TestUtil.AvailableTrackMetadata availableTrackMetadata in TestUtil.AvailableBeatmapSetTrack)
+            foreach (TestUtil.AvailableTrackMetadata availableTrackMetadata in TestUtil.AVAILABLE_BEATMAP_SET_TRACK)
             {
                 if (availableTrackMetadata != TestUtil.AvailableTrackMetadata.None)
                 {

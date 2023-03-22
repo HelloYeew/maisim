@@ -5,7 +5,7 @@ using osu.Framework.Screens;
 
 namespace maisim.Game.Tests.Visual.Screen
 {
-    public class TestSceneWarningScreen : maisimTestScene
+    public partial class TestSceneWarningScreen : maisimTestScene
     {
         [SetUp]
         public void SetUp()

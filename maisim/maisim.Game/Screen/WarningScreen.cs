@@ -12,7 +12,7 @@ namespace maisim.Game.Screen
     /// <summary>
     /// A welcome screen that's show when the game is first loaded that this project is a work in progress.
     /// </summary>
-    public class WarningScreen : MaisimScreen
+    public partial class WarningScreen : MaisimScreen
     {
         private SpriteIcon warningSprite;
 

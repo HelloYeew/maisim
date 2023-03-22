@@ -11,7 +11,7 @@ namespace maisim.Game.Utils
     /// </summary>
     public class TestUtil
     {
-        internal static Random random = new Random();
+        internal static Random Random = new Random();
 
         /// <summary>
         /// The enum of the song that can be used for full test.
@@ -27,22 +27,22 @@ namespace maisim.Game.Utils
             SukinoSkill = 4,
             TenkaiENoKippu = 5,
             ReI = 6,
-            NewGenesis = 7,
-            EndlessTewiMaPark = 8
+            EndlessTewiMaPark = 7,
+            DenebAndSpica = 8
         }
 
         /// <summary>
         /// The list of the <see cref="TrackMetadata"/> that has the track inside game's resources.
         /// </summary>
-        public static readonly AvailableTrackMetadata[] AvailableBeatmapSetTrack =
+        public static readonly AvailableTrackMetadata[] AVAILABLE_BEATMAP_SET_TRACK =
         {
             AvailableTrackMetadata.Canon,
             AvailableTrackMetadata.OnlyMyRailgun,
             AvailableTrackMetadata.SukinoSkill,
             AvailableTrackMetadata.TenkaiENoKippu,
             AvailableTrackMetadata.ReI,
-            AvailableTrackMetadata.NewGenesis,
-            AvailableTrackMetadata.EndlessTewiMaPark
+            AvailableTrackMetadata.EndlessTewiMaPark,
+            AvailableTrackMetadata.DenebAndSpica
         };
 
         /// <summary>
@@ -54,14 +54,17 @@ namespace maisim.Game.Utils
                 Title = "Canon",
                 TitleUnicode = "カノン",
                 Artist = "DJ Okawari",
+                ArtistUnicode = "DJ Okawari",
                 Bpm = 98,
                 CoverPath = "Test/cohana2nd.jpg",
                 Source = "心花 ～cohana 2nd～ Healing Break Beats oriental classics"
             },
             new TrackMetadata
             {
-                Title = "光線チューニング",
-                Artist = "ナユタン星人 feat. 000",
+                Title = "Ray Tuning",
+                TitleUnicode = "光線チューニング",
+                Artist = "Nayutalien feat. 000",
+                ArtistUnicode = "ナユタン星人 feat. 000",
                 Bpm = 100,
                 CoverPath = "Test/nayutalien.jpg",
                 Source = "ナユタン星からの物体Z"
@@ -69,54 +72,66 @@ namespace maisim.Game.Utils
             new TrackMetadata
             {
                 Title = "only my railgun",
+                TitleUnicode = "only my railgun",
                 Artist = "fripSide",
+                ArtistUnicode = "fripSide",
                 Bpm = 143,
                 CoverPath = "Test/only-my-railgun.jpg",
                 Source = "A Certain Scientific Railgun"
             },new TrackMetadata
             {
-                Title = "시간을 달려서 (ROUGH)",
+                Title = "Rough",
+                TitleUnicode = "시간을 달려서 (ROUGH)",
                 Artist = "GFRIEND",
+                ArtistUnicode = "여자친구",
                 Bpm = 112,
                 CoverPath = "Test/snowflake.jpg",
                 Source = "Snowflake"
             },new TrackMetadata
             {
                 Title = "Sukino Skill",
+                TitleUnicode = "スキノスキル",
                 Artist = "Wake Up, Girls!",
+                ArtistUnicode = "Wake Up, Girls!",
                 Bpm = 120,
                 CoverPath = "Test/sukino-skill.jpg",
                 Source = "Death March to the Parallel World Rhapsody"
             },new TrackMetadata
             {
                 Title = "Tenkai e no Kippu",
+                TitleUnicode = "天界への切符",
                 Artist = "Dragon Guardian",
+                ArtistUnicode = "Dragon Guardian",
                 Bpm = 190,
                 CoverPath = "Test/tenkai-e-no-kippu.jpg",
                 Source = "Dragon Guardian"
             },new TrackMetadata
             {
                 Title = "ReI",
+                TitleUnicode = "ReI",
                 Artist = "THE ORAL CIGARETTES",
+                ArtistUnicode = "THE ORAL CIGARETTES",
                 Bpm = 200,
                 CoverPath = "Test/rei.jpeg",
                 Source = "ReI"
             },new TrackMetadata
             {
-                Title = "New Genesis",
-                TitleUnicode = "新時代",
-                Artist = "Ado",
-                Bpm = 140,
-                CoverPath = "Test/ado-one-piece-film-red.jpg",
-                Source = "ONE PIECE FILM RED"
-            },new TrackMetadata
-            {
                 Title = "Endless Tewi-me Park",
-                TitleUnicode = "エンドレス・てゐまパーク",
+                TitleUnicode = "エンドレス・てゐマパーク (Endless Tewi-me-park)",
                 Artist = "Toromi",
+                ArtistUnicode = "とろ美",
                 Bpm = 140,
                 CoverPath = "Test/touhou-merenge-shoujo-yakou.jpg",
                 Source = "東方花映塚　～ Phantasmagoria of Flower View"
+            },new TrackMetadata()
+            {
+                Title = "Deneb and Spica",
+                TitleUnicode = "デネブとスピカ (Deneb and Spica)",
+                Artist = "DIALOGUE+",
+                ArtistUnicode = "DIALOGUE+",
+                Bpm = 140,
+                CoverPath = "Test/deneb-and-spica.jpg",
+                Source = "継母の連れ子が元カノだった"
             }
         };
 
@@ -166,7 +181,7 @@ namespace maisim.Game.Utils
             {
                 TrackMetadata = trackMetadata ?? GetRandomTrackMetadata(),
                 DifficultyLevel = GetRandomDifficultyLevel(),
-                DifficultyRating = random.Next(1, 10),
+                DifficultyRating = Random.Next(1, 10),
                 NoteDesigner = GetRandomName()
             };
         }
@@ -183,18 +198,18 @@ namespace maisim.Game.Utils
                 beatmap = CreateMockBeatmap();
             }
 
-            float accuracy = random.NextFloatInRange(1, 100);
+            float accuracy = Random.NextFloatInRange(1, 100);
 
             return new Score()
             {
                 Beatmap = beatmap,
-                Tap = random.NextInRange(1, 200),
-                Hold = random.NextInRange(1, 200),
-                Slide = random.NextInRange(1, 200),
-                Touch = random.NextInRange(1, 200),
+                Tap = Random.NextInRange(1, 200),
+                Hold = Random.NextInRange(1, 200),
+                Slide = Random.NextInRange(1, 200),
+                Touch = Random.NextInRange(1, 200),
                 Accuracy = accuracy,
                 Rank = ScoreProcessor.CalculateRank(accuracy),
-                Combo = random.NextInRange(1, 500),
+                Combo = Random.NextInRange(1, 500),
             };
         }
 
@@ -218,10 +233,10 @@ namespace maisim.Game.Utils
                     return "Test/tenkai-e-no-kippu.mp3";
                 case AvailableTrackMetadata.ReI:
                     return "Test/rei.mp3";
-                case AvailableTrackMetadata.NewGenesis:
-                    return "Test/new-genesis.mp3";
                 case AvailableTrackMetadata.EndlessTewiMaPark:
                     return "Test/endless-tewi-ma-park.mp3";
+                case AvailableTrackMetadata.DenebAndSpica:
+                    return "Test/deneb-and-spica.mp3";
                 default:
                     return "";
             }
@@ -246,10 +261,10 @@ namespace maisim.Game.Utils
                     return 88900;
                 case AvailableTrackMetadata.ReI:
                     return 76000;
-                case AvailableTrackMetadata.NewGenesis:
-                    return 88200;
                 case AvailableTrackMetadata.EndlessTewiMaPark:
                     return 38000;
+                case AvailableTrackMetadata.DenebAndSpica:
+                    return 54000;
                 default:
                     return 0;
             }

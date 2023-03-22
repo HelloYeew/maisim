@@ -15,7 +15,7 @@ namespace maisim.Game.Graphics.UserInterfaceV2
     /// <summary>
     /// A button that's use to select <see cref="DifficultyLevel"/> in <see cref="BeatmapSetInfoBox"/>
     /// </summary>
-    public class DifficultySelectionButton : Button
+    public partial class DifficultySelectionButton : Button
     {
         private DifficultyLevel difficultyLevel;
         private Container mainContainer;

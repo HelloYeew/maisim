@@ -7,7 +7,7 @@ using osuTK.Graphics;
 
 namespace maisim.Game.Graphics.UserInterface.Overlays
 {
-    public class SettingsHeader : SettingsSection
+    public partial class SettingsHeader : SettingsSection
     {
         private readonly LocalisableString heading;
         private readonly LocalisableString subheading;

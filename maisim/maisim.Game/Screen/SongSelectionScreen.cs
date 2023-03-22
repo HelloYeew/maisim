@@ -12,38 +12,49 @@ namespace maisim.Game.Screen
     /// <summary>
     /// The song selection screen that shows a list of all the songs to the user who can select a track to play from there.
     /// </summary>
-    public class SongSelectionScreen : MaisimScreen
+    public partial class SongSelectionScreen : MaisimScreen
     {
         [Resolved]
         private CurrentWorkingBeatmap currentWorkingBeatmap { get; set; }
 
         public override float BackgroundParallaxAmount => 0.2f;
 
+        private BackButton backButton;
+        private BeatmapSetSelection beatmapSetSelection;
+        private BeatmapSetInfoBox beatmapSetInfoBox;
+        private Container playButtonContainer;
+        private Container logoContainer;
+
         [BackgroundDependencyLoader]
         private void load()
         {
             InternalChildren = new Drawable[]
             {
-                new BeatmapSetSelection(),
-                new BeatmapSetInfoBox()
+                beatmapSetSelection = new BeatmapSetSelection()
+                {
+                    Position = new Vector2(120, 1000)
+                },
+                beatmapSetInfoBox = new BeatmapSetInfoBox()
                 {
                     Anchor = Anchor.TopRight,
                     Origin = Anchor.TopRight,
                     RelativeSizeAxes = Axes.Y,
-                    Depth = -10
+                    Depth = -10,
+                    Position = new Vector2(2000, 20)
                 },
-                new BackButton
+                backButton = new BackButton
                 {
                     Anchor = Anchor.BottomLeft,
                     Origin = Anchor.BottomLeft,
+                    Scale = new Vector2(0),
                     Action = () => this.Exit()
                 },
-                new Container
+                playButtonContainer = new Container
                 {
                     Anchor = Anchor.BottomRight,
                     Origin = Anchor.BottomRight,
                     Size = new Vector2(300, 80),
-                    Position = new Vector2(-20,-20),
+                    Position = new Vector2(1980,-20),
                     Child = new PlayButton()
                     {
                         Size = new Vector2(300, 80),
@@ -51,12 +62,13 @@ namespace maisim.Game.Screen
                         Origin = Anchor.Centre,
                     }
                 },
-                new Container
+                logoContainer = new Container
                 {
                     Anchor = Anchor.BottomRight,
                     Origin = Anchor.Centre,
                     Size = new Vector2(100),
                     Position = new Vector2(-10,-10),
+                    Scale = new Vector2(0),
                     Depth = 10,
                     Child = new MaisimLogo
                     {
@@ -66,8 +78,29 @@ namespace maisim.Game.Screen
                         Scale = new Vector2(0.8f),
                         Depth = 10,
                     }
-                },
+                }
             };
+        }
+
+        public override void OnEntering(ScreenTransitionEvent e)
+        {
+            beatmapSetSelection.MoveToY(0, 500, Easing.OutQuint);
+            beatmapSetInfoBox.MoveToX(-20, 600, Easing.OutQuint);
+            playButtonContainer.MoveToX(-20, 700, Easing.OutQuint);
+            backButton.ScaleTo(1, 700, Easing.OutQuint);
+            logoContainer.ScaleTo(1, 1000, Easing.OutQuint);
+        }
+
+        public override void OnSuspending(ScreenTransitionEvent e)
+        {
+            this.ScaleTo(0f, 750, Easing.OutQuint);
+            this.MoveToX(-DrawWidth, 750, Easing.OutExpo);
+        }
+
+        public override void OnResuming(ScreenTransitionEvent e)
+        {
+            this.ScaleTo(1, 750, Easing.OutQuint);
+            this.MoveToX(0, 750, Easing.OutExpo);
         }
     }
 }

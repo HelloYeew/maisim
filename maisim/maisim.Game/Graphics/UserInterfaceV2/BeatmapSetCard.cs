@@ -1,5 +1,6 @@
 using System.Globalization;
 using maisim.Game.Beatmaps;
+using maisim.Game.Configuration;
 using maisim.Game.Graphics.Sprites;
 using maisim.Game.Utils;
 using osu.Framework.Allocation;
@@ -9,6 +10,7 @@ using osu.Framework.Graphics.Containers;
 using osu.Framework.Graphics.Shapes;
 using osu.Framework.Graphics.Sprites;
 using osu.Framework.Graphics.Textures;
+using osu.Framework.Localisation;
 using osuTK;
 using osuTK.Graphics;
 
@@ -17,16 +19,21 @@ namespace maisim.Game.Graphics.UserInterfaceV2
     /// <summary>
     /// The beatmap set card that is displayed in the beatmap selection screen.
     /// </summary>
-    public class BeatmapSetCard : CompositeDrawable
+    public partial class BeatmapSetCard : CompositeDrawable
     {
-        public readonly BeatmapSet BeatmapSet;
+        [Resolved]
+        private MaisimConfigManager gameConfig { get; set; }
+
+        protected internal readonly BeatmapSet BeatmapSet;
+        private MaisimSpriteText title;
+        private MaisimSpriteText artist;
 
         public const float CARD_WIDTH = 645;
         public const float CARD_HEIGHT = 127;
 
         public BeatmapSetCard(BeatmapSet beatmapSet)
         {
-            this.BeatmapSet = beatmapSet;
+            BeatmapSet = beatmapSet;
         }
 
         [BackgroundDependencyLoader]
@@ -115,11 +122,11 @@ namespace maisim.Game.Graphics.UserInterfaceV2
                                             RelativeSizeAxes = Axes.Both,
                                             Size = new Vector2(0.9f, 0.5f),
                                             Position = new Vector2(0, 5),
-                                            Child = new MaisimSpriteText
+                                            Child = title = new MaisimSpriteText
                                             {
                                                 Anchor = Anchor.Centre,
                                                 Origin = Anchor.Centre,
-                                                Text = BeatmapSet.TrackMetadata.Title,
+                                                Text = gameConfig.Get<bool>(MaisimSetting.UseUnicodeInfo) ? BeatmapSet.TrackMetadata.TitleUnicode : BeatmapSet.TrackMetadata.Title,
                                                 Colour = Color4.White
                                             }
                                         },
@@ -130,11 +137,11 @@ namespace maisim.Game.Graphics.UserInterfaceV2
                                             RelativeSizeAxes = Axes.Both,
                                             Size = new Vector2(0.9f, 0.5f),
                                             Position = new Vector2(0, -5),
-                                            Child = new MaisimSpriteText
+                                            Child = artist = new MaisimSpriteText
                                             {
                                                 Anchor = Anchor.Centre,
                                                 Origin = Anchor.Centre,
-                                                Text = BeatmapSet.TrackMetadata.Artist,
+                                                Text = gameConfig.Get<bool>(MaisimSetting.UseUnicodeInfo) ? BeatmapSet.TrackMetadata.ArtistUnicode : BeatmapSet.TrackMetadata.Artist,
                                                 Colour = Color4Extensions.FromHex("#b8b8b8")
                                             }
                                         }
@@ -251,6 +258,31 @@ namespace maisim.Game.Graphics.UserInterfaceV2
                     },
                 }
             };
+        }
+
+        protected override void Update()
+        {
+            base.Update();
+            title.Text = gameConfig.Get<bool>(MaisimSetting.UseUnicodeInfo) ? BeatmapSet.TrackMetadata.TitleUnicode : BeatmapSet.TrackMetadata.Title;
+            artist.Text = gameConfig.Get<bool>(MaisimSetting.UseUnicodeInfo) ? BeatmapSet.TrackMetadata.ArtistUnicode : BeatmapSet.TrackMetadata.Artist;
+        }
+
+        /// <summary>
+        /// Return the current value of the text used in the title <see cref="MaisimSpriteText"/>.
+        /// </summary>
+        /// <returns>The title text used in <see cref="MaisimSpriteText"/>.</returns>
+        public LocalisableString GetTitle()
+        {
+            return title.Text;
+        }
+
+        /// <summary>
+        /// Return the current value of the text used in the artist <see cref="MaisimSpriteText"/>.
+        /// </summary>
+        /// <returns>The artist text used in <see cref="MaisimSpriteText"/>.</returns>
+        public LocalisableString GetArtist()
+        {
+            return artist.Text;
         }
     }
 }

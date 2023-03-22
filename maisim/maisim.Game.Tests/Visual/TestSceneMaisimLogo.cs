@@ -9,7 +9,7 @@ using osu.Framework.Bindables;
 
 namespace maisim.Game.Tests.Visual;
 
-public class TestSceneMaisimLogo : maisimTestScene
+public partial class TestSceneMaisimLogo : maisimTestScene
 {
     [Cached]
     private CurrentWorkingBeatmap currentWorkingBeatmap = new CurrentWorkingBeatmap();

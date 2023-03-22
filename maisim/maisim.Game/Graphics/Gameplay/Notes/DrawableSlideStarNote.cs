@@ -7,7 +7,7 @@ namespace maisim.Game.Graphics.Gameplay.Notes
     /// <summary>
     /// Class represent the star in SLIDE note.
     /// </summary>
-    public class DrawableSlideStarNote : DrawableNote
+    public partial class DrawableSlideStarNote : DrawableNote
     {
         protected override Drawable[] AddNoteParts(TextureStore textureStore)
         {

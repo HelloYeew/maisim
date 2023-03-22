@@ -3,7 +3,7 @@ using maisim.Game.Screen;
 
 namespace maisim.Game.Tests.Visual.Component;
 
-public class TestSceneToolbar : maisimTestScene
+public partial class TestSceneToolbar : maisimTestScene
 {
     public TestSceneToolbar()
     {

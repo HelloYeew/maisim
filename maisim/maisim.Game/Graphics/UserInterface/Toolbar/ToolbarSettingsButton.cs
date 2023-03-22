@@ -3,7 +3,7 @@ using osu.Framework.Allocation;
 
 namespace maisim.Game.Graphics.UserInterface.Toolbar
 {
-    public class ToolbarSettingsButton : ToolbarOverlayToggleButton
+    public partial class ToolbarSettingsButton : ToolbarOverlayToggleButton
     {
         [BackgroundDependencyLoader(true)]
         private void load(SettingsOverlay settingsOverlay)

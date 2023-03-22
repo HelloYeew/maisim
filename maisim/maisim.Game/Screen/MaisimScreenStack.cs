@@ -1,12 +1,11 @@
 using maisim.Game.Graphics.Containers;
 using osu.Framework.Allocation;
 using osu.Framework.Graphics;
-using osu.Framework.Graphics.Containers;
 using osu.Framework.Screens;
 
 namespace maisim.Game.Screen
 {
-    public class MaisimScreenStack : ScreenStack
+    public partial class MaisimScreenStack : ScreenStack
     {
         [Cached]
         private BackgroundScreenStack backgroundScreenStack;

@@ -6,7 +6,7 @@ using osuTK;
 
 namespace maisim.Game.Tests.Visual.Component.Gameplay
 {
-    public class TestSceneGameplayElement : GridTestScene
+    public partial class TestSceneGameplayElement : GridTestScene
     {
         public TestSceneGameplayElement() : base(4, 3)
         {

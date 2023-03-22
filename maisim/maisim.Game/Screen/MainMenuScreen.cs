@@ -1,4 +1,5 @@
 ﻿using maisim.Game.Beatmaps;
+using maisim.Game.Configuration;
 using maisim.Game.Graphics;
 using maisim.Game.Graphics.Sprites;
 using maisim.Game.Graphics.UserInterface;
@@ -18,8 +19,11 @@ namespace maisim.Game.Screen
     /// <summary>
     /// The main menu screen that includes all the main menu components.
     /// </summary>
-    public class MainMenuScreen : MaisimScreen
+    public partial class MainMenuScreen : MaisimScreen
     {
+        [Resolved]
+        private MaisimConfigManager gameConfig { get; set; }
+
         private MaisimLogo maisimLogo;
         private MainMenuButton playButton;
         private MainMenuButton editButton;
@@ -62,7 +66,8 @@ namespace maisim.Game.Screen
                             Spacing = new Vector2(0, 10),
                             Children = new Drawable[]
                             {
-                                playButton = new MainMenuButton("Play",FontAwesome.Solid.Play,Color4Extensions.FromHex("73E99B"))
+                                playButton = new MainMenuButton("Play", FontAwesome.Solid.Play,
+                                    Color4Extensions.FromHex("73E99B"))
                                 {
                                     Anchor = Anchor.Centre,
                                     Origin = Anchor.Centre,
@@ -70,21 +75,24 @@ namespace maisim.Game.Screen
                                     Scale = new Vector2(0),
                                     Action = () => this.Push(new SongSelectionScreen())
                                 },
-                                editButton = new MainMenuButton("Edit",FontAwesome.Solid.Edit,Color4Extensions.FromHex("E9C173"))
+                                editButton = new MainMenuButton("Edit", FontAwesome.Solid.Edit,
+                                    Color4Extensions.FromHex("E9C173"))
                                 {
                                     Anchor = Anchor.Centre,
                                     Origin = Anchor.Centre,
                                     Size = new Vector2(400, 60),
                                     Scale = new Vector2(0)
                                 },
-                                browseButton = new MainMenuButton("Browse",FontAwesome.Solid.ListUl,Color4Extensions.FromHex("E773E9"))
+                                browseButton = new MainMenuButton("Browse", FontAwesome.Solid.ListUl,
+                                    Color4Extensions.FromHex("E773E9"))
                                 {
                                     Anchor = Anchor.Centre,
                                     Origin = Anchor.Centre,
                                     Size = new Vector2(400, 60),
                                     Scale = new Vector2(0)
                                 },
-                                exitButton = new MainMenuButton("Exit",FontAwesome.Solid.DoorOpen,Color4Extensions.FromHex("E97373"))
+                                exitButton = new MainMenuButton("Exit", FontAwesome.Solid.DoorOpen,
+                                    Color4Extensions.FromHex("E97373"))
                                 {
                                     Anchor = Anchor.Centre,
                                     Origin = Anchor.Centre,
@@ -113,7 +121,9 @@ namespace maisim.Game.Screen
                 {
                     Anchor = Anchor.BottomLeft,
                     Origin = Anchor.BottomLeft,
-                    Text = DebugUtils.IsDebugBuild ? "maisim development build" : $"maisim v{System.Reflection.Assembly.GetExecutingAssembly().GetName().Version}",
+                    Text = DebugUtils.IsDebugBuild
+                        ? "maisim development build"
+                        : $"maisim v{System.Reflection.Assembly.GetExecutingAssembly().GetName().Version}",
                     Scale = new Vector2(0)
                 },
                 new Container
@@ -145,14 +155,25 @@ namespace maisim.Game.Screen
             currentWorkingBeatmap.BindBeatmapSetChanged(workingBeatmapChanged);
         }
 
+        protected override void Update()
+        {
+            base.Update();
+
+            if (trackArtistText.Alpha != 0 && trackTitleText.Alpha != 0)
+            {
+                trackTitleText.Text = gameConfig.Get<bool>(MaisimSetting.UseUnicodeInfo) ? currentWorkingBeatmap.BeatmapSet.TrackMetadata.TitleUnicode : currentWorkingBeatmap.BeatmapSet.TrackMetadata.Title;
+                trackArtistText.Text = gameConfig.Get<bool>(MaisimSetting.UseUnicodeInfo) ? currentWorkingBeatmap.BeatmapSet.TrackMetadata.ArtistUnicode : currentWorkingBeatmap.BeatmapSet.TrackMetadata.Artist;
+            }
+        }
+
         /// <summary>
         /// Update and show the new track's information.
         /// </summary>
         /// <param name="beatmapSet">The new track's <see cref="BeatmapSet"/></param>
         private void updateNewBeatmap(BeatmapSet beatmapSet)
         {
-            trackTitleText.Text = beatmapSet.TrackMetadata.Title;
-            trackArtistText.Text = beatmapSet.TrackMetadata.Artist;
+            trackTitleText.Text = gameConfig.Get<bool>(MaisimSetting.UseUnicodeInfo) ? beatmapSet.TrackMetadata.TitleUnicode : beatmapSet.TrackMetadata.Title;
+            trackArtistText.Text = gameConfig.Get<bool>(MaisimSetting.UseUnicodeInfo) ? beatmapSet.TrackMetadata.ArtistUnicode : beatmapSet.TrackMetadata.Artist;
             trackArtistText.FadeTo(1, 500, Easing.OutQuint);
             trackTitleText.FadeTo(1, 500, Easing.OutQuint);
             Scheduler.AddDelayed(
