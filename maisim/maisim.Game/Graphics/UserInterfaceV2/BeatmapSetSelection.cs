@@ -24,9 +24,13 @@ namespace maisim.Game.Graphics.UserInterfaceV2
         private Box bottomBox;
         private Container dummyBox;
         private Box backgroundBox;
+        private BasicScrollContainer scrollContainer;
 
-        private void workingBeatmapChange(ValueChangedEvent<BeatmapSet> beatmapSetEvent) =>
-            musicPlayer.SeekTo(beatmapSetEvent.NewValue.PreviewTime);
+        private void workingBeatmapChange(ValueChangedEvent<BeatmapSet> beatmapSetEvent)
+        {
+            if (scrollContainer.IsDragged || scrollContainer.IsHovered)
+                musicPlayer.SeekTo(beatmapSetEvent.NewValue.PreviewTime);
+        }
 
         [BackgroundDependencyLoader]
         private void load()
@@ -93,7 +97,7 @@ namespace maisim.Game.Graphics.UserInterfaceV2
                                 Alpha = 0.5f,
                             }
                         },
-                        new BasicScrollContainer()
+                        scrollContainer = new BasicScrollContainer()
                         {
                             Anchor = Anchor.Centre,
                             Origin = Anchor.Centre,
