@@ -24,7 +24,7 @@ namespace maisim.Game.Graphics.UserInterfaceV2
         [Resolved]
         private MaisimConfigManager gameConfig { get; set; }
 
-        private readonly BeatmapSet beatmapSet;
+        protected internal readonly BeatmapSet BeatmapSet;
         private MaisimSpriteText title;
         private MaisimSpriteText artist;
 
@@ -33,7 +33,7 @@ namespace maisim.Game.Graphics.UserInterfaceV2
 
         public BeatmapSetCard(BeatmapSet beatmapSet)
         {
-            this.beatmapSet = beatmapSet;
+            BeatmapSet = beatmapSet;
         }
 
         [BackgroundDependencyLoader]
@@ -86,7 +86,7 @@ namespace maisim.Game.Graphics.UserInterfaceV2
                                             Origin = Anchor.Centre,
                                             Size = new Vector2(98, 98),
                                             FillMode = FillMode.Fill,
-                                            Texture = textureStore.Get(beatmapSet.TrackMetadata.CoverPath)
+                                            Texture = textureStore.Get(BeatmapSet.TrackMetadata.CoverPath)
                                         }
                                     }
                                 },
@@ -126,7 +126,7 @@ namespace maisim.Game.Graphics.UserInterfaceV2
                                             {
                                                 Anchor = Anchor.Centre,
                                                 Origin = Anchor.Centre,
-                                                Text = gameConfig.Get<bool>(MaisimSetting.UseUnicodeInfo) ? beatmapSet.TrackMetadata.TitleUnicode : beatmapSet.TrackMetadata.Title,
+                                                Text = gameConfig.Get<bool>(MaisimSetting.UseUnicodeInfo) ? BeatmapSet.TrackMetadata.TitleUnicode : BeatmapSet.TrackMetadata.Title,
                                                 Colour = Color4.White
                                             }
                                         },
@@ -141,7 +141,7 @@ namespace maisim.Game.Graphics.UserInterfaceV2
                                             {
                                                 Anchor = Anchor.Centre,
                                                 Origin = Anchor.Centre,
-                                                Text = gameConfig.Get<bool>(MaisimSetting.UseUnicodeInfo) ? beatmapSet.TrackMetadata.ArtistUnicode : beatmapSet.TrackMetadata.Artist,
+                                                Text = gameConfig.Get<bool>(MaisimSetting.UseUnicodeInfo) ? BeatmapSet.TrackMetadata.ArtistUnicode : BeatmapSet.TrackMetadata.Artist,
                                                 Colour = Color4Extensions.FromHex("#b8b8b8")
                                             }
                                         }
@@ -180,7 +180,7 @@ namespace maisim.Game.Graphics.UserInterfaceV2
                                                     {
                                                         Anchor = Anchor.Centre,
                                                         Origin = Anchor.Centre,
-                                                        Text = BeatmapUtils.GetDifficultyRatingRange(beatmapSet).Item1.ToString(CultureInfo.CurrentCulture) + " - " + BeatmapUtils.GetDifficultyRatingRange(beatmapSet).Item2.ToString(CultureInfo.CurrentCulture),
+                                                        Text = BeatmapUtils.GetDifficultyRatingRange(BeatmapSet).Item1.ToString(CultureInfo.CurrentCulture) + " - " + BeatmapUtils.GetDifficultyRatingRange(BeatmapSet).Item2.ToString(CultureInfo.CurrentCulture),
                                                         Colour = Color4.Black,
                                                     }
                                                 }
@@ -263,8 +263,8 @@ namespace maisim.Game.Graphics.UserInterfaceV2
         protected override void Update()
         {
             base.Update();
-            title.Text = gameConfig.Get<bool>(MaisimSetting.UseUnicodeInfo) ? beatmapSet.TrackMetadata.TitleUnicode : beatmapSet.TrackMetadata.Title;
-            artist.Text = gameConfig.Get<bool>(MaisimSetting.UseUnicodeInfo) ? beatmapSet.TrackMetadata.ArtistUnicode : beatmapSet.TrackMetadata.Artist;
+            title.Text = gameConfig.Get<bool>(MaisimSetting.UseUnicodeInfo) ? BeatmapSet.TrackMetadata.TitleUnicode : BeatmapSet.TrackMetadata.Title;
+            artist.Text = gameConfig.Get<bool>(MaisimSetting.UseUnicodeInfo) ? BeatmapSet.TrackMetadata.ArtistUnicode : BeatmapSet.TrackMetadata.Artist;
         }
 
         /// <summary>

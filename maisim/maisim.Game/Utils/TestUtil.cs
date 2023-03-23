@@ -134,6 +134,7 @@ namespace maisim.Game.Utils
                 Source = "継母の連れ子が元カノだった"
             }
         };
+
         /// <summary>
         /// List of random name that can be use for testing.
         /// </summary>

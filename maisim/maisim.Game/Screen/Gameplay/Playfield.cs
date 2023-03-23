@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using maisim.Game.Gameplay.Notes;
 using maisim.Game.Graphics.Gameplay.Notes;
 using osu.Framework.Allocation;
 using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
-using osuTK;
 
 namespace maisim.Game.Screen.Gameplay
 {

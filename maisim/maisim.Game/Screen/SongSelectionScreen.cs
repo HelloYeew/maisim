@@ -67,7 +67,7 @@ namespace maisim.Game.Screen
                     Anchor = Anchor.BottomRight,
                     Origin = Anchor.Centre,
                     Size = new Vector2(100),
-                    Position = new Vector2(-5,-5),
+                    Position = new Vector2(-10,-10),
                     Scale = new Vector2(0),
                     Depth = 10,
                     Child = new MaisimLogo
